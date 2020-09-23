@@ -3,7 +3,7 @@
 
 #include <QGraphicsRectItem>
 
-class MyRect: public QGraphicsRectItem{
+class Hero: public QGraphicsRectItem{
 public:
     void keyPressEvent(QKeyEvent * event);
 };

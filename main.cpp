@@ -1,27 +1,23 @@
  #include <QApplication>
 #include <QGraphicsScene>
-#include "MyRect.h"
+#include "hero.h"
 #include <QGraphicsView>
-#include <enemy.h>
+#include "enemy.h"
+#include "enemymanager.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     QGraphicsScene * scene = new QGraphicsScene();
 
-    MyRect * player = new MyRect();
+    Hero * player = new Hero();
     player->setRect(0,0,100,100);
     scene->addItem(player);
 
-    //enemy
-    Enemy * enemy = new Enemy();
-    enemy->setRect(0,0,100,100);
-    scene->addItem(enemy);
-    enemy->setPos(0,0);
-    // end enemy
-
     player->setFlag(QGraphicsItem::ItemIsFocusable);
     player->setFocus();
+
+    EnemyManager * enemyManager = new EnemyManager(scene);
 
     QGraphicsView * view = new QGraphicsView(scene);
 

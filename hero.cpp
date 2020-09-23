@@ -1,10 +1,10 @@
-#include "MyRect.h"
+#include "hero.h"
 #include <QGraphicsScene>
 #include <QKeyEvent>
 #include <QDebug>
 #include "Bullet.h"
 
-void MyRect::keyPressEvent(QKeyEvent *event)
+void Hero::keyPressEvent(QKeyEvent *event)
 {
     //qDebug() << "key pressed";
     if (event->key() == Qt::Key_Left){

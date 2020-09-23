@@ -3,22 +3,28 @@
 
 #include <QGraphicsRectItem>
 #include <QObject>
+#include "enemymanager.h"
 #include "Cons.h"
 
 class Enemy: public QObject, public QGraphicsRectItem{
     Q_OBJECT
 public:
-    Enemy();
+    Enemy(EnemyManager* manager);
+    ~Enemy();
     int type() const override{
         return Keys::enemyIndex;
     }
+
 public slots:
     void onTimer();
-    bool removalCheck();
-    void removal();
-    void move();
+
+
 private:
+    EnemyManager* manager;
     int speed = 5;
+
+    bool removalCheck();
+    void move();
 };
 
 #endif // ENEMY_H

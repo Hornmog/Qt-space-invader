@@ -5,8 +5,9 @@
 #include <QGraphicsScene>
 
 
-Enemy::Enemy()
+Enemy::Enemy(EnemyManager *manager)
 {
+    this->manager = manager;
     setRect(0,0,50,50);
 
 
@@ -17,11 +18,16 @@ Enemy::Enemy()
 
 }
 
+Enemy::~Enemy(){
+    manager->onEnemyRemoval(this);
+    scene()->removeItem(this);
+}
+
 void Enemy::onTimer(){
     this->move();
 
     if(this->removalCheck()){
-        removal();
+        delete this;
     }
 
 }
@@ -40,10 +46,7 @@ bool Enemy::removalCheck(){
     //for item in list:
 }
 
-void Enemy::removal(){
-    scene()->removeItem(this);
-    delete this;
-}
+
 
 void Enemy::move()
 {
