@@ -2,6 +2,7 @@
 #include <QGraphicsScene>
 #include "MyRect.h"
 #include <QGraphicsView>
+#include <enemy.h>
 
 int main(int argc, char *argv[])
 {
@@ -11,6 +12,13 @@ int main(int argc, char *argv[])
     MyRect * player = new MyRect();
     player->setRect(0,0,100,100);
     scene->addItem(player);
+
+    //enemy
+    Enemy * enemy = new Enemy();
+    enemy->setRect(0,0,100,100);
+    scene->addItem(enemy);
+    enemy->setPos(0,0);
+    // end enemy
 
     player->setFlag(QGraphicsItem::ItemIsFocusable);
     player->setFocus();

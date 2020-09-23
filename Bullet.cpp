@@ -13,12 +13,20 @@ Bullet::Bullet()
     timer->start(50);
 }
 
+Bullet::~Bullet() {
+    qDebug() << "Bullet removed";
+    scene()->removeItem(this);
+}
+
+
 void Bullet::move()
 {
     setPos(x(),y()-10);
-    if(pos().y() + rect().height() < 0){
-        scene()->removeItem(this);
+    if((pos().y() + rect().height() < 0)){
         delete this;
-        qDebug() << "Bullet removed";
     }
+}
+
+void Bullet::onHit() {
+    delete this;
 }

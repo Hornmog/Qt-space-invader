@@ -2,11 +2,18 @@
 #define BULLET_H
 #include <QGraphicsRectItem>
 #include <QObject>
+#include "Cons.h"
 
 class Bullet: public QObject, public QGraphicsRectItem{
     Q_OBJECT
 public:
     Bullet();
+    ~Bullet();
+    int type() const override{
+        return Keys::bulletIndex;
+    }
+    bool removalCheck();
+    void onHit();
 public slots:
     void move();
 };

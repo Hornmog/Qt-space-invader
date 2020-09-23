@@ -2,7 +2,8 @@
 #define CONS_H
 
 namespace Keys {
-    static int bulletIndex = 3459458;
+    static const int bulletIndex = 66666;
+    static const int enemyIndex = 66667;
 }
 
 #endif // CONS_H
