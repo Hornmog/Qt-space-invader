@@ -14,6 +14,8 @@ public:
     }
     bool removalCheck();
     void onHit();
+    int speed;
+
 public slots:
     void move();
 };

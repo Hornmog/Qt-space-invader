@@ -15,13 +15,18 @@ public:
         return Keys::enemyIndex;
     }
 
+    int speed = 5;
+    int width = 50;
+    int height = 50;
+    int shoot_interval = 3000;
+
 public slots:
     void onTimer();
+    void createBullet();
 
 
 private:
     EnemyManager* manager;
-    int speed = 5;
 
     bool removalCheck();
     void move();

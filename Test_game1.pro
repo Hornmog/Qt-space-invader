@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     Bullet.cpp \
     Enemy.cpp \
+    ScoreBar.cpp \
     enemymanager.cpp \
     hero.cpp \
     main.cpp
@@ -26,6 +27,7 @@ HEADERS += \
     Bullet.h \
     Cons.h \
     Enemy.h \
+    ScoreBar.h \
     enemymanager.h \
     hero.h
 

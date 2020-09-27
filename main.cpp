@@ -4,20 +4,27 @@
 #include <QGraphicsView>
 #include "enemy.h"
 #include "enemymanager.h"
+#include "ScoreBar.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     QGraphicsScene * scene = new QGraphicsScene();
 
+    //create Hero
     Hero * player = new Hero();
-    player->setRect(0,0,100,100);
     scene->addItem(player);
+
+    //create Score Bar
+    ScoreBar *scoreBar = new ScoreBar();
+    scene->addItem(scoreBar);
+    scoreBar->setPos(750,500);
 
     player->setFlag(QGraphicsItem::ItemIsFocusable);
     player->setFocus();
 
-    EnemyManager * enemyManager = new EnemyManager(scene);
+    //create enemy manager
+    EnemyManager * enemyManager = new EnemyManager(scene,scoreBar);
 
     QGraphicsView * view = new QGraphicsView(scene);
 

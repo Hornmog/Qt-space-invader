@@ -2,20 +2,26 @@
 #include "enemy.h"
 #include <QTimer>
 #include <QGraphicsScene>
+#include <QDebug>
+#include "ScoreBar.h"
+#include <iostream>
+#include <cstdlib>
 
-EnemyManager::EnemyManager(QGraphicsScene *scene)
+EnemyManager::EnemyManager(QGraphicsScene *scene, ScoreBar *scoreBar)
 {
     this->scene = scene;
-
+    this->scoreBar = scoreBar;
     QTimer * timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(onTimer()));
 
-    timer->start(1000);
+    timer->start(2000);
 }
 
-void EnemyManager::onEnemyRemoval(Enemy *enemy)
+void EnemyManager::onEnemyRemoval(Enemy* enemy)
 {
     enemyCount--;
+    score++;
+    changeScore();
 }
 
 void EnemyManager::onTimer()
@@ -31,7 +37,13 @@ void EnemyManager::createEnemy()
     Enemy * enemy = new Enemy(this);
     enemy->setRect(0,0,100,100);
     scene->addItem(enemy);
-    enemy->setPos(0,0);
+    enemy->setPos(int(std::rand() % 500 + 100), 0);
     enemyCount++;
 
+}
+
+void EnemyManager::changeScore()
+{
+    scoreBar->setScore(score);
+    qDebug() << "Score Changed";
 }

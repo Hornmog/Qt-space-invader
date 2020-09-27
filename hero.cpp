@@ -3,6 +3,17 @@
 #include <QKeyEvent>
 #include <QDebug>
 #include "Bullet.h"
+#include <QTimer>
+
+Hero::Hero()
+{
+    this->setRect(0,0,width,height);
+
+    QTimer * timer = new QTimer();
+    connect(timer,SIGNAL(timeout()),this,SLOT(shootIsAvl()));
+
+    timer->start(1000);
+}
 
 void Hero::keyPressEvent(QKeyEvent *event)
 {
@@ -18,10 +29,18 @@ void Hero::keyPressEvent(QKeyEvent *event)
         }
     }
 
-    else if (event->key() == Qt::Key_Space){
+    else if (event->key() == Qt::Key_Space && shootAvl){
         Bullet * bullet = new Bullet;
-        bullet->setPos(x(),y());
+        bullet->setPos(x()+(width/2),y()-20);
         scene()->addItem(bullet);
+        shootAvl = 0;
+        //qDebug() << shootAvl;
     }
 
+}
+
+void Hero::shootIsAvl()
+{
+    shootAvl = 1;
+    //qDebug() << shootAvl;
 }
