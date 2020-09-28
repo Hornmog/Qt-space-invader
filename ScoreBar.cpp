@@ -1,8 +1,10 @@
 #include "ScoreBar.h"
+#include <QFont>
 
 ScoreBar::ScoreBar()
 {
-    toPlainText();
+    QFont font = QFont("Times", 18);
+    this->setFont(font);
     this->setPlainText(QString::number(0));
 }
 
