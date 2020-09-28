@@ -20,6 +20,8 @@ SOURCES += \
     Enemy.cpp \
     ScoreBar.cpp \
     enemymanager.cpp \
+    gamemanager.cpp \
+    graphicsview.cpp \
     hero.cpp \
     main.cpp
 
@@ -29,6 +31,8 @@ HEADERS += \
     Enemy.h \
     ScoreBar.h \
     enemymanager.h \
+    gamemanager.h \
+    graphicsview.h \
     hero.h
 
 FORMS +=

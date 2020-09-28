@@ -21,7 +21,7 @@ void EnemyManager::onEnemyRemoval(Enemy* enemy)
 {
     enemyCount--;
     score++;
-    changeScore();
+    onEnemyCountChange(score);
 }
 
 void EnemyManager::onTimer()
@@ -42,8 +42,7 @@ void EnemyManager::createEnemy()
 
 }
 
-void EnemyManager::changeScore()
+int EnemyManager::getScore()
 {
-    scoreBar->setScore(score);
-    qDebug() << "Score Changed";
+    return score;
 }

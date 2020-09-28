@@ -8,6 +8,8 @@
 Hero::Hero()
 {
     this->setRect(0,0,width,height);
+    this->setFlag(QGraphicsItem::ItemIsFocusable);
+    this->setFocus();
 
     QTimer * timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(shootIsAvl()));
