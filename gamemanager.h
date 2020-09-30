@@ -14,12 +14,14 @@ public:
 
 
 private:
+    QString gameOverImagePath = ":/images/gameOver.png";
     ScoreBar* scoreBar;
     QGraphicsScene* scene;
     Hero* hero;
 
 private slots:
     void gameOver();
+    void createEndScreen();
     void changeScore(int score);
 };
 

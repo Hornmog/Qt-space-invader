@@ -7,6 +7,7 @@
 #include "ScoreBar.h"
 #include "graphicsview.h"
 
+
 GameManager::GameManager(QObject *parent) : QObject(parent)
 {
 
@@ -31,6 +32,22 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
 void GameManager::gameOver()
 {
     delete hero;
+    createEndScreen();
+
+}
+
+void GameManager::createEndScreen()
+{
+    QPixmap gameOverPixmap(gameOverImagePath);
+    gameOverPixmap.scaled(QSize(24,24),  Qt::KeepAspectRatio);
+    QGraphicsPixmapItem* gameOverItem = new QGraphicsPixmapItem(gameOverPixmap);
+    scene->addItem(gameOverItem);
+
+    //gameOverItem->setTransformOriginPoint(gameOverItem->boundingRect().center());
+    gameOverItem->setPos(scene->width()/2 - gameOverItem->boundingRect().width()/2,
+                         scene->height()/2 - gameOverItem->boundingRect().height()/2);
+
+
 }
 
 void GameManager::changeScore(int score)

@@ -21,7 +21,6 @@ SOURCES += \
     ScoreBar.cpp \
     enemymanager.cpp \
     gamemanager.cpp \
-    gameover.cpp \
     graphicsview.cpp \
     hero.cpp \
     main.cpp \
@@ -34,7 +33,6 @@ HEADERS += \
     ScoreBar.h \
     enemymanager.h \
     gamemanager.h \
-    gameover.h \
     graphicsview.h \
     hero.h \
     spaceship.h
@@ -45,3 +43,6 @@ FORMS +=
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    rsources.qrc
