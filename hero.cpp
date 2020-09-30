@@ -7,14 +7,32 @@
 
 Hero::Hero()
 {
+    width = 100;
+    height = 100;
+    shootDelay = 1000;
+    bulletSpeed = 10;
+    speed = 10;
+
     this->setRect(0,0,width,height);
     this->setFlag(QGraphicsItem::ItemIsFocusable);
     this->setFocus();
 
     QTimer * timer = new QTimer();
-    connect(timer,SIGNAL(timeout()),this,SLOT(shootIsAvl()));
+    connect(timer,SIGNAL(timeout()),this,SLOT(onTimer()));
 
-    timer->start(1000);
+    timer->start(50);
+
+    QTimer * timerShoot = new QTimer();
+    connect(timerShoot,SIGNAL(timeout()),this,SLOT(shootIsAvl()));
+
+    timerShoot->start(shootDelay);
+}
+
+void Hero::onTimer()
+{
+    if(removalCheck()){
+        heroKilled();
+    }
 }
 
 void Hero::keyPressEvent(QKeyEvent *event)
@@ -22,27 +40,20 @@ void Hero::keyPressEvent(QKeyEvent *event)
     //qDebug() << "key pressed";
     if (event->key() == Qt::Key_Left){
         if(pos().x() > 0){
-            setPos(x()-10,y());
+            setPos(x()-speed,y());
         }
     }
     else if (event->key() == Qt::Key_Right){
         if(pos().x() + rect().width() < scene()->width()){
-            setPos(x()+10,y());
+            setPos(x()+speed,y());
         }
     }
 
     else if (event->key() == Qt::Key_Space && shootAvl){
-        Bullet * bullet = new Bullet;
-        bullet->setPos(x()+(width/2),y()-20);
-        scene()->addItem(bullet);
-        shootAvl = 0;
+        createBullet();
+
         //qDebug() << shootAvl;
     }
 
 }
 
-void Hero::shootIsAvl()
-{
-    shootAvl = 1;
-    //qDebug() << shootAvl;
-}

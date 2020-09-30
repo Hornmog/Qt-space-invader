@@ -2,6 +2,7 @@
 #define GAMEMANAGER_H
 
 #include "ScoreBar.h"
+#include "hero.h"
 
 #include <QObject>
 
@@ -11,11 +12,15 @@ class GameManager : public QObject
 public:
     explicit GameManager(QObject *parent = nullptr);
 
-public slots:
-    void changeScore(int score);
 
 private:
-    ScoreBar *scoreBar;
+    ScoreBar* scoreBar;
+    QGraphicsScene* scene;
+    Hero* hero;
+
+private slots:
+    void gameOver();
+    void changeScore(int score);
 };
 
 #endif // GAMEMANAGER_H

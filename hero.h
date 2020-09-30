@@ -3,18 +3,18 @@
 
 #include <QGraphicsRectItem>
 #include <QGraphicsObject>
+#include "spaceship.h"
 
-class Hero: public QObject, public QGraphicsRectItem{
+class Hero: public SpaceShip{
     Q_OBJECT
 public:
     Hero();
     void keyPressEvent(QKeyEvent * event);
-    int height = 100;
-    int width = 100;
-    bool shootAvl = 1;
 
+signals:
+    void heroKilled();
 public slots:
-    void shootIsAvl();
+    void onTimer();
 };
 
 #endif // MYRECT_H

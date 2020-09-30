@@ -5,8 +5,9 @@
 #include <QObject>
 #include "enemymanager.h"
 #include "Cons.h"
+#include "spaceship.h"
 
-class Enemy: public QObject, public QGraphicsRectItem{
+class Enemy: public SpaceShip{
     Q_OBJECT
 public:
     Enemy(EnemyManager* manager);
@@ -15,20 +16,11 @@ public:
         return Keys::enemyIndex;
     }
 
-    int speed = 5;
-    int width = 50;
-    int height = 50;
-    int shoot_interval = 3000;
-
 public slots:
     void onTimer();
-    void createBullet();
-
 
 private:
     EnemyManager* manager;
-
-    bool removalCheck();
     void move();
 };
 

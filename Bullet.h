@@ -7,17 +7,22 @@
 class Bullet: public QObject, public QGraphicsRectItem{
     Q_OBJECT
 public:
-    Bullet();
+    Bullet(int speed = 10);
     ~Bullet();
     int type() const override{
         return Keys::bulletIndex;
     }
     bool removalCheck();
     void onHit();
-    int speed;
+
+    int getBulletLength() const {return bulletLength;}
+    int getSpeed() const {return speed;}
 
 public slots:
     void move();
+private:
+    const int bulletLength = 50;
+    int speed;
 };
 
 #endif // BULLET_H

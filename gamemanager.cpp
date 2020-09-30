@@ -10,21 +10,27 @@
 GameManager::GameManager(QObject *parent) : QObject(parent)
 {
 
-    QGraphicsScene* scene = new QGraphicsScene();
+    scene = new QGraphicsScene();
     GraphicsView* view = new GraphicsView(scene);
-    Hero* player = new Hero();
+    hero = new Hero();
     EnemyManager* enemyManager = new EnemyManager(scene,scoreBar);
     scoreBar = new ScoreBar();
 
-    scene->addItem(player);
+    scene->addItem(hero);
     scene->addItem(scoreBar);
     scene->setSceneRect(0,0,800,600);
     scoreBar->setPos(750,500);
 
     connect(enemyManager, SIGNAL(onEnemyCountChange(int)), this, SLOT(changeScore(int)));
+    connect(hero, SIGNAL(heroKilled()), this, SLOT(gameOver()));
 
-    player->grabKeyboard();
-    player->setPos(view->width()/2 - player->rect().width()/2, view->height() - player->rect().height());
+    hero->grabKeyboard();
+    hero->setPos(view->width()/2 - hero->rect().width()/2, view->height() - hero->rect().height());
+}
+
+void GameManager::gameOver()
+{
+    delete hero;
 }
 
 void GameManager::changeScore(int score)

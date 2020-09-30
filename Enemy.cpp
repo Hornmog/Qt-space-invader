@@ -5,8 +5,16 @@
 #include <QGraphicsScene>
 
 
+//TODO: add Person class that Enemy and Hero inherit from.
+// Common function: removalCheck, shootIsAvl, createBullet
 Enemy::Enemy(EnemyManager *manager)
 {
+    width = 50;
+    height = 50;
+    speed = 5;
+    bulletSpeed = -10;
+    shootDelay = 3000;
+
     this->manager = manager;
     setRect(0,0,width,height);
 
@@ -17,9 +25,9 @@ Enemy::Enemy(EnemyManager *manager)
     timer->start(50);
 
     QTimer * timer_bullet = new QTimer();
-    connect(timer_bullet,SIGNAL(timeout()),this,SLOT(createBullet()));
+    connect(timer_bullet,SIGNAL(timeout()),this,SLOT(shootIsAvl()));
 
-    timer_bullet->start(shoot_interval);
+    timer_bullet->start(shootDelay);
 
 }
 
@@ -35,22 +43,10 @@ void Enemy::onTimer(){
         delete this;
     }
 
-}
-
-bool Enemy::removalCheck(){
-    auto items = collidingItems();
-    for (QGraphicsItem* item: items) {
-        if(item->type() == Keys::bulletIndex){
-            Bullet* bullet = static_cast<Bullet*>(item);
-            bullet->onHit();
-            qDebug() << "collision with bullet occured";
-            return true;
-        }
+    else if(shootAvl){
+        createBullet();
     }
-    return false;
-    //for item in list:
 }
-
 
 
 void Enemy::move()
@@ -63,13 +59,4 @@ void Enemy::move()
 
 
 }
-
-void Enemy::createBullet()
-{
-    Bullet *bullet = new Bullet();
-    bullet->speed = -10;
-    bullet->setPos(x()+(width/2),y()+height+60);
-    scene()->addItem(bullet);
-}
-
 

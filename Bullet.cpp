@@ -3,10 +3,10 @@
 #include <QDebug>
 #include <QGraphicsScene>
 
-Bullet::Bullet()
+Bullet::Bullet(int speed)
 {    
-    setRect(0,0,10,50);
-    speed = 10;
+    setRect(0,0,10,bulletLength);
+    this->speed = speed;
 
     QTimer * timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
