@@ -7,7 +7,10 @@
 
 SpaceShip::SpaceShip(QObject *parent) : QObject(parent)
 {
+    QTimer * timer = new QTimer();
+    connect(timer,SIGNAL(timeout()),this,SLOT(onTimer()));
 
+    timer->start(50);
 }
 
 void SpaceShip::shootIsAvl()
@@ -36,13 +39,25 @@ void SpaceShip::createBullet()
 {
     Bullet *bullet = new Bullet(bulletSpeed);
     // TODO: why do we need to add bullet length?
+    int basePositionX = x()+(width/2);
     if(bulletSpeed > 0){
-        bullet->setPos(x()+(width/2),y()-bullet->getBulletLength()-1);
+        bullet->setPos(basePositionX, y()          - bullet->getBulletLength() - 1);
     }
     else{
-        bullet->setPos(x()+(width/2),y()+height+bullet->getBulletLength() +1);
+        bullet->setPos(basePositionX, y() + height + bullet->getBulletLength() + 1);
     }
 
     scene()->addItem(bullet);
     shootAvl = false;
+}
+
+void SpaceShip::setUpDelay(int shootDelay)
+{
+    if(timerBullet == nullptr) {
+        timerBullet = new QTimer();
+        connect(timerBullet,SIGNAL(timeout()),this,SLOT(shootIsAvl()));
+        timerBullet->start(shootDelay);
+    } else {
+        timerBullet->setInterval(shootDelay);
+    }
 }

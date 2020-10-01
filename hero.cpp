@@ -17,15 +17,7 @@ Hero::Hero()
     this->setFlag(QGraphicsItem::ItemIsFocusable);
     this->setFocus();
 
-    QTimer * timer = new QTimer();
-    connect(timer,SIGNAL(timeout()),this,SLOT(onTimer()));
-
-    timer->start(50);
-
-    QTimer * timerShoot = new QTimer();
-    connect(timerShoot,SIGNAL(timeout()),this,SLOT(shootIsAvl()));
-
-    timerShoot->start(shootDelay);
+    setUpDelay(shootDelay);
 }
 
 void Hero::onTimer()

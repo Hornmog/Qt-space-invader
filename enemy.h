@@ -17,7 +17,7 @@ public:
     }
 
 public slots:
-    void onTimer();
+    void onTimer() override;
 
 private:
     EnemyManager* manager;
