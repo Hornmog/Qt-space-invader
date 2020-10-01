@@ -12,6 +12,13 @@ public:
     bool removalCheck();
     void createBullet();
 
+public slots:
+    virtual void onTimer() = 0;
+
+signals:
+
+protected:
+    void setUpDelay(int delay);
 
     int width;
     int height;
@@ -20,11 +27,10 @@ public:
     int shootDelay;
     bool shootAvl = true;
 
-
-public slots:
+private:
+    QTimer* timerBullet = nullptr;
+private slots:
     void shootIsAvl();
-
-signals:
 
 };
 

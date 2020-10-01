@@ -9,12 +9,12 @@ class Hero: public SpaceShip{
     Q_OBJECT
 public:
     Hero();
-    void keyPressEvent(QKeyEvent * event);
+    void keyPressEvent(QKeyEvent * event) override;
 
 signals:
     void heroKilled();
 public slots:
-    void onTimer();
+    void onTimer() override;
 };
 
 #endif // MYRECT_H

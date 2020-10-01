@@ -14,7 +14,11 @@ public:
 
 
 private:
+<<<<<<< HEAD
     QString gameOverImagePath = ":/images/gameOver.png";
+=======
+    QString imagePath = "D://Qt/Projects/Test_game1/gameOver.png";
+>>>>>>> spaceship
     ScoreBar* scoreBar;
     QGraphicsScene* scene;
     Hero* hero;
