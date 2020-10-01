@@ -3,9 +3,21 @@
 #include <QDebug>
 #include <QGraphicsScene>
 
-Bullet::Bullet(int speed)
+Bullet::Bullet(int speed, const int type)
 {    
-    setRect(0,0,10,bulletLength);
+
+    if(type == 1){
+         ImagePath = ":/images/bullet.png";
+    }
+    else if(type == 2){
+         ImagePath = ":/images/enemyBullet.png";
+    }
+
+
+    QPixmap Pixmap(ImagePath);
+    this->setPixmap(Pixmap.scaled(bulletWidth,bulletLength));
+
+    //setRect(0,0,10,bulletLength);
     this->speed = speed;
 
     QTimer * timer = new QTimer();
@@ -22,8 +34,8 @@ Bullet::~Bullet() {
 
 void Bullet::move()
 {
-    setPos(x(),y()- speed);
-    if((pos().y() + rect().height() < 0)){
+    setPos(x(),y() - speed);
+    if((pos().y() + this->boundingRect().height() < 0)){
         delete this;
     }
 }

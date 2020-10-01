@@ -35,9 +35,9 @@ bool SpaceShip::removalCheck()
     //for item in list:
 }
 
-void SpaceShip::createBullet()
+void SpaceShip::createBullet(int bulletType)
 {
-    Bullet *bullet = new Bullet(bulletSpeed);
+    Bullet *bullet = new Bullet(bulletSpeed, bulletType);
     // TODO: why do we need to add bullet length?
     int basePositionX = x()+(width/2);
     if(bulletSpeed > 0){

@@ -4,10 +4,10 @@
 #include <QObject>
 #include "Cons.h"
 
-class Bullet: public QObject, public QGraphicsRectItem{
+class Bullet: public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
 public:
-    Bullet(int speed = 10);
+    Bullet(int speed = 10, const int type = 1);  //1-Regular ---  2-Enemy ---  Pixmap
     ~Bullet();
     int type() const override{
         return Keys::bulletIndex;
@@ -22,7 +22,9 @@ public slots:
     void move();
 private:
     const int bulletLength = 50;
+    const int bulletWidth = 10;
     int speed;
+    QString ImagePath;
 };
 
 #endif // BULLET_H

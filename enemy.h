@@ -21,8 +21,10 @@ public slots:
     void setDifficulty(int difficulty);
 
 private:
-
+    const int baseBulletSpeed = -10;
     EnemyManager* manager;
+
+
     void move();
 };
 

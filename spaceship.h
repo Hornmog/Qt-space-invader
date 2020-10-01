@@ -11,7 +11,7 @@ class SpaceShip : public QObject, public QGraphicsPixmapItem
 public:
     explicit SpaceShip(QObject *parent = nullptr);
     bool removalCheck();
-    void createBullet();
+    void createBullet(int bulletType = 1);
 
 public slots:
     virtual void onTimer() = 0;

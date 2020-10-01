@@ -15,8 +15,7 @@ Hero::Hero()
     ImagePath = ":/images/hero.png";
 
     QPixmap Pixmap(ImagePath);
-    QPixmap temp = Pixmap.scaled(width,height, Qt::IgnoreAspectRatio);
-    this->setPixmap(temp);
+    this->setPixmap(Pixmap.scaled(width,height));
 
 //    this->setRect(0,0,width,height);
 

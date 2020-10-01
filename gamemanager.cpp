@@ -6,6 +6,7 @@
 #include "enemymanager.h"
 #include "ScoreBar.h"
 #include "graphicsview.h"
+#include <QDebug>
 
 
 GameManager::GameManager(QObject *parent) : QObject(parent)
@@ -17,9 +18,10 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
     EnemyManager* enemyManager = new EnemyManager(scene,scoreBar);
     scoreBar = new ScoreBar();
 
+    createBackground();
     scene->addItem(hero);
     scene->addItem(scoreBar);
-    scene->setSceneRect(0,0,800,600);
+    scene->setSceneRect(0,0,sceneWidth,sceneHeight);
     scoreBar->setPos(750,500);
 
     connect(enemyManager, SIGNAL(onEnemyCountChange(int)), this, SLOT(changeScore(int)));
@@ -39,7 +41,6 @@ void GameManager::gameOver()
 void GameManager::createEndScreen()
 {
     QPixmap gameOverPixmap(gameOverImagePath);
-    gameOverPixmap.scaled(QSize(24,24),  Qt::KeepAspectRatio);
     QGraphicsPixmapItem* gameOverItem = new QGraphicsPixmapItem(gameOverPixmap);
     scene->addItem(gameOverItem);
 
@@ -50,4 +51,14 @@ void GameManager::createEndScreen()
 void GameManager::changeScore(int score)
 {
     scoreBar->setScore(score);
+}
+
+void GameManager::createBackground()
+{
+    qDebug() << "create background";
+    QPixmap Pixmap(backgroundImagePath);
+    QGraphicsPixmapItem* background = new QGraphicsPixmapItem(Pixmap.scaled(sceneWidth,sceneHeight));
+
+    scene->addItem(background);
+    background->setPos(0,0);
 }

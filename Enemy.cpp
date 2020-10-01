@@ -15,8 +15,7 @@ Enemy::Enemy(EnemyManager *manager)
     ImagePath = ":/images/enemy.png";
 
     QPixmap Pixmap(ImagePath);
-    QPixmap temp = Pixmap.scaled(width,height, Qt::IgnoreAspectRatio);
-    this->setPixmap(temp);
+    this->setPixmap(Pixmap.scaled(width,height));
 
     this->manager = manager;
 
@@ -34,7 +33,7 @@ void Enemy::onTimer(){
     this->move();
 
     if(shootAvl){
-        createBullet();
+        createBullet(2);
     }
 
     if(this->removalCheck()){
@@ -46,6 +45,7 @@ void Enemy::setDifficulty(int difficulty)
 {
     shootDelay = baseShootDelay * pow(0.8, difficulty-1);
     setUpDelay(shootDelay);
+    bulletSpeed = baseBulletSpeed * difficulty;
 }
 
 

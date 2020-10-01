@@ -4,6 +4,8 @@
         <file>bullet.png</file>
         <file>enemy.png</file>
         <file>hero.png</file>
+        <file>enemyBullet.png</file>
+        <file>background.png</file>
     </qresource>
     <qresource prefix="/hero.png"/>
     <qresource prefix="/"/>

@@ -14,10 +14,16 @@ public:
 
 
 private:
+    void createBackground();
     QString gameOverImagePath = ":/images/gameOver.png";
     ScoreBar* scoreBar;
     QGraphicsScene* scene;
     Hero* hero;
+    QString backgroundImagePath = ":/images/background.png";
+
+    int sceneWidth = 800;
+    int sceneHeight = 800;
+
 
 
 private slots:
