@@ -12,8 +12,14 @@ Hero::Hero()
     shootDelay = 1000;
     bulletSpeed = 10;
     speed = 10;
+    ImagePath = ":/images/hero.png";
 
-    this->setRect(0,0,width,height);
+    QPixmap Pixmap(ImagePath);
+    QPixmap temp = Pixmap.scaled(width,height, Qt::IgnoreAspectRatio);
+    this->setPixmap(temp);
+
+//    this->setRect(0,0,width,height);
+
     this->setFlag(QGraphicsItem::ItemIsFocusable);
     this->setFocus();
 
@@ -36,7 +42,7 @@ void Hero::keyPressEvent(QKeyEvent *event)
         }
     }
     else if (event->key() == Qt::Key_Right){
-        if(pos().x() + rect().width() < scene()->width()){
+        if(pos().x() + this->boundingRect().width() < scene()->width()){
             setPos(x()+speed,y());
         }
     }

@@ -3,19 +3,26 @@
 #include <QTimer>
 #include <QDebug>
 #include <QGraphicsScene>
+#include <cmath>
 
 Enemy::Enemy(EnemyManager *manager)
 {
-    width = 50;
-    height = 50;
+    width = 100;
+    height = 100;
     speed = 5;
     bulletSpeed = -10;
-    shootDelay = 3000;
+    shootDelay = baseShootDelay;
+    ImagePath = ":/images/enemy.png";
+
+    QPixmap Pixmap(ImagePath);
+    QPixmap temp = Pixmap.scaled(width,height, Qt::IgnoreAspectRatio);
+    this->setPixmap(temp);
 
     this->manager = manager;
-    setRect(0,0,width,height);
 
     setUpDelay(shootDelay);
+
+    connect(manager,SIGNAL(changeDifficulty(int)),this,SLOT(setDifficulty(int)));
 }
 
 Enemy::~Enemy(){
@@ -33,6 +40,12 @@ void Enemy::onTimer(){
     if(this->removalCheck()){
         delete this;
     }
+}
+
+void Enemy::setDifficulty(int difficulty)
+{
+    shootDelay = baseShootDelay * pow(0.8, difficulty-1);
+    setUpDelay(shootDelay);
 }
 
 

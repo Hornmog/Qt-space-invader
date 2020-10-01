@@ -23,6 +23,13 @@ void EnemyManager::onEnemyRemoval(Enemy* enemy)
     enemyCount--;
     score++;
     onEnemyCountChange(score);
+
+    upForNextDiff--;
+    if(upForNextDiff <= 0){
+        difficulty++;
+        upForNextDiff = 10; //magic constant
+
+    }
 }
 
 void EnemyManager::onTimer()
@@ -36,7 +43,6 @@ void EnemyManager::onTimer()
 void EnemyManager::createEnemy()
 {
     Enemy * enemy = new Enemy(this);
-    enemy->setRect(0,0,100,100);
     scene->addItem(enemy);
     enemy->setPos(int(std::rand() % 500 + 100), 0);
     enemyCount++;

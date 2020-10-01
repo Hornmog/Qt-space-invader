@@ -15,6 +15,8 @@ signals:
     void heroKilled();
 public slots:
     void onTimer() override;
+private:
+
 };
 
 #endif // MYRECT_H

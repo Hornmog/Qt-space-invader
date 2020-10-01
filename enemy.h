@@ -18,8 +18,10 @@ public:
 
 public slots:
     void onTimer() override;
+    void setDifficulty(int difficulty);
 
 private:
+
     EnemyManager* manager;
     void move();
 };

@@ -1,5 +1,10 @@
 <RCC>
     <qresource prefix="/images">
         <file>gameOver.png</file>
+        <file>bullet.png</file>
+        <file>enemy.png</file>
+        <file>hero.png</file>
     </qresource>
+    <qresource prefix="/hero.png"/>
+    <qresource prefix="/"/>
 </RCC>

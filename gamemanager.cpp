@@ -26,7 +26,7 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
     connect(hero, SIGNAL(heroKilled()), this, SLOT(gameOver()));
 
     hero->grabKeyboard();
-    hero->setPos(view->width()/2 - hero->rect().width()/2, view->height() - hero->rect().height());
+    hero->setPos(view->width()/2 - hero->boundingRect().width()/2, view->height() - hero->boundingRect().height());
 }
 
 void GameManager::gameOver()

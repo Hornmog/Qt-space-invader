@@ -15,6 +15,7 @@ public:
     void onEnemyRemoval(Enemy* enemy);
 signals:
     void onEnemyCountChange(int enemyDeaths);
+    void changeDifficulty(int difficulty);
 
 public slots:
     void onTimer();
@@ -26,6 +27,8 @@ private:
     int score = 0;
     QGraphicsScene *scene;
     ScoreBar *scoreBar;
+    int difficulty = 1;
+    int upForNextDiff = 10;
 };
 
 #endif // ENEMYMANAGER_H

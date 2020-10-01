@@ -4,7 +4,8 @@
 #include <QObject>
 #include <QGraphicsRectItem>
 
-class SpaceShip : public QObject, public QGraphicsRectItem
+
+class SpaceShip : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
@@ -20,11 +21,13 @@ signals:
 protected:
     void setUpDelay(int delay);
 
+    QString ImagePath;
     int width;
     int height;
     int speed;
     int bulletSpeed;
     int shootDelay;
+    const int baseShootDelay = 5000;
     bool shootAvl = true;
 
 private:
