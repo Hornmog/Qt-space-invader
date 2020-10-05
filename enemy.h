@@ -10,7 +10,7 @@
 class Enemy: public SpaceShip{
     Q_OBJECT
 public:
-    Enemy(EnemyManager* manager);
+    Enemy(EnemyManager* manager, QString imagePath);
     ~Enemy();
     int type() const override{
         return Keys::enemyIndex;

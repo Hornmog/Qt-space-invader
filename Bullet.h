@@ -24,7 +24,6 @@ private:
     const int bulletLength = 50;
     const int bulletWidth = 10;
     int speed;
-    QString ImagePath;
 };
 
 #endif // BULLET_H

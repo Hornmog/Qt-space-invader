@@ -14,6 +14,7 @@ public:
 
 
 private:
+    void createFullScreenImage(QString imagePath);
     void createBackground();
     QString gameOverImagePath = ":/images/gameOver.png";
     ScoreBar* scoreBar;
@@ -30,6 +31,7 @@ private slots:
     void gameOver();
     void createEndScreen();
     void changeScore(int score);
+    void createWinScreen();
 
 };
 

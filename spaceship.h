@@ -9,7 +9,7 @@ class SpaceShip : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    explicit SpaceShip(QObject *parent = nullptr);
+    explicit SpaceShip(QObject *parent = nullptr, QString imagePath = nullptr);
     bool removalCheck();
     void createBullet(int bulletType = 1);
 
@@ -21,9 +21,9 @@ signals:
 protected:
     void setUpDelay(int delay);
 
-    QString ImagePath;
-    int width;
-    int height;
+
+    int width = 100;
+    int height = 100;
     int speed;
     int bulletSpeed;
     int shootDelay;

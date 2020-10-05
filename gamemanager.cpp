@@ -33,6 +33,11 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
     hero->setPos(view->width()/2 - hero->boundingRect().width()/2, view->height() - hero->boundingRect().height());
 }
 
+void GameManager::createFullScreenImage(QString imagePath)
+{
+
+}
+
 void GameManager::gameOver()
 {
     delete hero;
@@ -54,6 +59,13 @@ void GameManager::changeScore(int score)
 {
     scoreBar->setScore(score);
 }
+
+void GameManager::createWinScreen()
+{
+
+}
+
+
 
 void GameManager::createBackground()
 {

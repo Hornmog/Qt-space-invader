@@ -5,17 +5,11 @@
 #include "Bullet.h"
 #include <QTimer>
 
-Hero::Hero()
+Hero::Hero(QString imagePath) : SpaceShip(nullptr, imagePath)
 {
-    width = 100;
-    height = 100;
     shootDelay = 1000;
     bulletSpeed = 10;
     speed = 10;
-    ImagePath = ":/images/hero.png";
-
-    QPixmap Pixmap(ImagePath);
-    this->setPixmap(Pixmap.scaled(width,height));
 
 //    this->setRect(0,0,width,height);
 

@@ -5,8 +5,14 @@
 #include <QDebug>
 #include <QTimer>
 
-SpaceShip::SpaceShip(QObject *parent) : QObject(parent)
+SpaceShip::SpaceShip(QObject *parent, QString imagePath) : QObject(parent)
 {
+    qDebug() << "Spaceship constructor called";
+    qDebug() << "Image path: " << imagePath;
+    QPixmap pixmap(imagePath);
+    qDebug() << pixmap << " -- pixmap";
+    this->setPixmap(pixmap.scaled(width,height));
+
     QTimer * timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(onTimer()));
 

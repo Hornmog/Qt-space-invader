@@ -4,18 +4,13 @@
 #include <QDebug>
 #include <QGraphicsScene>
 #include <cmath>
+#include "Cons.h"
 
-Enemy::Enemy(EnemyManager *manager)
+Enemy::Enemy(EnemyManager *manager, QString imagePath) : SpaceShip(manager, imagePath)
 {
-    width = 100;
-    height = 100;
     speed = 5;
     bulletSpeed = -10;
     shootDelay = baseShootDelay;
-    ImagePath = ":/images/enemy.png";
-
-    QPixmap Pixmap(ImagePath);
-    this->setPixmap(Pixmap.scaled(width,height));
 
     this->manager = manager;
 
