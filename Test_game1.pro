@@ -28,7 +28,7 @@ SOURCES += \
 
 HEADERS += \
     Bullet.h \
-    Cons.h \
+    Const.h \
     Enemy.h \
     ScoreBar.h \
     enemymanager.h \

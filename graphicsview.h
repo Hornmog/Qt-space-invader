@@ -9,6 +9,7 @@ class GraphicsView : public QGraphicsView
     Q_OBJECT
 public:
     GraphicsView(QGraphicsScene * scene);
+private:
 };
 
 #endif // GRAPHICSVIEW_H

@@ -7,14 +7,14 @@
 #include "ScoreBar.h"
 #include "graphicsview.h"
 #include <QDebug>
-#include "Cons.h"
+#include "Const.h"
 
 
 GameManager::GameManager(QObject *parent) : QObject(parent)
 {
 
     scene = new QGraphicsScene();
-    GraphicsView* view = new GraphicsView(scene);
+    view = new GraphicsView(scene);
     hero = new Hero(ImagePaths::heroImagePath);
     EnemyManager* enemyManager = new EnemyManager(scene,scoreBar);
     scoreBar = new ScoreBar();
@@ -27,6 +27,7 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
     scoreBar->setPos(750,500);
 
     connect(enemyManager, SIGNAL(onEnemyCountChange(int)), this, SLOT(changeScore(int)));
+    connect(enemyManager, SIGNAL(allEnemiesDefeated()), this, SLOT(createWinScreen()));
     connect(hero, SIGNAL(heroKilled()), this, SLOT(gameOver()));
 
     hero->grabKeyboard();
@@ -35,6 +36,10 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
 
 void GameManager::createFullScreenImage(QString imagePath)
 {
+    QPixmap pixmap(imagePath);
+    QGraphicsPixmapItem* pixmapItem = new QGraphicsPixmapItem(pixmap.scaled(view->width(), view->height()));
+    pixmapItem->setPos(0,0);
+    scene->addItem(pixmapItem);
 
 }
 
@@ -47,32 +52,27 @@ void GameManager::gameOver()
 
 void GameManager::createEndScreen()
 {
-    QPixmap gameOverPixmap(gameOverImagePath);
-    QGraphicsPixmapItem* gameOverItem = new QGraphicsPixmapItem(gameOverPixmap);
-    scene->addItem(gameOverItem);
-
-    gameOverItem->setPos(scene->width()/2 - gameOverItem->boundingRect().width()/2,
-                         scene->height()/2 - gameOverItem->boundingRect().height()/2);
-}
-
-void GameManager::changeScore(int score)
-{
-    scoreBar->setScore(score);
+    createFullScreenImage(ImagePaths::gameOverImagePath);
 }
 
 void GameManager::createWinScreen()
 {
-
+    qDebug() << "Win screen created";
+    createFullScreenImage(ImagePaths::winImagePath);
 }
 
-
-
-void GameManager::createBackground()
+void GameManager::createBackground() // !!
 {
-    qDebug() << "create background";
     QPixmap Pixmap(backgroundImagePath);  // TODO: smaller background image, use QBrush pattern
     QGraphicsPixmapItem* background = new QGraphicsPixmapItem(Pixmap.scaled(scene->width(),scene->height()));
 
     scene->addItem(background);
     background->setPos(0,0);
 }
+
+
+void GameManager::changeScore(int score)
+{
+    scoreBar->setScore(score);
+}
+

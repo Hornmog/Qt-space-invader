@@ -4,13 +4,14 @@
 #include <QDebug>
 #include <QGraphicsScene>
 #include <cmath>
-#include "Cons.h"
+#include "Const.h"
 
 Enemy::Enemy(EnemyManager *manager, QString imagePath) : SpaceShip(manager, imagePath)
 {
-    speed = 5;
     bulletSpeed = -10;
     shootDelay = baseShootDelay;
+
+    speed = int(std::rand() % 21 - 10);
 
     this->manager = manager;
 

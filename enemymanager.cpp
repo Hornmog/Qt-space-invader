@@ -6,7 +6,7 @@
 #include "ScoreBar.h"
 #include <iostream>
 #include <cstdlib>
-#include "Cons.h"
+#include "Const.h"
 
 EnemyManager::EnemyManager(QGraphicsScene *scene, ScoreBar *scoreBar)
 {
@@ -39,7 +39,7 @@ void EnemyManager::onEnemyRemoval(Enemy* enemy)
 
 void EnemyManager::onTimer()
 {
-    if(enemyCount < maxEnemyAlive && score <= totalEnemiesToKill-maxEnemyAlive){
+    if(enemyCount < maxEnemyAlive && score < totalEnemiesToKill-enemyCount){
         createEnemy();
     }
 
@@ -49,7 +49,11 @@ void EnemyManager::createEnemy()
 {
     Enemy * enemy = new Enemy(this, ImagePaths::enemyImagePath);
     scene->addItem(enemy);
-    enemy->setPos(int(std::rand() % 500 + 100), 0);
+    int offset = 100;
+    // 0...800
+    // 100...700
+    // 0...(800-2*100)
+    enemy->setPos(int(std::rand() % (int(scene->width()) - 2*offset) + offset), 0);
     enemyCount++;
 
 }

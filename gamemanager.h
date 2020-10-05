@@ -3,6 +3,7 @@
 
 #include "ScoreBar.h"
 #include "hero.h"
+#include "graphicsview.h"
 
 #include <QObject>
 
@@ -19,6 +20,7 @@ private:
     QString gameOverImagePath = ":/images/gameOver.png";
     ScoreBar* scoreBar;
     QGraphicsScene* scene;
+    GraphicsView* view;
     Hero* hero;
     QString backgroundImagePath = ":/images/background.png";
 

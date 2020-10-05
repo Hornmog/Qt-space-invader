@@ -2,7 +2,7 @@
 #include <QTimer>
 #include <QDebug>
 #include <QGraphicsScene>
-#include "Cons.h"
+#include "Const.h"
 
 Bullet::Bullet(int speed, const int type)
 {    
