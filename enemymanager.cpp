@@ -27,9 +27,9 @@ void EnemyManager::onEnemyRemoval(Enemy* enemy)
     upForNextDiff--;
     if(upForNextDiff <= 0){
         difficulty++;
-        upForNextDiff = 10; //magic constant
-
-    }
+        upForNextDiff = levelDifficultyStep;
+        changeDifficulty(difficulty);
+    }  
 }
 
 void EnemyManager::onTimer()

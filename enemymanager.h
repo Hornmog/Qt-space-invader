@@ -28,7 +28,7 @@ private:
     QGraphicsScene *scene;
     ScoreBar *scoreBar;
     int difficulty = 1;
-    int upForNextDiff = 10;
+    int upForNextDiff = 3;
 };
 
 #endif // ENEMYMANAGER_H

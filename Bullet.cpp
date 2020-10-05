@@ -2,20 +2,21 @@
 #include <QTimer>
 #include <QDebug>
 #include <QGraphicsScene>
+#include "Cons.h"
 
 Bullet::Bullet(int speed, const int type)
 {    
-
+    QString imagePath;
     if(type == 1){
-         ImagePath = ":/images/bullet.png";
+         imagePath = ImagePaths::bulletImagePath;
     }
     else if(type == 2){
-         ImagePath = ":/images/enemyBullet.png";
+         imagePath = ImagePaths::enemyBulletImagePath;
     }
 
 
-    QPixmap Pixmap(ImagePath);
-    this->setPixmap(Pixmap.scaled(bulletWidth,bulletLength));
+    QPixmap pixmap(imagePath);
+    this->setPixmap(pixmap.scaled(bulletWidth,bulletLength));
 
     //setRect(0,0,10,bulletLength);
     this->speed = speed;

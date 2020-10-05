@@ -7,6 +7,7 @@
 #include "ScoreBar.h"
 #include "graphicsview.h"
 #include <QDebug>
+#include "Cons.h"
 
 
 GameManager::GameManager(QObject *parent) : QObject(parent)
@@ -14,14 +15,15 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
 
     scene = new QGraphicsScene();
     GraphicsView* view = new GraphicsView(scene);
-    hero = new Hero();
+    hero = new Hero(ImagePaths::heroImagePath);
     EnemyManager* enemyManager = new EnemyManager(scene,scoreBar);
     scoreBar = new ScoreBar();
 
-    createBackground();
-    scene->addItem(hero);
-    scene->addItem(scoreBar);
+
     scene->setSceneRect(0,0,sceneWidth,sceneHeight);
+    //createBackground();
+    scene->addItem(scoreBar);
+    scene->addItem(hero);
     scoreBar->setPos(750,500);
 
     connect(enemyManager, SIGNAL(onEnemyCountChange(int)), this, SLOT(changeScore(int)));
@@ -56,8 +58,8 @@ void GameManager::changeScore(int score)
 void GameManager::createBackground()
 {
     qDebug() << "create background";
-    QPixmap Pixmap(backgroundImagePath);
-    QGraphicsPixmapItem* background = new QGraphicsPixmapItem(Pixmap.scaled(sceneWidth,sceneHeight));
+    QPixmap Pixmap(backgroundImagePath);  // TODO: smaller background image, use QBrush pattern
+    QGraphicsPixmapItem* background = new QGraphicsPixmapItem(Pixmap.scaled(scene->width(),scene->height()));
 
     scene->addItem(background);
     background->setPos(0,0);
