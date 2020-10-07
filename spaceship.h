@@ -24,7 +24,8 @@ protected:
 
     int width = 100;
     int height = 100;
-    int speed;
+    int xSpeed;
+    int ySpeed;
     int bulletSpeed;
     int shootDelay;
     const int baseShootDelay = 5000;

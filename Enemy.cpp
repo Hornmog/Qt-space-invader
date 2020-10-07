@@ -11,7 +11,8 @@ Enemy::Enemy(EnemyManager *manager, QString imagePath) : SpaceShip(manager, imag
     bulletSpeed = -10;
     shootDelay = baseShootDelay;
 
-    speed = int(std::rand() % 21 - 10);
+    xSpeed = int(std::rand() % 21 - 10);
+    ySpeed = int(std::rand() % 5);
 
     this->manager = manager;
 
@@ -48,10 +49,10 @@ void Enemy::setDifficulty(int difficulty)
 void Enemy::move()
 {
     if(pos().x() >= 750 || pos().x() < 0){
-        qDebug() << pos().x();
-        speed *= -1;
+        xSpeed *= -1;
     }
-    setPos(pos().x()+speed, pos().y());
+
+    setPos(pos().x()+xSpeed, pos().y()+ySpeed);
 
 
 }

@@ -21,7 +21,7 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
 
 
     scene->setSceneRect(0,0,sceneWidth,sceneHeight);
-    //createBackground();
+    createBackground();
     scene->addItem(scoreBar);
     scene->addItem(hero);
     scoreBar->setPos(750,500);
@@ -39,7 +39,9 @@ void GameManager::createFullScreenImage(QString imagePath)
     QPixmap pixmap(imagePath);
     QGraphicsPixmapItem* pixmapItem = new QGraphicsPixmapItem(pixmap.scaled(view->width(), view->height()));
     pixmapItem->setPos(0,0);
+    pixmapItem->setZValue(10);
     scene->addItem(pixmapItem);
+
 
 }
 
@@ -57,17 +59,17 @@ void GameManager::createEndScreen()
 
 void GameManager::createWinScreen()
 {
-    qDebug() << "Win screen created";
     createFullScreenImage(ImagePaths::winImagePath);
 }
 
 void GameManager::createBackground() // !!
 {
-    QPixmap Pixmap(backgroundImagePath);  // TODO: smaller background image, use QBrush pattern
-    QGraphicsPixmapItem* background = new QGraphicsPixmapItem(Pixmap.scaled(scene->width(),scene->height()));
 
-    scene->addItem(background);
-    background->setPos(0,0);
+    QPixmap pixmap(backgroundImagePath);  // TODO: smaller background image, use QBrush pattern
+    QBrush pattern(pixmap);
+    QRectF rect(0, 0, view->width(), view->height());
+    scene->addRect(rect, QPen(), pattern);
+
 }
 
 

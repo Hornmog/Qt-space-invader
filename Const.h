@@ -4,7 +4,7 @@
 #include <QGraphicsItem>
 
 namespace Keys {
-    static const int bulletIndex = 66666;
+    static const int bulletIndex = 66666;         //anything >= UserType (65536).
     static const int enemyIndex = 66667;
 }
 
@@ -20,3 +20,4 @@ namespace ImagePaths {
 }
 
 #endif // CONS_H
+

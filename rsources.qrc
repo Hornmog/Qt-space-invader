@@ -6,6 +6,7 @@
         <file>hero.png</file>
         <file>enemyBullet.png</file>
         <file>background.png</file>
+        <file>win.png</file>
     </qresource>
     <qresource prefix="/hero.png"/>
     <qresource prefix="/"/>

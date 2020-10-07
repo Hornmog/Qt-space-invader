@@ -20,7 +20,6 @@ EnemyManager::EnemyManager(QGraphicsScene *scene, ScoreBar *scoreBar)
 
 void EnemyManager::onEnemyRemoval(Enemy* enemy)
 {
-    qDebug() << "Came to enemy manager";
     enemyCount--;
     score++;
     onEnemyCountChange(score);
@@ -56,9 +55,4 @@ void EnemyManager::createEnemy()
     enemy->setPos(int(std::rand() % (int(scene->width()) - 2*offset) + offset), 0);
     enemyCount++;
 
-}
-
-int EnemyManager::getScore()
-{
-    return score;
 }

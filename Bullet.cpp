@@ -18,7 +18,6 @@ Bullet::Bullet(int speed, const int type)
     QPixmap pixmap(imagePath);
     this->setPixmap(pixmap.scaled(bulletWidth,bulletLength));
 
-    //setRect(0,0,10,bulletLength);
     this->speed = speed;
 
     QTimer * timer = new QTimer();
@@ -37,7 +36,7 @@ void Bullet::move()
 {
     setPos(x(),y() - speed);
     if((pos().y() + this->boundingRect().height() < 0)){
-        delete this;
+        delete this;                                         //when bullet leaves view, it is destroyed
     }
 }
 

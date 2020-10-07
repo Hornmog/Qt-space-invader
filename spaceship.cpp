@@ -12,18 +12,17 @@ SpaceShip::SpaceShip(QObject *parent, QString imagePath) : QObject(parent)
     QPixmap pixmap(imagePath);
     qDebug() << pixmap << " -- pixmap";
     this->setPixmap(pixmap.scaled(width,height));
+    this->setZValue(1);
 
-    QTimer * timer = new QTimer();
-    connect(timer,SIGNAL(timeout()),this,SLOT(onTimer()));
+    QTimer * mainTimer = new QTimer();
+    connect(mainTimer,SIGNAL(timeout()),this,SLOT(onTimer()));
 
-    timer->start(50);
+    mainTimer->start(50);
 }
 
 void SpaceShip::shootIsAvl()
 {
     shootAvl = true;
-    //qDebug() << shootAvl;
-
 }
 
 bool SpaceShip::removalCheck()
