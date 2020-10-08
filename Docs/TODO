@@ -1,0 +1,7 @@
+- Move the hero spawn point
+- All spaceships report to their manager.
+- Do we need separate HeroManager or can it just report to GameManager?
+- GM manages a lot of drawing tasks; is it OK?
+- Problem of colliding items
+- Utility calculator all the collisions?
+- Animations?
