@@ -12,7 +12,7 @@ SpaceShip::SpaceShip(QObject *parent, QString imagePath) : QObject(parent)
     QPixmap pixmap(imagePath);
     qDebug() << pixmap << " -- pixmap";
     this->setPixmap(pixmap.scaled(width,height));
-    this->setZValue(1);
+    this->setZValue(ScenePriority::spaceship);
 
     QTimer * mainTimer = new QTimer();
     connect(mainTimer,SIGNAL(timeout()),this,SLOT(onTimer()));

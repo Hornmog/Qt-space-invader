@@ -17,6 +17,7 @@ Bullet::Bullet(int speed, const int type)
 
     QPixmap pixmap(imagePath);
     this->setPixmap(pixmap.scaled(bulletWidth,bulletLength));
+    this->setZValue(ScenePriority::bullet);
 
     this->speed = speed;
 

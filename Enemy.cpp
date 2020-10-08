@@ -12,7 +12,7 @@ Enemy::Enemy(EnemyManager *manager, QString imagePath) : SpaceShip(manager, imag
     shootDelay = baseShootDelay;
 
     xSpeed = int(std::rand() % 21 - 10);
-    ySpeed = int(std::rand() % 5);
+    ySpeed = int(std::rand() % 3 + 1);
 
     this->manager = manager;
 

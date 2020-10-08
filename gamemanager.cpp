@@ -39,7 +39,7 @@ void GameManager::createFullScreenImage(QString imagePath)
     QPixmap pixmap(imagePath);
     QGraphicsPixmapItem* pixmapItem = new QGraphicsPixmapItem(pixmap.scaled(view->width(), view->height()));
     pixmapItem->setPos(0,0);
-    pixmapItem->setZValue(10);
+    pixmapItem->setZValue(ScenePriority::fullScreenText);
     scene->addItem(pixmapItem);
 
 
@@ -62,14 +62,13 @@ void GameManager::createWinScreen()
     createFullScreenImage(ImagePaths::winImagePath);
 }
 
-void GameManager::createBackground() // !!
+void GameManager::createBackground()
 {
 
-    QPixmap pixmap(backgroundImagePath);  // TODO: smaller background image, use QBrush pattern
+    QPixmap pixmap(backgroundImagePath);
     QBrush pattern(pixmap);
     QRectF rect(0, 0, view->width(), view->height());
     scene->addRect(rect, QPen(), pattern);
-
 }
 
 

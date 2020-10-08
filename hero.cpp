@@ -9,7 +9,7 @@ Hero::Hero(QString imagePath) : SpaceShip(nullptr, imagePath)
 {
     shootDelay = 1000;
     bulletSpeed = 10;
-    xSpeed = 10;
+    xSpeed = 10;     //Speed is a step with which hero moves upon keyPressEvent
     ySpeed = 10;
 
     this->setFlag(QGraphicsItem::ItemIsFocusable);

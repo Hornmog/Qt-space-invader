@@ -19,5 +19,11 @@ namespace ImagePaths {
     static const QString backgroundImagePath =    pathPrefix + "background.png";
 }
 
+namespace ScenePriority {
+    static const int spaceship = 10;         //default Zvalue is 0
+    static const int fullScreenText = 20;
+    static const int bullet = 15;
+}
+
 #endif // CONS_H
 
