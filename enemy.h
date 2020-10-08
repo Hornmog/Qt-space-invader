@@ -24,8 +24,10 @@ private:
     const int baseBulletSpeed = -10;
     EnemyManager* manager;
 
-
     void move();
+
+signals:
+    void enemyOnBase();
 };
 
 #endif // ENEMY_H

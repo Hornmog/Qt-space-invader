@@ -13,16 +13,18 @@ class EnemyManager : public QObject, public QGraphicsRectItem
 public:
     EnemyManager(QGraphicsScene *scene, ScoreBar *scoreBar);
     void onEnemyRemoval(Enemy* enemy);
+
 signals:
     void onEnemyCountChange(int enemyDeaths);
     void changeDifficulty(int difficulty);
     void allEnemiesDefeated();
+    void enemyOnBase();
 
 public slots:
     void onTimer();
+
 private:
     void createEnemy();
-    int getScore();
 
     int enemyCount = 0;
     int score = 0;

@@ -19,6 +19,7 @@ Enemy::Enemy(EnemyManager *manager, QString imagePath) : SpaceShip(manager, imag
     setUpDelay(shootDelay);
 
     connect(manager,SIGNAL(changeDifficulty(int)),this,SLOT(setDifficulty(int)));
+    connect(this, SIGNAL(enemyOnBase()),manager, SIGNAL(enemyOnBase()));
 }
 
 Enemy::~Enemy(){
@@ -48,11 +49,14 @@ void Enemy::setDifficulty(int difficulty)
 
 void Enemy::move()
 {
-    if(pos().x() >= 750 || pos().x() < 0){
+    if(x() >= scene()->width() || x() < 0){
         xSpeed *= -1;
     }
+    if(y() >= scene()->height() - this->boundingRect().height()){
+        enemyOnBase();
+    }
 
-    setPos(pos().x()+xSpeed, pos().y()+ySpeed);
+    setPos(x() + xSpeed, y() + ySpeed);
 
 
 }
