@@ -6,6 +6,6 @@ GraphicsView::GraphicsView(QGraphicsScene * scene) : QGraphicsView(scene) {
     this->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     this->show();
-    this->setFixedSize(800,600);
+    this->setFixedSize(scene->width(), scene->height());
     //resize window ?
 }

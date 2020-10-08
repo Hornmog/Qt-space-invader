@@ -14,13 +14,13 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
 {
 
     scene = new QGraphicsScene();
+    scene->setSceneRect(0,0,sceneWidth,sceneHeight);
+
     view = new GraphicsView(scene);
     hero = new Hero(ImagePaths::heroImagePath);
     EnemyManager* enemyManager = new EnemyManager(scene,scoreBar);
     scoreBar = new ScoreBar();
 
-
-    scene->setSceneRect(0,0,sceneWidth,sceneHeight);
     createBackground();
     scene->addItem(scoreBar);
     scene->addItem(hero);
@@ -29,6 +29,7 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
     connect(enemyManager, SIGNAL(onEnemyCountChange(int)), this, SLOT(changeScore(int)));
     connect(enemyManager, SIGNAL(allEnemiesDefeated()), this, SLOT(createWinScreen()));
     connect(hero, SIGNAL(heroKilled()), this, SLOT(gameOver()));
+    connect(enemyManager, SIGNAL(enemyOnBase()), this, SLOT(gameOver()));
 
     hero->grabKeyboard();
     hero->setPos(view->width()/2 - hero->boundingRect().width()/2, view->height() - hero->boundingRect().height());
@@ -37,8 +38,8 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
 void GameManager::createFullScreenImage(QString imagePath)
 {
     QPixmap pixmap(imagePath);
-    QGraphicsPixmapItem* pixmapItem = new QGraphicsPixmapItem(pixmap.scaled(view->width(), view->height()));
-    pixmapItem->setPos(0,0);
+    QGraphicsPixmapItem* pixmapItem = new QGraphicsPixmapItem(pixmap.scaled(view->width(), view->height(), Qt::KeepAspectRatio));
+    pixmapItem->setPos(0, scene->height() / 2 - pixmapItem->boundingRect().height() / 2);
     pixmapItem->setZValue(ScenePriority::fullScreenText);
     scene->addItem(pixmapItem);
 

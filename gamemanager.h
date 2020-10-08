@@ -24,8 +24,8 @@ private:
     Hero* hero;
     QString backgroundImagePath = ":/images/background.png";
 
-    int sceneWidth = 800;
-    int sceneHeight = 800;
+    int sceneWidth = 600;
+    int sceneHeight = 1000;
 
 
 
