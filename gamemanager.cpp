@@ -35,7 +35,7 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
     connect(enemyManager, SIGNAL(enemyOnBase()), this, SLOT(gameOver()));
 
     hero->grabKeyboard();
-    hero->setPos(view->width()/2 - hero->boundingRect().width()/2, view->height() - hero->boundingRect().height());
+    hero->setPos(view->width()/2 - hero->boundingRect().width()/2, view->height() - hero->boundingRect().height() * 2);
 }
 
 void GameManager::createFullScreenImage(QString imagePath)
