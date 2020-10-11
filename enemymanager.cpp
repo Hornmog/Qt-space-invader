@@ -18,7 +18,7 @@ EnemyManager::EnemyManager(QGraphicsScene *scene, ScoreBar *scoreBar)
     timer->start(2000);
 }
 
-void EnemyManager::onEnemyRemoval(Enemy* enemy)
+void EnemyManager::onEnemyDestruction(Enemy* enemy)
 {
     enemyCount--;
     score++;
@@ -36,9 +36,14 @@ void EnemyManager::onEnemyRemoval(Enemy* enemy)
     }
 }
 
+void EnemyManager::onSameSideKill(Enemy *enemy)
+{
+    enemyCount--;
+}
+
 void EnemyManager::onTimer()
 {
-    if(enemyCount < maxEnemyAlive && score < totalEnemiesToKill-enemyCount){
+    if(enemyCount < maxEnemyAlive && score < totalEnemiesToKill - enemyCount){
         createEnemy();
     }
 

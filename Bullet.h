@@ -7,16 +7,17 @@
 class Bullet: public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
 public:
-    Bullet(int speed = 10, const int type = 1);  //1-Regular ---  2-Enemy ---  Pixmap
+    Bullet(int speed = 10, int side = 1);  //add enum regarding side
     ~Bullet();
-    int type() const override{
-        return Keys::bulletIndex;
-    }
+
     bool removalCheck();
     void onHit();
 
     int getBulletLength() const {return bulletLength;}
     int getSpeed() const {return speed;}
+    int type() const override;
+
+    int side;
 
 public slots:
     void move();

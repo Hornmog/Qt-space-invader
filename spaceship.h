@@ -10,9 +10,10 @@ class SpaceShip : public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 public:
     explicit SpaceShip(QObject *parent = nullptr, QString imagePath = nullptr);
-    bool removalCheck();
-    void createBullet(int bulletType = 1);
-
+    int removalCheck();
+    void createBullet(
+            int side = 1);
+    int side;
 public slots:
     virtual void onTimer() = 0;
 

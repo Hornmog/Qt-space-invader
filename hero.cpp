@@ -11,6 +11,7 @@ Hero::Hero(QString imagePath) : SpaceShip(nullptr, imagePath)
     bulletSpeed = 10;
     xSpeed = 10;     //Speed is a step with which hero moves upon keyPressEvent
     ySpeed = 10;
+    side = 1;
 
     this->setFlag(QGraphicsItem::ItemIsFocusable);
     this->setFocus();
@@ -20,7 +21,7 @@ Hero::Hero(QString imagePath) : SpaceShip(nullptr, imagePath)
 
 void Hero::onTimer()
 {
-    if(removalCheck()){
+    if(removalCheck() == 1){
         heroKilled();
     }
 }
@@ -50,7 +51,7 @@ void Hero::keyPressEvent(QKeyEvent *event)
     }
 
     else if (event->key() == Qt::Key_Space && shootAvl){
-        createBullet();
+        createBullet(1);
 
         //qDebug() << shootAvl;
     }

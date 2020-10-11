@@ -12,7 +12,8 @@ class EnemyManager : public QObject, public QGraphicsRectItem
     Q_OBJECT
 public:
     EnemyManager(QGraphicsScene *scene, ScoreBar *scoreBar);
-    void onEnemyRemoval(Enemy* enemy);
+    void onEnemyDestruction(Enemy* enemy);
+    void onSameSideKill(Enemy* enemy);
 
 signals:
     void onEnemyCountChange(int enemyDeaths);
@@ -32,9 +33,9 @@ private:
     ScoreBar *scoreBar;
     int difficulty = 1;
     int upForNextDiff = levelDifficultyStep;
-    int const levelDifficultyStep = 5;
+    int const levelDifficultyStep = 4;
     int const maxEnemyAlive = 3;
-    int const totalEnemiesToKill = 5;
+    int const totalEnemiesToKill = 20;
 };
 
 #endif // ENEMYMANAGER_H

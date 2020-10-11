@@ -22,9 +22,12 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
     scoreBar = new ScoreBar();
 
     createBackground();
+
     scene->addItem(scoreBar);
+    scoreBar->setPos(scene->width() - scoreBar->boundingRect().width(), scene->height() - scoreBar->boundingRect().height());
+
     scene->addItem(hero);
-    scoreBar->setPos(750,500);
+
 
     connect(enemyManager, SIGNAL(onEnemyCountChange(int)), this, SLOT(changeScore(int)));
     connect(enemyManager, SIGNAL(allEnemiesDefeated()), this, SLOT(createWinScreen()));

@@ -4,16 +4,16 @@
 #include <QGraphicsScene>
 #include "Const.h"
 
-Bullet::Bullet(int speed, const int type)
-{    
+Bullet::Bullet(int speed, int side)
+{
+    this->side = side;
     QString imagePath;
-    if(type == 1){
+    if(side == 1){
          imagePath = ImagePaths::bulletImagePath;
     }
-    else if(type == 2){
+    else if(side == 2){
          imagePath = ImagePaths::enemyBulletImagePath;
     }
-
 
     QPixmap pixmap(imagePath);
     this->setPixmap(pixmap.scaled(bulletWidth,bulletLength));
@@ -43,4 +43,8 @@ void Bullet::move()
 
 void Bullet::onHit() {
     delete this;
+}
+
+int Bullet::type() const {
+    return Keys::bulletIndex;
 }

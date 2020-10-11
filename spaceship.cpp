@@ -7,8 +7,6 @@
 
 SpaceShip::SpaceShip(QObject *parent, QString imagePath) : QObject(parent)
 {
-    qDebug() << "Spaceship constructor called";
-    qDebug() << "Image path: " << imagePath;
     QPixmap pixmap(imagePath);
     qDebug() << pixmap << " -- pixmap";
     this->setPixmap(pixmap.scaled(width,height));
@@ -25,24 +23,31 @@ void SpaceShip::shootIsAvl()
     shootAvl = true;
 }
 
-bool SpaceShip::removalCheck()
+int SpaceShip::removalCheck() //1 - opposite side hit, 2 - same team hit, 0 - no hit
 {
     auto items = collidingItems();
     for (QGraphicsItem* item: items) {
         if(item->type() == Keys::bulletIndex){
             Bullet* bullet = static_cast<Bullet*>(item);
+            bool sameSide = bullet->side == this->side;
             bullet->onHit();
-            qDebug() << "collision with bullet occured";
-            return true;
+
+            if (!sameSide){
+                return 1;
+            }
+            else{
+                return 2;
+            }
+
         }
     }
-    return false;
+    return 0;
     //for item in list:
 }
 
-void SpaceShip::createBullet(int bulletType)
+void SpaceShip::createBullet(int side)
 {
-    Bullet *bullet = new Bullet(bulletSpeed, bulletType);
+    Bullet *bullet = new Bullet(bulletSpeed, side);
     // TODO: why do we need to add bullet length?
     int basePositionX = x()+(width/2);
     if(bulletSpeed > 0){
