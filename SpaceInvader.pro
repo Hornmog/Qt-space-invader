@@ -23,6 +23,7 @@ SOURCES += \
     gamemanager.cpp \
     graphicsview.cpp \
     hero.cpp \
+    keymanager.cpp \
     main.cpp \
     spaceship.cpp
 
@@ -35,6 +36,7 @@ HEADERS += \
     gamemanager.h \
     graphicsview.h \
     hero.h \
+    keymanager.h \
     spaceship.h
 
 FORMS +=
