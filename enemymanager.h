@@ -13,7 +13,8 @@ class EnemyManager : public QObject, public QGraphicsRectItem
 public:
     EnemyManager(QGraphicsScene *scene, ScoreBar *scoreBar);
     void onEnemyDestruction(Enemy* enemy);
-    void onSameSideKill(Enemy* enemy);
+    void onKillByHero(Enemy* enemy);
+    void onKillByNonHero(Enemy* enemy);
 
 signals:
     void onEnemyCountChange(int enemyDeaths);

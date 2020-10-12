@@ -23,25 +23,20 @@ void SpaceShip::shootIsAvl()
     shootAvl = true;
 }
 
-int SpaceShip::removalCheck() //1 - opposite side hit, 2 - same team hit, 0 - no hit
+int SpaceShip::removalCheck()
 {
     auto items = collidingItems();
     for (QGraphicsItem* item: items) {
         if(item->type() == Keys::bulletIndex){
             Bullet* bullet = static_cast<Bullet*>(item);
-            bool sameSide = bullet->side == this->side;
+
+            int bulletSide = bullet->side;
             bullet->onHit();
 
-            if (!sameSide){
-                return 1;
-            }
-            else{
-                return 2;
-            }
-
+            return bulletSide;
         }
     }
-    return 0;
+    return Side::nobody;
     //for item in list:
 }
 

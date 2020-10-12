@@ -21,24 +21,31 @@ EnemyManager::EnemyManager(QGraphicsScene *scene, ScoreBar *scoreBar)
 void EnemyManager::onEnemyDestruction(Enemy* enemy)
 {
     enemyCount--;
-    score++;
-    onEnemyCountChange(score);
-
     upForNextDiff--;
+
     if(upForNextDiff <= 0){
         difficulty++;
         upForNextDiff = levelDifficultyStep;
         changeDifficulty(difficulty);
     }  
 
+
+}
+
+void EnemyManager::onKillByHero(Enemy *enemy)
+{
+    score++;
+    onEnemyCountChange(score);
     if (score == totalEnemiesToKill){
         allEnemiesDefeated();
     }
+
+    onEnemyDestruction(enemy);
 }
 
-void EnemyManager::onSameSideKill(Enemy *enemy)
+void EnemyManager::onKillByNonHero(Enemy *enemy)
 {
-    enemyCount--;
+    onEnemyDestruction(enemy);
 }
 
 void EnemyManager::onTimer()

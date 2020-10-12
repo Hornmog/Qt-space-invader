@@ -10,7 +10,7 @@ Enemy::Enemy(EnemyManager *manager, QString imagePath) : SpaceShip(manager, imag
 {
     bulletSpeed = -10;
     shootDelay = baseShootDelay;
-    side = 2;
+    side = Side::enemy;
 
     xSpeed = int(std::rand() % 21 - 10);
     ySpeed = int(std::rand() % 3 + 1);
@@ -31,17 +31,12 @@ void Enemy::onTimer(){
     this->move();
 
     if(shootAvl){
-        createBullet(2);
+        createBullet(side);
     }
 
-    int hitType = this->removalCheck();
-    if(hitType == 2){
-        manager->onSameSideKill(this);
-        delete this;
-    }
-    else if(hitType == 1){
-        manager->onEnemyDestruction(this);
-        delete this;
+    int hitBy = this->removalCheck();
+    if(hitBy != Side::nobody){
+        positiveRemoval(hitBy);
     }
 }
 
@@ -66,4 +61,17 @@ void Enemy::move()
 
 
 }
+
+void Enemy::positiveRemoval(int hitBy)
+{
+    if(hitBy == Side::hero){
+        manager->onKillByHero(this);
+    }
+    else if(hitBy == Side::enemy){
+        manager->onKillByNonHero(this);
+    }
+    delete this;
+}
+
+
 

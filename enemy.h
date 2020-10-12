@@ -25,6 +25,7 @@ private:
     EnemyManager* manager;
 
     void move();
+    void positiveRemoval(int hitType);
 
 signals:
     void enemyOnBase();

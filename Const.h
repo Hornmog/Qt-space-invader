@@ -26,5 +26,12 @@ namespace ScenePriority {
     static const int scoreBar = 15;
 }
 
+namespace Side {
+    static const int nobody = 0;
+    static const int hero = 1;
+    static const int enemy = 2;
+    static const int neutral = 3;
+}
+
 #endif // CONS_H
 
