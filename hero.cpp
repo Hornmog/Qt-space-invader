@@ -26,7 +26,7 @@ void Hero::onTimer()
     }
 }
 
-void Hero::keyPressEvent(QKeyEvent *event)
+void Hero::onHeroKey(QKeyEvent *event)
 {
     //qDebug() << "key pressed";
     if (event->key() == Qt::Key_Left){

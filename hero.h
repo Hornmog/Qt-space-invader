@@ -9,7 +9,7 @@ class Hero: public SpaceShip{
     Q_OBJECT
 public:
     Hero(QString imagePath = nullptr);
-    void keyPressEvent(QKeyEvent * event) override;
+    void onHeroKey(QKeyEvent * event) override;
 
 signals:
     void heroKilled();
