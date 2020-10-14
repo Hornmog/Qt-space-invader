@@ -4,6 +4,7 @@
 #include <QKeyEvent>
 #include <QDebug>
 #include <QTimer>
+#include "keymanager.h"
 
 SpaceShip::SpaceShip(QObject *parent, QString imagePath) : QObject(parent)
 {
@@ -16,6 +17,7 @@ SpaceShip::SpaceShip(QObject *parent, QString imagePath) : QObject(parent)
     connect(mainTimer,SIGNAL(timeout()),this,SLOT(onTimer()));
 
     mainTimer->start(50);
+
 }
 
 void SpaceShip::shootIsAvl()

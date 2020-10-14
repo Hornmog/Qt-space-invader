@@ -14,6 +14,7 @@ public:
     void createBullet(
             int side = 1);
     int side;
+
 public slots:
     virtual void onTimer() = 0;
 
@@ -34,9 +35,9 @@ protected:
 
 private:
     QTimer* timerBullet = nullptr;
+
 private slots:
     void shootIsAvl();
-
 };
 
 #endif // SPACESHIP_H

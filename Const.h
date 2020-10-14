@@ -2,6 +2,7 @@
 #define CONS_H
 
 #include <QGraphicsItem>
+#include <QKeyEvent>
 
 namespace Keys {
     static const int bulletIndex = 66666;         //anything >= UserType (65536).
@@ -32,6 +33,7 @@ namespace Side {
     static const int enemy = 2;
     static const int neutral = 3;
 }
+
 
 #endif // CONS_H
 

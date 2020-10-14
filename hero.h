@@ -5,17 +5,24 @@
 #include <QGraphicsObject>
 #include "spaceship.h"
 
+#include "keymanager.h"
+
+
 class Hero: public SpaceShip{
     Q_OBJECT
 public:
-    Hero(QString imagePath = nullptr);
-    void keyPressEvent(QKeyEvent * event) override;
+    Hero(QString imagePath = nullptr, KeyManager* keyManager = nullptr);
+
 
 signals:
     void heroKilled();
+
 public slots:
     void onTimer() override;
+    void heroKeyPressed(int key);
+
 private:
+    KeyManager* keyManager;
 
 };
 
