@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QGraphicsRectItem>
 #include "ScoreBar.h"
+#include "keymanager.h"
 
 class Enemy;
 
@@ -11,7 +12,7 @@ class EnemyManager : public QObject, public QGraphicsRectItem
 {
     Q_OBJECT
 public:
-    EnemyManager(QGraphicsScene *scene, ScoreBar *scoreBar);
+    EnemyManager(QGraphicsScene* scene, ScoreBar* scoreBar, KeyManager* keyManager);
     void onEnemyDestruction(Enemy* enemy);
     void onKillByHero(Enemy* enemy);
     void onKillByNonHero(Enemy* enemy);
@@ -21,6 +22,7 @@ signals:
     void changeDifficulty(int difficulty);
     void allEnemiesDefeated();
     void enemyOnBase();
+    void logKeyPressed(bool);
 
 public slots:
     void onTimer();

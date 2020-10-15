@@ -18,6 +18,10 @@ public:
 
 signals:
     void heroKeyPressed(int key);
+    void logKeyPressed(bool logShow);
+
+private:
+    bool logShow;
 
 };
 

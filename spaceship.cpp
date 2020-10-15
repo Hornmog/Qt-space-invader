@@ -13,6 +13,9 @@ SpaceShip::SpaceShip(QObject *parent, QString imagePath) : QObject(parent)
     this->setPixmap(pixmap.scaled(width,height));
     this->setZValue(ScenePriority::spaceship);
 
+    checkText = new QGraphicsTextItem(this);
+    setUpCheckText();
+
     QTimer * mainTimer = new QTimer();
     connect(mainTimer,SIGNAL(timeout()),this,SLOT(onTimer()));
 
@@ -67,4 +70,33 @@ void SpaceShip::setUpDelay(int shootDelay)
     } else {
         timerBullet->setInterval(shootDelay);
     }
+}
+
+void SpaceShip::setUpCheckText()
+{
+    QFont font = QFont("Times", 10);
+    QColor color = QColor("white");
+    checkText->setFont(font);
+    checkText->setDefaultTextColor(color);
+    checkText->setPlainText(QString::number(0));
+    checkText->setZValue(ScenePriority::text);
+
+}
+
+void SpaceShip::setCheckText(QString string)
+{
+    checkText->setPlainText(string);
+}
+
+void SpaceShip::toggleCheckText(bool show)
+{
+    if (checkText->scene() == nullptr){
+        scene()->addItem(checkText);
+        checkText->hide();
+    }
+    else{
+        checkText->setVisible(show);
+    }
+
+
 }
