@@ -59,7 +59,7 @@ void EnemyManager::onTimer()
 
 void EnemyManager::createEnemy()
 {
-    Enemy * enemy = new Enemy(this, ImagePaths::enemyImagePath, enemyCount);
+    Enemy * enemy = new Enemy(this, ImagePaths::enemyImagePath, totalEnemiesSpawned);
     scene->addItem(enemy);
     int offset = 100;
     // 0...800
@@ -67,4 +67,6 @@ void EnemyManager::createEnemy()
     // 0...(800-2*100)
     enemy->setPos(int(std::rand() % (int(scene->width()) - 2*offset) + offset), 0);  
     enemyCount++;
+    totalEnemiesSpawned++;
+    changeDifficulty(difficulty);
 }

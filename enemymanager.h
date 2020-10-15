@@ -35,10 +35,11 @@ private:
     QGraphicsScene *scene;
     ScoreBar *scoreBar;
     int difficulty = 1;
-    int upForNextDiff = levelDifficultyStep;
-    int const levelDifficultyStep = 4;
-    int const maxEnemyAlive = 3;
+    int const levelDifficultyStep = 5;
+    int upForNextDiff = levelDifficultyStep; 
+    int const maxEnemyAlive = 4;
     int const totalEnemiesToKill = 20;
+    int totalEnemiesSpawned = 0;
 };
 
 #endif // ENEMYMANAGER_H
