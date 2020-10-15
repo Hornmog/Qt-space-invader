@@ -80,6 +80,7 @@ void SpaceShip::setUpCheckText()
     checkText->setDefaultTextColor(color);
     checkText->setPlainText(QString::number(0));
     checkText->setZValue(ScenePriority::text);
+    checkText->hide();
 
 }
 
@@ -90,13 +91,6 @@ void SpaceShip::setCheckText(QString string)
 
 void SpaceShip::toggleCheckText(bool show)
 {
-    if (checkText->scene() == nullptr){
-        scene()->addItem(checkText);
-        checkText->hide();
-    }
-    else{
-        checkText->setVisible(show);
-    }
-
+    checkText->setVisible(show);
 
 }

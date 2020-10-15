@@ -26,7 +26,7 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
     createBackground();
 
     scene->addItem(scoreBar);
-    scoreBar->setPos(scene->width() - scoreBar->boundingRect().width(), scene->height() - scoreBar->boundingRect().height());
+    scoreBar->setPos(scene->width() - scoreBar->boundingRect().width()*3, scene->height() - scoreBar->boundingRect().height());
 
     scene->addItem(hero);
 
