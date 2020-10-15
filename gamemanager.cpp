@@ -17,8 +17,10 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
     scene->setSceneRect(0,0,sceneWidth,sceneHeight);
 
     view = new GraphicsView(scene);
-    hero = new Hero(ImagePaths::heroImagePath);
+    KeyManager* keyManager = new KeyManager();
     EnemyManager* enemyManager = new EnemyManager(scene,scoreBar);
+    hero = new Hero(ImagePaths::heroImagePath, keyManager);
+
     scoreBar = new ScoreBar();
 
     createBackground();
@@ -34,7 +36,7 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
     connect(hero, SIGNAL(heroKilled()), this, SLOT(gameOver()));
     connect(enemyManager, SIGNAL(enemyOnBase()), this, SLOT(gameOver()));
 
-    hero->grabKeyboard();
+    keyManager->grabKeyboard();
     hero->setPos(view->width()/2 - hero->boundingRect().width()/2, view->height() - hero->boundingRect().height() * 2);
 }
 
