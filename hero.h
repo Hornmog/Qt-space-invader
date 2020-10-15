@@ -19,6 +19,7 @@ signals:
 
 public slots:
     void onTimer() override;
+    void groupCheckTextInfo() override;
     void heroKeyPressed(int key);
 
 private:

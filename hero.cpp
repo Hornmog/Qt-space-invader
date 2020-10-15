@@ -21,6 +21,7 @@ Hero::Hero(QString imagePath, KeyManager* keyManager) : SpaceShip(nullptr, image
 
     this->keyManager = keyManager;
     connect(keyManager, SIGNAL(heroKeyPressed(int)), this, SLOT(heroKeyPressed(int)));
+    connect(keyManager, SIGNAL(logKeyPressed(bool)), this, SLOT(toggleCheckText(bool)));
 }
 
 void Hero::onTimer()
@@ -28,6 +29,11 @@ void Hero::onTimer()
     if(removalCheck() != Side::nobody){
         heroKilled();
     }
+}
+
+void Hero::groupCheckTextInfo()
+{
+
 }
 
 void Hero::heroKeyPressed(int key)

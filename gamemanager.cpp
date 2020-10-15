@@ -18,7 +18,7 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
 
     view = new GraphicsView(scene);
     KeyManager* keyManager = new KeyManager();
-    EnemyManager* enemyManager = new EnemyManager(scene,scoreBar);
+    EnemyManager* enemyManager = new EnemyManager(scene, scoreBar, keyManager);
     hero = new Hero(ImagePaths::heroImagePath, keyManager);
 
     scoreBar = new ScoreBar();

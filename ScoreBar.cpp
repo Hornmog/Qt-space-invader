@@ -10,7 +10,7 @@ ScoreBar::ScoreBar()
     this->setFont(font);
     this->setDefaultTextColor(color);
     this->setPlainText(QString::number(0));
-    this->setZValue(ScenePriority::scoreBar);
+    this->setZValue(ScenePriority::text);
 }
 
 void ScoreBar::setScore(int new_score)

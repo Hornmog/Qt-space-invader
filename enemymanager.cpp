@@ -8,12 +8,13 @@
 #include <cstdlib>
 #include "Const.h"
 
-EnemyManager::EnemyManager(QGraphicsScene *scene, ScoreBar *scoreBar)
+EnemyManager::EnemyManager(QGraphicsScene* scene, ScoreBar* scoreBar, KeyManager* keyManager)
 {
     this->scene = scene;
     this->scoreBar = scoreBar;
-    QTimer * timer = new QTimer();
+    QTimer* timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(onTimer()));
+    connect(keyManager, SIGNAL(logKeyPressed(bool)), this, SIGNAL(logKeyPressed(bool)));
 
     timer->start(2000);
 }
@@ -58,13 +59,12 @@ void EnemyManager::onTimer()
 
 void EnemyManager::createEnemy()
 {
-    Enemy * enemy = new Enemy(this, ImagePaths::enemyImagePath);
+    Enemy * enemy = new Enemy(this, ImagePaths::enemyImagePath, enemyCount);
     scene->addItem(enemy);
     int offset = 100;
     // 0...800
     // 100...700
     // 0...(800-2*100)
-    enemy->setPos(int(std::rand() % (int(scene->width()) - 2*offset) + offset), 0);
+    enemy->setPos(int(std::rand() % (int(scene->width()) - 2*offset) + offset), 0);  
     enemyCount++;
-
 }

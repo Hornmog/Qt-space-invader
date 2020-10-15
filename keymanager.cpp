@@ -5,6 +5,7 @@
 KeyManager::KeyManager(QWidget *widget)
 {
     this->setFocus();
+    logShow = true;
 }
 
 void KeyManager::keyPressEvent(QKeyEvent *event)
@@ -17,4 +18,8 @@ void KeyManager::keyPressEvent(QKeyEvent *event)
         heroKeyPressed(key);
     }
 
+    if (key == Qt::Key_L){
+        logKeyPressed(logShow);
+        logShow = !logShow;
+    }
 }
