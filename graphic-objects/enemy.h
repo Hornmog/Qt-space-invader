@@ -11,7 +11,7 @@ class Enemy: public SpaceShip{
     Q_OBJECT
 public:
     Enemy(EnemyManager* manager, QString imagePath, int count);
-    ~Enemy();
+    ~Enemy() override;
     int type() const override{
         return Keys::enemyIndex;
     }
@@ -22,7 +22,7 @@ public slots:
     void setDifficulty(int difficulty);
 
 private:
-    const int baseBulletSpeed = -10;
+    const float baseBulletSpeed = -0.2 * period_ms;
     EnemyManager* manager;
     int count;
     int difficulty;

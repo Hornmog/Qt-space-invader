@@ -8,7 +8,7 @@ class Bullet: public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
 public:
     Bullet(int speed = 10, int side = 1);  //add enum regarding side
-    ~Bullet();
+    ~Bullet() override;
 
     bool removalCheck();
     void onHit();

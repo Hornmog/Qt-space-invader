@@ -5,15 +5,18 @@
 #include <QGraphicsScene>
 #include <cmath>
 #include "consts.h"
+#include <QRandomGenerator>
 
 Enemy::Enemy(EnemyManager *manager, QString imagePath, int count) : SpaceShip(manager, imagePath)
 {
-    bulletSpeed = -10;
+    bulletSpeed = baseBulletSpeed;
     shootDelay = baseShootDelay;
     side = Side::enemy;
 
-    xSpeed = int(std::rand() % 21 - 10);
-    ySpeed = int(std::rand() % 3 + 1);
+    float xDiff = 0.2 * period_ms, yDiff = 0.02 * period_ms;
+
+    xSpeed = QRandomGenerator::global()->bounded(xDiff * 2 + 1) - xDiff;
+    ySpeed = QRandomGenerator::global()->bounded(yDiff * 2 + 1) + yDiff;
 
 
     this->manager = manager;

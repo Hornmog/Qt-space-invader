@@ -24,11 +24,10 @@ Bullet::Bullet(int speed, int side)
     QTimer * timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
 
-    timer->start(50);
+    timer->start(period_ms);
 }
 
 Bullet::~Bullet() {
-    qDebug() << "Bullet removed";
     scene()->removeItem(this);
 }
 

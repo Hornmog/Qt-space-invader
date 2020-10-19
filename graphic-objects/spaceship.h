@@ -28,11 +28,10 @@ protected:
 
     virtual void groupCheckTextInfo() = 0;
 
-    int onTimerPeriod = 50;
     int width = 100;
     int height = 100;
-    int xSpeed;
-    int ySpeed;
+    float xSpeed;
+    float ySpeed;
     int bulletSpeed;
     int shootDelay;
     const int baseShootDelay = 5000;

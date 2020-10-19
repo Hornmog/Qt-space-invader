@@ -18,7 +18,7 @@ SpaceShip::SpaceShip(QObject *parent, QString imagePath) : QObject(parent)
     QTimer * mainTimer = new QTimer();
     connect(mainTimer,SIGNAL(timeout()),this,SLOT(onTimer()));
 
-    mainTimer->start(onTimerPeriod);
+    mainTimer->start(period_ms);
 
 }
 
