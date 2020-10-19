@@ -9,12 +9,9 @@
 Hero::Hero(QString imagePath, KeyManager* keyManager) : SpaceShip(nullptr, imagePath)
 {
     shootDelay = 1000;
-    bulletSpeed = 10;
-    xSpeed = 10;     //Speed is a step with which hero moves upon keyPressEvent
+    bulletSpeed = 0.2 * period_ms; // 10 pixels per 50 ms
     ySpeed = 10;
-    xVelocity = 0;
-    accelNumberOfCycles =  MovementX::accelTime / onTimerPeriod;
-    accelCyclesLeft = accelNumberOfCycles;
+    xSpeed = 0;
     accel = 0;
     side = Side::hero;
 
@@ -26,6 +23,7 @@ Hero::Hero(QString imagePath, KeyManager* keyManager) : SpaceShip(nullptr, image
 
     this->keyManager = keyManager;
     connect(keyManager, SIGNAL(heroKeyPressed(int)), this, SLOT(heroKeyPressed(int)));
+    connect(keyManager, SIGNAL(heroKeyReleased(int)), this, SLOT(heroKeyReleased(int)));
     connect(keyManager, SIGNAL(logKeyPressed(bool)), this, SLOT(toggleCheckText(bool)));
 }
 
@@ -56,13 +54,15 @@ void Hero::heroKeyPressed(int key)
     if (key == Qt::Key_Left){
         if(pos().x() > 0){
             accel = -MovementX::accel;
-            //setPos(x()-xSpeed,y());
+            leftKeyPressed = true;
+            rightKeyPressed = false;
         }
     }
     else if (key == Qt::Key_Right){
         if(pos().x() + this->boundingRect().width() < scene()->width()){
             accel = MovementX::accel;
-            //setPos(x()+xSpeed,y());
+            rightKeyPressed = true;
+            leftKeyPressed = false;
         }
     }
     else if (key == Qt::Key_Up){
@@ -84,29 +84,34 @@ void Hero::heroKeyPressed(int key)
 
 }
 
+void Hero::heroKeyReleased(int key)
+{
+    if(key == Qt::Key_Left && leftKeyPressed){
+        accel = 0;
+        leftKeyPressed = false;
+    }
+    if(key == Qt::Key_Right && rightKeyPressed){
+        accel = 0;
+        rightKeyPressed = false;
+    }
+}
+
 int Hero::calculateXMovement()
 {
-    accelCyclesLeft--;
-
-    if(accelCyclesLeft < 0){
-        accel = 0;
-        accelCyclesLeft = accelNumberOfCycles;
-    }
-
-    float newXVelocity = xVelocity + accel * (float(onTimerPeriod)/1000);
+    float newXVelocity = xSpeed + accel * (float(period_ms)/1000);
 
     if (abs(newXVelocity) > MovementX::maxVelocity){
         newXVelocity = MovementX::maxVelocity * abs(newXVelocity) / newXVelocity;
     }
 
-    float distanceMoved = 0.5 * (newXVelocity + xVelocity) * (float(onTimerPeriod)/1000);
+    float distanceMoved = 0.5 * (newXVelocity + xSpeed) * (float(period_ms)/1000);
 
 //    if(newXVelocity != 0){
 //        newXVelocity = newXVelocity - Movement::heroXFriction * (float(onTimerPeriod)/1000);
 
 //    }
 
-    xVelocity = newXVelocity;
+    xSpeed = newXVelocity;
     return distanceMoved;
 }
 

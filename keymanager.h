@@ -6,6 +6,7 @@
 #include <QGraphicsObject>
 #include <QWidget>
 #include <QKeyEvent>
+#include <QSet>
 
 
 class KeyManager : public QWidget
@@ -14,14 +15,17 @@ class KeyManager : public QWidget
 public:
     explicit KeyManager(QWidget* widget = nullptr);
     void keyPressEvent(QKeyEvent* event) override;
+    void keyReleaseEvent(QKeyEvent *event) override;
 
 
 signals:
     void heroKeyPressed(int key);
     void logKeyPressed(bool logShow);
+    void heroKeyReleased(int key);
 
 private:
     bool logShow;
+    QSet<int> heroCommands = {Qt::Key_Left, Qt::Key_Right, Qt::Key_Up, Qt::Key_Down, Qt::Key_Space};
 
 };
 
