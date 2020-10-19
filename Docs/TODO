@@ -1,7 +1,16 @@
-- All spaceships report to their manager.
-- Do we need separate HeroManager or can it just report to GameManager?
-- GM manages a lot of drawing tasks; is it OK?
-- Problem of colliding items
-- Utility calculator all the collisions?
+Bugfixes:
+- Hero gets too far from the visible game screen
+- How to draw MainWindow in the position we want?
+
+New features:
 - Animations?
 -Neutral side meteors
+
+Refactoring:
+- Do we need separate HeroManager or can it just report to GameManager? 
+- GM manages a lot of drawing tasks; is it OK?
+- Utility calculator all the collisions?
+
+Done:
+- All spaceships report to their manager.
+- Problem of colliding items
