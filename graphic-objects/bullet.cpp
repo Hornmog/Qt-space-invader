@@ -1,8 +1,8 @@
-#include "Bullet.h"
+#include "bullet.h"
 #include <QTimer>
 #include <QDebug>
 #include <QGraphicsScene>
-#include "Const.h"
+#include "consts.h"
 
 Bullet::Bullet(int speed, int side)
 {

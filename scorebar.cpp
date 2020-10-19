@@ -1,6 +1,6 @@
-#include "ScoreBar.h"
+#include "scorebar.h"
 #include <QFont>
-#include "Const.h"
+#include "consts.h"
 #include <QGraphicsScene>
 
 ScoreBar::ScoreBar()

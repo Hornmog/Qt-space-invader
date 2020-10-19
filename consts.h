@@ -10,7 +10,7 @@ namespace Keys {
 }
 
 namespace ImagePaths {
-    static const QString pathPrefix = ":/images/";
+    static const QString pathPrefix = ":/images/pictures/";
     static const QString enemyImagePath =         pathPrefix + "enemy.png";
     static const QString heroImagePath =          pathPrefix + "hero.png";
     static const QString bulletImagePath =        pathPrefix + "bullet.png";

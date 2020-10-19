@@ -1,13 +1,13 @@
 #include "gamemanager.h"
 #include <QGraphicsScene>
-#include "hero.h"
+#include "graphic-objects/hero.h"
 #include <QGraphicsView>
-#include "enemy.h"
+#include "graphic-objects/enemy.h"
 #include "enemymanager.h"
-#include "ScoreBar.h"
+#include "scorebar.h"
 #include "graphicsview.h"
 #include <QDebug>
-#include "Const.h"
+#include "consts.h"
 
 
 GameManager::GameManager(QObject *parent) : QObject(parent)
@@ -70,9 +70,11 @@ void GameManager::createWinScreen()
 
 void GameManager::createBackground()
 {
-
+    qDebug() << "Background created";
+    qDebug() << backgroundImagePath;
     QPixmap pixmap(backgroundImagePath);
     QBrush pattern(pixmap);
+    qDebug() << pixmap;
     QRectF rect(0, 0, view->width(), view->height());
     scene->addRect(rect, QPen(), pattern);
 }
