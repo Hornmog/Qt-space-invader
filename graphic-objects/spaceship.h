@@ -28,6 +28,7 @@ protected:
 
     virtual void groupCheckTextInfo() = 0;
 
+    int onTimerPeriod = 50;
     int width = 100;
     int height = 100;
     int xSpeed;
