@@ -36,7 +36,7 @@ Bullet::~Bullet() {
 void Bullet::move()
 {
     setPos(x(),y() - speed);
-    if((pos().y() + this->boundingRect().height() < 0)){
+    if((pos().y() + this->boundingRect().height() < 0 || pos().y() > scene()->height())){
         delete this;                                         //when bullet leaves view, it is destroyed
     }
 }
