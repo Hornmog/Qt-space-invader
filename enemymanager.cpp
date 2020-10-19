@@ -1,12 +1,12 @@
 #include "enemymanager.h"
-#include "enemy.h"
+#include "graphic-objects/enemy.h"
 #include <QTimer>
 #include <QGraphicsScene>
 #include <QDebug>
-#include "ScoreBar.h"
+#include "scorebar.h"
 #include <iostream>
 #include <cstdlib>
-#include "Const.h"
+#include "consts.h"
 
 EnemyManager::EnemyManager(QGraphicsScene* scene, ScoreBar* scoreBar, KeyManager* keyManager)
 {

@@ -1,10 +1,10 @@
 #include "enemy.h"
-#include "Bullet.h"
+#include "bullet.h"
 #include <QTimer>
 #include <QDebug>
 #include <QGraphicsScene>
 #include <cmath>
-#include "Const.h"
+#include "consts.h"
 
 Enemy::Enemy(EnemyManager *manager, QString imagePath, int count) : SpaceShip(manager, imagePath)
 {

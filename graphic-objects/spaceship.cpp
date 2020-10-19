@@ -1,5 +1,5 @@
 #include "spaceship.h"
-#include "Bullet.h"
+#include "graphic-objects/bullet.h"
 #include <QGraphicsScene>
 #include <QKeyEvent>
 #include <QDebug>

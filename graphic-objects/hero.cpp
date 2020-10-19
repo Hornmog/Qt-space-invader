@@ -2,7 +2,7 @@
 #include <QGraphicsScene>
 #include <QKeyEvent>
 #include <QDebug>
-#include "Bullet.h"
+#include "bullet.h"
 #include <QTimer>
 #include "keymanager.h"
 
