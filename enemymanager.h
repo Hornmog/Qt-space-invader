@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QGraphicsRectItem>
-#include "ScoreBar.h"
+#include "scorebar.h"
 #include "keymanager.h"
 
 class Enemy;

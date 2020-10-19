@@ -1,6 +1,6 @@
 #include "keymanager.h"
 #include <QKeyEvent>
-#include "hero.h"
+#include "graphic-objects/hero.h"
 
 KeyManager::KeyManager(QWidget *widget)
 {

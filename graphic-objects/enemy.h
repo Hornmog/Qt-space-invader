@@ -4,7 +4,7 @@
 #include <QGraphicsRectItem>
 #include <QObject>
 #include "enemymanager.h"
-#include "Const.h"
+#include "consts.h"
 #include "spaceship.h"
 
 class Enemy: public SpaceShip{

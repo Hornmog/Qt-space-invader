@@ -1,13 +1,11 @@
 <RCC>
     <qresource prefix="/images">
-        <file>gameOver.png</file>
-        <file>bullet.png</file>
-        <file>enemy.png</file>
-        <file>hero.png</file>
-        <file>enemyBullet.png</file>
-        <file>background.png</file>
-        <file>win.png</file>
+        <file>pictures/background.png</file>
+        <file>pictures/bullet.png</file>
+        <file>pictures/enemy.png</file>
+        <file>pictures/enemyBullet.png</file>
+        <file>pictures/gameOver.png</file>
+        <file>pictures/hero.png</file>
+        <file>pictures/win.png</file>
     </qresource>
-    <qresource prefix="/hero.png"/>
-    <qresource prefix="/"/>
 </RCC>

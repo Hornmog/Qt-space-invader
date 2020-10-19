@@ -16,28 +16,28 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Bullet.cpp \
-    Enemy.cpp \
-    ScoreBar.cpp \
     enemymanager.cpp \
     gamemanager.cpp \
+    graphic-objects/bullet.cpp \
+    graphic-objects/enemy.cpp \
     graphicsview.cpp \
-    hero.cpp \
+    graphic-objects/hero.cpp \
     keymanager.cpp \
     main.cpp \
-    spaceship.cpp
+    scorebar.cpp \
+    graphic-objects/spaceship.cpp
 
 HEADERS += \
-    Bullet.h \
-    Const.h \
-    Enemy.h \
-    ScoreBar.h \
+    consts.h \
+    graphic-objects/bullet.h \
+    graphic-objects/enemy.h \
     enemymanager.h \
     gamemanager.h \
     graphicsview.h \
-    hero.h \
+    graphic-objects/hero.h \
     keymanager.h \
-    spaceship.h
+    scorebar.h \
+    graphic-objects/spaceship.h
 
 FORMS +=
 
@@ -48,3 +48,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     rsources.qrc
+
+DISTFILES += \
+    Docs/TODO \
+    Docs/gameLogic.png

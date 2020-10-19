@@ -1,9 +1,10 @@
 #ifndef GAMEMANAGER_H
 #define GAMEMANAGER_H
 
-#include "ScoreBar.h"
-#include "hero.h"
+#include "scorebar.h"
+#include "graphic-objects/hero.h"
 #include "graphicsview.h"
+#include "consts.h"
 
 #include <QObject>
 
@@ -17,12 +18,12 @@ public:
 private:
     void createFullScreenImage(QString imagePath);
     void createBackground();
-    QString gameOverImagePath = ":/images/gameOver.png";
+    QString gameOverImagePath = ImagePaths::gameOverImagePath;
     ScoreBar* scoreBar;
     QGraphicsScene* scene;
     GraphicsView* view;
     Hero* hero;
-    QString backgroundImagePath = ":/images/background.png";
+    QString backgroundImagePath = ImagePaths::backgroundImagePath;
 
     int sceneWidth = 600;
     int sceneHeight = 1000;
