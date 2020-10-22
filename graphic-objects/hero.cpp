@@ -112,6 +112,17 @@ int Hero::calculateXMovement()
 //    }
 
     xSpeed = newXVelocity;
+
+    if(checkScreenBorders(distanceMoved)){
+        xSpeed = 0;
+        return 0;
+    }
     return distanceMoved;
+}
+
+bool Hero::checkScreenBorders(int distance)
+{
+    return ((pos().x() + this->width * 0.75 <= 0 && distance < 0) ||
+             (pos().x() + this->width * 0.25 >= scene()->width() && distance > 0));
 }
 

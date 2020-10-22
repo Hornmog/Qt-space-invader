@@ -34,7 +34,7 @@ namespace Side {
     static const int neutral = 3;
 }
 
-static const int period_ms = 50;
+static const int period_ms = 20;
 static const double FPS = 1000.0/period_ms;
 #endif // CONS_H
 
