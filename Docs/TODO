@@ -1,19 +1,21 @@
 Bugfixes:
-- How to draw MainWindow in the position we want?\
+- How to draw MainWindow in the position we want?
 - Generate text in the middle
 - Fix enemy manager spawn timing
 
 New features:
-- Animations?
--Neutral side meteors
--Highscore board + minimum shots
--Levels
--Different ammo
+- Animations
+- Level restart
+- Levels
+- Highscore board + minimum shots
+- Neutral side meteors
+- Different ammo
 
 Refactoring:
 - Do we need separate HeroManager or can it just report to GameManager? 
 - GM manages a lot of drawing tasks; is it OK?
 - Utility calculator all the collisions?
+- For levels, we need to split LevelManager from GameManager
 
 Done:
 - All spaceships report to their manager.
