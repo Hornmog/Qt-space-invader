@@ -12,11 +12,15 @@ EnemyManager::EnemyManager(QGraphicsScene* scene, ScoreBar* scoreBar, KeyManager
 {
     this->scene = scene;
     this->scoreBar = scoreBar;
-    QTimer* timer = new QTimer();
-    connect(timer,SIGNAL(timeout()),this,SLOT(onTimer()));
-    connect(keyManager, SIGNAL(logKeyPressed(bool)), this, SIGNAL(logKeyPressed(bool)));
 
-    timer->start(2000);
+    connect(keyManager, SIGNAL(logKeyPressed(bool)), this, SIGNAL(logKeyPressed(bool)));    
+}
+
+void EnemyManager::startSpawningEnemies()
+{
+    QTimer* timer = new QTimer();
+    connect(timer,SIGNAL(timeout()),this,SLOT(onSpawnTimer()));
+    timer->start(spawnRate);
 }
 
 void EnemyManager::onEnemyDestruction(Enemy* enemy)
@@ -49,7 +53,9 @@ void EnemyManager::onKillByNonHero(Enemy *enemy)
     onEnemyDestruction(enemy);
 }
 
-void EnemyManager::onTimer()
+
+
+void EnemyManager::onSpawnTimer()
 {
     if(enemyCount < maxEnemyAlive && score < totalEnemiesToKill - enemyCount){
         createEnemy();
@@ -59,7 +65,7 @@ void EnemyManager::onTimer()
 
 void EnemyManager::createEnemy()
 {
-    Enemy * enemy = new Enemy(this, ImagePaths::enemyImagePath, totalEnemiesSpawned);
+    Enemy* enemy = new Enemy(this, ImagePaths::enemyImagePath, totalEnemiesSpawned);
     scene->addItem(enemy);
     int offset = 100;
     // 0...800

@@ -1,10 +1,14 @@
 Bugfixes:
-- Hero gets too far from the visible game screen
-- How to draw MainWindow in the position we want?
+- How to draw MainWindow in the position we want?\
+- Generate text in the middle
+- Fix enemy manager spawn timing
 
 New features:
 - Animations?
 -Neutral side meteors
+-Highscore board + minimum shots
+-Levels
+-Different ammo
 
 Refactoring:
 - Do we need separate HeroManager or can it just report to GameManager? 
@@ -14,3 +18,4 @@ Refactoring:
 Done:
 - All spaceships report to their manager.
 - Problem of colliding items
+- Hero gets too far from the visible game screen

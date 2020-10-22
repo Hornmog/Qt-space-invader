@@ -8,6 +8,7 @@
 #include "graphicsview.h"
 #include <QDebug>
 #include "consts.h"
+#include <QTimer>
 
 
 GameManager::GameManager(QObject *parent) : QObject(parent)
@@ -18,7 +19,7 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
 
     view = new GraphicsView(scene);
     KeyManager* keyManager = new KeyManager();
-    EnemyManager* enemyManager = new EnemyManager(scene, scoreBar, keyManager);
+    enemyManager = new EnemyManager(scene, scoreBar, keyManager);
     hero = new Hero(ImagePaths::heroImagePath, keyManager);
 
     scoreBar = new ScoreBar();
@@ -38,6 +39,9 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
 
     keyManager->grabKeyboard();
     hero->setPos(view->width()/2 - hero->boundingRect().width()/2, view->height() - hero->boundingRect().height() * 2);
+
+    createCountdownTextItem();
+    startLevelCountdown();
 }
 
 void GameManager::createFullScreenImage(QString imagePath)
@@ -70,13 +74,47 @@ void GameManager::createWinScreen()
 
 void GameManager::createBackground()
 {
-    qDebug() << "Background created";
-    qDebug() << backgroundImagePath;
     QPixmap pixmap(backgroundImagePath);
     QBrush pattern(pixmap);
     qDebug() << pixmap;
     QRectF rect(0, 0, view->width(), view->height());
     scene->addRect(rect, QPen(), pattern);
+}
+
+void GameManager::startEnemySpawn()
+{
+    enemyManager->startSpawningEnemies();
+}
+
+void GameManager::createCountdownTextItem()
+{
+    number = new QGraphicsTextItem();
+    QFont font = QFont("Impact", 40, QFont::Bold);
+    QColor color = QColor("#9C1444");
+    number->setFont(font);
+    number->setDefaultTextColor(color);
+    number->setZValue(ScenePriority::text);
+    number->setPos(scene->width() / 2 - number->boundingRect().width() / 2,
+                   scene->height() / 2 - number->boundingRect().height() / 2);
+    scene->addItem(number);
+
+}
+
+void GameManager::startLevelCountdown()
+{
+    qDebug() << "Current phase is: " << phase;
+    if (phase == -1) {
+        number->hide();
+        startEnemySpawn();
+        return;
+    }
+    number->setPlainText(countdownPhrases[phase]);
+    phase--;
+
+    QTimer* countdown = new QTimer();
+    connect(countdown,SIGNAL(timeout()),this,SLOT(startLevelCountdown()));
+    countdown->setSingleShot(true);
+    countdown->start(1000);
 }
 
 

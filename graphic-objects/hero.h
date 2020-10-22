@@ -34,7 +34,7 @@ private:
     bool leftKeyPressed;
 
     struct MovementX {
-        static const int maxVelocity = 2000;         //pixels per second
+        static const int maxVelocity = 200;         //pixels per second
         static const int accel = 1000;
         static const int friction = 50;
     };

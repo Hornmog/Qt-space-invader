@@ -16,6 +16,7 @@ public:
     void onEnemyDestruction(Enemy* enemy);
     void onKillByHero(Enemy* enemy);
     void onKillByNonHero(Enemy* enemy);
+    void startSpawningEnemies();
 
 signals:
     void onEnemyCountChange(int enemyDeaths);
@@ -25,11 +26,12 @@ signals:
     void logKeyPressed(bool);
 
 public slots:
-    void onTimer();
+    void onSpawnTimer();
 
 private:
     void createEnemy();
 
+    int spawnRate = 2000;
     int enemyCount = 0;
     int score = 0;
     QGraphicsScene *scene;
@@ -37,7 +39,7 @@ private:
     int difficulty = 1;
     int const levelDifficultyStep = 5;
     int upForNextDiff = levelDifficultyStep; 
-    int const maxEnemyAlive = 3;
+    int const maxEnemyAlive = 1;
     int const totalEnemiesToKill = 20;
     int totalEnemiesSpawned = 0;
 };
