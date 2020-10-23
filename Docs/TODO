@@ -1,7 +1,6 @@
 Bugfixes:
 - How to draw MainWindow in the position we want?
 - Generate text in the middle
-- Fix enemy manager spawn timing
 
 New features:
 - Animations
@@ -21,3 +20,4 @@ Done:
 - All spaceships report to their manager.
 - Problem of colliding items
 - Hero gets too far from the visible game screen
+- Fix enemy manager spawn timing

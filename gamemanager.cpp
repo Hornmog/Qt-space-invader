@@ -109,6 +109,8 @@ void GameManager::startLevelCountdown()
         return;
     }
     number->setPlainText(countdownPhrases[phase]);
+    number->setPos(scene->width() / 2 - number->boundingRect().width() / 2,
+                   scene->height() / 2 - number->boundingRect().height() / 2);
     phase--;
 
     QTimer* countdown = new QTimer();

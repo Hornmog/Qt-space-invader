@@ -18,6 +18,7 @@ EnemyManager::EnemyManager(QGraphicsScene* scene, ScoreBar* scoreBar, KeyManager
 
 void EnemyManager::startSpawningEnemies()
 {
+    createEnemy();
     QTimer* timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(onSpawnTimer()));
     timer->start(spawnRate);
