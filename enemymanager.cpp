@@ -42,11 +42,10 @@ void EnemyManager::onKillByHero(Enemy *enemy)
 {
     score++;
     onEnemyCountChange(score);
+    onEnemyDestruction(enemy);
     if (score == totalEnemiesToKill){
         allEnemiesDefeated();
-    }
-
-    onEnemyDestruction(enemy);
+    }    
 }
 
 void EnemyManager::onKillByNonHero(Enemy *enemy)

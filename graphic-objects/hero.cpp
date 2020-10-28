@@ -15,10 +15,6 @@ Hero::Hero(QString imagePath, KeyManager* keyManager) : SpaceShip(nullptr, image
     accel = 0;
     side = Side::hero;
 
-
-    //this->setFlag(QGraphicsItem::ItemIsFocusable);
-    //this->setFocus();
-
     setUpDelay(shootDelay);
 
     this->keyManager = keyManager;

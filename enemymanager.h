@@ -39,8 +39,8 @@ private:
     int difficulty = 1;
     int const levelDifficultyStep = 5;
     int upForNextDiff = levelDifficultyStep; 
-    int const maxEnemyAlive = 1;
-    int const totalEnemiesToKill = 20;
+    int const maxEnemyAlive = 3;
+    int const totalEnemiesToKill = 5;
     int totalEnemiesSpawned = 0;
 };
 

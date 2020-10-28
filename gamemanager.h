@@ -8,6 +8,7 @@
 #include "consts.h"
 
 #include <QObject>
+#include <QTimer>
 
 class GameManager : public QObject
 {
@@ -17,10 +18,13 @@ public:
 
 
 private:
-    void createFullScreenImage(QString imagePath);
+    void createFullScreenImage(QString imagePath = nullptr);
     void createBackground();
     void startEnemySpawn();
     void createCountdownTextItem();
+    void restartLevel();
+    void createWinScreen();
+    void connectSpaceshipSignals();
 
     QString gameOverImagePath = ImagePaths::gameOverImagePath;
     ScoreBar* scoreBar;
@@ -28,9 +32,14 @@ private:
     GraphicsView* view;
     Hero* hero;
     EnemyManager* enemyManager;
+    KeyManager* keyManager;
     QString backgroundImagePath = ImagePaths::backgroundImagePath;
     QGraphicsTextItem* number;
+    QGraphicsPixmapItem* fullScreenImage;
+    QTimer* countdown = new QTimer();
 
+
+    bool gameInProcess = false;
     int sceneWidth = 600;
     int sceneHeight = 1000;
     int phase = 3;
@@ -42,8 +51,11 @@ private slots:
     void gameOver();
     void createEndScreen();
     void changeScore(int score);
-    void createWinScreen();
+    void win();
     void startLevelCountdown();
+
+public slots:
+    void keyRPressed();
 
 };
 

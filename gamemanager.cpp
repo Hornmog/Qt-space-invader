@@ -18,9 +18,10 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
     scene->setSceneRect(0,0,sceneWidth,sceneHeight);
 
     view = new GraphicsView(scene);
-    KeyManager* keyManager = new KeyManager();
+    keyManager = new KeyManager();
     enemyManager = new EnemyManager(scene, scoreBar, keyManager);
     hero = new Hero(ImagePaths::heroImagePath, keyManager);
+    hero->setPos(view->width()/2 - hero->boundingRect().width()/2, view->height() - hero->boundingRect().height() * 2);
 
     scoreBar = new ScoreBar();
 
@@ -30,36 +31,68 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
     scoreBar->setPos(scene->width() - scoreBar->boundingRect().width()*3, scene->height() - scoreBar->boundingRect().height());
 
     scene->addItem(hero);
-
-
-    connect(enemyManager, SIGNAL(onEnemyCountChange(int)), this, SLOT(changeScore(int)));
-    connect(enemyManager, SIGNAL(allEnemiesDefeated()), this, SLOT(createWinScreen()));
-    connect(hero, SIGNAL(heroKilled()), this, SLOT(gameOver()));
-    connect(enemyManager, SIGNAL(enemyOnBase()), this, SLOT(gameOver()));
+    createFullScreenImage(nullptr);
 
     keyManager->grabKeyboard();
-    hero->setPos(view->width()/2 - hero->boundingRect().width()/2, view->height() - hero->boundingRect().height() * 2);
+
+    connectSpaceshipSignals();
+    connect(keyManager, SIGNAL(keyRPressed()), this, SLOT(keyRPressed()));
+    connect(countdown,SIGNAL(timeout()),this,SLOT(startLevelCountdown()));
 
     createCountdownTextItem();
     startLevelCountdown();
+    gameInProcess = true;
 }
 
 void GameManager::createFullScreenImage(QString imagePath)
 {
-    QPixmap pixmap(imagePath);
-    QGraphicsPixmapItem* pixmapItem = new QGraphicsPixmapItem(pixmap.scaled(view->width(), view->height(), Qt::KeepAspectRatio));
-    pixmapItem->setPos(0, scene->height() / 2 - pixmapItem->boundingRect().height() / 2);
-    pixmapItem->setZValue(ScenePriority::fullScreenText);
-    scene->addItem(pixmapItem);
-
+    if (imagePath != nullptr) {
+        QPixmap pixmap(imagePath);
+        fullScreenImage = new QGraphicsPixmapItem(pixmap.scaled(view->width(), view->height(), Qt::KeepAspectRatio));
+    } else {
+        fullScreenImage = new QGraphicsPixmapItem();
+    }
+    fullScreenImage->setPos(0, scene->height() / 2 - fullScreenImage->boundingRect().height() / 2);
+    fullScreenImage->setZValue(ScenePriority::fullScreenText);
+    scene->addItem(fullScreenImage);
 
 }
 
 void GameManager::gameOver()
 {
     delete hero;
+    delete enemyManager;
     createEndScreen();
+    gameInProcess = false;
+}
 
+void GameManager::keyRPressed()
+{
+    if(!gameInProcess){
+        restartLevel();
+    }
+}
+
+void GameManager::restartLevel()
+{
+   delete fullScreenImage;
+   gameInProcess = true;
+   scoreBar->setScore(0);
+
+   hero = new Hero(ImagePaths::heroImagePath, keyManager);  
+   scene->addItem(hero);
+   hero->setPos(view->width()/2 - hero->boundingRect().width()/2, view->height() - hero->boundingRect().height() * 2);
+   enemyManager = new EnemyManager(scene, scoreBar, keyManager);
+   connectSpaceshipSignals();
+   startLevelCountdown();
+}
+
+void GameManager::win()
+{
+    delete hero;
+    delete enemyManager;
+    createWinScreen();
+    gameInProcess = false;
 }
 
 void GameManager::createEndScreen()
@@ -70,6 +103,14 @@ void GameManager::createEndScreen()
 void GameManager::createWinScreen()
 {
     createFullScreenImage(ImagePaths::winImagePath);
+}
+
+void GameManager::connectSpaceshipSignals()
+{
+    connect(enemyManager, SIGNAL(onEnemyCountChange(int)), this, SLOT(changeScore(int)));
+    connect(enemyManager, SIGNAL(allEnemiesDefeated()), this, SLOT(win()));
+    connect(hero, SIGNAL(heroKilled()), this, SLOT(gameOver()));
+    connect(enemyManager, SIGNAL(enemyOnBase()), this, SLOT(gameOver()));
 }
 
 void GameManager::createBackground()
@@ -88,6 +129,7 @@ void GameManager::startEnemySpawn()
 
 void GameManager::createCountdownTextItem()
 {
+    qDebug() << "countdown created";
     number = new QGraphicsTextItem();
     QFont font = QFont("Impact", 40, QFont::Bold);
     QColor color = QColor("#9C1444");
@@ -96,14 +138,18 @@ void GameManager::createCountdownTextItem()
     number->setZValue(ScenePriority::text);
     number->setPos(scene->width() / 2 - number->boundingRect().width() / 2,
                    scene->height() / 2 - number->boundingRect().height() / 2);
-    scene->addItem(number);
-
+    scene->addItem(number);   
+    qDebug() << "number created: " << number;
 }
 
 void GameManager::startLevelCountdown()
 {
+    if (phase == 3) {
+        number->show();
+    }
     qDebug() << "Current phase is: " << phase;
     if (phase == -1) {
+        phase = 3;
         number->hide();
         startEnemySpawn();
         return;
@@ -113,11 +159,10 @@ void GameManager::startLevelCountdown()
                    scene->height() / 2 - number->boundingRect().height() / 2);
     phase--;
 
-    QTimer* countdown = new QTimer();
-    connect(countdown,SIGNAL(timeout()),this,SLOT(startLevelCountdown()));
     countdown->setSingleShot(true);
     countdown->start(1000);
 }
+
 
 
 void GameManager::changeScore(int score)

@@ -21,6 +21,9 @@ void KeyManager::keyPressEvent(QKeyEvent *event)
         logKeyPressed(logShow);
         logShow = !logShow;
     }
+    if (key == Qt::Key_R){
+        keyRPressed();
+    }
 }
 
 void KeyManager::keyReleaseEvent(QKeyEvent *event)

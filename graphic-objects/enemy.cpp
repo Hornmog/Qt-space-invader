@@ -82,12 +82,13 @@ void Enemy::move()
 
 void Enemy::positiveRemoval(int hitBy)
 {
+    delete this;
+
     if(hitBy == Side::hero){
         manager->onKillByHero(this);
     }
     else if(hitBy == Side::enemy){
         manager->onKillByNonHero(this);
     }
-    delete this;
 }
 
