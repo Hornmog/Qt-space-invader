@@ -1,7 +1,7 @@
 Bugfixes:
-- Remove all bulletes on restart
 
 New features:
+- Pause
 - Levels
 - Highscore board + minimum shots
 - Neutral side meteors
@@ -24,3 +24,4 @@ Done:
 - Generate text in the middle
 - How to draw MainWindow in the position we want?
 - Finish restart level with startGame function
+- Remove all bulletes on restart

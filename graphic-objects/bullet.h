@@ -3,6 +3,7 @@
 #include <QGraphicsRectItem>
 #include <QObject>
 #include "consts.h"
+#include "gamemanager.h"
 
 class Bullet: public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
@@ -15,15 +16,16 @@ public:
 
     int getBulletLength() const {return bulletLength;}
     int getSpeed() const {return speed;}
-    int type() const override;
+    int type() const override {return TypeIndex::bullet;}
 
     int side;
 
 public slots:
     void move();
 private:
-    const int bulletLength = 50;
-    const int bulletWidth = 10;
+    static GameManager* gameManager;
+    static const int bulletLength = 50;
+    static const int bulletWidth = 10;
     int speed;
 };
 

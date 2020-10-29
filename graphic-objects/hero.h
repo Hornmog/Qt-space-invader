@@ -4,7 +4,7 @@
 #include <QGraphicsRectItem>
 #include <QGraphicsObject>
 #include "spaceship.h"
-
+#include "consts.h"
 #include "keymanager.h"
 
 
@@ -12,6 +12,7 @@ class Hero: public SpaceShip{
     Q_OBJECT
 public:
     Hero(QString imagePath = nullptr, KeyManager* keyManager = nullptr);
+    int type() const override {return TypeIndex::hero;}
 
 
 signals:

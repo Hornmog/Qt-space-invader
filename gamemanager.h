@@ -25,6 +25,7 @@ private:
     void restartLevel();
     void createWinScreen();
     void connectSpaceshipSignals();
+    void deleteSceneGraphicItems();
 
     QString gameOverImagePath = ImagePaths::gameOverImagePath;
     ScoreBar* scoreBar;
@@ -44,7 +45,7 @@ private:
     int sceneHeight = 1000;
     int phase = 3;
     QVector<QString> countdownPhrases = {"START", "1", "2", "3"};
-
+    QSet<int> itemTypesToDelete = {TypeIndex::enemy, TypeIndex::fullscreenText, TypeIndex::bullet};
 
 
 private slots:
@@ -56,7 +57,6 @@ private slots:
 
 public slots:
     void keyRPressed();
-
 };
 
 #endif // GAMEMANAGER_H

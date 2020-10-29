@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QGraphicsTextItem>
+#include "consts.h"
 
 class ScoreBar :public QGraphicsTextItem
 {
@@ -10,6 +11,7 @@ class ScoreBar :public QGraphicsTextItem
 public:
     ScoreBar();
     void setScore(int new_score);
+    int type() const override {return TypeIndex::scoreBar;}
 
 private:
 };

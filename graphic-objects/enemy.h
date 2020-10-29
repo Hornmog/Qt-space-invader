@@ -12,9 +12,7 @@ class Enemy: public SpaceShip{
 public:
     Enemy(EnemyManager* manager, QString imagePath, int count);
     ~Enemy() override;
-    int type() const override{
-        return Keys::enemyIndex;
-    }
+    int type() const override{return TypeIndex::enemy;}
 
 public slots:
     void onTimer() override;

@@ -55,12 +55,14 @@ void GameManager::createFullScreenImage(QString imagePath)
     fullScreenImage->setPos(0, scene->height() / 2 - fullScreenImage->boundingRect().height() / 2);
     fullScreenImage->setZValue(ScenePriority::fullScreenText);
     scene->addItem(fullScreenImage);
+    qDebug() << fullScreenImage->type() << " - fullScreen image type";
 
 }
 
 void GameManager::gameOver()
 {
     delete hero;
+    hero = nullptr;
     delete enemyManager;
     createEndScreen();
     gameInProcess = false;
@@ -75,12 +77,16 @@ void GameManager::keyRPressed()
 
 void GameManager::restartLevel()
 {
-   delete fullScreenImage;
+   deleteSceneGraphicItems();
    gameInProcess = true;
    scoreBar->setScore(0);
 
-   hero = new Hero(ImagePaths::heroImagePath, keyManager);  
-   scene->addItem(hero);
+   if (hero == nullptr){
+       qDebug() << "creating new hero...";
+       hero = new Hero(ImagePaths::heroImagePath, keyManager);
+       scene->addItem(hero);
+   }
+
    hero->setPos(view->width()/2 - hero->boundingRect().width()/2, view->height() - hero->boundingRect().height() * 2);
    enemyManager = new EnemyManager(scene, scoreBar, keyManager);
    connectSpaceshipSignals();
@@ -89,10 +95,9 @@ void GameManager::restartLevel()
 
 void GameManager::win()
 {
-    delete hero;
-    delete enemyManager;
     createWinScreen();
     gameInProcess = false;
+    delete enemyManager;
 }
 
 void GameManager::createEndScreen()
@@ -113,13 +118,24 @@ void GameManager::connectSpaceshipSignals()
     connect(enemyManager, SIGNAL(enemyOnBase()), this, SLOT(gameOver()));
 }
 
+void GameManager::deleteSceneGraphicItems()
+{
+    auto items = scene->items();
+    for (QGraphicsItem* item: items) {
+        if(itemTypesToDelete.contains(item->type())){
+            delete item;
+        }
+    }
+}
+
 void GameManager::createBackground()
 {
     QPixmap pixmap(backgroundImagePath);
     QBrush pattern(pixmap);
     qDebug() << pixmap;
     QRectF rect(0, 0, view->width(), view->height());
-    scene->addRect(rect, QPen(), pattern);
+    QGraphicsItem* rectItem = scene->addRect(rect, QPen(), pattern);
+    qDebug() << rectItem->type();
 }
 
 void GameManager::startEnemySpawn()
@@ -140,6 +156,7 @@ void GameManager::createCountdownTextItem()
                    scene->height() / 2 - number->boundingRect().height() / 2);
     scene->addItem(number);   
     qDebug() << "number created: " << number;
+    qDebug() << number->type() << " - number type";
 }
 
 void GameManager::startLevelCountdown()

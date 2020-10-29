@@ -43,7 +43,3 @@ void Bullet::move()
 void Bullet::onHit() {
     delete this;
 }
-
-int Bullet::type() const {
-    return Keys::bulletIndex;
-}

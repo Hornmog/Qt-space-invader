@@ -4,9 +4,13 @@
 #include <QGraphicsItem>
 #include <QKeyEvent>
 
-namespace Keys {
-    static const int bulletIndex = 66666;         //anything >= UserType (65536).
-    static const int enemyIndex = 66667;
+namespace TypeIndex {
+    static const int bullet = 66666;         //anything >= UserType (65536).
+    static const int enemy = 66667;
+    static const int scoreBar = 666678;
+    static const int background = 3;
+    static const int hero = 66670;
+    static const int fullscreenText = 7;
 }
 
 namespace ImagePaths {

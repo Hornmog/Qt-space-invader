@@ -31,7 +31,7 @@ int SpaceShip::removalCheck()
 {
     auto items = collidingItems();
     for (QGraphicsItem* item: items) {
-        if(item->type() == Keys::bulletIndex){
+        if(item->type() == TypeIndex::bullet){
             Bullet* bullet = static_cast<Bullet*>(item);
 
             int bulletSide = bullet->side;
