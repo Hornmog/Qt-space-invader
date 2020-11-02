@@ -15,7 +15,7 @@ SpaceShip::SpaceShip(QObject *parent, QString imagePath) : QObject(parent)
     checkText = new QGraphicsTextItem(this);
     setUpCheckText();
 
-    QTimer * mainTimer = new QTimer();
+    mainTimer = new QTimer();
     connect(mainTimer,SIGNAL(timeout()),this,SLOT(onTimer()));
 
     mainTimer->start(period_ms);

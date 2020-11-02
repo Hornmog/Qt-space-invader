@@ -14,6 +14,7 @@ Hero::Hero(QString imagePath, KeyManager* keyManager) : SpaceShip(nullptr, image
     xSpeed = 0;
     accel = 0;
     side = Side::hero;
+    this->stop();
 
     setUpDelay(shootDelay);
 
@@ -23,6 +24,25 @@ Hero::Hero(QString imagePath, KeyManager* keyManager) : SpaceShip(nullptr, image
     connect(keyManager, SIGNAL(logKeyPressed(bool)), this, SLOT(toggleCheckText(bool)));
 }
 
+void Hero::stop()
+{
+    bool checkTextVisibility = checkText->isVisible();
+    active = false;
+    mainTimer->stop();
+    accel = 0, xSpeed = 0;
+    this->hide();
+    toggleCheckText(checkTextVisibility);
+}
+
+void Hero::start()
+{
+    bool checkTextVisibility = checkText->isVisible();
+    active = true;
+    mainTimer->start();
+    this->show();
+    toggleCheckText(checkTextVisibility);
+}
+
 void Hero::onTimer()
 {
     groupCheckTextInfo();
@@ -30,7 +50,7 @@ void Hero::onTimer()
     if(removalCheck() != Side::nobody){
         heroKilled();
     }
-    else{
+    else{       
         setPos(x() + calculateXMovement(), y());
     }
 
@@ -46,6 +66,8 @@ void Hero::groupCheckTextInfo()
 
 void Hero::heroKeyPressed(int key)
 {
+    if(!active) return;
+
     //qDebug() << "key pressed";
     if (key == Qt::Key_Left){
         if(pos().x() > 0){
@@ -82,6 +104,8 @@ void Hero::heroKeyPressed(int key)
 
 void Hero::heroKeyReleased(int key)
 {
+    if(!active) return;
+
     if(key == Qt::Key_Left && leftKeyPressed){
         accel = 0;
         leftKeyPressed = false;

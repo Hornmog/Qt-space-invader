@@ -12,7 +12,9 @@ class Hero: public SpaceShip{
     Q_OBJECT
 public:
     Hero(QString imagePath = nullptr, KeyManager* keyManager = nullptr);
-    int type() const override {return TypeIndex::hero;}
+    int type() const override {return TypeIndex::hero;}  
+    void stop();
+    void start();
 
 
 signals:
@@ -33,6 +35,7 @@ private:
     float accel;
     bool rightKeyPressed;
     bool leftKeyPressed;
+    bool active = false;
 
     struct MovementX {
         static const int maxVelocity = 200;         //pixels per second

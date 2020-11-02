@@ -37,6 +37,7 @@ protected:
     const int baseShootDelay = 5000;
     bool shootAvl = true;
     QGraphicsTextItem *checkText;
+    QTimer* mainTimer;
 
 private:
     QTimer* timerBullet = nullptr;

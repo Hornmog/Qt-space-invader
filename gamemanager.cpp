@@ -20,37 +20,20 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
 
     view = new GraphicsView(scene);
     keyManager = new KeyManager();
-    enemyManager = new EnemyManager(scene, scoreBar, keyManager);
-    hero = new Hero(ImagePaths::heroImagePath, keyManager);
-    hero->setPos(view->width()/2 - hero->boundingRect().width()/2, view->height() - hero->boundingRect().height() * 2);
-
     scoreBar = new ScoreBar();
-    createBackground();
-
-    StartDialog *chooseMode = new StartDialog();
-    int mode = chooseMode->exec();
-    if (mode == chooseMode->Mode::story){
-        enemyManager->setTotalEnemiesToKill(5);
-    }
-    else if (mode == chooseMode->Mode::endless){
-        enemyManager->setTotalEnemiesToKill(INT_MAX);
-    }
-
+    createBackground();   
     scene->addItem(scoreBar);
     scoreBar->setPos(scene->width() - scoreBar->boundingRect().width()*3, scene->height() - scoreBar->boundingRect().height());
 
-    scene->addItem(hero);
     createFullScreenImage(nullptr);
 
     keyManager->grabKeyboard();
 
-    connectSpaceshipSignals();
     connect(keyManager, SIGNAL(keyRPressed()), this, SLOT(keyRPressed()));
     connect(countdown,SIGNAL(timeout()),this,SLOT(startLevelCountdown()));
 
     createCountdownTextItem();
-    startLevelCountdown();
-    gameInProcess = true;
+    start();
 }
 
 void GameManager::createFullScreenImage(QString imagePath)
@@ -87,19 +70,43 @@ void GameManager::keyRPressed()
 void GameManager::restartLevel()
 {
    deleteSceneGraphicItems();
-   gameInProcess = true;
-   scoreBar->setScore(0);
+   start();
+}
 
-   if (hero == nullptr){
-       qDebug() << "creating new hero...";
-       hero = new Hero(ImagePaths::heroImagePath, keyManager);
-       scene->addItem(hero);
-   }
+void GameManager::start()
+{
+    scoreBar->setScore(0);
 
-   hero->setPos(view->width()/2 - hero->boundingRect().width()/2, view->height() - hero->boundingRect().height() * 2);
-   enemyManager = new EnemyManager(scene, scoreBar, keyManager);
-   connectSpaceshipSignals();
-   startLevelCountdown();
+    if (hero == nullptr){
+        qDebug() << "creating new hero...";
+        hero = new Hero(ImagePaths::heroImagePath, keyManager);
+        scene->addItem(hero);
+    } else {
+        qDebug() << "hero exists";
+    }
+
+    hero->setPos(view->width()/2 - hero->boundingRect().width()/2, view->height() - hero->boundingRect().height() * 2);
+    enemyManager = new EnemyManager(scene, scoreBar, keyManager);
+
+    connectSpaceshipSignals();
+    setMode(enemyManager);
+
+    startLevelCountdown();
+
+    gameInProcess = true;
+    hero->start();
+}
+
+void GameManager::setMode(EnemyManager *enemyManager)
+{
+    StartDialog *chooseMode = new StartDialog();
+    int mode = chooseMode->exec();
+    if (mode == chooseMode->Mode::story){
+        enemyManager->setTotalEnemiesToKill(5);
+    }
+    else if (mode == chooseMode->Mode::endless){
+        enemyManager->setTotalEnemiesToKill(INT_MAX);
+    }
 }
 
 void GameManager::win()

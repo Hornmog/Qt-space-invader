@@ -26,12 +26,15 @@ private:
     void createWinScreen();
     void connectSpaceshipSignals();
     void deleteSceneGraphicItems();
+    void start();
+    void setMode(EnemyManager* enemyManager);
+
 
     QString gameOverImagePath = ImagePaths::gameOverImagePath;
     ScoreBar* scoreBar;
     QGraphicsScene* scene;
     GraphicsView* view;
-    Hero* hero;
+    Hero* hero = nullptr;
     EnemyManager* enemyManager;
     KeyManager* keyManager;
     QString backgroundImagePath = ImagePaths::backgroundImagePath;
