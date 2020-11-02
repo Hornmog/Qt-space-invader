@@ -17,6 +17,7 @@ public:
     void onKillByHero(Enemy* enemy);
     void onKillByNonHero(Enemy* enemy);
     void startSpawningEnemies();
+    void setTotalEnemiesToKill(int num) {totalEnemiesToKill = num;}
 
 signals:
     void onEnemyCountChange(int enemyDeaths);
@@ -31,6 +32,7 @@ public slots:
 private:
     void createEnemy();
 
+
     int spawnRate = 2000;
     int enemyCount = 0;
     int score = 0;
@@ -40,7 +42,7 @@ private:
     int const levelDifficultyStep = 5;
     int upForNextDiff = levelDifficultyStep; 
     int const maxEnemyAlive = 3;
-    int const totalEnemiesToKill = 3;
+    int totalEnemiesToKill = 3;
     int totalEnemiesSpawned = 0;
 };
 

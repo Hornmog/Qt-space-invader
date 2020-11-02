@@ -25,7 +25,8 @@ SOURCES += \
     keymanager.cpp \
     main.cpp \
     scorebar.cpp \
-    graphic-objects/spaceship.cpp
+    graphic-objects/spaceship.cpp \
+    startdialog.cpp
 
 HEADERS += \
     consts.h \
@@ -37,7 +38,8 @@ HEADERS += \
     graphic-objects/hero.h \
     keymanager.h \
     scorebar.h \
-    graphic-objects/spaceship.h
+    graphic-objects/spaceship.h \
+    startdialog.h
 
 FORMS +=
 

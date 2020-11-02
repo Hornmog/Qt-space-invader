@@ -9,11 +9,12 @@
 #include <QDebug>
 #include "consts.h"
 #include <QTimer>
+#include <startdialog.h>
+#include <climits>
 
 
 GameManager::GameManager(QObject *parent) : QObject(parent)
-{
-
+{       
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,sceneWidth,sceneHeight);
 
@@ -24,8 +25,16 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
     hero->setPos(view->width()/2 - hero->boundingRect().width()/2, view->height() - hero->boundingRect().height() * 2);
 
     scoreBar = new ScoreBar();
-
     createBackground();
+
+    StartDialog *chooseMode = new StartDialog();
+    int mode = chooseMode->exec();
+    if (mode == chooseMode->Mode::story){
+        enemyManager->setTotalEnemiesToKill(5);
+    }
+    else if (mode == chooseMode->Mode::endless){
+        enemyManager->setTotalEnemiesToKill(INT_MAX);
+    }
 
     scene->addItem(scoreBar);
     scoreBar->setPos(scene->width() - scoreBar->boundingRect().width()*3, scene->height() - scoreBar->boundingRect().height());
