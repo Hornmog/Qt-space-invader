@@ -8,6 +8,7 @@ StartDialog::StartDialog() : QMessageBox()
 {
     endlessMode = this->addButton("Endless", QMessageBox::ActionRole);
     storyMode = this->addButton("Story", QMessageBox::ActionRole);
+    leaderBoardMode = this->addButton("LeaderBoard", QMessageBox::ActionRole);
 
     this->setText("Choose mode: ");
     //msgBox.setInformativeText("Do you want to save your changes?");
@@ -21,5 +22,8 @@ int StartDialog::exec() {
        }
     else if (this->clickedButton() == storyMode){
           return Mode::story;
+       }
+    else if (this->clickedButton() == leaderBoardMode){
+          return Mode::leaderBoard;
        }
 }

@@ -107,6 +107,42 @@ void GameManager::setMode(EnemyManager *enemyManager)
     else if (mode == chooseMode->Mode::endless){
         enemyManager->setTotalEnemiesToKill(INT_MAX);
     }
+    else if (mode == chooseMode->Mode::leaderBoard){
+        createLeaderBoardBox();
+        setMode(enemyManager);
+    }
+}
+
+void GameManager::createLeaderBoardBox()
+{
+    QMessageBox *msg = new QMessageBox();
+
+    QFont font = QFont("Impact", 20);
+    msg->setFont(font);
+
+    QString leaderBoardInfo = "";
+    QVector <QString> playerScore = fetchForLeaderBoardInfo();
+    qDebug() << playerScore[2];
+    for(int i = 0; i < 3; i++){
+        leaderBoardInfo += playerScore[i] + QString("\n");
+    }
+
+    msg->setText("LeaderBoard");
+    msg->setDetailedText(leaderBoardInfo);
+
+
+    msg->exec();
+}
+
+QVector <QString> GameManager::fetchForLeaderBoardInfo()
+{
+    //access storage file
+    QVector <QString> playersScore(3);
+    for (int i = 0; i < 3; i++){
+        playersScore[i] = QString::number(i+1) + QString("exampleName") + QString(" - ") + QString("exampleTime");
+    }
+    return playersScore;
+
 }
 
 void GameManager::win()

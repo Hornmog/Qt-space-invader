@@ -7,13 +7,14 @@ class StartDialog : QMessageBox
 {
 public:
     StartDialog();
-    enum Mode {endless, story};
+    enum Mode {endless, story, leaderBoard};
 
     int exec() override;
 
 private:
     QPushButton *endlessMode;
     QPushButton *storyMode;
+    QPushButton *leaderBoardMode;
 };
 
 #endif // STARTDIALOG_H

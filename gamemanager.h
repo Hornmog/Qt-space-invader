@@ -28,6 +28,8 @@ private:
     void deleteSceneGraphicItems();
     void start();
     void setMode(EnemyManager* enemyManager);
+    void createLeaderBoardBox();
+    QVector <QString> fetchForLeaderBoardInfo();
 
 
     QString gameOverImagePath = ImagePaths::gameOverImagePath;
