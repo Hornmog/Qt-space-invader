@@ -1,4 +1,5 @@
 #include "gamemanager.h"
+#include <QApplication>
 #include <QGraphicsScene>
 #include "graphic-objects/hero.h"
 #include <QGraphicsView>
@@ -11,6 +12,10 @@
 #include <QTimer>
 #include <startdialog.h>
 #include <climits>
+#include <QMainWindow>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QFile>
 
 
 GameManager::GameManager(QObject *parent) : QObject(parent)
@@ -86,7 +91,7 @@ void GameManager::start()
     }
 
     hero->setPos(view->width()/2 - hero->boundingRect().width()/2, view->height() - hero->boundingRect().height() * 2);
-    enemyManager = new EnemyManager(scene, scoreBar, keyManager);
+    enemyManager = new EnemyManager(scene, keyManager);
 
     connectSpaceshipSignals();
     setMode(enemyManager);
@@ -111,23 +116,24 @@ void GameManager::setMode(EnemyManager *enemyManager)
         createLeaderBoardBox();
         setMode(enemyManager);
     }
+    else if (mode == chooseMode->Mode::quit){
+        view->window()->close();
+        QMetaObject::invokeMethod(qApp, "quit", Qt::QueuedConnection);     //quit program
+    }
 }
 
 void GameManager::createLeaderBoardBox()
 {
     QMessageBox *msg = new QMessageBox();
 
-    QFont font = QFont("Impact", 20);
-    msg->setFont(font);
-
     QString leaderBoardInfo = "";
     QVector <QString> playerScore = fetchForLeaderBoardInfo();
-    qDebug() << playerScore[2];
+
     for(int i = 0; i < 3; i++){
         leaderBoardInfo += playerScore[i] + QString("\n");
     }
 
-    msg->setText("LeaderBoard");
+    msg->setText("<i>LeaderBoard</i>");
     msg->setDetailedText(leaderBoardInfo);
 
 
