@@ -30,6 +30,8 @@ private:
     void setMode(EnemyManager* enemyManager);
     void createLeaderBoardBox();
     QVector <QString> fetchForLeaderBoardInfo();
+    void loadLeaderBoard();
+    void saveLeaderBoard();
 
 
     QString gameOverImagePath = ImagePaths::gameOverImagePath;
@@ -43,6 +45,7 @@ private:
     QGraphicsTextItem* number;
     QGraphicsPixmapItem* fullScreenImage;
     QTimer* countdown = new QTimer();
+
 
 
     bool gameInProcess = false;

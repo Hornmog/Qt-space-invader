@@ -3,8 +3,8 @@
 
 #include <QObject>
 #include <QGraphicsRectItem>
-#include "scorebar.h"
 #include "keymanager.h"
+#include <QJsonObject>
 
 class Enemy;
 
@@ -12,12 +12,13 @@ class EnemyManager : public QObject, public QGraphicsRectItem
 {
     Q_OBJECT
 public:
-    EnemyManager(QGraphicsScene* scene, ScoreBar* scoreBar, KeyManager* keyManager);
+    EnemyManager(QGraphicsScene* scene, KeyManager* keyManager);
     void onEnemyDestruction(Enemy* enemy);
     void onKillByHero(Enemy* enemy);
     void onKillByNonHero(Enemy* enemy);
     void startSpawningEnemies();
     void setTotalEnemiesToKill(int num) {totalEnemiesToKill = num;}
+    QJsonObject returnEnemiesKilled();
 
 signals:
     void onEnemyCountChange(int enemyDeaths);
@@ -37,7 +38,6 @@ private:
     int enemyCount = 0;
     int score = 0;
     QGraphicsScene *scene;
-    ScoreBar *scoreBar;
     int difficulty = 1;
     int const levelDifficultyStep = 5;
     int upForNextDiff = levelDifficultyStep; 

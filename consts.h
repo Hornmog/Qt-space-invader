@@ -13,6 +13,13 @@ namespace TypeIndex {
     static const int fullscreenText = 7;
 }
 
+static const QString jsonName = "leaderBoard";
+
+namespace JsonNames {
+    static const QString enemiesKilled = "EnemyMaganer [total enemies killed]";
+    static const QString name = "name";
+}
+
 namespace ImagePaths {
     static const QString pathPrefix = ":/images/pictures/";
     static const QString enemyImagePath =         pathPrefix + "enemy.png";
@@ -31,12 +38,9 @@ namespace ScenePriority {
     static const int text = 30;
 }
 
-namespace Side {
-    static const int nobody = 0;
-    static const int hero = 1;
-    static const int enemy = 2;
-    static const int neutral = 3;
-}
+enum Side {
+   nobody, hero, enemy, neutral
+};
 
 static const int period_ms = 20;
 static const double FPS = 1000.0/period_ms;

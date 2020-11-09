@@ -3,15 +3,13 @@
 #include <QTimer>
 #include <QGraphicsScene>
 #include <QDebug>
-#include "scorebar.h"
 #include <iostream>
 #include <cstdlib>
 #include "consts.h"
 
-EnemyManager::EnemyManager(QGraphicsScene* scene, ScoreBar* scoreBar, KeyManager* keyManager)
+EnemyManager::EnemyManager(QGraphicsScene* scene, KeyManager* keyManager)
 {
     this->scene = scene;
-    this->scoreBar = scoreBar;
 
     connect(keyManager, SIGNAL(logKeyPressed(bool)), this, SIGNAL(logKeyPressed(bool)));    
 }
@@ -22,6 +20,13 @@ void EnemyManager::startSpawningEnemies()
     QTimer* timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(onSpawnTimer()));
     timer->start(spawnRate);
+}
+
+QJsonObject EnemyManager::returnEnemiesKilled()
+{
+    QJsonObject info = QJsonObject();
+    info[JsonNames::enemiesKilled] = QString::number(score);
+    return info;
 }
 
 void EnemyManager::onEnemyDestruction(Enemy* enemy)
