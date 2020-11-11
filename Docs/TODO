@@ -1,4 +1,6 @@
 Bugfixes:
+- Fix quiting the program
+- change structure of json
 
 New features:
 - Pause
@@ -9,6 +11,7 @@ New features:
 - Animations
 
 Refactoring:
+- SetMode -> Menu (naming & functionallity)
 - EnemyManager interacts directly with ScoreBar
 - HeroKeys: make more universal?
 - Do we need separate HeroManager or can it just report to GameManager? 

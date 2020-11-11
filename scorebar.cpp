@@ -13,7 +13,8 @@ ScoreBar::ScoreBar()
     this->setZValue(ScenePriority::text);
 }
 
-void ScoreBar::setScore(int new_score)
+void ScoreBar::setScore(int newScore)
 {
-    this->setPlainText(QString::number(new_score));
+    score = newScore;
+    this->setPlainText(QString::number(newScore));
 }

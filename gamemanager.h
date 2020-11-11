@@ -6,6 +6,7 @@
 #include "enemymanager.h"
 #include "graphicsview.h"
 #include "consts.h"
+#include "leaderboard.h"
 
 #include <QObject>
 #include <QTimer>
@@ -29,10 +30,7 @@ private:
     void start();
     void setMode(EnemyManager* enemyManager);
     void createLeaderBoardBox();
-    QVector <QString> fetchForLeaderBoardInfo();
-    void loadLeaderBoard();
-    void saveLeaderBoard();
-
+    QString getUserNameEntryBox();
 
     QString gameOverImagePath = ImagePaths::gameOverImagePath;
     ScoreBar* scoreBar;
@@ -45,7 +43,7 @@ private:
     QGraphicsTextItem* number;
     QGraphicsPixmapItem* fullScreenImage;
     QTimer* countdown = new QTimer();
-
+    LeaderBoard* leaderBoardFile = new LeaderBoard();
 
 
     bool gameInProcess = false;

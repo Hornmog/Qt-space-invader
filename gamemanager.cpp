@@ -1,22 +1,19 @@
-#include "gamemanager.h"
-#include <QApplication>
-#include <QGraphicsScene>
-#include "graphic-objects/hero.h"
-#include <QGraphicsView>
-#include "graphic-objects/enemy.h"
-#include "enemymanager.h"
-#include "scorebar.h"
-#include "graphicsview.h"
-#include <QDebug>
-#include "consts.h"
-#include <QTimer>
-#include <startdialog.h>
 #include <climits>
-#include <QMainWindow>
+#include <QApplication>
+#include <QDebug>
+#include <QFile>
+#include <QGraphicsScene>
+#include <QGraphicsView>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QFile>
+#include <QMainWindow>
+#include <QInputDialog>
+#include <QDir>
 
+#include "gamemanager.h"
+#include "graphic-objects/enemy.h"
+#include "startdialog.h"
+#include "leaderboardwindow.h"
 
 GameManager::GameManager(QObject *parent) : QObject(parent)
 {       
@@ -63,6 +60,8 @@ void GameManager::gameOver()
     delete enemyManager;
     createEndScreen();
     gameInProcess = false;
+
+    leaderBoardFile->update(getUserNameEntryBox(), scoreBar->score);
 }
 
 void GameManager::keyRPressed()
@@ -124,31 +123,21 @@ void GameManager::setMode(EnemyManager *enemyManager)
 
 void GameManager::createLeaderBoardBox()
 {
-    QMessageBox *msg = new QMessageBox();
-
-    QString leaderBoardInfo = "";
-    QVector <QString> playerScore = fetchForLeaderBoardInfo();
-
-    for(int i = 0; i < 3; i++){
-        leaderBoardInfo += playerScore[i] + QString("\n");
-    }
-
-    msg->setText("<i>LeaderBoard</i>");
-    msg->setDetailedText(leaderBoardInfo);
-
-
-    msg->exec();
+    LeaderBoardWindow* leaderBoardWin = new LeaderBoardWindow();
+    leaderBoardWin->setLeaderboard(leaderBoardFile->load());
+    leaderBoardWin->exec();
 }
 
-QVector <QString> GameManager::fetchForLeaderBoardInfo()
+QString GameManager::getUserNameEntryBox()
 {
-    //access storage file
-    QVector <QString> playersScore(3);
-    for (int i = 0; i < 3; i++){
-        playersScore[i] = QString::number(i+1) + QString("exampleName") + QString(" - ") + QString("exampleTime");
-    }
-    return playersScore;
-
+    QString userName;
+    bool ok;
+    QString text = QInputDialog::getText(nullptr, tr("QInputDialog::getText()"),
+                                         tr("User name:"), QLineEdit::Normal,
+                                         QDir::home().dirName(), &ok);
+    if (ok && !text.isEmpty())
+        userName = text;
+    return userName;
 }
 
 void GameManager::win()

@@ -23,6 +23,8 @@ SOURCES += \
     graphicsview.cpp \
     graphic-objects/hero.cpp \
     keymanager.cpp \
+    leaderboard.cpp \
+    leaderboardwindow.cpp \
     main.cpp \
     scorebar.cpp \
     graphic-objects/spaceship.cpp \
@@ -37,6 +39,8 @@ HEADERS += \
     graphicsview.h \
     graphic-objects/hero.h \
     keymanager.h \
+    leaderboard.h \
+    leaderboardwindow.h \
     scorebar.h \
     graphic-objects/spaceship.h \
     startdialog.h
