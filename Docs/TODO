@@ -1,6 +1,6 @@
 Bugfixes:
-- Fix quiting the program
-- change structure of json
+- Input dialog grab keyBoard
+- Don't delete number (breaks restarting)
 
 New features:
 - Pause
@@ -27,4 +27,6 @@ Done:
 - Generate text in the middle
 - How to draw MainWindow in the position we want?
 - Finish restart level with startGame function
-- Remove all bulletes on restart
+- Remove all bullets on restart
+- Fix quiting the program
+- change structure of json

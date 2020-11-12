@@ -2,7 +2,7 @@
 #include <QKeyEvent>
 #include "graphic-objects/hero.h"
 
-KeyManager::KeyManager(QWidget *widget)
+KeyManager::KeyManager(QWidget *widget) : QWidget(widget)
 {
     this->setFocus();
     logShow = true;

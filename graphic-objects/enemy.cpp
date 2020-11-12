@@ -13,7 +13,7 @@ Enemy::Enemy(EnemyManager *manager, QString imagePath, int count) : SpaceShip(ma
     shootDelay = baseShootDelay;
     side = Side::enemy;
 
-    float xDiff = 0.2 * period_ms, yDiff = 0.02 * period_ms;
+    double xDiff = 0.2 * period_ms, yDiff = 0.02 * period_ms;
 
     xSpeed = QRandomGenerator::global()->bounded(xDiff * 2 + 1) - xDiff;
     ySpeed = QRandomGenerator::global()->bounded(yDiff * 2 + 1) + yDiff;
@@ -82,13 +82,12 @@ void Enemy::move()
 
 void Enemy::positiveRemoval(int hitBy)
 {
-    delete this;
-
     if(hitBy == Side::hero){
         manager->onKillByHero(this);
     }
     else if(hitBy == Side::enemy){
         manager->onKillByNonHero(this);
     }
+    delete this;
 }
 

@@ -16,7 +16,7 @@ namespace TypeIndex {
 static const QString leaderBoardFileName = "leaderBoard.json";
 
 namespace JsonNames {
-    static const QString enemiesKilled = "EnemyMaganer [total enemies killed]";
+    static const QString enemiesKilled = "kills";
     static const QString name = "name";
     static const QString players = "players";
 }

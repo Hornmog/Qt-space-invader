@@ -13,22 +13,22 @@ StartDialog::StartDialog() : QMessageBox()
 
     this->setEscapeButton(quitbutton);
     this->setText("Choose mode: ");
-    //msgBox.setInformativeText("Do you want to save your changes?");
 }
 
 int StartDialog::exec() {
     QMessageBox::exec();
 
     if (this->clickedButton() == endlessMode){
-          return Mode::endless;
-       }
+      return Mode::endless;
+   }
     else if (this->clickedButton() == storyMode){
-          return Mode::story;
-       }
+      return Mode::story;
+   }
     else if (this->clickedButton() == leaderBoardMode){
-          return Mode::leaderBoard;
-       }
+      return Mode::leaderBoard;
+    }
     else if (this->clickedButton() == quitbutton){
-          return Mode::quit;
-       }
+      return Mode::quit;
+    }
+    return Mode::quit;
 }

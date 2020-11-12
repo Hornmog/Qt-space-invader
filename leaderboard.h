@@ -15,6 +15,8 @@ public:
     QJsonObject createNew();
 
 private:
+    QJsonObject createPlayer(QString name = "blank", int enemiesKilled = 0);
+
     const int numOfPlayers = 3;
 };
 

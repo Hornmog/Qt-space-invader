@@ -19,18 +19,19 @@ public:
 
 
 private:
-    void createFullScreenImage(QString imagePath = nullptr);
-    void createBackground();
-    void startEnemySpawn();
-    void createCountdownTextItem();
-    void restartLevel();
-    void createWinScreen();
-    void connectSpaceshipSignals();
-    void deleteSceneGraphicItems();
-    void start();
-    void setMode(EnemyManager* enemyManager);
-    void createLeaderBoardBox();
     QString getUserNameEntryBox();
+    void connectSpaceshipSignals();
+    void createBackground();
+    void createCountdownTextItem();
+    void createLeaderBoardBox();
+    QGraphicsTextItem *createTextItem();
+    void createWinScreen();
+    void deleteSceneGraphicItems();
+    void restartLevel();
+    void setMode(EnemyManager* enemyManager);
+    void start();
+    void startEnemySpawn();
+    void createFullScreenImage(QString imagePath = nullptr);
 
     QString gameOverImagePath = ImagePaths::gameOverImagePath;
     ScoreBar* scoreBar;
@@ -51,7 +52,7 @@ private:
     int sceneHeight = 1000;
     int phase = 3;
     QVector<QString> countdownPhrases = {"START", "1", "2", "3"};
-    QSet<int> itemTypesToDelete = {TypeIndex::enemy, TypeIndex::fullscreenText, TypeIndex::bullet};
+    QSet<int> itemTypesToKeep = {TypeIndex::hero, TypeIndex::background, TypeIndex::scoreBar};
 
 
 private slots:

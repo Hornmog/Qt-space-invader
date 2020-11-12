@@ -29,8 +29,6 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
 
     createFullScreenImage(nullptr);
 
-    keyManager->grabKeyboard();
-
     connect(keyManager, SIGNAL(keyRPressed()), this, SLOT(keyRPressed()));
     connect(countdown,SIGNAL(timeout()),this,SLOT(startLevelCountdown()));
 
@@ -79,6 +77,7 @@ void GameManager::restartLevel()
 
 void GameManager::start()
 {
+    keyManager->grabKeyboard();
     scoreBar->setScore(0);
 
     if (hero == nullptr){
@@ -128,15 +127,30 @@ void GameManager::createLeaderBoardBox()
     leaderBoardWin->exec();
 }
 
+QGraphicsTextItem* GameManager::createTextItem()
+{
+    QGraphicsTextItem* item = new QGraphicsTextItem();
+    QFont font = QFont("Impact", 40, QFont::Bold);
+    QColor color = QColor("#9C1444");
+    item->setFont(font);
+    item->setDefaultTextColor(color);
+    item->setZValue(ScenePriority::text);
+    return item;
+}
+
 QString GameManager::getUserNameEntryBox()
 {
+
+    keyManager->releaseKeyboard();
     QString userName;
     bool ok;
+
     QString text = QInputDialog::getText(nullptr, tr("QInputDialog::getText()"),
                                          tr("User name:"), QLineEdit::Normal,
                                          QDir::home().dirName(), &ok);
     if (ok && !text.isEmpty())
         userName = text;
+    keyManager->grabKeyboard();
     return userName;
 }
 
@@ -150,6 +164,12 @@ void GameManager::win()
 void GameManager::createEndScreen()
 {
     createFullScreenImage(ImagePaths::gameOverImagePath);
+    QGraphicsTextItem* finalLabel = createTextItem();
+    finalLabel->setPlainText("Press R To Open Menu");
+    finalLabel->setPos(scene->width() / 2 - finalLabel->boundingRect().width() / 2,
+                   scene->height() * 7 / 8 - finalLabel->boundingRect().height() / 2);
+    qDebug() << "final label type: " << finalLabel->type();
+    scene->addItem(finalLabel);
 }
 
 void GameManager::createWinScreen()
@@ -169,7 +189,7 @@ void GameManager::deleteSceneGraphicItems()
 {
     auto items = scene->items();
     for (QGraphicsItem* item: items) {
-        if(itemTypesToDelete.contains(item->type())){
+        if(!itemTypesToKeep.contains(item->type())){
             delete item;
         }
     }
@@ -193,17 +213,10 @@ void GameManager::startEnemySpawn()
 void GameManager::createCountdownTextItem()
 {
     qDebug() << "countdown created";
-    number = new QGraphicsTextItem();
-    QFont font = QFont("Impact", 40, QFont::Bold);
-    QColor color = QColor("#9C1444");
-    number->setFont(font);
-    number->setDefaultTextColor(color);
-    number->setZValue(ScenePriority::text);
+    number = createTextItem();
     number->setPos(scene->width() / 2 - number->boundingRect().width() / 2,
                    scene->height() / 2 - number->boundingRect().height() / 2);
     scene->addItem(number);   
-    qDebug() << "number created: " << number;
-    qDebug() << number->type() << " - number type";
 }
 
 void GameManager::startLevelCountdown()
