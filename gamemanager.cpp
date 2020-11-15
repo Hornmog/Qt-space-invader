@@ -94,6 +94,7 @@ void GameManager::start()
     connectSpaceshipSignals();
     setMode(enemyManager);
 
+    createCountdownTextItem();
     startLevelCountdown();
 
     gameInProcess = true;

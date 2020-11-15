@@ -39,10 +39,13 @@ void LeaderBoard::update(QString name, int enemiesKilled)
         qDebug() << "Our tested player: " << playerTemp;
         qDebug() << "kills: " << playerTemp.value(JsonNames::enemiesKilled).toInt();
 
-        if (enemiesKilled > playerTemp.value(JsonNames::enemiesKilled).toInt()) {\
-            qDebug() << "tried to insert";
-            json[JsonNames::players].toArray().insert(i, createPlayer(name, enemiesKilled));
-            qDebug() << json;
+        if (enemiesKilled > playerTemp.value(JsonNames::enemiesKilled).toInt()) {
+            QJsonArray tempArr = json[JsonNames::players].toArray();
+            tempArr.insert(i, createPlayer(name, enemiesKilled));
+            tempArr.pop_back();
+
+            json[JsonNames::players] = tempArr;
+            save(json);
             break;
         }
     }

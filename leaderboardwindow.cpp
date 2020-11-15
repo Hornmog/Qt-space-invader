@@ -16,13 +16,11 @@ void LeaderBoardWindow::setLeaderboard(QJsonObject leaderboard)
 
     for(int i = 0; i < 3; i++){
         QJsonObject player = leaderboard.value(JsonNames::players).toArray()[i].toObject();
-        qDebug() << player;
 
-        leaderBoardInfo += player.value(JsonNames::name).toString() + " - " +
+        leaderBoardInfo += player.value(JsonNames::name).toString() + " -\t" +
                 QString::number(player.value(JsonNames::enemiesKilled).toInt()) + "\n";
 
     }
-    qDebug() << leaderBoardInfo;
-    this->setText("<i>LeaderBoard</i>");
+    this->setText("<p style=font-size:30px style=font-family:verdana> LeaderBoard: </p>");
     this->setInformativeText(leaderBoardInfo);
 }

@@ -1,6 +1,4 @@
 Bugfixes:
-- Input dialog grab keyBoard
-- Don't delete number (breaks restarting)
 
 New features:
 - Pause
@@ -30,3 +28,5 @@ Done:
 - Remove all bullets on restart
 - Fix quiting the program
 - change structure of json
+- Input dialog grab keyBoard
+- Don't delete number (breaks restarting)
