@@ -10,9 +10,7 @@ Hero::Hero(QString imagePath, KeyManager* keyManager) : SpaceShip(nullptr, image
 {
     shootDelay = 1000;
     bulletSpeed = 0.2 * period_ms; // 10 pixels per 50 ms
-    ySpeed = 10;
-    xSpeed = 0;
-    accel = 0;
+    speed = CoordPair(0,0);
     side = Side::hero;
     this->stop();
 
@@ -29,7 +27,7 @@ void Hero::stop()
     bool checkTextVisibility = checkText->isVisible();
     active = false;
     mainTimer->stop();
-    accel = 0, xSpeed = 0;
+    engineAccel.x = 0, speed.x = 0;
     this->hide();
     toggleCheckText(checkTextVisibility);
 }
@@ -51,7 +49,7 @@ void Hero::onTimer()
         heroKilled();
     }
     else{       
-        setPos(x() + calculateXMovement(), y());
+        setPos(x() + calculateMovement('x'), y() + calculateMovement('y'));
     }
 
 }
@@ -59,8 +57,8 @@ void Hero::onTimer()
 void Hero::groupCheckTextInfo()
 {
     QString output = "";
-    output += "Acceleration: " + QString::number(accel) + "\n";
-    output += "Speed: x: " + QString::number(xSpeed) + " y: " + QString::number(ySpeed) + "\n";
+    output += "Acceleration: " + QString::number(engineAccel.x) + "\n";
+    output += "Speed: x: " + QString::number(speed.x) + " y: " + QString::number(speed.y) + "\n";
     setCheckText(output);
 }
 
@@ -68,32 +66,22 @@ void Hero::heroKeyPressed(int key)
 {
     if(!active) return;
 
-    //qDebug() << "key pressed";
-    if (key == Qt::Key_Left){
-        if(pos().x() > 0){
-            accel = -MovementX::accel;
-            leftKeyPressed = true;
-            rightKeyPressed = false;
-        }
+    if (key == Qt::Key_Left && pos().x() > 0){
+        engineAccel.x = -movement.engineAccel.x;
     }
-    else if (key == Qt::Key_Right){
-        if(pos().x() + this->boundingRect().width() < scene()->width()){
-            accel = MovementX::accel;
-            rightKeyPressed = true;
-            leftKeyPressed = false;
-        }
+    else if (key == Qt::Key_Right && pos().x() + this->boundingRect().width() < scene()->width()){
+        engineAccel.x = movement.engineAccel.x;
     }
-    else if (key == Qt::Key_Up){
-        if(pos().y() > 0){
-            setPos(x(), y() - ySpeed);
-        }
+    else if (key == Qt::Key_Up && pos().y() > 0){
+        engineAccel.y = -movement.engineAccel.y;
     }
-    else if (key == Qt::Key_Down){
-        if(pos().y() + this->boundingRect().height() < scene()->height()){
-            setPos(x(), y() + ySpeed);
-        }
+    else if (key == Qt::Key_Down && pos().y() + this->boundingRect().height() < scene()->height()){
+        engineAccel.y = movement.engineAccel.y;
     }
-
+    if (arrowKeys.contains(key)) {
+        keyPressed[key] = true;
+        keyPressed[oppositeKey[key]] = false;
+    }
     else if (key == Qt::Key_Space && shootAvl){
         createBullet(1);
 
@@ -104,37 +92,49 @@ void Hero::heroKeyPressed(int key)
 
 void Hero::heroKeyReleased(int key)
 {
-    if(!active) return;
-
-    if(key == Qt::Key_Left && leftKeyPressed){
-        accel = 0;
-        leftKeyPressed = false;
+    if(!active){
+        return;
     }
-    if(key == Qt::Key_Right && rightKeyPressed){
-        accel = 0;
-        rightKeyPressed = false;
+
+    if(keyPressed[key]){
+        engineAccel.x = 0;
+        keyPressed[key] = false;
     }
 }
 
-int Hero::calculateXMovement()
+int Hero::calculateMovement(char coord)
 {
-    float newXVelocity = xSpeed + accel * (float(period_ms)/1000);
+    int speedC = speed.get(coord);
+    double newSpeed = 0;
 
-    if (abs(newXVelocity) > MovementX::maxVelocity){
-        newXVelocity = MovementX::maxVelocity * abs(newXVelocity) / newXVelocity;
+    int direction;
+    if (speedC == 0) direction = 0;
+    else direction = abs(speedC) / speedC;
+
+    if(engineAccel.get(coord) != 0){
+        newSpeed = speedC + engineAccel.get(coord) * (float(period_ms)/1000);
+
+    } else {
+        newSpeed = newSpeed - movement.friction.get(coord) * (float(period_ms)/1000) * direction;
+    }
+    // newDirection == 0??
+    int newDirection = abs(newSpeed) / newSpeed;
+
+    if(engineAccel.get(coord) == 0 && direction != newDirection){
+        newSpeed = 0;
+        direction = newDirection;
     }
 
-    float distanceMoved = 0.5 * (newXVelocity + xSpeed) * (float(period_ms)/1000);
+    if (abs(newSpeed) > movement.maxVelocity.get(coord)){
+        newSpeed = movement.maxVelocity.get(coord) * direction;
+    }
 
-//    if(newXVelocity != 0){
-//        newXVelocity = newXVelocity - Movement::heroXFriction * (float(onTimerPeriod)/1000);
+    float distanceMoved = 0.5 * (newSpeed + speedC) * (float(period_ms)/1000);
 
-//    }
-
-    xSpeed = newXVelocity;
+    speed.set(coord, newSpeed);
 
     if(checkScreenBorders(distanceMoved)){
-        xSpeed = 0;
+        speed.set(coord, 0);
         return 0;
     }
     return distanceMoved;

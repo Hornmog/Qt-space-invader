@@ -22,6 +22,25 @@ public slots:
 signals:
 
 protected:
+    struct CoordPair {
+        double x = 0;
+        double y = 0;
+        CoordPair(double x, double y) {
+            this->x = x;
+            this->y = y;
+        }
+        double get(char coord) const {
+            if (coord == 'x') return x;
+            else if (coord == 'y') return y;
+            else return -1;
+        }
+
+        void set(char coord, int value) {
+            if (coord == 'x') this->x = value;
+            else if (coord == 'y') this->y = value;
+        }
+    };
+
     void setUpDelay(int delay);
     void setUpCheckText();
     void setCheckText(QString string);
@@ -30,8 +49,7 @@ protected:
 
     int width = 100;
     int height = 100;
-    float xSpeed;
-    float ySpeed;
+    CoordPair speed;
     int bulletSpeed;
     int shootDelay;
     const int baseShootDelay = 5000;

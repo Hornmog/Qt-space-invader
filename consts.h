@@ -45,5 +45,6 @@ enum Side {
 
 static const int period_ms = 20;
 static const double FPS = 1000.0/period_ms;
+QSet<int> arrowKeys = {Qt::Key_Left, Qt::Key_Right, Qt::Key_Up, Qt::Key_Down};
 #endif // CONS_H
 

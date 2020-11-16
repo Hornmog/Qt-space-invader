@@ -26,6 +26,7 @@ signals:
 
 private:
     bool logShow;
+    QSet<int> arrowKeys = {Qt::Key_Left, Qt::Key_Right, Qt::Key_Up, Qt::Key_Down};
     QSet<int> heroCommands = {Qt::Key_Left, Qt::Key_Right, Qt::Key_Up, Qt::Key_Down, Qt::Key_Space};
 
 };

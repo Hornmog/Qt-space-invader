@@ -13,10 +13,10 @@ Enemy::Enemy(EnemyManager *manager, QString imagePath, int count) : SpaceShip(ma
     shootDelay = baseShootDelay;
     side = Side::enemy;
 
-    double xDiff = 0.2 * period_ms, yDiff = 0.02 * period_ms;
+    CoordPair diff(0.2 * period_ms, 0.02 * period_ms);
 
-    xSpeed = QRandomGenerator::global()->bounded(xDiff * 2 + 1) - xDiff;
-    ySpeed = QRandomGenerator::global()->bounded(yDiff * 2 + 1) + yDiff;
+    speed.x = QRandomGenerator::global()->bounded(diff.x * 2 + 1) - diff.x;
+    speed.y = QRandomGenerator::global()->bounded(diff.y * 2 + 1) + diff.y;
 
 
     this->manager = manager;
