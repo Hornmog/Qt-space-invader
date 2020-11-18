@@ -52,7 +52,7 @@ void Enemy::groupCheckTextInfo()
     output += "Count : " + QString::number(count) + "\n";
     output += "Diff  : " + QString::number(difficulty) + "\n";
     output += "Bull speed : " + QString::number(bulletSpeed) + "\n";
-    output += "Speed: x: " + QString::number(xSpeed) + " y: " + QString::number(ySpeed) + "\n";
+    output += "Speed: x: " + QString::number(speed.x) + " y: " + QString::number(speed.y) + "\n";
     setCheckText(output);
 }
 
@@ -69,13 +69,13 @@ void Enemy::setDifficulty(int difficulty)
 void Enemy::move()
 {
     if(x() >= scene()->width() || x() < 0){
-        xSpeed *= -1;
+        speed.x *= -1;
     }
     if(y() >= scene()->height() - this->boundingRect().height()){
         enemyOnBase();
     }
 
-    setPos(x() + xSpeed, y() + ySpeed);
+    setPos(x() + speed.x, y() + speed.y);
 
     groupCheckTextInfo();
 }

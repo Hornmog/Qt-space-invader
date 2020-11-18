@@ -49,7 +49,7 @@ protected:
 
     int width = 100;
     int height = 100;
-    CoordPair speed;
+    CoordPair speed = CoordPair(0,0);
     int bulletSpeed;
     int shootDelay;
     const int baseShootDelay = 5000;

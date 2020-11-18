@@ -29,10 +29,9 @@ public slots:
 
 private:
     KeyManager* keyManager;
-    int calculateXMovement();
-    int calculateYMovement();
+    int calculateMovement(char coord);
     bool checkScreenBorders(int distance);
-    CoordPair accel = CoordPair(0,0);
+    CoordPair engineAccel = CoordPair(0,0);
     QMap<int, bool> keyPressed = {{Qt::Key_Left, false}, {Qt::Key_Right, false}, {Qt::Key_Up, false}, {Qt::Key_Down, false}};
     QMap<int, int> oppositeKey = {{Qt::Key_Left, Qt::Key_Right}, {Qt::Key_Right, Qt::Key_Left},
                                   {Qt::Key_Up, Qt::Key_Down}, {Qt::Key_Down, Qt::Key_Up}};
@@ -40,10 +39,10 @@ private:
 
     struct Movement {
         const CoordPair maxVelocity = CoordPair(200, 150);         //pixels per second
-        const CoordPair accel = CoordPair(1000, 500);
-        const CoordPair friction = CoordPair(0, 50);
+        const CoordPair engineAccel = CoordPair(1000, 500);
+        const CoordPair friction = CoordPair(0, 200);
     };
-    static Movement movement;
+    const Movement movement;
 
 };
 

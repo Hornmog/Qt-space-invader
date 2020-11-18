@@ -1,6 +1,7 @@
 #include "keymanager.h"
 #include <QKeyEvent>
 #include "graphic-objects/hero.h"
+#include "consts.h"
 
 KeyManager::KeyManager(QWidget *widget) : QWidget(widget)
 {
@@ -29,7 +30,7 @@ void KeyManager::keyPressEvent(QKeyEvent *event)
 void KeyManager::keyReleaseEvent(QKeyEvent *event)
 {
     int key = event->key();
-    if(key == Qt::Key_Left || key == Qt::Key_Right){
+    if(arrowKeys.contains(key)){
         heroKeyReleased(key);
     }
 }

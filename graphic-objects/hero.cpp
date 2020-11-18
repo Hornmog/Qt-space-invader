@@ -84,8 +84,6 @@ void Hero::heroKeyPressed(int key)
     }
     else if (key == Qt::Key_Space && shootAvl){
         createBullet(1);
-
-        //qDebug() << shootAvl;
     }
 
 }
@@ -97,7 +95,12 @@ void Hero::heroKeyReleased(int key)
     }
 
     if(keyPressed[key]){
-        engineAccel.x = 0;
+        if(horizontalMovementKeys.contains(key)){
+            engineAccel.x = 0;
+        } else{
+            engineAccel.y = 0;
+        }
+
         keyPressed[key] = false;
     }
 }
@@ -111,19 +114,18 @@ int Hero::calculateMovement(char coord)
     if (speedC == 0) direction = 0;
     else direction = abs(speedC) / speedC;
 
-    if(engineAccel.get(coord) != 0){
-        newSpeed = speedC + engineAccel.get(coord) * (float(period_ms)/1000);
 
-    } else {
+    newSpeed = speedC + engineAccel.get(coord) * (float(period_ms)/1000);
+
+    if((speedC != 0) && (engineAccel.get(coord) == 0)) {
         newSpeed = newSpeed - movement.friction.get(coord) * (float(period_ms)/1000) * direction;
     }
-    // newDirection == 0??
-    int newDirection = abs(newSpeed) / newSpeed;
 
-    if(engineAccel.get(coord) == 0 && direction != newDirection){
-        newSpeed = 0;
-        direction = newDirection;
+    if(newSpeed != 0){
+        direction = abs(newSpeed) / newSpeed;
     }
+    else direction = 0;
+
 
     if (abs(newSpeed) > movement.maxVelocity.get(coord)){
         newSpeed = movement.maxVelocity.get(coord) * direction;
