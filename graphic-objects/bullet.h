@@ -11,7 +11,6 @@ public:
     Bullet(int speed = 10, int side = 1);  //add enum regarding side
     ~Bullet() override;
 
-    bool removalCheck();
     void onHit();
 
     int getBulletLength() const {return bulletLength;}

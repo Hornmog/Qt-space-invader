@@ -3,6 +3,7 @@
 
 #include <QGraphicsItem>
 #include <QKeyEvent>
+#include <QRandomGenerator>
 
 namespace TypeIndex {
     static const int bullet = 66666;         //anything >= UserType (65536).

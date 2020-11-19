@@ -3,8 +3,11 @@
 #include <QKeyEvent>
 #include <QDebug>
 #include "bullet.h"
+#include "enemy.h"
 #include <QTimer>
 #include "keymanager.h"
+
+const Hero::Movement Hero::movement;
 
 Hero::Hero(QString imagePath, KeyManager* keyManager) : SpaceShip(nullptr, imagePath)
 {
@@ -45,7 +48,7 @@ void Hero::onTimer()
 {
     groupCheckTextInfo();
 
-    if(removalCheck() != Side::nobody){
+    if((bulletCollisionCheck() != Side::nobody) || enemyCollisionCheck()){
         heroKilled();
     }
     else{       
@@ -103,6 +106,17 @@ void Hero::heroKeyReleased(int key)
 
         keyPressed[key] = false;
     }
+}
+
+bool Hero::enemyCollisionCheck()
+{
+    auto item = collisionCheck(TypeIndex::enemy);
+    if(item != nullptr){
+        Enemy* enemy = static_cast<Enemy*>(item);
+        enemy->onHeroCollision();
+        return true;
+    }
+    return false;
 }
 
 int Hero::calculateMovement(char coord)

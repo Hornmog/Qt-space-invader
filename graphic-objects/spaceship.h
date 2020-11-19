@@ -4,16 +4,16 @@
 #include <QObject>
 #include <QGraphicsRectItem>
 #include "keymanager.h"
+#include "consts.h"
 
 class SpaceShip : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
     explicit SpaceShip(QObject *parent = nullptr, QString imagePath = nullptr);
-    int removalCheck();
-    void createBullet(int side = 1);
-
     int side;
+    const int width = 100;
+    const int height = 100;
 
 public slots:
     virtual void onTimer() = 0;
@@ -41,14 +41,16 @@ protected:
         }
     };
 
+    void createBullet(int side = 1);
+    QGraphicsItem* collisionCheck(int typeIndex);
+    int bulletCollisionCheck();
+
     void setUpDelay(int delay);
     void setUpCheckText();
     void setCheckText(QString string);
 
     virtual void groupCheckTextInfo() = 0;
 
-    int width = 100;
-    int height = 100;
     CoordPair speed = CoordPair(0,0);
     int bulletSpeed;
     int shootDelay;

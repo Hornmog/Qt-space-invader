@@ -18,13 +18,13 @@ public slots:
     void onTimer() override;
     void groupCheckTextInfo() override;
     void setDifficulty(int difficulty);
+    void onHeroCollision();
 
 private:
     const float baseBulletSpeed = -0.2 * period_ms;
     EnemyManager* manager;
     int count;
     int difficulty;
-
     void move();
     void positiveRemoval(int hitType);
 

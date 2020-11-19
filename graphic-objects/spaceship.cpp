@@ -27,21 +27,27 @@ void SpaceShip::shootIsAvl()
     shootAvl = true;
 }
 
-int SpaceShip::removalCheck()
+QGraphicsItem* SpaceShip::collisionCheck(int typeIndex)
 {
-    auto items = collidingItems();
+    auto items = this->collidingItems();
     for (QGraphicsItem* item: items) {
-        if(item->type() == TypeIndex::bullet){
-            Bullet* bullet = static_cast<Bullet*>(item);
-
-            int bulletSide = bullet->side;
-            bullet->onHit();
-
-            return bulletSide;
+        if(item->type() == typeIndex){
+            return item;
         }
     }
+    return nullptr;
+}
+
+int SpaceShip::bulletCollisionCheck()
+{
+     auto item = collisionCheck(TypeIndex::bullet);
+     if(item != nullptr) {
+        Bullet* bullet = static_cast<Bullet*>(item);
+        int bulletSide = bullet->side;
+        bullet->onHit();
+        return bulletSide;
+    }
     return Side::nobody;
-    //for item in list:
 }
 
 void SpaceShip::createBullet(int side)

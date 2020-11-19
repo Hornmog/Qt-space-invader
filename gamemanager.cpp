@@ -148,7 +148,7 @@ QString GameManager::getUserNameEntryBox()
 
     QString text = QInputDialog::getText(nullptr, tr("QInputDialog::getText()"),
                                          tr("User name:"), QLineEdit::Normal,
-                                         QDir::home().dirName(), &ok);
+                                         "", &ok);
     if (ok && !text.isEmpty())
         userName = text;
     keyManager->grabKeyboard();

@@ -28,9 +28,10 @@ public slots:
     void heroKeyReleased(int key);
 
 private:
-    KeyManager* keyManager;
+    bool enemyCollisionCheck();
     int calculateMovement(char coord);
     bool checkScreenBorders(int distance);
+    KeyManager* keyManager;
     CoordPair engineAccel = CoordPair(0,0);
     QMap<int, bool> keyPressed = {{Qt::Key_Left, false}, {Qt::Key_Right, false}, {Qt::Key_Up, false}, {Qt::Key_Down, false}};
     QMap<int, int> oppositeKey = {{Qt::Key_Left, Qt::Key_Right}, {Qt::Key_Right, Qt::Key_Left},
@@ -42,7 +43,7 @@ private:
         const CoordPair engineAccel = CoordPair(1000, 500);
         const CoordPair friction = CoordPair(0, 200);
     };
-    const Movement movement;
+    static const Movement movement;
 
 };
 

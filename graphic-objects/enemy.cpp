@@ -40,7 +40,7 @@ void Enemy::onTimer(){
         createBullet(side);
     }
 
-    int hitBy = this->removalCheck();
+    int hitBy = this->bulletCollisionCheck();
     if(hitBy != Side::nobody){
         positiveRemoval(hitBy);
     }
@@ -63,6 +63,11 @@ void Enemy::setDifficulty(int difficulty)
     shootDelay = baseShootDelay * pow(0.8, difficulty-1);
     setUpDelay(shootDelay);
     bulletSpeed = baseBulletSpeed * difficulty;
+}
+
+void Enemy::onHeroCollision()
+{
+    positiveRemoval(Side::hero);
 }
 
 
