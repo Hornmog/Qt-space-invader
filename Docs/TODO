@@ -1,10 +1,9 @@
 Bugfixes:
-- Finish and test movement logic
+- QinputDialog - what happens on cancel
 
 New features:
 - Pause
 - Levels
-- Highscore board + minimum shots
 - Neutral side meteors
 - Different ammo
 - Animations
@@ -31,3 +30,7 @@ Done:
 - change structure of json
 - Input dialog grab keyBoard
 - Don't delete number (breaks restarting)
+- Finish and test movement logic
+- Highscore board
+- Collision with enemy won't result in hero & enemy destruction
+- Fix bug with non-random enemy positioning

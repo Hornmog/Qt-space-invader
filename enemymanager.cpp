@@ -72,11 +72,8 @@ void EnemyManager::createEnemy()
 {
     Enemy* enemy = new Enemy(this, ImagePaths::enemyImagePath, totalEnemiesSpawned);
     scene->addItem(enemy);
-    int offset = 100;
-    // 0...800
-    // 100...700
-    // 0...(800-2*100)
-    enemy->setPos(int(std::rand() % (int(scene->width()) - 2*offset) + offset), 0);  
+    int offset = enemy->width;
+    enemy->setPos(QRandomGenerator::global()->bounded(offset, scene->width() - offset), 0);
     enemyCount++;
     totalEnemiesSpawned++;
     changeDifficulty(difficulty);
