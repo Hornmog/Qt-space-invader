@@ -32,8 +32,10 @@ void LeaderBoard::save(QJsonObject obj)
 
 void LeaderBoard::update(QString name, int enemiesKilled)
 {
+    if(name == ""){
+        return;
+    }
     QJsonObject json = load();
-
     for(int i = 0; i < numOfPlayers; i++){
         QJsonObject playerTemp = json.value(JsonNames::players)[i].toObject();
         qDebug() << "Our tested player: " << playerTemp;

@@ -143,7 +143,7 @@ QString GameManager::getUserNameEntryBox()
 {
 
     keyManager->releaseKeyboard();
-    QString userName;
+    QString userName = "";
     bool ok;
 
     QString text = QInputDialog::getText(nullptr, tr("QInputDialog::getText()"),
