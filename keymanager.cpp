@@ -18,12 +18,15 @@ void KeyManager::keyPressEvent(QKeyEvent *event)
         heroKeyPressed(key);
     }
 
-    if (key == Qt::Key_L){
+    else if (key == Qt::Key_L){
         logKeyPressed(logShow);
         logShow = !logShow;
     }
-    if (key == Qt::Key_R){
+    else if (key == Qt::Key_R){
         keyRPressed();
+    }
+    else if (key == Qt::Key_P){
+        keyPPressed();
     }
 }
 

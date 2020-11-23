@@ -14,9 +14,8 @@ class Hero: public SpaceShip{
 public:
     Hero(QString imagePath = nullptr, KeyManager* keyManager = nullptr);
     int type() const override {return TypeIndex::hero;}  
-    void stop();
-    void start();
-
+    void resume() override;
+    void pause() override;
 
 signals:
     void heroKilled();

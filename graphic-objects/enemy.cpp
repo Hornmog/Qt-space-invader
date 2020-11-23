@@ -24,7 +24,9 @@ Enemy::Enemy(EnemyManager *manager, QString imagePath, int count) : SpaceShip(ma
 
     setUpDelay(shootDelay);
 
-    connect(manager,SIGNAL(changeDifficulty(int)),this,SLOT(setDifficulty(int)));
+    connect(manager, SIGNAL(changeDifficulty(int)), this, SLOT(setDifficulty(int)));
+    connect(manager, SIGNAL(startAll()), this, SLOT(resume()));
+    connect(manager, SIGNAL(stopAll()), this, SLOT(pause()));
     connect(this, SIGNAL(enemyOnBase()),manager, SIGNAL(enemyOnBase()));
     connect(manager, SIGNAL(logKeyPressed(bool)), this, SLOT(toggleCheckText(bool)));
 }

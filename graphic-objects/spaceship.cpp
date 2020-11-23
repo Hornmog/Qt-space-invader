@@ -15,11 +15,28 @@ SpaceShip::SpaceShip(QObject *parent, QString imagePath) : QObject(parent)
     checkText = new QGraphicsTextItem(this);
     setUpCheckText();
 
-    mainTimer = new QTimer();
+    mainTimer = new Timer();
     connect(mainTimer,SIGNAL(timeout()),this,SLOT(onTimer()));
 
     mainTimer->start(period_ms);
 
+}
+
+void SpaceShip::resume()
+{
+    bool checkLogTextVisibility = checkText->isVisible();
+    mainTimer->resume();
+    speed = prevSpeed;
+    toggleCheckText(checkLogTextVisibility);
+}
+
+void SpaceShip::pause()
+{
+    bool checkLogTextVisibility = checkText->isVisible();
+    mainTimer->pause();
+    prevSpeed = speed;
+    speed.x = 0, speed.y = 0;
+    toggleCheckText(checkLogTextVisibility);
 }
 
 void SpaceShip::shootIsAvl()
@@ -69,7 +86,7 @@ void SpaceShip::createBullet(int side)
 void SpaceShip::setUpDelay(int shootDelay)
 {
     if(timerBullet == nullptr) {
-        timerBullet = new QTimer();
+        timerBullet = new Timer();
         connect(timerBullet,SIGNAL(timeout()),this,SLOT(shootIsAvl()));
         timerBullet->start(shootDelay);
     } else {

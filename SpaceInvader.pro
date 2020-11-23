@@ -28,7 +28,8 @@ SOURCES += \
     main.cpp \
     scorebar.cpp \
     graphic-objects/spaceship.cpp \
-    startdialog.cpp
+    startdialog.cpp \
+    timer.cpp
 
 HEADERS += \
     consts.h \
@@ -43,7 +44,8 @@ HEADERS += \
     leaderboardwindow.h \
     scorebar.h \
     graphic-objects/spaceship.h \
-    startdialog.h
+    startdialog.h \
+    timer.h
 
 FORMS +=
 

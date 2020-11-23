@@ -1,7 +1,7 @@
 Bugfixes:
-- QinputDialog - what happens on cancel
 
 New features:
+- (inform player about dialog cancelation) - leaderboard
 - Pause
 - Levels
 - Neutral side meteors
@@ -34,3 +34,4 @@ Done:
 - Highscore board
 - Collision with enemy won't result in hero & enemy destruction
 - Fix bug with non-random enemy positioning
+- QinputDialog - what happens on cancel

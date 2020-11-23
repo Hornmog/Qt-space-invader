@@ -5,12 +5,14 @@
 #include <QGraphicsRectItem>
 #include "keymanager.h"
 #include "consts.h"
+#include "timer.h"
 
 class SpaceShip : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
     explicit SpaceShip(QObject *parent = nullptr, QString imagePath = nullptr);
+
     int side;
     const int width = 100;
     const int height = 100;
@@ -18,6 +20,8 @@ public:
 public slots:
     virtual void onTimer() = 0;
     void toggleCheckText(bool show);
+    virtual void resume();
+    virtual void pause();
 
 signals:
 
@@ -52,15 +56,16 @@ protected:
     virtual void groupCheckTextInfo() = 0;
 
     CoordPair speed = CoordPair(0,0);
+    CoordPair prevSpeed = CoordPair(0,0);
     int bulletSpeed;
     int shootDelay;
     const int baseShootDelay = 5000;
     bool shootAvl = true;
     QGraphicsTextItem *checkText;
-    QTimer* mainTimer;
+    Timer* mainTimer;
 
 private:
-    QTimer* timerBullet = nullptr;
+    Timer* timerBullet = nullptr;
 
 private slots:
     void shootIsAvl();

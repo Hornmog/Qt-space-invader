@@ -17,9 +17,21 @@ EnemyManager::EnemyManager(QGraphicsScene* scene, KeyManager* keyManager)
 void EnemyManager::startSpawningEnemies()
 {
     createEnemy();
-    QTimer* timer = new QTimer();
+    timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(onSpawnTimer()));
     timer->start(spawnRate);
+}
+
+void EnemyManager::resume()
+{
+    timer->start();
+    startAll();
+}
+
+void EnemyManager::pause()
+{
+    timer->stop();
+    stopAll();
 }
 
 QJsonObject EnemyManager::returnEnemiesKilled()

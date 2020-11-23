@@ -46,7 +46,7 @@ private:
     QTimer* countdown = new QTimer();
     LeaderBoard* leaderBoardFile = new LeaderBoard();
 
-
+    bool pause;
     bool gameInProcess = false;
     int sceneWidth = 600;
     int sceneHeight = 1000;
@@ -64,6 +64,7 @@ private slots:
 
 public slots:
     void keyRPressed();
+    void togglePause();
 };
 
 #endif // GAMEMANAGER_H

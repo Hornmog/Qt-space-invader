@@ -23,6 +23,7 @@ signals:
     void logKeyPressed(bool logShow);
     void heroKeyReleased(int key);
     void keyRPressed();
+    void keyPPressed();
 
 private:
     bool logShow;

@@ -18,6 +18,8 @@ public:
     void onKillByNonHero(Enemy* enemy);
     void startSpawningEnemies();
     void setTotalEnemiesToKill(int num) {totalEnemiesToKill = num;}
+    void resume();
+    void pause();
     QJsonObject returnEnemiesKilled();
 
 signals:
@@ -26,6 +28,8 @@ signals:
     void allEnemiesDefeated();
     void enemyOnBase();
     void logKeyPressed(bool);
+    void stopAll();
+    void startAll();
 
 public slots:
     void onSpawnTimer();
@@ -33,7 +37,7 @@ public slots:
 private:
     void createEnemy();
 
-
+    QTimer* timer;
     int spawnRate = 2000;
     int enemyCount = 0;
     int score = 0;

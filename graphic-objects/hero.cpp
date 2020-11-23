@@ -15,7 +15,8 @@ Hero::Hero(QString imagePath, KeyManager* keyManager) : SpaceShip(nullptr, image
     bulletSpeed = 0.2 * period_ms; // 10 pixels per 50 ms
     speed = CoordPair(0,0);
     side = Side::hero;
-    this->stop();
+    this->pause();
+    this->hide();
 
     setUpDelay(shootDelay);
 
@@ -25,23 +26,17 @@ Hero::Hero(QString imagePath, KeyManager* keyManager) : SpaceShip(nullptr, image
     connect(keyManager, SIGNAL(logKeyPressed(bool)), this, SLOT(toggleCheckText(bool)));
 }
 
-void Hero::stop()
+void Hero::pause()
 {
-    bool checkTextVisibility = checkText->isVisible();
-    active = false;
-    mainTimer->stop();
-    engineAccel.x = 0, speed.x = 0;
-    this->hide();
-    toggleCheckText(checkTextVisibility);
+    SpaceShip::pause();
+    active = false;   
+    engineAccel.x = 0, engineAccel.y = 0;
 }
 
-void Hero::start()
+void Hero::resume()
 {
-    bool checkTextVisibility = checkText->isVisible();
+    SpaceShip::resume();
     active = true;
-    mainTimer->start();
-    this->show();
-    toggleCheckText(checkTextVisibility);
 }
 
 void Hero::onTimer()

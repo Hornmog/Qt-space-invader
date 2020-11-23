@@ -30,6 +30,7 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
     createFullScreenImage(nullptr);
 
     connect(keyManager, SIGNAL(keyRPressed()), this, SLOT(keyRPressed()));
+    connect(keyManager, SIGNAL(keyPPressed()), this, SLOT(togglePause()));
     connect(countdown,SIGNAL(timeout()),this,SLOT(startLevelCountdown()));
 
     createCountdownTextItem();
@@ -69,6 +70,20 @@ void GameManager::keyRPressed()
     }
 }
 
+void GameManager::togglePause()
+{
+    if(!pause && gameInProcess){
+        gameInProcess = false;
+        hero->pause();
+        enemyManager->pause();
+    }
+    else if(pause && !gameInProcess){
+        gameInProcess = true;
+        hero->resume();
+        enemyManager->resume();
+    }
+}
+
 void GameManager::restartLevel()
 {
    deleteSceneGraphicItems();
@@ -98,7 +113,8 @@ void GameManager::start()
     startLevelCountdown();
 
     gameInProcess = true;
-    hero->start();
+    hero->resume();
+    hero->show();
 }
 
 void GameManager::setMode(EnemyManager *enemyManager)
