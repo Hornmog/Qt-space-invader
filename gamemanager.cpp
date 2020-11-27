@@ -72,15 +72,21 @@ void GameManager::keyRPressed()
 
 void GameManager::togglePause()
 {
-    if(!pause && gameInProcess){
+    if(gameInProcess){
         gameInProcess = false;
         hero->pause();
         enemyManager->pause();
+        if(countdown->isActive()){
+            countdown->pause();
+        }
     }
-    else if(pause && !gameInProcess){
+    else if(!gameInProcess){
         gameInProcess = true;
         hero->resume();
         enemyManager->resume();
+        if(countdown->isPaused()){
+            countdown->resume();
+        }
     }
 }
 
@@ -107,7 +113,7 @@ void GameManager::start()
     enemyManager = new EnemyManager(scene, keyManager);
 
     connectSpaceshipSignals();
-    setMode(enemyManager);
+    openMenu();
 
     createCountdownTextItem();
     startLevelCountdown();
@@ -117,21 +123,21 @@ void GameManager::start()
     hero->show();
 }
 
-void GameManager::setMode(EnemyManager *enemyManager)
+void GameManager::openMenu()
 {
-    StartDialog *chooseMode = new StartDialog();
-    int mode = chooseMode->exec();
-    if (mode == chooseMode->Mode::story){
+    StartDialog *menu = new StartDialog();
+    int mode = menu->exec();
+    if (mode == menu->Mode::story){
         enemyManager->setTotalEnemiesToKill(5);
     }
-    else if (mode == chooseMode->Mode::endless){
+    else if (mode == menu->Mode::endless){
         enemyManager->setTotalEnemiesToKill(INT_MAX);
     }
-    else if (mode == chooseMode->Mode::leaderBoard){
+    else if (mode == menu->Mode::leaderBoard){
         createLeaderBoardBox();
-        setMode(enemyManager);
+        openMenu();
     }
-    else if (mode == chooseMode->Mode::quit){
+    else if (mode == menu->Mode::quit){
         view->window()->close();
         QMetaObject::invokeMethod(qApp, "quit", Qt::QueuedConnection);     //quit program
     }
@@ -148,9 +154,8 @@ QGraphicsTextItem* GameManager::createTextItem()
 {
     QGraphicsTextItem* item = new QGraphicsTextItem();
     QFont font = QFont("Impact", 40, QFont::Bold);
-    QColor color = QColor("#9C1444");
     item->setFont(font);
-    item->setDefaultTextColor(color);
+    item->setDefaultTextColor(QColor(156, 20, 68));
     item->setZValue(ScenePriority::text);
     return item;
 }
@@ -204,8 +209,8 @@ void GameManager::connectSpaceshipSignals()
 
 void GameManager::deleteSceneGraphicItems()
 {
-    auto items = scene->items();
-    for (QGraphicsItem* item: items) {
+    auto items = scene->items();  
+    for (QGraphicsItem* item: qAsConst(items)) {
         if(!itemTypesToKeep.contains(item->type())){
             delete item;
         }

@@ -47,7 +47,7 @@ void SpaceShip::shootIsAvl()
 QGraphicsItem* SpaceShip::collisionCheck(int typeIndex)
 {
     auto items = this->collidingItems();
-    for (QGraphicsItem* item: items) {
+    for (QGraphicsItem* item: qAsConst(items)) {
         if(item->type() == typeIndex){
             return item;
         }

@@ -5,6 +5,7 @@
 #include <QGraphicsRectItem>
 #include "keymanager.h"
 #include <QJsonObject>
+#include "timer.h"
 
 class Enemy;
 
@@ -37,7 +38,7 @@ public slots:
 private:
     void createEnemy();
 
-    QTimer* timer;
+    Timer* timer = new Timer();
     int spawnRate = 2000;
     int enemyCount = 0;
     int score = 0;

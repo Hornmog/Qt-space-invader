@@ -12,6 +12,7 @@ Enemy::Enemy(EnemyManager *manager, QString imagePath, int count) : SpaceShip(ma
     bulletSpeed = baseBulletSpeed;
     shootDelay = baseShootDelay;
     side = Side::enemy;
+    width = 150, height = 150;
 
     CoordPair diff(0.2 * period_ms, 0.02 * period_ms);
 
@@ -79,7 +80,7 @@ void Enemy::move()
         speed.x *= -1;
     }
     if(y() >= scene()->height() - this->boundingRect().height()){
-        enemyOnBase();
+        emit enemyOnBase();
     }
 
     setPos(x() + speed.x, y() + speed.y);

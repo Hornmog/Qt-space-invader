@@ -9,8 +9,10 @@ public:
     Timer();
     void pause();
     void resume();
+    bool isPaused();
 private:
     bool resumed = false;
+    bool paused = false;
     int timeLeft;
     int timeInterval;
 private slots:

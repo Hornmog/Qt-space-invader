@@ -1,4 +1,7 @@
 Bugfixes:
+- Pausing while coundown
+- Pausing bullets???
+- Never run cirtual functions in constructor/deconstructor
 
 New features:
 - (inform player about dialog cancelation) - leaderboard
@@ -10,12 +13,8 @@ New features:
 
 Refactoring:
 - SetMode -> Menu (naming & functionallity)
-- EnemyManager interacts directly with ScoreBar
-- HeroKeys: make more universal?
-- Do we need separate HeroManager or can it just report to GameManager? 
 - GM manages a lot of drawing tasks; is it OK?
-- Utility calculator all the collisions?
-- For levels, we need to split LevelManager from GameManager
+(for levels, we need to split LevelManager from GameManager)
 
 Done:
 - All spaceships report to their manager.
@@ -35,3 +34,6 @@ Done:
 - Collision with enemy won't result in hero & enemy destruction
 - Fix bug with non-random enemy positioning
 - QinputDialog - what happens on cancel
+- EnemyManager interacts directly with ScoreBar
+- HeroKeys: make more universal?
+- Utility calculator all the collisions?

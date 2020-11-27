@@ -33,6 +33,7 @@ SOURCES += \
 
 HEADERS += \
     consts.h \
+    coordpair.h \
     graphic-objects/bullet.h \
     graphic-objects/enemy.h \
     enemymanager.h \

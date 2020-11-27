@@ -17,21 +17,22 @@ EnemyManager::EnemyManager(QGraphicsScene* scene, KeyManager* keyManager)
 void EnemyManager::startSpawningEnemies()
 {
     createEnemy();
-    timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(onSpawnTimer()));
     timer->start(spawnRate);
 }
 
 void EnemyManager::resume()
 {
-    timer->start();
-    startAll();
+    timer->resume();
+    emit startAll();
 }
 
 void EnemyManager::pause()
 {
-    timer->stop();
-    stopAll();
+    if (timer->isActive()){
+        timer->pause();
+        emit stopAll();
+    }
 }
 
 QJsonObject EnemyManager::returnEnemiesKilled()
@@ -49,7 +50,7 @@ void EnemyManager::onEnemyDestruction(Enemy* enemy)
     if(upForNextDiff <= 0){
         difficulty++;
         upForNextDiff = levelDifficultyStep;
-        changeDifficulty(difficulty);
+        emit changeDifficulty(difficulty);
     }  
 
 
@@ -58,10 +59,10 @@ void EnemyManager::onEnemyDestruction(Enemy* enemy)
 void EnemyManager::onKillByHero(Enemy *enemy)
 {
     score++;
-    onEnemyCountChange(score);
+    emit onEnemyCountChange(score);
     onEnemyDestruction(enemy);
     if (score == totalEnemiesToKill){
-        allEnemiesDefeated();
+        emit allEnemiesDefeated();
     }    
 }
 
@@ -88,5 +89,5 @@ void EnemyManager::createEnemy()
     enemy->setPos(QRandomGenerator::global()->bounded(offset, scene->width() - offset), 0);
     enemyCount++;
     totalEnemiesSpawned++;
-    changeDifficulty(difficulty);
+    emit changeDifficulty(difficulty);
 }

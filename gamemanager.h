@@ -28,7 +28,7 @@ private:
     void createWinScreen();
     void deleteSceneGraphicItems();
     void restartLevel();
-    void setMode(EnemyManager* enemyManager);
+    void openMenu();
     void start();
     void startEnemySpawn();
     void createFullScreenImage(QString imagePath = nullptr);
@@ -43,7 +43,7 @@ private:
     QString backgroundImagePath = ImagePaths::backgroundImagePath;
     QGraphicsTextItem* number;
     QGraphicsPixmapItem* fullScreenImage;
-    QTimer* countdown = new QTimer();
+    Timer* countdown = new Timer();
     LeaderBoard* leaderBoardFile = new LeaderBoard();
 
     bool pause;

@@ -6,6 +6,7 @@
 #include "keymanager.h"
 #include "consts.h"
 #include "timer.h"
+#include "coordpair.h"
 
 class SpaceShip : public QObject, public QGraphicsPixmapItem
 {
@@ -14,8 +15,8 @@ public:
     explicit SpaceShip(QObject *parent = nullptr, QString imagePath = nullptr);
 
     int side;
-    const int width = 100;
-    const int height = 100;
+    int width = 100;
+    int height = 100;
 
 public slots:
     virtual void onTimer() = 0;
@@ -26,25 +27,6 @@ public slots:
 signals:
 
 protected:
-    struct CoordPair {
-        double x = 0;
-        double y = 0;
-        CoordPair(double x, double y) {
-            this->x = x;
-            this->y = y;
-        }
-        double get(char coord) const {
-            if (coord == 'x') return x;
-            else if (coord == 'y') return y;
-            else return -1;
-        }
-
-        void set(char coord, int value) {
-            if (coord == 'x') this->x = value;
-            else if (coord == 'y') this->y = value;
-        }
-    };
-
     void createBullet(int side = 1);
     QGraphicsItem* collisionCheck(int typeIndex);
     int bulletCollisionCheck();

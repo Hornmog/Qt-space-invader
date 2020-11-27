@@ -13,12 +13,19 @@ void Timer::pause()
     timeInterval = this->interval();
     timeLeft = this->remainingTime();
     this->stop();
+    paused = true;
 }
 
 void Timer::resume()
 {
     this->start(timeLeft);
     resumed = true;
+    paused = false;
+}
+
+bool Timer::isPaused()
+{
+    return paused;
 }
 
 void Timer::timeoutCheckInterval() {

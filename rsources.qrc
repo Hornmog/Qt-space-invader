@@ -7,5 +7,6 @@
         <file>pictures/gameOver.png</file>
         <file>pictures/hero.png</file>
         <file>pictures/win.png</file>
+        <file>pictures/enemyOctopus.png</file>
     </qresource>
 </RCC>
