@@ -51,9 +51,7 @@ void EnemyManager::onEnemyDestruction(Enemy* enemy)
         difficulty++;
         upForNextDiff = levelDifficultyStep;
         emit changeDifficulty(difficulty);
-    }  
-
-
+    }
 }
 
 void EnemyManager::onKillByHero(Enemy *enemy)
@@ -70,7 +68,6 @@ void EnemyManager::onKillByNonHero(Enemy *enemy)
 {
     onEnemyDestruction(enemy);
 }
-
 
 
 void EnemyManager::onSpawnTimer()

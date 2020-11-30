@@ -15,7 +15,7 @@ Hero::Hero(QString imagePath, KeyManager* keyManager) : SpaceShip(nullptr, image
     bulletSpeed = 0.2 * period_ms; // 10 pixels per 50 ms
     speed = CoordPair(0,0);
     side = Side::hero;
-    this->pause();              //Never Call Virtual Functions During Construction or Destruction ??.
+    this->pause();
     this->hide();
 
     setUpDelay(shootDelay);
