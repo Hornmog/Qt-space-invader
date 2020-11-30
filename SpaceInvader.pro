@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    clock.cpp \
     enemymanager.cpp \
     gamemanager.cpp \
     graphic-objects/bullet.cpp \
@@ -32,6 +33,7 @@ SOURCES += \
     timer.cpp
 
 HEADERS += \
+    clock.h \
     consts.h \
     coordpair.h \
     graphic-objects/bullet.h \
