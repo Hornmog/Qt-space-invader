@@ -54,6 +54,9 @@ void GameManager::createFullScreenImage(QString imagePath)
 
 void GameManager::gameOver()
 {
+    if(gameWon){
+        return;
+    }
     delete hero;
     hero = nullptr;
     delete enemyManager;
@@ -92,6 +95,7 @@ void GameManager::togglePause()
 
 void GameManager::restartLevel()
 {
+   gameWon = false;
    deleteSceneGraphicItems();
    start();
 }
@@ -128,7 +132,7 @@ void GameManager::openMenu()
     StartDialog *menu = new StartDialog();
     int mode = menu->exec();
     if (mode == menu->Mode::story){
-        enemyManager->setTotalEnemiesToKill(5);
+        enemyManager->setTotalEnemiesToKill(2);
     }
     else if (mode == menu->Mode::endless){
         enemyManager->setTotalEnemiesToKill(INT_MAX);
@@ -178,6 +182,7 @@ QString GameManager::getUserNameEntryBox()
 
 void GameManager::win()
 {
+    gameWon = true;
     createWinScreen();
     gameInProcess = false;
     delete enemyManager;

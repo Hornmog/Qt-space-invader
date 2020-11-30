@@ -35,6 +35,7 @@ HEADERS += \
     consts.h \
     coordpair.h \
     graphic-objects/bullet.h \
+    graphic-objects/checktext.h \
     graphic-objects/enemy.h \
     enemymanager.h \
     gamemanager.h \

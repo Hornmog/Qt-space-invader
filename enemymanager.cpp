@@ -44,6 +44,8 @@ QJsonObject EnemyManager::returnEnemiesKilled()
 
 void EnemyManager::onEnemyDestruction(Enemy* enemy)
 {
+    delete enemy;
+
     enemyCount--;
     upForNextDiff--;
 

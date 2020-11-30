@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QTimer>
 #include "keymanager.h"
+#include "checktext.h"
 
 SpaceShip::SpaceShip(QObject *parent, QString imagePath) : QObject(parent)
 {
@@ -12,7 +13,7 @@ SpaceShip::SpaceShip(QObject *parent, QString imagePath) : QObject(parent)
     this->setPixmap(pixmap.scaled(width,height));
     this->setZValue(ScenePriority::spaceship);
 
-    checkText = new QGraphicsTextItem(this);
+    checkText = new CheckText();
     setUpCheckText();
 
     mainTimer = new Timer();

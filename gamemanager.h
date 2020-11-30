@@ -47,12 +47,13 @@ private:
     LeaderBoard* leaderBoardFile = new LeaderBoard();
 
     bool pause;
+    bool gameWon = false;
     bool gameInProcess = false;
     int sceneWidth = 600;
     int sceneHeight = 1000;
     int phase = 3;
     QVector<QString> countdownPhrases = {"START", "1", "2", "3"};
-    QSet<int> itemTypesToKeep = {TypeIndex::hero, TypeIndex::background, TypeIndex::scoreBar};
+    QSet<int> itemTypesToKeep = {TypeIndex::hero, TypeIndex::background, TypeIndex::scoreBar, TypeIndex::checkText};
 
 
 private slots:

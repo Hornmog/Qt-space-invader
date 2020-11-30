@@ -7,6 +7,7 @@
 #include "consts.h"
 #include "timer.h"
 #include "coordpair.h"
+#include "checktext.h"
 
 class SpaceShip : public QObject, public QGraphicsPixmapItem
 {
@@ -43,7 +44,7 @@ protected:
     int shootDelay;
     const int baseShootDelay = 5000;
     bool shootAvl = true;
-    QGraphicsTextItem *checkText;
+    CheckText *checkText;
     Timer* mainTimer;
 
 private:

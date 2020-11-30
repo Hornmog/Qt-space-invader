@@ -23,6 +23,8 @@ public:
     void pause();
     QJsonObject returnEnemiesKilled();
 
+    int score = 0;
+
 signals:
     void onEnemyCountChange(int enemyDeaths);
     void changeDifficulty(int difficulty);
@@ -41,7 +43,7 @@ private:
     Timer* timer = new Timer();
     int spawnRate = 2000;
     int enemyCount = 0;
-    int score = 0;
+
     QGraphicsScene *scene;
     int difficulty = 1;
     int const levelDifficultyStep = 5;

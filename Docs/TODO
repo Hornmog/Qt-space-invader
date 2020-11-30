@@ -1,7 +1,6 @@
 Bugfixes:
-- Pausing while coundown
 - Pausing bullets???
-- Never run cirtual functions in constructor/deconstructor
+- Process kamikaze act for level continuation
 
 New features:
 - (inform player about dialog cancelation) - leaderboard
@@ -37,3 +36,8 @@ Done:
 - EnemyManager interacts directly with ScoreBar
 - HeroKeys: make more universal?
 - Utility calculator all the collisions?
+- Pausing while coundown
+- Never run virtual functions in constructor/deconstructor; make the method paise() final
+- Processing the win+lose scenario ("kamikaze hero")
+- Fix Enemy and EnemyManager deletion order when the game is won
+- Fix addressing CheckText on Hero when restarting
