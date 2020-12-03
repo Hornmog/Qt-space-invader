@@ -6,6 +6,7 @@
 #include "enemymanager.h"
 #include "graphicsview.h"
 #include "consts.h"
+#include "clock.h"
 #include "leaderboard.h"
 
 #include <QObject>
@@ -45,6 +46,7 @@ private:
     QGraphicsPixmapItem* fullScreenImage;
     Timer* countdown = new Timer();
     LeaderBoard* leaderBoardFile = new LeaderBoard();
+    Clock* clock = new Clock();
 
     bool pause;
     bool gameWon = false;

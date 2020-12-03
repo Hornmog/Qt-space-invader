@@ -4,7 +4,8 @@
 Timer::Timer() : QTimer()
 {
     QTimer* us = this;
-    connect(us, SIGNAL(timeout()), this, SLOT(timeoutCheckInterval()));
+    connect(us, &QTimer::timeout, this, &Timer::timeoutCheckInterval);
+    connect(Clock::getClock(), &Clock::pauseSignal, this, &Timer::pause);
 }
 
 void Timer::pause()
@@ -21,11 +22,6 @@ void Timer::resume()
     this->start(timeLeft);
     resumed = true;
     paused = false;
-}
-
-bool Timer::isPaused()
-{
-    return paused;
 }
 
 void Timer::timeoutCheckInterval() {
