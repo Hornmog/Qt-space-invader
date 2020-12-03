@@ -3,7 +3,7 @@
 
 Clock* Clock::clockPointer = nullptr;
 
-Clock::Clock() : QElapsedTimer()
+Clock::Clock() : QObject(), QElapsedTimer()
 {
 
 }

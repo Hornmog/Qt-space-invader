@@ -46,9 +46,7 @@ private:
     QGraphicsPixmapItem* fullScreenImage;
     Timer* countdown = new Timer();
     LeaderBoard* leaderBoardFile = new LeaderBoard();
-    Clock* clock = new Clock();
 
-    bool pause;
     bool gameWon = false;
     bool gameInProcess = false;
     int sceneWidth = 600;

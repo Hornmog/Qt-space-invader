@@ -10,29 +10,14 @@
 EnemyManager::EnemyManager(QGraphicsScene* scene, KeyManager* keyManager)
 {
     this->scene = scene;
-
     connect(keyManager, &KeyManager::logKeyPressed, this, &EnemyManager::logKeyPressed);
 }
 
 void EnemyManager::startSpawningEnemies()
 {
     createEnemy();
-    connect(timer,&QTimer::timeout,this,&EnemyManager::onSpawnTimer);
+    connect(timer, &QTimer::timeout, this, &EnemyManager::onSpawnTimer);
     timer->start(spawnRate);
-}
-
-void EnemyManager::resume()
-{
-    timer->resume();
-    emit startAll();
-}
-
-void EnemyManager::pause()
-{
-    if (timer->isActive()){
-        timer->pause();
-        emit stopAll();
-    }
 }
 
 QJsonObject EnemyManager::returnEnemiesKilled()
@@ -77,7 +62,6 @@ void EnemyManager::onSpawnTimer()
     if(enemyCount < maxEnemyAlive && score < totalEnemiesToKill - enemyCount){
         createEnemy();
     }
-
 }
 
 void EnemyManager::createEnemy()

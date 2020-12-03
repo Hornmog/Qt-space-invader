@@ -14,6 +14,7 @@
 #include "graphic-objects/enemy.h"
 #include "startdialog.h"
 #include "leaderboardwindow.h"
+#include "clock.h"
 
 GameManager::GameManager(QObject *parent) : QObject(parent)
 {       
@@ -77,19 +78,13 @@ void GameManager::togglePause()
 {
     if(gameInProcess){
         gameInProcess = false;
-        hero->pause();
-        enemyManager->pause();
-        if(countdown->isActive()){
-            countdown->pause();
-        }
+        Clock::getClock()->pause();
+        hero->setActive(false);
     }
     else if(!gameInProcess){
         gameInProcess = true;
-        hero->resume();
-        enemyManager->resume();
-        if(countdown->isPaused()){
-            countdown->resume();
-        }
+        Clock::getClock()->resume();
+        hero->setActive(true);
     }
 }
 
@@ -123,7 +118,7 @@ void GameManager::start()
     startLevelCountdown();
 
     gameInProcess = true;
-    hero->resume();
+    hero->setActive(true);
     hero->show();
 }
 

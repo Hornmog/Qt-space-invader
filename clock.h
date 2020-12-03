@@ -3,7 +3,7 @@
 #include <QElapsedTimer>
 #include <QObject>
 
-class Clock : public QElapsedTimer
+class Clock : public QObject, public QElapsedTimer
 {
     Q_OBJECT
 public:

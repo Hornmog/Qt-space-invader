@@ -19,8 +19,6 @@ public:
     void onKillByNonHero(Enemy* enemy);
     void startSpawningEnemies();
     void setTotalEnemiesToKill(int num) {totalEnemiesToKill = num;}
-    void resume();
-    void pause();
     QJsonObject returnEnemiesKilled();
 
     int score = 0;
@@ -31,8 +29,6 @@ signals:
     void allEnemiesDefeated();
     void enemyOnBase();
     void logKeyPressed(bool);
-    void stopAll();
-    void startAll();
 
 public slots:
     void onSpawnTimer();

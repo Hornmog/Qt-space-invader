@@ -6,6 +6,7 @@
 #include <QTimer>
 #include "keymanager.h"
 #include "checktext.h"
+#include "clock.h"
 
 SpaceShip::SpaceShip(QObject *parent, QString imagePath) : QObject(parent)
 {
@@ -18,26 +19,8 @@ SpaceShip::SpaceShip(QObject *parent, QString imagePath) : QObject(parent)
 
     mainTimer = new Timer();
     connect(mainTimer,&QTimer::timeout,this,&SpaceShip::onTimer);
-
     mainTimer->start(period_ms);
 
-}
-
-void SpaceShip::resume()
-{
-    bool checkLogTextVisibility = checkText->isVisible();
-    mainTimer->resume();
-    speed = prevSpeed;
-    toggleCheckText(checkLogTextVisibility);
-}
-
-void SpaceShip::pause()
-{
-    bool checkLogTextVisibility = checkText->isVisible();
-    mainTimer->pause();
-    prevSpeed = speed;
-    speed.x = 0, speed.y = 0;
-    toggleCheckText(checkLogTextVisibility);
 }
 
 void SpaceShip::shootIsAvl()

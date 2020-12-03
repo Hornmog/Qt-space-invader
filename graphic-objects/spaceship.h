@@ -22,8 +22,6 @@ public:
 public slots:
     virtual void onTimer() = 0;
     void toggleCheckText(bool show);
-    virtual void resume();
-    virtual void pause();
 
 signals:
 

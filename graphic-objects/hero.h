@@ -13,9 +13,7 @@ class Hero: public SpaceShip{
     Q_OBJECT
 public:
     Hero(QString imagePath = nullptr, KeyManager* keyManager = nullptr);
-    int type() const override {return TypeIndex::hero;}  
-    void resume() override final;
-    void pause() override final;
+    int type() const override {return TypeIndex::hero;}
 
 signals:
     void heroKilled();
@@ -25,6 +23,9 @@ public slots:
     void groupCheckTextInfo() override;
     void heroKeyPressed(int key);
     void heroKeyReleased(int key);
+    void setActive(bool active) {
+        this->active = active;
+    }
 
 private:
     bool enemyCollisionCheck();

@@ -26,8 +26,6 @@ Enemy::Enemy(EnemyManager *manager, QString imagePath, int count) : SpaceShip(ma
     setUpDelay(shootDelay);
 
     connect(manager, &EnemyManager::changeDifficulty, this, &Enemy::setDifficulty);
-    connect(manager, &EnemyManager::startAll, this, &SpaceShip::resume);
-    connect(manager, &EnemyManager::stopAll, this, &SpaceShip::pause);
     connect(this, &Enemy::enemyOnBase,manager, &EnemyManager::enemyOnBase);
     connect(manager, &EnemyManager::logKeyPressed, this, &SpaceShip::toggleCheckText);
 }

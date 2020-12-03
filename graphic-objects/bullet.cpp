@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QGraphicsScene>
 #include "consts.h"
+#include "timer.h"
 
 Bullet::Bullet(int speed, int side)
 {
@@ -21,8 +22,8 @@ Bullet::Bullet(int speed, int side)
 
     this->speed = speed;
 
-    QTimer * timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, &Bullet::move);
+    Timer * timer = new Timer();
+    connect(timer, &Timer::timeout, this, &Bullet::move);
 
     timer->start(period_ms);
 }

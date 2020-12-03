@@ -6,6 +6,7 @@ Timer::Timer() : QTimer()
     QTimer* us = this;
     connect(us, &QTimer::timeout, this, &Timer::timeoutCheckInterval);
     connect(Clock::getClock(), &Clock::pauseSignal, this, &Timer::pause);
+    connect(Clock::getClock(), &Clock::resumeSignal, this, &Timer::resume);
 }
 
 void Timer::pause()

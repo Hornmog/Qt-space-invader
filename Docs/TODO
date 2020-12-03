@@ -1,10 +1,10 @@
 Bugfixes:
-- Pausing bullets???
 - Process kamikaze act for level continuation
+- Display game paused
+- Restarting
 
 New features:
 - (inform player about dialog cancelation) - leaderboard
-- Pause
 - Levels
 - Neutral side meteors
 - Different ammo
@@ -41,3 +41,6 @@ Done:
 - Processing the win+lose scenario ("kamikaze hero")
 - Fix Enemy and EnemyManager deletion order when the game is won
 - Fix addressing CheckText on Hero when restarting
+- Pausing bullets
+- Pause
+- Clock sending out resume/pause signals to timers
