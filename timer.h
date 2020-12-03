@@ -1,15 +1,14 @@
 #ifndef TIMER_H
 #define TIMER_H
 #include <QTimer>
+#include "clock.h"
 
 class Timer : public QTimer
 {
     Q_OBJECT
 public:
     Timer();
-    void pause();
-    void resume();
-    bool isPaused();
+
 private:
     bool resumed = false;
     bool paused = false;
@@ -17,6 +16,8 @@ private:
     int timeInterval;
 private slots:
     void timeoutCheckInterval();
+    void pause();
+    void resume();
 };
 
 #endif // TIMER_H

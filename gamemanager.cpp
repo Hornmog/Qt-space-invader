@@ -29,9 +29,9 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
 
     createFullScreenImage(nullptr);
 
-    connect(keyManager, SIGNAL(keyRPressed()), this, SLOT(keyRPressed()));
-    connect(keyManager, SIGNAL(keyPPressed()), this, SLOT(togglePause()));
-    connect(countdown,SIGNAL(timeout()),this,SLOT(startLevelCountdown()));
+    connect(keyManager, &KeyManager::keyRPressed, this, &GameManager::keyRPressed);
+    connect(keyManager, &KeyManager::keyPPressed, this, &GameManager::togglePause);
+    connect(countdown, &QTimer::timeout, this, &GameManager::startLevelCountdown);
 
     createCountdownTextItem();
     start();
@@ -206,10 +206,10 @@ void GameManager::createWinScreen()
 
 void GameManager::connectSpaceshipSignals()
 {
-    connect(enemyManager, SIGNAL(onEnemyCountChange(int)), this, SLOT(changeScore(int)));
-    connect(enemyManager, SIGNAL(allEnemiesDefeated()), this, SLOT(win()));
-    connect(hero, SIGNAL(heroKilled()), this, SLOT(gameOver()));
-    connect(enemyManager, SIGNAL(enemyOnBase()), this, SLOT(gameOver()));
+    connect(enemyManager, &EnemyManager::onEnemyCountChange, this, &GameManager::changeScore);
+    connect(enemyManager, &EnemyManager::allEnemiesDefeated, this, &GameManager::win);
+    connect(hero, &Hero::heroKilled, this, &GameManager::gameOver);
+    connect(enemyManager, &EnemyManager::enemyOnBase, this, &GameManager::gameOver);
 }
 
 void GameManager::deleteSceneGraphicItems()

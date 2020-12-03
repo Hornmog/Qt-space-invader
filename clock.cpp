@@ -20,13 +20,13 @@ void Clock::pause()
 {
     timeBeforePause = this->elapsed();
     paused = true;
-
-
+    emit pauseSignal();
 }
 
 void Clock::resume()
 {
     paused = false;
+    emit resumeSignal();
 }
 
 int Clock::getTime()

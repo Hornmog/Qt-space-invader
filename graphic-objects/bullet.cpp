@@ -22,7 +22,7 @@ Bullet::Bullet(int speed, int side)
     this->speed = speed;
 
     QTimer * timer = new QTimer();
-    connect(timer,SIGNAL(timeout()),this,SLOT(move()));
+    connect(timer, &QTimer::timeout, this, &Bullet::move);
 
     timer->start(period_ms);
 }

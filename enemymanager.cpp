@@ -11,13 +11,13 @@ EnemyManager::EnemyManager(QGraphicsScene* scene, KeyManager* keyManager)
 {
     this->scene = scene;
 
-    connect(keyManager, SIGNAL(logKeyPressed(bool)), this, SIGNAL(logKeyPressed(bool)));    
+    connect(keyManager, &KeyManager::logKeyPressed, this, &EnemyManager::logKeyPressed);
 }
 
 void EnemyManager::startSpawningEnemies()
 {
     createEnemy();
-    connect(timer,SIGNAL(timeout()),this,SLOT(onSpawnTimer()));
+    connect(timer,&QTimer::timeout,this,&EnemyManager::onSpawnTimer);
     timer->start(spawnRate);
 }
 

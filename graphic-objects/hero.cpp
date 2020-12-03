@@ -21,9 +21,9 @@ Hero::Hero(QString imagePath, KeyManager* keyManager) : SpaceShip(nullptr, image
     setUpDelay(shootDelay);
 
     this->keyManager = keyManager;
-    connect(keyManager, SIGNAL(heroKeyPressed(int)), this, SLOT(heroKeyPressed(int)));
-    connect(keyManager, SIGNAL(heroKeyReleased(int)), this, SLOT(heroKeyReleased(int)));
-    connect(keyManager, SIGNAL(logKeyPressed(bool)), this, SLOT(toggleCheckText(bool)));
+    connect(keyManager, &KeyManager::heroKeyPressed, this, &Hero::heroKeyPressed);
+    connect(keyManager, &KeyManager::heroKeyReleased, this, &Hero::heroKeyReleased);
+    connect(keyManager, &KeyManager::logKeyPressed, this, &SpaceShip::toggleCheckText);
 }
 
 void Hero::pause()
