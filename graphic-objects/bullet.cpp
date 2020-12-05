@@ -10,10 +10,10 @@ Bullet::Bullet(int speed, int side)
     this->side = side;
     QString imagePath;
     if(side == 1){
-         imagePath = ImagePaths::bulletImagePath;
+         imagePath = ImagePaths::bullet;
     }
     else if(side == 2){
-         imagePath = ImagePaths::enemyBulletImagePath;
+         imagePath = ImagePaths::enemyBullet;
     }
 
     QPixmap pixmap(imagePath);

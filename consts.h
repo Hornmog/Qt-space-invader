@@ -27,13 +27,14 @@ namespace JsonNames {
 
 namespace ImagePaths {
     static const QString pathPrefix = ":/images/pictures/";
-    static const QString enemyImagePath =         pathPrefix + "enemyOctopus.png";
-    static const QString heroImagePath =          pathPrefix + "hero.png";
-    static const QString bulletImagePath =        pathPrefix + "bullet.png";
-    static const QString enemyBulletImagePath =   pathPrefix + "enemyBullet.png";
-    static const QString gameOverImagePath =      pathPrefix + "gameOver.png";
-    static const QString winImagePath =           pathPrefix + "win.png";
-    static const QString backgroundImagePath =    pathPrefix + "background.png";
+    static const QString enemy      =  pathPrefix + "enemyOctopus.png";
+    static const QString hero       =  pathPrefix + "hero.png";
+    static const QString bullet     =  pathPrefix + "bullet.png";
+    static const QString enemyBullet=  pathPrefix + "enemyBullet.png";
+    static const QString gameOver   =  pathPrefix + "gameOver.png";
+    static const QString win        =  pathPrefix + "win.png";
+    static const QString background =  pathPrefix + "background.png";
+    static const QString pause      =  pathPrefix + "pause.png";
 }
 
 namespace ScenePriority {
@@ -41,6 +42,7 @@ namespace ScenePriority {
     static const int fullScreenText = 20;
     static const int bullet = 15;
     static const int text = 30;
+    static const int pause = 25;
 }
 
 enum Side {

@@ -8,7 +8,6 @@ class Clock : public QObject, public QElapsedTimer
     Q_OBJECT
 public:
     static Clock* getClock();
-
     void pause();
     void resume();
     int getTime();

@@ -27,6 +27,7 @@ private:
     void createLeaderBoardBox();
     QGraphicsTextItem *createTextItem();
     void createWinScreen();
+    void createPauseSceen();
     void deleteSceneGraphicItems();
     void restartLevel();
     void openMenu();
@@ -34,14 +35,14 @@ private:
     void startEnemySpawn();
     void createFullScreenImage(QString imagePath = nullptr);
 
-    QString gameOverImagePath = ImagePaths::gameOverImagePath;
+    QString gameOverImagePath = ImagePaths::gameOver;
     ScoreBar* scoreBar;
     QGraphicsScene* scene;
     GraphicsView* view;
     Hero* hero = nullptr;
     EnemyManager* enemyManager;
     KeyManager* keyManager;
-    QString backgroundImagePath = ImagePaths::backgroundImagePath;
+    QGraphicsPixmapItem* pause;
     QGraphicsTextItem* number;
     QGraphicsPixmapItem* fullScreenImage;
     Timer* countdown = new Timer();
@@ -49,8 +50,11 @@ private:
 
     bool gameWon = false;
     bool gameInProcess = false;
-    int sceneWidth = 600;
+    bool paused = false;
+    int sceneWidth  = 600;
     int sceneHeight = 1000;
+    int pauseWidth  = 230;
+    int pauseHeight = 230;
     int phase = 3;
     QVector<QString> countdownPhrases = {"START", "1", "2", "3"};
     QSet<int> itemTypesToKeep = {TypeIndex::hero, TypeIndex::background, TypeIndex::scoreBar, TypeIndex::checkText};

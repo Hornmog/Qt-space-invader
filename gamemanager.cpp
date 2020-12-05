@@ -29,6 +29,7 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
     scoreBar->setPos(scene->width() - scoreBar->boundingRect().width()*3, scene->height() - scoreBar->boundingRect().height());
 
     createFullScreenImage(nullptr);
+    createPauseSceen();
 
     connect(keyManager, &KeyManager::keyRPressed, this, &GameManager::keyRPressed);
     connect(keyManager, &KeyManager::keyPPressed, this, &GameManager::togglePause);
@@ -76,15 +77,19 @@ void GameManager::keyRPressed()
 
 void GameManager::togglePause()
 {
-    if(gameInProcess){
+    if(gameInProcess && !paused){
+        paused = true;
         gameInProcess = false;
         Clock::getClock()->pause();
         hero->setActive(false);
+        pause->show();
     }
-    else if(!gameInProcess){
+    else if(!gameInProcess && paused){
+        paused = false;
         gameInProcess = true;
         Clock::getClock()->resume();
         hero->setActive(true);
+        pause->hide();
     }
 }
 
@@ -99,10 +104,11 @@ void GameManager::start()
 {
     keyManager->grabKeyboard();
     scoreBar->setScore(0);
+    createPauseSceen();
 
     if (hero == nullptr){
         qDebug() << "creating new hero...";
-        hero = new Hero(ImagePaths::heroImagePath, keyManager);
+        hero = new Hero(ImagePaths::hero, keyManager);
         scene->addItem(hero);
     } else {
         qDebug() << "hero exists";
@@ -185,7 +191,7 @@ void GameManager::win()
 
 void GameManager::createEndScreen()
 {
-    createFullScreenImage(ImagePaths::gameOverImagePath);
+    createFullScreenImage(ImagePaths::gameOver);
     QGraphicsTextItem* finalLabel = createTextItem();
     finalLabel->setPlainText("Press R To Open Menu");
     finalLabel->setPos(scene->width() / 2 - finalLabel->boundingRect().width() / 2,
@@ -196,7 +202,18 @@ void GameManager::createEndScreen()
 
 void GameManager::createWinScreen()
 {
-    createFullScreenImage(ImagePaths::winImagePath);
+    createFullScreenImage(ImagePaths::win);
+}
+
+void GameManager::createPauseSceen()
+{
+    pause = new QGraphicsPixmapItem();
+    QPixmap pauseImage(ImagePaths::pause);
+    pause->setPixmap(pauseImage.scaled(pauseWidth, pauseHeight));
+    pause->setZValue(ScenePriority::pause);
+    pause->hide();
+    pause->setPos(scene->width()/2 - pauseWidth/2, scene->height()/2 - pauseHeight/2);
+    scene->addItem(pause);
 }
 
 void GameManager::connectSpaceshipSignals()
@@ -219,7 +236,7 @@ void GameManager::deleteSceneGraphicItems()
 
 void GameManager::createBackground()
 {
-    QPixmap pixmap(backgroundImagePath);
+    QPixmap pixmap(ImagePaths::background);
     QBrush pattern(pixmap);
     qDebug() << pixmap;
     QRectF rect(0, 0, view->width(), view->height());

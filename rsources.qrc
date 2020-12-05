@@ -8,5 +8,6 @@
         <file>pictures/hero.png</file>
         <file>pictures/win.png</file>
         <file>pictures/enemyOctopus.png</file>
+        <file>pictures/pause.png</file>
     </qresource>
 </RCC>
