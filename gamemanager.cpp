@@ -33,7 +33,6 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
 
     connect(keyManager, &KeyManager::keyRPressed, this, &GameManager::keyRPressed);
     connect(keyManager, &KeyManager::keyPPressed, this, &GameManager::togglePause);
-    connect(countdown, &QTimer::timeout, this, &GameManager::startLevelCountdown);
 
     createCountdownTextItem();
     start();
@@ -77,17 +76,15 @@ void GameManager::keyRPressed()
 
 void GameManager::togglePause()
 {
-    if(gameInProcess && !paused){
-        paused = true;
+    if(gameInProcess && !clock->isPaused()){
         gameInProcess = false;
-        Clock::getClock()->pause();
+        clock->pause();
         hero->setActive(false);
         pause->show();
     }
-    else if(!gameInProcess && paused){
-        paused = false;
+    else if(!gameInProcess && clock->isPaused()){
         gameInProcess = true;
-        Clock::getClock()->resume();
+        clock->resume();
         hero->setActive(true);
         pause->hide();
     }
@@ -98,6 +95,9 @@ void GameManager::restartLevel()
    gameWon = false;
    deleteSceneGraphicItems();
    start();
+   if(clock->isPaused()){
+       clock->resume(); //to unpause hero if restart was called during pause
+   }
 }
 
 void GameManager::start()
@@ -255,7 +255,11 @@ void GameManager::createCountdownTextItem()
     number = createTextItem();
     number->setPos(scene->width() / 2 - number->boundingRect().width() / 2,
                    scene->height() / 2 - number->boundingRect().height() / 2);
-    scene->addItem(number);   
+    scene->addItem(number);
+    phase = 3;
+
+    countdown = new Timer();
+    connect(countdown, &QTimer::timeout, this, &GameManager::startLevelCountdown);
 }
 
 void GameManager::startLevelCountdown()
@@ -268,6 +272,7 @@ void GameManager::startLevelCountdown()
         phase = 3;
         number->hide();
         startEnemySpawn();
+        delete countdown;
         return;
     }
     number->setPlainText(countdownPhrases[phase]);

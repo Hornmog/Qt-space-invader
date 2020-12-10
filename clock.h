@@ -11,6 +11,8 @@ public:
     void pause();
     void resume();
     int getTime();
+    static bool isPaused();
+
 signals:
     void pauseSignal();
     void resumeSignal();
@@ -18,7 +20,7 @@ signals:
 private:
     Clock();
     static Clock* clockPointer;
-    bool paused = false;
+    static bool paused;
     int timeBeforePause;
 
 };

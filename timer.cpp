@@ -1,5 +1,6 @@
 #include "timer.h"
 #include <QDebug>
+#include <stdexcept>
 
 Timer::Timer() : QTimer()
 {
@@ -13,6 +14,7 @@ void Timer::start(int msec)
 {
     QTimer::start(msec);
     paused = false;
+    intervalSet = true;
 }
 
 void Timer::pause()
@@ -21,7 +23,7 @@ void Timer::pause()
         timeInterval = this->interval();
         timeLeft = this->remainingTime();
         if (timeLeft == -1) {
-            qDebug() << "Something went wrong: ";
+             throw std::domain_error("Time interval = -1, timer isn't active");
         }
         this->stop();
         paused = true;
@@ -30,7 +32,7 @@ void Timer::pause()
 
 void Timer::resume()
 {
-    if(paused){
+    if(paused && intervalSet){
         qDebug() << "Time left: " << timeLeft;
         this->start(timeLeft);
         wasResumedOnThisIteration = true;

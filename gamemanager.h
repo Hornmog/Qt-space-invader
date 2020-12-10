@@ -47,10 +47,9 @@ private:
     QGraphicsPixmapItem* fullScreenImage;
     Timer* countdown = new Timer();
     LeaderBoard* leaderBoardFile = new LeaderBoard();
-
+    Clock* clock = Clock::getClock();
     bool gameWon = false;
     bool gameInProcess = false;
-    bool paused = false;
     int sceneWidth  = 600;
     int sceneHeight = 1000;
     int pauseWidth  = 230;

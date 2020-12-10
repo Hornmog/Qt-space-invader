@@ -2,10 +2,16 @@
 #include <QTime>
 
 Clock* Clock::clockPointer = nullptr;
+bool Clock::paused = false;
 
 Clock::Clock() : QObject(), QElapsedTimer()
 {
 
+}
+
+bool Clock::isPaused()
+{
+    return paused;
 }
 
 Clock* Clock::getClock()

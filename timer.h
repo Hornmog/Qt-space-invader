@@ -13,6 +13,7 @@ public Q_SLOTS:
     void start(int msec);
 
 private:
+    bool intervalSet = false;
     bool wasResumedOnThisIteration = false;
     bool paused = true;
     int timeLeft;
