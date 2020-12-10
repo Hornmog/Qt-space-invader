@@ -9,9 +9,12 @@ class Timer : public QTimer
 public:
     Timer();
 
+public Q_SLOTS:
+    void start(int msec);
+
 private:
-    bool resumed = false;
-    bool paused = false;
+    bool wasResumedOnThisIteration = false;
+    bool paused = true;
     int timeLeft;
     int timeInterval;
 private slots:

@@ -9,26 +9,41 @@ Timer::Timer() : QTimer()
     connect(Clock::getClock(), &Clock::resumeSignal, this, &Timer::resume);
 }
 
+void Timer::start(int msec)
+{
+    QTimer::start(msec);
+    paused = false;
+}
+
 void Timer::pause()
 {
-
-    timeInterval = this->interval();
-    timeLeft = this->remainingTime();
-    this->stop();
-    paused = true;
+    if(!paused){
+        timeInterval = this->interval();
+        timeLeft = this->remainingTime();
+        if (timeLeft == -1) {
+            qDebug() << "Something went wrong: ";
+        }
+        this->stop();
+        paused = true;
+    }
 }
 
 void Timer::resume()
 {
-    this->start(timeLeft);
-    resumed = true;
-    paused = false;
+    if(paused){
+        qDebug() << "Time left: " << timeLeft;
+        this->start(timeLeft);
+        wasResumedOnThisIteration = true;
+        paused = false;
+    }
 }
 
 void Timer::timeoutCheckInterval() {
-    if (resumed) {
+    if(!isSingleShot() && wasResumedOnThisIteration) {
         this->stop();
         this->start(timeInterval);
-        resumed = false;
+        wasResumedOnThisIteration = false;
+    } else if (isSingleShot()) {
+        paused = true;
     }
 }
