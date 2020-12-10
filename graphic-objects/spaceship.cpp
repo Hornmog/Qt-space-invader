@@ -10,10 +10,6 @@
 
 SpaceShip::SpaceShip(QObject *parent, QString imagePath) : QObject(parent)
 {
-    QPixmap pixmap(imagePath);
-    this->setPixmap(pixmap.scaled(width,height));
-    this->setZValue(ScenePriority::spaceship);
-
     checkText = new CheckText();
     setUpCheckText();
 

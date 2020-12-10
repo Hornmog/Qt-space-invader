@@ -21,6 +21,7 @@ SOURCES += \
     gamemanager.cpp \
     graphic-objects/bullet.cpp \
     graphic-objects/enemy.cpp \
+    graphic-objects/graphicobject.cpp \
     graphicsview.cpp \
     graphic-objects/hero.cpp \
     keymanager.cpp \
@@ -41,6 +42,7 @@ HEADERS += \
     graphic-objects/enemy.h \
     enemymanager.h \
     gamemanager.h \
+    graphic-objects/graphicobject.h \
     graphicsview.h \
     graphic-objects/hero.h \
     keymanager.h \

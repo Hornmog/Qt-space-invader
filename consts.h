@@ -37,6 +37,11 @@ namespace ImagePaths {
     static const QString pause      =  pathPrefix + "pause.png";
 }
 
+namespace objectSizes {
+    static int const spaceship[] = {100,100};
+    static int const bullet[] = {10,50};
+}
+
 namespace ScenePriority {
     static const int spaceship = 10;         //default Zvalue is 0
     static const int fullScreenText = 20;
@@ -51,6 +56,7 @@ enum Side {
 
 static const int period_ms = 20;
 static const double FPS = 1000.0/period_ms;
+static const int numFrames = 4;
 
 QSet<int> const verticalMovementKeys = {Qt::Key_Up, Qt::Key_Down};
 QSet<int> const horizontalMovementKeys = {Qt::Key_Left, Qt::Key_Right};
