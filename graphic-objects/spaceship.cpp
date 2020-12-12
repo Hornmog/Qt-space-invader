@@ -8,13 +8,14 @@
 #include "checktext.h"
 #include "clock.h"
 
-SpaceShip::SpaceShip(QObject *parent, QString imagePath) : QObject(parent)
+SpaceShip::SpaceShip(QObject *parent, QString imagePath) : AnimatedObject(parent, imagePath, width, height)
 {
     checkText = new CheckText();
     setUpCheckText();
+    this->setZValue(ScenePriority::spaceship);
 
     mainTimer = new Timer();
-    connect(mainTimer,&QTimer::timeout,this,&SpaceShip::onTimer);
+    connect(mainTimer, &QTimer::timeout, this, &SpaceShip::onTimer);
     mainTimer->start(period_ms);
 
 }

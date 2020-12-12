@@ -3,19 +3,20 @@
 
 #include <QObject>
 #include <QGraphicsPixmapItem>
+#include <QMovie>
 
-class GraphicObject : public QObject, public QGraphicsPixmapItem
+class AnimatedObject : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    GraphicObject(QObject *parent = nullptr, QString imagePath = nullptr, int objectType = 0);
+    AnimatedObject(QObject *parent = nullptr, QString imagePath = nullptr, int width = 0, int height = 0);
 private slots:
     void nextFrame();
 private:
     QString imagePath;
+    QMovie* gif;
     int frameCounter = 0;
     int width, height;
-    int scenePriority;
 };
 
 #endif // GRAPHICSOBJECT_H

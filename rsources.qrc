@@ -13,5 +13,6 @@
         <file>pictures/hero/default2.png</file>
         <file>pictures/hero/default3.png</file>
         <file>pictures/hero/default4.png</file>
+        <file>pictures/hero.gif</file>
     </qresource>
 </RCC>

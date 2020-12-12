@@ -28,18 +28,13 @@ namespace JsonNames {
 namespace ImagePaths {
     static const QString pathPrefix = ":/images/pictures/";
     static const QString enemy      =  pathPrefix + "enemyOctopus.png";
-    static const QString hero       =  pathPrefix + "hero.png";
+    static const QString hero       =  pathPrefix + "hero.gif";
     static const QString bullet     =  pathPrefix + "bullet.png";
     static const QString enemyBullet=  pathPrefix + "enemyBullet.png";
     static const QString gameOver   =  pathPrefix + "gameOver.png";
     static const QString win        =  pathPrefix + "win.png";
     static const QString background =  pathPrefix + "background.png";
     static const QString pause      =  pathPrefix + "pause.png";
-}
-
-namespace objectSizes {
-    static int const spaceship[] = {100,100};
-    static int const bullet[] = {10,50};
 }
 
 namespace ScenePriority {
@@ -56,7 +51,6 @@ enum Side {
 
 static const int period_ms = 20;
 static const double FPS = 1000.0/period_ms;
-static const int numFrames = 4;
 
 QSet<int> const verticalMovementKeys = {Qt::Key_Up, Qt::Key_Down};
 QSet<int> const horizontalMovementKeys = {Qt::Key_Left, Qt::Key_Right};

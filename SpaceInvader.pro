@@ -19,9 +19,9 @@ SOURCES += \
     clock.cpp \
     enemymanager.cpp \
     gamemanager.cpp \
+    graphic-objects/animatedobject.cpp \
     graphic-objects/bullet.cpp \
     graphic-objects/enemy.cpp \
-    graphic-objects/graphicobject.cpp \
     graphicsview.cpp \
     graphic-objects/hero.cpp \
     keymanager.cpp \
@@ -37,12 +37,12 @@ HEADERS += \
     clock.h \
     consts.h \
     coordpair.h \
+    graphic-objects/animatedobject.h \
     graphic-objects/bullet.h \
     graphic-objects/checktext.h \
     graphic-objects/enemy.h \
     enemymanager.h \
     gamemanager.h \
-    graphic-objects/graphicobject.h \
     graphicsview.h \
     graphic-objects/hero.h \
     keymanager.h \

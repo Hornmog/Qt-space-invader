@@ -8,16 +8,17 @@
 #include "timer.h"
 #include "coordpair.h"
 #include "checktext.h"
+#include "animatedobject.h"
 
-class SpaceShip : public QObject, public QGraphicsPixmapItem
+class SpaceShip : public AnimatedObject
 {
     Q_OBJECT
 public:
     explicit SpaceShip(QObject *parent = nullptr, QString imagePath = nullptr);
 
     int side;
-    int width = 100;
-    int height = 100;
+    static const int width = 100;
+    static const int height = 100;
 
 public slots:
     virtual void onTimer() = 0;
