@@ -17,8 +17,6 @@ public:
     explicit SpaceShip(QObject *parent = nullptr, QString imagePath = nullptr);
 
     int side;
-    static const int width = 100;
-    static const int height = 100;
 
 public slots:
     virtual void onTimer() = 0;

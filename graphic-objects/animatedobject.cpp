@@ -3,12 +3,10 @@
 #include "consts.h"
 #include <QDebug>
 
-AnimatedObject::AnimatedObject(QObject *parent, QString imagePath, int width, int height) : QObject(parent)
+AnimatedObject::AnimatedObject(QObject *parent, QString imagePath) : QObject(parent)
 {
     this->imagePath = imagePath;
-    this->width = width;
-    this->height = height;
-    gif = new QMovie(ImagePaths::hero);
+    gif = new QMovie(imagePath);
     gif->start();
     nextFrame();
 
@@ -16,8 +14,24 @@ AnimatedObject::AnimatedObject(QObject *parent, QString imagePath, int width, in
     connect(gif, &QMovie::updated, this, &AnimatedObject::nextFrame);
 }
 
+void AnimatedObject::setSize(int width, int height)
+{
+    this->width = width;
+    this->height = height;
+}
+
 void AnimatedObject::nextFrame()
 {
     /// TODO: make width and height different for different objects
     this->setPixmap(gif->currentPixmap().scaled(width, height));
+}
+
+int AnimatedObject::getHeight() const
+{
+    return height;
+}
+
+int AnimatedObject::getWidth() const
+{
+    return width;
 }

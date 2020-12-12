@@ -33,7 +33,7 @@ void Timer::pause()
 void Timer::resume()
 {
     if(paused && intervalSet){
-        qDebug() << "Time left: " << timeLeft;
+        //qDebug() << "Time left: " << timeLeft;
         this->start(timeLeft);
         wasResumedOnThisIteration = true;
         paused = false;

@@ -8,7 +8,7 @@
 #include "checktext.h"
 #include "clock.h"
 
-SpaceShip::SpaceShip(QObject *parent, QString imagePath) : AnimatedObject(parent, imagePath, width, height)
+SpaceShip::SpaceShip(QObject *parent, QString imagePath) : AnimatedObject(parent, imagePath)
 {
     checkText = new CheckText();
     setUpCheckText();

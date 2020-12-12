@@ -49,8 +49,6 @@ void GameManager::createFullScreenImage(QString imagePath)
     fullScreenImage->setPos(0, scene->height() / 2 - fullScreenImage->boundingRect().height() / 2);
     fullScreenImage->setZValue(ScenePriority::fullScreenText);
     scene->addItem(fullScreenImage);
-    qDebug() << fullScreenImage->type() << " - fullScreen image type";
-
 }
 
 void GameManager::gameOver()
@@ -115,7 +113,7 @@ void GameManager::start()
     }
 
     hero->setPos(view->width()/2 - hero->boundingRect().width()/2, view->height() - hero->boundingRect().height() * 2);
-    //qDebug() << "hero boundary: " << hero->boundingRect() ;
+    qDebug() << "hero boundary: " << hero->boundingRect() ;
     enemyManager = new EnemyManager(scene, keyManager);
 
     connectSpaceshipSignals();
@@ -197,7 +195,6 @@ void GameManager::createEndScreen()
     finalLabel->setPlainText("Press R To Open Menu");
     finalLabel->setPos(scene->width() / 2 - finalLabel->boundingRect().width() / 2,
                    scene->height() * 7 / 8 - finalLabel->boundingRect().height() / 2);
-    qDebug() << "final label type: " << finalLabel->type();
     scene->addItem(finalLabel);
 }
 
@@ -239,10 +236,8 @@ void GameManager::createBackground()
 {
     QPixmap pixmap(ImagePaths::background);
     QBrush pattern(pixmap);
-    qDebug() << pixmap;
     QRectF rect(0, 0, view->width(), view->height());
-    QGraphicsItem* rectItem = scene->addRect(rect, QPen(), pattern);
-    qDebug() << rectItem->type();
+    scene->addRect(rect, QPen(), pattern);
 }
 
 void GameManager::startEnemySpawn()
