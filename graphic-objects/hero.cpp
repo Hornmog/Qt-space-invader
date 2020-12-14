@@ -11,7 +11,6 @@ const Hero::Movement Hero::movement;
 
 Hero::Hero(QString imagePath, KeyManager* keyManager) : SpaceShip(nullptr, imagePath)
 {
-    setSize(100, 100);
     shootDelay = 1000;
     bulletSpeed = 0.2 * period_ms; // 10 pixels per 50 ms
     speed = CoordPair(0,0);

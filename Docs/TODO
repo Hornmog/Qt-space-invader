@@ -1,15 +1,21 @@
 Bugfixes:
 - Process kamikaze act for level continuation
 - EnemyManager acting weird (story mode after endless mode)
+- Initialization of hero position and state (whether it can be moved) after restart
+- EnemyManager spawns before coundown ends on restart
+- Log doesn't work
+- Should we remove checkText on restart? Probably yes?
 
 New features:
+- GameManager / LevelManager split for easier restarting
+- Enemy and bullets animated
 - (inform player about dialog cancelation) - leaderboard
 - Levels
 - Neutral side meteors
 - Different ammo
-- Animations
 
 Refactoring:
+- Probably more functionality regarding e.g. movement can be moved to AnimatedObject
 - SetMode -> Menu (naming & functionallity)
 - GM manages a lot of drawing tasks; is it OK?
 (for levels, we need to split LevelManager from GameManager)
@@ -45,3 +51,4 @@ Done:
 - Clock sending out resume/pause signals to timers
 - Bugfix - timers process singleShots correcly
 - Display game paused
+- Animations

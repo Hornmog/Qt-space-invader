@@ -56,7 +56,7 @@ private:
     int pauseHeight = 230;
     int phase = 3;
     QVector<QString> countdownPhrases = {"START", "1", "2", "3"};
-    QSet<int> itemTypesToKeep = {TypeIndex::hero, TypeIndex::background, TypeIndex::scoreBar, TypeIndex::checkText};
+    QSet<int> itemTypesToKeep = {TypeIndex::background, TypeIndex::scoreBar, TypeIndex::checkText};
 
 
 private slots:

@@ -5,19 +5,17 @@
 #include "consts.h"
 #include "timer.h"
 
-Bullet::Bullet(int speed, int side)
+Bullet::Bullet(int speed, int side, QString imagePath) : AnimatedObject(nullptr, imagePath, 21, 40)
 {
+    setSize(20,50);
     this->side = side;
-    QString imagePath;
-    if(side == 1){
-         imagePath = ImagePaths::bullet;
-    }
-    else if(side == 2){
-         imagePath = ImagePaths::enemyBullet;
-    }
 
-    QPixmap pixmap(imagePath);
-    this->setPixmap(pixmap.scaled(bulletWidth,bulletLength));
+//    if(side == 1){
+//         imagePath = ImagePaths::bullet;
+//    }
+//    else if(side == 2){
+//         imagePath = ImagePaths::enemyBullet;
+//    }
     this->setZValue(ScenePriority::bullet);
 
     this->speed = speed;

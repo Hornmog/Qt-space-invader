@@ -104,13 +104,8 @@ void GameManager::start()
     scoreBar->setScore(0);
     createPauseSceen();
 
-    if (hero == nullptr){
-        qDebug() << "creating new hero...";
-        hero = new Hero(ImagePaths::hero, keyManager);
-        scene->addItem(hero);
-    } else {
-        qDebug() << "hero exists";
-    }
+    hero = new Hero(ImagePaths::hero, keyManager);
+    scene->addItem(hero);
 
     hero->setPos(view->width()/2 - hero->boundingRect().width()/2, view->height() - hero->boundingRect().height() * 2);
     qDebug() << "hero boundary: " << hero->boundingRect() ;

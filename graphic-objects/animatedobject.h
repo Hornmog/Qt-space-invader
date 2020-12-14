@@ -9,7 +9,7 @@ class AnimatedObject : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    AnimatedObject(QObject *parent = nullptr, QString imagePath = nullptr);
+    AnimatedObject(QObject *parent = nullptr, QString imagePath = nullptr, int width = 100, int height = 100);
     void setSize(int width, int height);
     int getWidth() const;
     int getHeight() const;

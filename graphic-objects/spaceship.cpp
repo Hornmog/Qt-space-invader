@@ -50,7 +50,14 @@ int SpaceShip::bulletCollisionCheck()
 
 void SpaceShip::createBullet(int side)
 {
-    Bullet *bullet = new Bullet(bulletSpeed, side);
+    QString imagePath;
+    if (side == 2){
+        imagePath = ImagePaths::enemyBullet;
+    } else if(side == 1){
+        imagePath = ImagePaths::bullet;
+    }
+
+    Bullet *bullet = new Bullet(bulletSpeed, side, imagePath);
     // TODO: why do we need to add bullet length?
     int basePositionX = x()+(width/2);
     if(bulletSpeed > 0){

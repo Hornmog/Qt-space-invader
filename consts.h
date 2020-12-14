@@ -29,8 +29,8 @@ namespace ImagePaths {
     static const QString pathPrefix = ":/images/pictures/";
     static const QString enemy      =  pathPrefix + "enemyOctopus.png";
     static const QString hero       =  pathPrefix + "hero.gif";
-    static const QString bullet     =  pathPrefix + "bullet.png";
-    static const QString enemyBullet=  pathPrefix + "enemyBullet.png";
+    static const QString bullet     =  pathPrefix + "bulletFast.gif";
+    static const QString enemyBullet=  pathPrefix + "enemyBulletBright.gif";
     static const QString gameOver   =  pathPrefix + "gameOver.png";
     static const QString win        =  pathPrefix + "win.png";
     static const QString background =  pathPrefix + "background.png";
@@ -49,7 +49,7 @@ enum Side {
    nobody, hero, enemy, neutral
 };
 
-static const int period_ms = 20;
+static const int period_ms = 15;
 static const double FPS = 1000.0/period_ms;
 
 QSet<int> const verticalMovementKeys = {Qt::Key_Up, Qt::Key_Down};
