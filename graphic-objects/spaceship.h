@@ -17,7 +17,7 @@ class SpaceShip : public AnimatedObject
 public:
     explicit SpaceShip(QObject *parent = nullptr, QString imagePath = nullptr);
     ~SpaceShip() override;
-    void addToScene(QGraphicsScene* scene);
+    virtual void addToScene(QGraphicsScene* scene);
     int side;
     static bool checkTextVisible;
 

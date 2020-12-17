@@ -68,8 +68,6 @@ void EnemyManager::createEnemy()
 {
     Enemy* enemy = new Enemy(this, ImagePaths::enemy, totalEnemiesSpawned);
     enemy->addToScene(scene);
-    int offset = enemy->getWidth();
-    enemy->setPos(QRandomGenerator::global()->bounded(offset, scene->width() - offset), 0);
     qDebug() << "Enemy pos on spawn: " << enemy->pos();
 
     enemyCount++;

@@ -26,6 +26,12 @@ Hero::Hero(QString imagePath, KeyManager* keyManager) : SpaceShip(nullptr, image
     connect(keyManager, &KeyManager::logKeyPressed, this, &SpaceShip::toggleCheckText);
 }
 
+void Hero::addToScene(QGraphicsScene *scene)
+{
+    SpaceShip::addToScene(scene);
+    this->setPos(scene->width()/2 - this->boundingRect().width()/2, scene->height() - this->boundingRect().height() * 2);
+}
+
 void Hero::onTimer()
 {
     if((bulletCollisionCheck() != Side::nobody) || enemyCollisionCheck()){

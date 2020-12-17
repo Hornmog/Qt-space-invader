@@ -34,6 +34,12 @@ Enemy::~Enemy(){
     scene()->removeItem(this);
 }
 
+void Enemy::addToScene(QGraphicsScene *scene)
+{
+    SpaceShip::addToScene(scene);
+    this->setPos(QRandomGenerator::global()->bounded(width, scene->width() - width), 0);
+}
+
 void Enemy::onTimer(){
     this->move();
     checkText->setPos(x(),y());

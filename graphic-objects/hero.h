@@ -14,6 +14,7 @@ class Hero: public SpaceShip{
 public:
     Hero(QString imagePath = nullptr, KeyManager* keyManager = nullptr);
     int type() const override {return TypeIndex::hero;}
+    virtual void addToScene(QGraphicsScene* scene) override;
 
 signals:
     void heroKilled();

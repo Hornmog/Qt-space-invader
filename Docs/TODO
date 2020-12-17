@@ -3,8 +3,6 @@ Bugfixes:
 - EnemyManager acting weird (story mode after endless mode)
 - Initialization of hero position and state (whether it can be moved) after restart
 - EnemyManager spawns before coundown ends on restart
-- Log doesn't work
-- Should we remove checkText on restart? Probably yes?
 
 New features:
 - GameManager / LevelManager split for easier restarting
@@ -12,7 +10,7 @@ New features:
 - Levels
 - Neutral side meteors
 - Different ammo
-- Hero health system
+- Hero health system (health bar or lives?)
 
 Refactoring:
 - Probably more functionality regarding e.g. movement can be moved to AnimatedObject
@@ -20,6 +18,7 @@ Refactoring:
 - GM manages a lot of drawing tasks; is it OK?
 (for levels, we need to split LevelManager from GameManager)
 - Spaceship checkText toggle
+- Initialize x,y coords of SpaceShip within relevant adding to scene function?
 
 Done:
 - All spaceships report to their manager.
@@ -54,3 +53,5 @@ Done:
 - Display game paused
 - Animations
 - Enemy and bullets animated
+- Should we remove checkText on restart? Probably yes?
+- Log doesn't work
