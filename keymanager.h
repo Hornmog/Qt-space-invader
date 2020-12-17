@@ -20,13 +20,10 @@ public:
 
 signals:
     void heroKeyPressed(int key);
-    void logKeyPressed(bool logShow);
+    void logKeyPressed();
     void heroKeyReleased(int key);
     void keyRPressed();
     void keyPPressed();
-
-private:
-    bool logShow;
 
 };
 

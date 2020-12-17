@@ -28,22 +28,22 @@ Hero::Hero(QString imagePath, KeyManager* keyManager) : SpaceShip(nullptr, image
 
 void Hero::onTimer()
 {
-    groupCheckTextInfo();
-
     if((bulletCollisionCheck() != Side::nobody) || enemyCollisionCheck()){
         emit heroKilled();
     }
     else{       
         setPos(x() + calculateMovement('x'), y() + calculateMovement('y'));
+        checkText->setPos(x(),y());
     }
 
+    groupCheckTextInfo();
 }
 
 void Hero::groupCheckTextInfo()
 {
     QString output = "";
     output += "Acceleration: " + QString::number(engineAccel.x) + "\n";
-    output += "Speed: x: " + QString::number(speed.x) + " y: " + QString::number(speed.y) + "\n";
+    output += "SpeedX: " + QString::number(speed.x) + " speedY: " + QString::number(speed.y) + "\n";
     setCheckText(output);
 }
 

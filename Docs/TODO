@@ -8,17 +8,18 @@ Bugfixes:
 
 New features:
 - GameManager / LevelManager split for easier restarting
-- Enemy and bullets animated
 - (inform player about dialog cancelation) - leaderboard
 - Levels
 - Neutral side meteors
 - Different ammo
+- Hero health system
 
 Refactoring:
 - Probably more functionality regarding e.g. movement can be moved to AnimatedObject
 - SetMode -> Menu (naming & functionallity)
 - GM manages a lot of drawing tasks; is it OK?
 (for levels, we need to split LevelManager from GameManager)
+- Spaceship checkText toggle
 
 Done:
 - All spaceships report to their manager.
@@ -52,3 +53,4 @@ Done:
 - Bugfix - timers process singleShots correcly
 - Display game paused
 - Animations
+- Enemy and bullets animated

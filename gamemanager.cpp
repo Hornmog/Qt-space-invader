@@ -105,7 +105,9 @@ void GameManager::start()
     createPauseSceen();
 
     hero = new Hero(ImagePaths::hero, keyManager);
-    scene->addItem(hero);
+
+    hero->addToScene(scene);
+    //scene->addItem(hero);
 
     hero->setPos(view->width()/2 - hero->boundingRect().width()/2, view->height() - hero->boundingRect().height() * 2);
     qDebug() << "hero boundary: " << hero->boundingRect() ;

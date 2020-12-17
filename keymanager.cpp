@@ -6,7 +6,6 @@
 KeyManager::KeyManager(QWidget *widget) : QWidget(widget)
 {
     this->setFocus();
-    logShow = true;
 }
 
 void KeyManager::keyPressEvent(QKeyEvent *event)
@@ -19,8 +18,9 @@ void KeyManager::keyPressEvent(QKeyEvent *event)
     }
 
     else if (key == Qt::Key_L){
-        emit logKeyPressed(logShow);
-        logShow = !logShow;
+        SpaceShip::checkTextVisible = !SpaceShip::checkTextVisible;
+        qDebug() << "KeyManager set checkText to " << SpaceShip::checkTextVisible;
+        emit logKeyPressed();
     }
     else if (key == Qt::Key_R){
         emit keyRPressed();

@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QGraphicsRectItem>
+#include <QGraphicsScene>
 #include "keymanager.h"
 #include "consts.h"
 #include "timer.h"
@@ -15,12 +16,14 @@ class SpaceShip : public AnimatedObject
     Q_OBJECT
 public:
     explicit SpaceShip(QObject *parent = nullptr, QString imagePath = nullptr);
-
+    ~SpaceShip() override;
+    void addToScene(QGraphicsScene* scene);
     int side;
+    static bool checkTextVisible;
 
 public slots:
     virtual void onTimer() = 0;
-    void toggleCheckText(bool show);
+    void toggleCheckText();
 
 signals:
 
@@ -46,6 +49,7 @@ protected:
 
 private:
     Timer* timerBullet = nullptr;
+    bool checkTextOnScene = false;
 
 private slots:
     void shootIsAvl();

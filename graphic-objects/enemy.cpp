@@ -29,12 +29,14 @@ Enemy::Enemy(EnemyManager *manager, QString imagePath, int count) : SpaceShip(ma
     connect(manager, &EnemyManager::logKeyPressed, this, &SpaceShip::toggleCheckText);
 }
 
-Enemy::~Enemy(){ 
+Enemy::~Enemy(){
+    // Do we need to do this, or can the scene deal with it automatically?
     scene()->removeItem(this);
 }
 
 void Enemy::onTimer(){
     this->move();
+    checkText->setPos(x(),y());
 
     if(shootAvl){
         createBullet(side);
@@ -52,7 +54,7 @@ void Enemy::groupCheckTextInfo()
     output += "Count : " + QString::number(count) + "\n";
     output += "Diff  : " + QString::number(difficulty) + "\n";
     output += "Bull speed : " + QString::number(bulletSpeed) + "\n";
-    output += "Speed: x: " + QString::number(speed.x) + " y: " + QString::number(speed.y) + "\n";
+    output += "SpeedX: " + QString::number(speed.x) + " speedY: " + QString::number(speed.y) + "\n";
     setCheckText(output);
 }
 

@@ -28,7 +28,7 @@ signals:
     void changeDifficulty(int difficulty);
     void allEnemiesDefeated();
     void enemyOnBase();
-    void logKeyPressed(bool);
+    void logKeyPressed();
 
 public slots:
     void onSpawnTimer();

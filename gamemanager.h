@@ -57,7 +57,8 @@ private:
     int phase = 3;
     QVector<QString> countdownPhrases = {"START", "1", "2", "3"};
     QSet<int> itemTypesToKeep = {TypeIndex::background, TypeIndex::scoreBar, TypeIndex::checkText};
-
+    // checkText is not deleted by GameManager upon restarting, because checkText is tied to
+    // its relevant Spaceship, which deletes the text in its desctructor.
 
 private slots:
     void gameOver();

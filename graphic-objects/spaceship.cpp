@@ -8,6 +8,8 @@
 #include "checktext.h"
 #include "clock.h"
 
+bool SpaceShip::checkTextVisible = false;
+
 SpaceShip::SpaceShip(QObject *parent, QString imagePath) : AnimatedObject(parent, imagePath)
 {
     checkText = new CheckText();
@@ -17,6 +19,18 @@ SpaceShip::SpaceShip(QObject *parent, QString imagePath) : AnimatedObject(parent
     mainTimer = new Timer();
     connect(mainTimer, &QTimer::timeout, this, &SpaceShip::onTimer);
     mainTimer->start(period_ms);
+
+}
+
+SpaceShip::~SpaceShip()
+{
+    delete checkText;
+}
+
+void SpaceShip::addToScene(QGraphicsScene *scene)
+{
+    scene->addItem(this);
+    scene->addItem(checkText);
 
 }
 
@@ -90,8 +104,7 @@ void SpaceShip::setUpCheckText()
     checkText->setDefaultTextColor(color);
     checkText->setPlainText(QString::number(0));
     checkText->setZValue(ScenePriority::text);
-    checkText->hide();
-
+    checkText->setVisible(checkTextVisible);
 }
 
 void SpaceShip::setCheckText(QString string)
@@ -99,8 +112,10 @@ void SpaceShip::setCheckText(QString string)
     checkText->setPlainText(string);
 }
 
-void SpaceShip::toggleCheckText(bool show)
+void SpaceShip::toggleCheckText()
 {
-    checkText->setVisible(show);
+    qDebug() << "Check Text visible 1: " << checkTextVisible;
+    checkText->setVisible(checkTextVisible);
+    qDebug() << "Check Text visible 2: " << checkText->isVisible();
 
 }
