@@ -41,6 +41,8 @@ void Enemy::addToScene(QGraphicsScene *scene)
 }
 
 void Enemy::onTimer(){
+    groupCheckTextInfo();
+
     this->move();
     checkText->setPos(x(),y());
 

@@ -34,15 +34,16 @@ void Hero::addToScene(QGraphicsScene *scene)
 
 void Hero::onTimer()
 {
+    groupCheckTextInfo();
+    //function groupCheckTextInfo() called after hero killed
+
     if((bulletCollisionCheck() != Side::nobody) || enemyCollisionCheck()){
         emit heroKilled();
     }
     else{       
         setPos(x() + calculateMovement('x'), y() + calculateMovement('y'));
         checkText->setPos(x(),y());
-    }
-
-    groupCheckTextInfo();
+    }   
 }
 
 void Hero::groupCheckTextInfo()

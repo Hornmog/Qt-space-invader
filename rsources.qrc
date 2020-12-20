@@ -14,5 +14,6 @@
         <file>pictures/bulletFast.gif</file>
         <file>pictures/enemyBulletBright.gif</file>
         <file>pictures/enemyBullet.gif</file>
+        <file>pictures/bulletFastWhite.gif</file>
     </qresource>
 </RCC>

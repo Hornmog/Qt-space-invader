@@ -58,7 +58,10 @@ void GameManager::gameOver()
     }
     delete hero;
     hero = nullptr;
+
     delete enemyManager;
+    enemyManager = nullptr;
+
     createEndScreen();
     gameInProcess = false;
 
@@ -92,6 +95,9 @@ void GameManager::restartLevel()
 {
    gameWon = false;
    deleteSceneGraphicItems();
+   if (enemyManager != nullptr){
+       delete enemyManager;
+   }
    start();
    if(clock->isPaused()){
        clock->resume(); //to unpause hero if restart was called during pause
@@ -182,6 +188,7 @@ void GameManager::win()
     createWinScreen();
     gameInProcess = false;
     delete enemyManager;
+    enemyManager = nullptr;
 }
 
 void GameManager::createEndScreen()
@@ -275,8 +282,6 @@ void GameManager::startLevelCountdown()
     countdown->setSingleShot(true);
     countdown->start(1000);
 }
-
-
 
 void GameManager::changeScore(int score)
 {

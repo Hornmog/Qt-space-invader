@@ -2,12 +2,12 @@ Bugfixes:
 - Process kamikaze act for level continuation
 - EnemyManager acting weird (story mode after endless mode)
 - Initialization of hero position and state (whether it can be moved) after restart
-- EnemyManager spawns before coundown ends on restart
 
 New features:
 - GameManager / LevelManager split for easier restarting
 - (inform player about dialog cancelation) - leaderboard
 - Levels
+- Add sound
 - Neutral side meteors
 - Different ammo
 - Hero health system (health bar or lives?)
@@ -55,3 +55,4 @@ Done:
 - Enemy and bullets animated
 - Should we remove checkText on restart? Probably yes?
 - Log doesn't work
+- EnemyManager spawns before coundown ends on restart
