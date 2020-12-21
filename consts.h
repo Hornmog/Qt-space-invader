@@ -37,6 +37,11 @@ namespace ImagePaths {
     static const QString pause      =  pathPrefix + "pause.png";
 }
 
+namespace AudioPaths {
+//    static const QString pathPrefix = ":/audio/audio/";
+    static const QString background = ":/music/audio/background4.wav";
+}
+
 namespace ScenePriority {
     static const int spaceship = 10;         //default Zvalue is 0
     static const int fullScreenText = 20;

@@ -8,6 +8,7 @@
 #include "consts.h"
 #include "clock.h"
 #include "leaderboard.h"
+#include "audiomanager.h"
 
 #include <QObject>
 #include <QTimer>
@@ -42,6 +43,7 @@ private:
     Hero* hero = nullptr;
     EnemyManager* enemyManager;
     KeyManager* keyManager;
+    AudioManager* audioManager;
     QGraphicsPixmapItem* pause;
     QGraphicsTextItem* number;
     QGraphicsPixmapItem* fullScreenImage;

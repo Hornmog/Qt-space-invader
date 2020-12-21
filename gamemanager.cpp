@@ -23,6 +23,7 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
 
     view = new GraphicsView(scene);
     keyManager = new KeyManager();
+    audioManager = new AudioManager();
     scoreBar = new ScoreBar();
     createBackground();   
     scene->addItem(scoreBar);
@@ -61,6 +62,8 @@ void GameManager::gameOver()
 
     delete enemyManager;
     enemyManager = nullptr;
+
+    audioManager->stopBackground();
 
     createEndScreen();
     gameInProcess = false;
@@ -110,6 +113,7 @@ void GameManager::start()
     scoreBar->setScore(0);
     createPauseSceen();
 
+    audioManager->playBackground();
     hero = new Hero(ImagePaths::hero, keyManager);
 
     hero->addToScene(scene);
