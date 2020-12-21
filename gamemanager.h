@@ -21,53 +21,26 @@ public:
 
 
 private:
-    QString getUserNameEntryBox();
-    void connectSpaceshipSignals();
-    void createBackground();
-    void createCountdownTextItem();
-    void createLeaderBoardBox();
-    QGraphicsTextItem *createTextItem();
     void createWinScreen();
-    void createPauseSceen();
-    void deleteSceneGraphicItems();
-    void restartLevel();
-    void openMenu();
-    void start();
-    void startEnemySpawn();
     void createFullScreenImage(QString imagePath = nullptr);
+    QString getUserNameEntryBox();
+    void createLeaderBoardBox();
+    void openMenu();
 
-    QString gameOverImagePath = ImagePaths::gameOver;
-    ScoreBar* scoreBar;
-    QGraphicsScene* scene;
-    GraphicsView* view;
-    Hero* hero = nullptr;
-    EnemyManager* enemyManager;
     KeyManager* keyManager;
     AudioManager* audioManager;
-    QGraphicsPixmapItem* pause;
-    QGraphicsTextItem* number;
-    QGraphicsPixmapItem* fullScreenImage;
-    Timer* countdown = new Timer();
     LeaderBoard* leaderBoardFile = new LeaderBoard();
-    Clock* clock = Clock::getClock();
     bool gameWon = false;
     bool gameInProcess = false;
-    int sceneWidth  = 600;
-    int sceneHeight = 1000;
-    int pauseWidth  = 230;
-    int pauseHeight = 230;
-    int phase = 3;
-    QVector<QString> countdownPhrases = {"START", "1", "2", "3"};
-    QSet<int> itemTypesToKeep = {TypeIndex::background, TypeIndex::scoreBar, TypeIndex::checkText};
-    // checkText is not deleted by GameManager upon restarting, because checkText is tied to
-    // its relevant Spaceship, which deletes the text in its desctructor.
+    QGraphicsScene *menuScene;
+    GraphicsView* view;
+
 
 private slots:
     void gameOver();
     void createEndScreen();
-    void changeScore(int score);
     void win();
-    void startLevelCountdown();
+
 
 public slots:
     void keyRPressed();

@@ -3,15 +3,16 @@
 #include <QDesktopWidget>
 #include <QDebug>
 
+#include "consts.h"
 
-GraphicsView::GraphicsView(QGraphicsScene * scene) : QGraphicsView(scene) {
+GraphicsView::GraphicsView() : QGraphicsView() {
     //TODO: scroll bar policy ?
     QRect rect = QApplication::desktop()->screenGeometry(this);       // get size of a user's screen to position game window
-    this->setGeometry(rect.width()/2 - scene->width()/2, rect.height()/2 - scene->height()/2, scene->width(), scene->height());
+    this->setGeometry(rect.width()/2 - sceneWidth, rect.height()/2 - sceneHeight, sceneWidth, sceneHeight);
     this->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     this->show();
 
-    this->setFixedSize(scene->width(), scene->height());
+    this->setFixedSize(sceneWidth, sceneHeight);
     //resize window ?
 }

@@ -1,7 +1,5 @@
 Bugfixes:
 - Process kamikaze act for level continuation
-- EnemyManager acting weird (story mode after endless mode)
-- Initialization of hero position and state (whether it can be moved) after restart
 
 New features:
 - GameManager / LevelManager split for easier restarting
@@ -19,6 +17,9 @@ Refactoring:
 (for levels, we need to split LevelManager from GameManager)
 - Spaceship checkText toggle
 - Initialize x,y coords of SpaceShip within relevant adding to scene function?
+- recreate Number or pass as argument?
+- Use Lambda inmstead of slot phase for countdown
+- Create 1 more class for scene management (ie gameOver image)
 
 Done:
 - All spaceships report to their manager.
@@ -56,3 +57,5 @@ Done:
 - Should we remove checkText on restart? Probably yes?
 - Log doesn't work
 - EnemyManager spawns before coundown ends on restart
+- EnemyManager acting weird (story mode after endless mode)
+- Initialization of hero position and state (whether it can be moved) after restart

@@ -29,6 +29,7 @@ SOURCES += \
     keymanager.cpp \
     leaderboard.cpp \
     leaderboardwindow.cpp \
+    levelmanager.cpp \
     main.cpp \
     scorebar.cpp \
     graphic-objects/spaceship.cpp \
@@ -51,6 +52,7 @@ HEADERS += \
     keymanager.h \
     leaderboard.h \
     leaderboardwindow.h \
+    levelmanager.h \
     scorebar.h \
     graphic-objects/spaceship.h \
     startdialog.h \
