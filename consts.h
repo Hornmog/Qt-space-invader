@@ -70,15 +70,17 @@ QSet<int> const horizontalMovementKeys = {Qt::Key_Left, Qt::Key_Right};
 QSet<int> const arrowKeys = {Qt::Key_Left, Qt::Key_Right, Qt::Key_Up, Qt::Key_Down};
 QSet<int> const heroCommands = {Qt::Key_Left, Qt::Key_Right, Qt::Key_Up, Qt::Key_Down, Qt::Key_Space};
 
-QGraphicsTextItem* createTextItem()
-{
-    QGraphicsTextItem* item = new QGraphicsTextItem();
-    QFont font = QFont("Impact", 40, QFont::Bold);
-    item->setFont(font);
-    item->setDefaultTextColor(QColor(156, 20, 68));
-    item->setZValue(ScenePriority::text);
-    return item;
-}
+class UtilityFunctions {
+public:
+        static QGraphicsTextItem* createTextItem() {
+        QGraphicsTextItem* item = new QGraphicsTextItem();
+        QFont font = QFont("Impact", 40, QFont::Bold);
+        item->setFont(font);
+        item->setDefaultTextColor(QColor(156, 20, 68));
+        item->setZValue(ScenePriority::text);
+        return item;
+    }
+};
 
 #endif // CONS_H
 

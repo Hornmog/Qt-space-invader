@@ -11,6 +11,7 @@ New features:
 - Hero health system (health bar or lives?)
 
 Refactoring:
+- Add "restart label" to GameOver image
 - Probably more functionality regarding e.g. movement can be moved to AnimatedObject
 - SetMode -> Menu (naming & functionallity)
 - GM manages a lot of drawing tasks; is it OK?

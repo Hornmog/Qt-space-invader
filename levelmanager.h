@@ -6,9 +6,8 @@
 #include "graphicsview.h"
 #include "keymanager.h"
 #include "scorebar.h"
-
+//#include "gamemanager.h"
 #include <QObject>
-
 #include <graphic-objects/hero.h>
 
 class LevelManager : public QObject
@@ -16,6 +15,8 @@ class LevelManager : public QObject
     Q_OBJECT
 public:
     explicit LevelManager(QObject *parent = nullptr, KeyManager* keyManager = nullptr);
+    void setTotalEnemiesToKill(int num);
+    QGraphicsScene* getScene();
 
 public slots:
     void togglePause();
@@ -24,12 +25,14 @@ public slots:
     void startLevelCountdown(int phase = 3);
     void changeScore(int score);
     void gameOver();
+    void win();
 
 private:
     void start();
     void startEnemySpawn();
     void connectSpaceshipSignals();
     void createBackground();
+    void createFullScreenImage(QString imagePath);
     void createCountdownTextItem();
     void createPauseSceen();
     //    void deleteSceneGraphicItems();
@@ -49,7 +52,8 @@ private:
     int pauseHeight = 230;
     int phase = 3;
 signals:
-    void win();
+    void signalWin();
+    void signalGameOver(int score);
 };
 
 #endif // LEVELMANAGER_H

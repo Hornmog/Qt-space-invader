@@ -26,33 +26,24 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
     keyManager = new KeyManager();
     audioManager = new AudioManager();
 
+    level1 = new LevelManager(this, keyManager);
+    view->setScene(level1->getScene());
+
     connect(keyManager, &KeyManager::keyRPressed, this, &GameManager::keyRPressed); 
+    connect(level1, &LevelManager::signalGameOver, this, &GameManager::gameOver);
+    connect(level1, &LevelManager::signalWin, this, &GameManager::win);
 }
 
-void GameManager::createFullScreenImage(QString imagePath)
-{
-    if (imagePath != nullptr) {
-        QPixmap pixmap(imagePath);
-        fullScreenImage = new QGraphicsPixmapItem(pixmap.scaled(view->width(), view->height(), Qt::KeepAspectRatio));
-    } else {
-        fullScreenImage = new QGraphicsPixmapItem();
-    }
-    fullScreenImage->setPos(0, scene->height() / 2 - fullScreenImage->boundingRect().height() / 2);
-    fullScreenImage->setZValue(ScenePriority::fullScreenText);
-    scene->addItem(fullScreenImage);
-}
 
-void GameManager::gameOver()
+
+void GameManager::gameOver(int score)
 {
     if(gameWon){
+        // if hero is hit by a bullet after the game is won, we do nothing.
         return;
     }
-
-
-    createEndScreen();
     gameInProcess = false;
-
-    leaderBoardFile->update(getUserNameEntryBox(), scoreBar->score);
+    leaderBoardFile->update(getUserNameEntryBox(), score);
 }
 
 void GameManager::keyRPressed()
@@ -66,14 +57,9 @@ void GameManager::keyRPressed()
 void GameManager::restartLevel()
 {
    gameWon = false;
-   deleteSceneGraphicItems();
-   if (enemyManager != nullptr){
-       delete enemyManager;
-   }
-   // create new LevelManager
-   if(clock->isPaused()){
-       clock->resume(); //to unpause hero if restart was called during pause
-   }
+   delete level1;
+   level1 = new LevelManager(this, keyManager);
+   view->setScene(level1->getScene());
 }
 
 void GameManager::openMenu()
@@ -81,10 +67,10 @@ void GameManager::openMenu()
     StartDialog *menu = new StartDialog();
     int mode = menu->exec();
     if (mode == menu->Mode::story){
-        enemyManager->setTotalEnemiesToKill(2);
+        level1->setTotalEnemiesToKill(2);
     }
     else if (mode == menu->Mode::endless){
-        enemyManager->setTotalEnemiesToKill(INT_MAX);
+        level1->setTotalEnemiesToKill(INT_MAX);
     }
     else if (mode == menu->Mode::leaderBoard){
         createLeaderBoardBox();
@@ -122,24 +108,7 @@ QString GameManager::getUserNameEntryBox()
 void GameManager::win()
 {
     gameWon = true;
-    createWinScreen();
     gameInProcess = false;
-    delete enemyManager;
-    enemyManager = nullptr;
-}
 
-void GameManager::createEndScreen()
-{
-    createFullScreenImage(ImagePaths::gameOver);
-    QGraphicsTextItem* finalLabel = createTextItem();
-    finalLabel->setPlainText("Press R To Open Menu");
-    finalLabel->setPos(scene->width() / 2 - finalLabel->boundingRect().width() / 2,
-                   scene->height() * 7 / 8 - finalLabel->boundingRect().height() / 2);
-    scene->addItem(finalLabel);
-}
-
-void GameManager::createWinScreen()
-{
-    createFullScreenImage(ImagePaths::win);
 }
 

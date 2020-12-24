@@ -9,6 +9,7 @@ class GraphicsView : public QGraphicsView
     Q_OBJECT
 public:
     GraphicsView();
+    void setScene(QGraphicsScene* scene);
 private:
 };
 

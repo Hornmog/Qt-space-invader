@@ -4,9 +4,10 @@ LevelManager::LevelManager(QObject *parent, KeyManager* keyManager) : QObject(pa
 {
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,sceneWidth,sceneHeight);
+    qDebug() << "current scene width: " << scene->width() << "height: " << scene->height();
     scoreBar = new ScoreBar();
     scoreBar->setScore(0);
-
+    audioManager = new AudioManager();
     createBackground();
 
     hero = new Hero(ImagePaths::hero, keyManager);
@@ -22,6 +23,16 @@ LevelManager::LevelManager(QObject *parent, KeyManager* keyManager) : QObject(pa
     connectSpaceshipSignals();
     createCountdownTextItem();
     start();
+}
+
+void LevelManager::setTotalEnemiesToKill(int num)
+{
+    enemyManager->setTotalEnemiesToKill(num);
+}
+
+QGraphicsScene* LevelManager::getScene()
+{
+    return this->scene;
 }
 
 
@@ -100,13 +111,13 @@ void LevelManager::createBackground()
 void LevelManager::createCountdownTextItem()
 {
     qDebug() << "countdown created";
-    number = createTextItem();
+    number = UtilityFunctions::createTextItem();
     number->setPos(scene->width() / 2 - number->boundingRect().width() / 2,
                    scene->height() / 2 - number->boundingRect().height() / 2);
     scene->addItem(number);
     countdown = new Timer();
-    auto CountDownX = [this]() {startLevelCountdown(3);};
-    connect(countdown, &QTimer::timeout, this, &CountDownX);
+    auto countDownX = [=]() {startLevelCountdown(3);};
+    connect(countdown, &QTimer::timeout, this, countDownX);
 }
 void LevelManager::startLevelCountdown(int phase)
 {
@@ -126,7 +137,11 @@ void LevelManager::startLevelCountdown(int phase)
     number->setPos(scene->width() / 2 - number->boundingRect().width() / 2,
                    scene->height() / 2 - number->boundingRect().height() / 2);
     phase--;
-    //auto CountDownX = [this]() {startLevelCountdown(phase);};
+
+    auto countDownX = [=]() {startLevelCountdown(phase);};
+    disconnect(countdown, nullptr, nullptr, nullptr);
+    connect(countdown, &QTimer::timeout, this, countDownX);
+
     countdown->setSingleShot(true);
     countdown->start(1000);
 }
@@ -135,10 +150,33 @@ void LevelManager::changeScore(int score)
     scoreBar->setScore(score);
 }
 
+void LevelManager::createFullScreenImage(QString imagePath)
+{
+    QGraphicsPixmapItem* fullScreenImage;
+
+    QPixmap pixmap(imagePath);
+    fullScreenImage = new QGraphicsPixmapItem(pixmap.scaled(sceneWidth, sceneHeight, Qt::KeepAspectRatio));
+
+    fullScreenImage->setPos(0, sceneHeight / 2 - fullScreenImage->boundingRect().height() / 2);
+    fullScreenImage->setZValue(ScenePriority::fullScreenText);
+    scene->addItem(fullScreenImage);
+}
+
+
 void LevelManager::gameOver()
 {
     delete hero;
     delete enemyManager;
+    createFullScreenImage(ImagePaths::gameOver);
+
     audioManager->stopBackground();
+    emit signalGameOver(scoreBar->score);
     //start gameOver music
+}
+void LevelManager::win()
+{
+    createFullScreenImage(ImagePaths::win);
+    gameInProcess = false;
+    delete enemyManager;
+    emit signalWin();
 }

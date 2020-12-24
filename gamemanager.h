@@ -9,6 +9,7 @@
 #include "clock.h"
 #include "leaderboard.h"
 #include "audiomanager.h"
+#include "levelmanager.h"
 
 #include <QObject>
 #include <QTimer>
@@ -22,10 +23,10 @@ public:
 
 private:
     void createWinScreen();
-    void createFullScreenImage(QString imagePath = nullptr);
     QString getUserNameEntryBox();
     void createLeaderBoardBox();
     void openMenu();
+    void restartLevel();
 
     KeyManager* keyManager;
     AudioManager* audioManager;
@@ -34,17 +35,16 @@ private:
     bool gameInProcess = false;
     QGraphicsScene *menuScene;
     GraphicsView* view;
+    LevelManager* level1;
 
 
 private slots:
-    void gameOver();
-    void createEndScreen();
+    void gameOver(int score);
     void win();
 
 
 public slots:
     void keyRPressed();
-    void togglePause();
 };
 
 #endif // GAMEMANAGER_H
