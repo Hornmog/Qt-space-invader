@@ -26,6 +26,7 @@ SOURCES += \
     graphic-objects/enemy.cpp \
     graphicsview.cpp \
     graphic-objects/hero.cpp \
+    healthbar.cpp \
     keymanager.cpp \
     leaderboard.cpp \
     leaderboardwindow.cpp \
@@ -49,6 +50,7 @@ HEADERS += \
     gamemanager.h \
     graphicsview.h \
     graphic-objects/hero.h \
+    healthbar.h \
     keymanager.h \
     leaderboard.h \
     leaderboardwindow.h \

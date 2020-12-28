@@ -21,6 +21,7 @@ Hero::Hero(QString imagePath, KeyManager* keyManager) : SpaceShip(nullptr, image
     setUpDelay(shootDelay);
 
     this->keyManager = keyManager;
+
     connect(keyManager, &KeyManager::heroKeyPressed, this, &Hero::heroKeyPressed);
     connect(keyManager, &KeyManager::heroKeyReleased, this, &Hero::heroKeyReleased);
     connect(keyManager, &KeyManager::logKeyPressed, this, &SpaceShip::toggleCheckText);
@@ -30,6 +31,8 @@ void Hero::addToScene(QGraphicsScene *scene)
 {
     SpaceShip::addToScene(scene);
     this->setPos(scene->width()/2 - this->boundingRect().width()/2, scene->height() - this->boundingRect().height() * 2);
+    healthBar = new HealthBar(nullptr, scene);
+    healthBar->setLives(lives);
 }
 
 void Hero::onTimer()
@@ -38,7 +41,11 @@ void Hero::onTimer()
     //function groupCheckTextInfo() called after hero killed
 
     if((bulletCollisionCheck() != Side::nobody) || enemyCollisionCheck()){
-        emit heroKilled();
+        lives--;
+        healthBar->setLives(lives);
+        if(lives == 0){
+            emit heroKilled();
+        }
     }
     else{       
         setPos(x() + calculateMovement('x'), y() + calculateMovement('y'));

@@ -6,6 +6,7 @@
 #include "spaceship.h"
 #include "consts.h"
 #include "keymanager.h"
+#include "healthbar.h"
 
 
 class Hero: public SpaceShip{
@@ -32,12 +33,17 @@ private:
     bool enemyCollisionCheck();
     int calculateMovement(char coord);
     bool checkScreenBorders(int distance);
+
     KeyManager* keyManager;
+    HealthBar* healthBar;
+
     CoordPair engineAccel = CoordPair(0,0);
     QMap<int, bool> keyPressed = {{Qt::Key_Left, false}, {Qt::Key_Right, false}, {Qt::Key_Up, false}, {Qt::Key_Down, false}};
     QMap<int, int> oppositeKey = {{Qt::Key_Left, Qt::Key_Right}, {Qt::Key_Right, Qt::Key_Left},
                                   {Qt::Key_Up, Qt::Key_Down}, {Qt::Key_Down, Qt::Key_Up}};
+
     bool active = false;
+    int lives = 3;
 
     struct Movement {
         const CoordPair maxVelocity = CoordPair(200, 150);         //pixels per second
