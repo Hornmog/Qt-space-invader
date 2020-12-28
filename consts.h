@@ -1,6 +1,7 @@
 #ifndef CONS_H
 #define CONS_H
 
+#include <QFont>
 #include <QGraphicsItem>
 #include <QKeyEvent>
 #include <QRandomGenerator>
@@ -16,6 +17,9 @@ namespace TypeIndex {
     static const int fullscreenText = 7;
 
 }
+
+static const QVector<QString> countdownPhrases = {"START", "1", "2", "3"};
+static const QSet<int> itemTypesToKeep = {TypeIndex::background, TypeIndex::scoreBar, TypeIndex::checkText};
 
 static const QString leaderBoardFileName = "leaderBoard.json";
 
@@ -57,11 +61,26 @@ enum Side {
 static const int period_ms = 15;
 static const double FPS = 1000.0/period_ms;
 
+static const int sceneWidth  = 600;
+static const int sceneHeight = 1000;
+
 QSet<int> const verticalMovementKeys = {Qt::Key_Up, Qt::Key_Down};
 QSet<int> const horizontalMovementKeys = {Qt::Key_Left, Qt::Key_Right};
 
 QSet<int> const arrowKeys = {Qt::Key_Left, Qt::Key_Right, Qt::Key_Up, Qt::Key_Down};
 QSet<int> const heroCommands = {Qt::Key_Left, Qt::Key_Right, Qt::Key_Up, Qt::Key_Down, Qt::Key_Space};
+
+class UtilityFunctions {
+public:
+        static QGraphicsTextItem* createTextItem() {
+        QGraphicsTextItem* item = new QGraphicsTextItem();
+        QFont font = QFont("Impact", 40, QFont::Bold);
+        item->setFont(font);
+        item->setDefaultTextColor(QColor(156, 20, 68));
+        item->setZValue(ScenePriority::text);
+        return item;
+    }
+};
 
 #endif // CONS_H
 

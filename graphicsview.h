@@ -8,7 +8,8 @@ class GraphicsView : public QGraphicsView
 {
     Q_OBJECT
 public:
-    GraphicsView(QGraphicsScene * scene);
+    GraphicsView();
+    void setScene(QGraphicsScene* scene);
 private:
 };
 
