@@ -14,6 +14,12 @@ bool Clock::isPaused()
     return paused;
 }
 
+void Clock::start()
+{
+    QElapsedTimer::start();
+    paused = false;
+}
+
 Clock* Clock::getClock()
 {
     if(clockPointer == nullptr){

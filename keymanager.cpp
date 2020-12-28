@@ -6,6 +6,7 @@
 KeyManager::KeyManager(QWidget *widget) : QWidget(widget)
 {
     this->setFocus();
+
 }
 
 void KeyManager::keyPressEvent(QKeyEvent *event)

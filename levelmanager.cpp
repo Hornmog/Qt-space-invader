@@ -4,7 +4,8 @@ LevelManager::LevelManager(QObject *parent, KeyManager* keyManager) : QObject(pa
 {
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,sceneWidth,sceneHeight);
-    qDebug() << "current scene width: " << scene->width() << "height: " << scene->height();
+    keyManager->grabKeyboard();
+
     scoreBar = new ScoreBar();
     scoreBar->setScore(0);
     audioManager = new AudioManager();
@@ -22,7 +23,12 @@ LevelManager::LevelManager(QObject *parent, KeyManager* keyManager) : QObject(pa
     connect(keyManager, &KeyManager::keyPPressed, this, &LevelManager::togglePause);
     connectSpaceshipSignals();
     createCountdownTextItem();
-    start();
+    //start();
+}
+
+LevelManager::~LevelManager()
+{
+    audioManager->stopBackground();
 }
 
 void LevelManager::setTotalEnemiesToKill(int num)
@@ -43,6 +49,8 @@ void LevelManager::start()
 
     audioManager->playBackground();
     startLevelCountdown();
+
+    clock->start();
 
     gameInProcess = true;
     hero->setActive(true);
@@ -165,6 +173,9 @@ void LevelManager::createFullScreenImage(QString imagePath)
 
 void LevelManager::gameOver()
 {
+    if (gameWon){
+        return;
+    }
     delete hero;
     delete enemyManager;
     createFullScreenImage(ImagePaths::gameOver);
@@ -175,6 +186,7 @@ void LevelManager::gameOver()
 }
 void LevelManager::win()
 {
+    gameWon = true;
     createFullScreenImage(ImagePaths::win);
     gameInProcess = false;
     delete enemyManager;

@@ -27,11 +27,15 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
     audioManager = new AudioManager();
 
     level1 = new LevelManager(this, keyManager);
+
     view->setScene(level1->getScene());
 
     connect(keyManager, &KeyManager::keyRPressed, this, &GameManager::keyRPressed); 
     connect(level1, &LevelManager::signalGameOver, this, &GameManager::gameOver);
     connect(level1, &LevelManager::signalWin, this, &GameManager::win);
+
+    openMenu();
+    level1->start();
 }
 
 
@@ -60,10 +64,13 @@ void GameManager::restartLevel()
    delete level1;
    level1 = new LevelManager(this, keyManager);
    view->setScene(level1->getScene());
+   openMenu();
+   level1->start();
 }
 
 void GameManager::openMenu()
 {
+    keyManager->releaseKeyboard();
     StartDialog *menu = new StartDialog();
     int mode = menu->exec();
     if (mode == menu->Mode::story){
@@ -80,6 +87,7 @@ void GameManager::openMenu()
         view->window()->close();
         QMetaObject::invokeMethod(qApp, "quit", Qt::QueuedConnection);     //quit program
     }
+    keyManager->grabKeyboard();
 }
 
 void GameManager::createLeaderBoardBox()

@@ -15,8 +15,10 @@ class LevelManager : public QObject
     Q_OBJECT
 public:
     explicit LevelManager(QObject *parent = nullptr, KeyManager* keyManager = nullptr);
+    ~LevelManager();
     void setTotalEnemiesToKill(int num);
     QGraphicsScene* getScene();
+    void start();
 
 public slots:
     void togglePause();
@@ -28,7 +30,6 @@ public slots:
     void win();
 
 private:
-    void start();
     void startEnemySpawn();
     void connectSpaceshipSignals();
     void createBackground();
@@ -38,6 +39,7 @@ private:
     //    void deleteSceneGraphicItems();
 
     bool gameInProcess = false;
+    bool gameWon = false;
     ScoreBar* scoreBar;
     QGraphicsScene* scene;
     Hero* hero = nullptr;

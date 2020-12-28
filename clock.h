@@ -12,6 +12,7 @@ public:
     void resume();
     int getTime();
     static bool isPaused();
+    void start();
 
 signals:
     void pauseSignal();
