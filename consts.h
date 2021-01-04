@@ -39,11 +39,15 @@ namespace ImagePaths {
     static const QString win        =  pathPrefix + "win.png";
     static const QString background =  pathPrefix + "background.png";
     static const QString pause      =  pathPrefix + "pause.png";
+    static const QString heart      =  pathPrefix + "heart.png";
 }
 
 namespace AudioPaths {
-//    static const QString pathPrefix = ":/audio/audio/";
-    static const QString background = ":/music/audio/background4.wav";
+    static const QString pathPrefix = ":/music/audio/";
+    static const QString background = pathPrefix + "background4.wav";
+    static const QVector<QString> heroShoot = {pathPrefix + "heroShoot/1.wav", pathPrefix + "heroShoot/2.wav",
+                                               pathPrefix + "heroShoot/3.wav", pathPrefix + "heroShoot/4.wav",
+                                               pathPrefix + "heroShoot/5.wav"};
 }
 
 namespace ScenePriority {

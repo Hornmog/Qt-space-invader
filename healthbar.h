@@ -23,7 +23,7 @@ private:
     int lives = 0;
     int heartWidth = 50;
     int heartHeight = 50;
-    int heartOffset = 20;
+    int heartOffset = 10;
 
 signals:
 

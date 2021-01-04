@@ -2,6 +2,9 @@
 #include <QGraphicsScene>
 #include <QKeyEvent>
 #include <QDebug>
+#include <QSound>
+#include <QtMultimedia/QSound>
+#include <QRandomGenerator>
 #include "bullet.h"
 #include "enemy.h"
 #include <QTimer>
@@ -82,7 +85,7 @@ void Hero::heroKeyPressed(int key)
         keyPressed[oppositeKey[key]] = false;
     }
     else if (key == Qt::Key_Space && shootAvl){
-        createBullet(1);
+        shoot();
     }
 
 }
@@ -155,6 +158,14 @@ int Hero::calculateMovement(char coord)
 bool Hero::checkScreenBorders(int distance)
 {
     return ((pos().x() + this->width * 0.75 <= 0 && distance < 0) ||
-             (pos().x() + this->width * 0.25 >= scene()->width() && distance > 0));
+            (pos().x() + this->width * 0.25 >= scene()->width() && distance > 0));
+}
+
+void Hero::shoot()
+{
+    int rand = QRandomGenerator::global()->bounded(5);
+    qDebug() << AudioPaths::heroShoot[rand];
+    QSound::play(AudioPaths::heroShoot[rand]);
+    createBullet(1);
 }
 

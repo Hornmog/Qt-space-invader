@@ -33,6 +33,7 @@ private:
     bool enemyCollisionCheck();
     int calculateMovement(char coord);
     bool checkScreenBorders(int distance);
+    void shoot();
 
     KeyManager* keyManager;
     HealthBar* healthBar;

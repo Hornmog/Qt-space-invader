@@ -2,6 +2,7 @@ Bugfixes:
 - Process kamikaze act for level continuation
 
 New features:
+- Adding "charge" bar for hero bullets to limit max bullets per minute (variable size rectangle *Rect item)
 - (inform player about dialog cancelation) - leaderboard
 - Levels
 - Add sound

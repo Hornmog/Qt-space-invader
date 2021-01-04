@@ -41,7 +41,7 @@ void HealthBar::addLives(int value)
 
 QGraphicsPixmapItem *HealthBar::createHeart(int i)
 {
-    QPixmap* heartImage = new QPixmap(ImagePaths::hero);
+    QPixmap* heartImage = new QPixmap(ImagePaths::heart);
     auto heart = new QGraphicsPixmapItem(heartImage->scaled(heartWidth, heartHeight));
     scene->addItem(heart);
     heart->setPos(sceneWidth - (lifeList.size() + i + 1) * (heartWidth + heartOffset), heartOffset);

@@ -15,9 +15,15 @@
         <file>pictures/hero.png</file>
         <file>pictures/pause.png</file>
         <file>pictures/win.png</file>
+        <file>pictures/heart.png</file>
     </qresource>
     <qresource prefix="/audio"/>
     <qresource prefix="/music">
         <file>audio/background4.wav</file>
+        <file>audio/heroShoot/1.wav</file>
+        <file>audio/heroShoot/2.wav</file>
+        <file>audio/heroShoot/3.wav</file>
+        <file>audio/heroShoot/4.wav</file>
+        <file>audio/heroShoot/5.wav</file>
     </qresource>
 </RCC>
