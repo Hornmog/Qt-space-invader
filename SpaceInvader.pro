@@ -34,6 +34,7 @@ SOURCES += \
     main.cpp \
     scorebar.cpp \
     graphic-objects/spaceship.cpp \
+    soundeffect.cpp \
     startdialog.cpp \
     timer.cpp
 
@@ -57,6 +58,7 @@ HEADERS += \
     levelmanager.h \
     scorebar.h \
     graphic-objects/spaceship.h \
+    soundeffect.h \
     startdialog.h \
     timer.h
 

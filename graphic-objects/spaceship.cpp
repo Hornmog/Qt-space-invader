@@ -90,7 +90,7 @@ void SpaceShip::setUpDelay(int shootDelay)
     if(timerBullet == nullptr) {
         timerBullet = new Timer();
         connect(timerBullet,SIGNAL(timeout()),this,SLOT(shootIsAvl()));
-        timerBullet->start(shootDelay);
+        timerBullet->start(shootDelay);       
     } else {
         timerBullet->setInterval(shootDelay);
     }
@@ -111,6 +111,7 @@ void SpaceShip::setCheckText(QString string)
 {
     checkText->setPlainText(string);
 }
+
 
 void SpaceShip::toggleCheckText()
 {

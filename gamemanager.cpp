@@ -29,13 +29,19 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
     level1 = new LevelManager(this, keyManager);
 
     view->setScene(level1->getScene());
+    connectLevelManager();
 
-    connect(keyManager, &KeyManager::keyRPressed, this, &GameManager::keyRPressed); 
-    connect(level1, &LevelManager::signalGameOver, this, &GameManager::gameOver);
-    connect(level1, &LevelManager::signalWin, this, &GameManager::win);
 
     openMenu();
     level1->start();
+    gameInProcess = true;
+}
+
+void GameManager::connectLevelManager()
+{
+    connect(level1, &LevelManager::signalGameOver, this, &GameManager::gameOver);
+    connect(level1, &LevelManager::signalWin, this, &GameManager::win);
+    connect(level1, &LevelManager::restartLevel, this, &GameManager::restartLevel);
 }
 
 
@@ -50,22 +56,16 @@ void GameManager::gameOver(int score)
     leaderBoardFile->update(getUserNameEntryBox(), score);
 }
 
-void GameManager::keyRPressed()
-{
-    if(!gameInProcess){
-        restartLevel();
-    }
-}
-
-
 void GameManager::restartLevel()
 {
    gameWon = false;
    delete level1;
    level1 = new LevelManager(this, keyManager);
+   connectLevelManager();
    view->setScene(level1->getScene());
    openMenu();
    level1->start();
+   gameInProcess = true;
 }
 
 void GameManager::openMenu()

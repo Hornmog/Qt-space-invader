@@ -22,6 +22,7 @@ public:
 
 public slots:
     void togglePause();
+    void keyRPressed();
 
  private slots:
     void startLevelCountdown(int phase = 3);
@@ -33,9 +34,10 @@ private:
     void startEnemySpawn();
     void connectSpaceshipSignals();
     void createBackground();
-    void createFullScreenImage(QString imagePath);
+    void createScreenImage(QString imagePath);
+    void createPressRImage();
     void createCountdownTextItem();
-    void createPauseSceen();
+    void createPauseScreen();
     //    void deleteSceneGraphicItems();
 
     bool gameInProcess = false;
@@ -56,6 +58,7 @@ private:
 signals:
     void signalWin();
     void signalGameOver(int score);
+    void restartLevel();
 };
 
 #endif // LEVELMANAGER_H

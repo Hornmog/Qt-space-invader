@@ -33,9 +33,11 @@ namespace ImagePaths {
     static const QString pathPrefix = ":/images/pictures/";
     static const QString enemy      =  pathPrefix + "enemyOctopus.png";
     static const QString hero       =  pathPrefix + "hero.gif";
+    static const QString damagedHero=  pathPrefix + "damagedHero.gif";
     static const QString bullet     =  pathPrefix + "bulletFast.gif";
     static const QString enemyBullet=  pathPrefix + "bulletFastWhite.gif";
     static const QString gameOver   =  pathPrefix + "gameOver.png";
+    static const QString pressR     =  pathPrefix + "pressR.png";
     static const QString win        =  pathPrefix + "win.png";
     static const QString background =  pathPrefix + "background.png";
     static const QString pause      =  pathPrefix + "pause.png";
@@ -43,11 +45,14 @@ namespace ImagePaths {
 }
 
 namespace AudioPaths {
-    static const QString pathPrefix = ":/music/audio/";
-    static const QString background = pathPrefix + "background4.wav";
-    static const QVector<QString> heroShoot = {pathPrefix + "heroShoot/1.wav", pathPrefix + "heroShoot/2.wav",
-                                               pathPrefix + "heroShoot/3.wav", pathPrefix + "heroShoot/4.wav",
-                                               pathPrefix + "heroShoot/5.wav"};
+    static const QString pathPrefix          =  ":/music/audio/";
+    static const QString background          =  pathPrefix + "background4.wav";
+    static const QString gameOver            =  pathPrefix + "gameOver.wav";
+    static const QVector<QString> heroShoot  = {pathPrefix + "heroShoot/1.wav", pathPrefix + "heroShoot/2.wav",
+                                                pathPrefix + "heroShoot/3.wav", pathPrefix + "heroShoot/4.wav",
+                                                pathPrefix + "heroShoot/5.wav"};
+    static const QVector<QString> heroDamaged= {pathPrefix + "heroDamaged/1.wav", pathPrefix + "heroDamaged/2.wav",
+                                                pathPrefix + "heroDamaged/3.wav"};
 }
 
 namespace ScenePriority {

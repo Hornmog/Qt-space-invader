@@ -1,5 +1,6 @@
 #include "levelmanager.h"
 #include "consts.h"
+#include "soundeffect.h"
 LevelManager::LevelManager(QObject *parent, KeyManager* keyManager) : QObject(parent)
 {
     scene = new QGraphicsScene();
@@ -18,9 +19,10 @@ LevelManager::LevelManager(QObject *parent, KeyManager* keyManager) : QObject(pa
     scene->addItem(scoreBar);
     scoreBar->setPos(scene->width() - scoreBar->boundingRect().width()*3, scene->height() - scoreBar->boundingRect().height());
 
-    createPauseSceen();
+    createPauseScreen();
 
     connect(keyManager, &KeyManager::keyPPressed, this, &LevelManager::togglePause);
+    connect(keyManager, &KeyManager::keyRPressed, this, &LevelManager::keyRPressed);
     connectSpaceshipSignals();
     createCountdownTextItem();
     //start();
@@ -41,7 +43,12 @@ QGraphicsScene* LevelManager::getScene()
     return this->scene;
 }
 
-
+void LevelManager::keyRPressed()
+{
+    if(!gameInProcess){
+        restartLevel();
+    }
+}
 
 void LevelManager::start()
 {
@@ -97,7 +104,7 @@ void LevelManager::togglePause()
     }
 }
 
-void LevelManager::createPauseSceen()
+void LevelManager::createPauseScreen()
 {
     pause = new QGraphicsPixmapItem();
     QPixmap pauseImage(ImagePaths::pause);
@@ -158,7 +165,7 @@ void LevelManager::changeScore(int score)
     scoreBar->setScore(score);
 }
 
-void LevelManager::createFullScreenImage(QString imagePath)
+void LevelManager::createScreenImage(QString imagePath)
 {
     QGraphicsPixmapItem* fullScreenImage;
 
@@ -170,15 +177,28 @@ void LevelManager::createFullScreenImage(QString imagePath)
     scene->addItem(fullScreenImage);
 }
 
+void LevelManager::createPressRImage()
+{
+    QPixmap pressRPixmap(ImagePaths::pressR);
+    QGraphicsPixmapItem* pressRImage = new QGraphicsPixmapItem(pressRPixmap.scaled(sceneWidth/2, sceneHeight, Qt::KeepAspectRatio));
+
+    pressRImage->setPos(sceneWidth/4, sceneHeight - pressRImage->boundingRect().height() * 3);
+    pressRImage->setZValue(ScenePriority::fullScreenText);
+    scene->addItem(pressRImage);
+}
+
 
 void LevelManager::gameOver()
 {
     if (gameWon){
         return;
     }
+    gameInProcess = false;
     delete hero;
     delete enemyManager;
-    createFullScreenImage(ImagePaths::gameOver);
+    createScreenImage(ImagePaths::gameOver);
+    createPressRImage();
+    //SoundEffect(AudioPaths::gameOver, 0.3);
 
     audioManager->stopBackground();
     emit signalGameOver(scoreBar->score);
@@ -187,7 +207,7 @@ void LevelManager::gameOver()
 void LevelManager::win()
 {
     gameWon = true;
-    createFullScreenImage(ImagePaths::win);
+    createScreenImage(ImagePaths::win);
     gameInProcess = false;
     delete enemyManager;
     emit signalWin();

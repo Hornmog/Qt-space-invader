@@ -28,8 +28,8 @@ public slots:
 signals:
 
 protected:
-    void createBullet(int side = 1);
     QGraphicsItem* collisionCheck(int typeIndex);
+    void createBullet(int side = 1);
     int bulletCollisionCheck();
 
     void setUpDelay(int delay);

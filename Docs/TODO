@@ -2,15 +2,17 @@ Bugfixes:
 - Process kamikaze act for level continuation
 
 New features:
+- Add intro animation (story) maybe Star Wars text, skip option
 - Adding "charge" bar for hero bullets to limit max bullets per minute (variable size rectangle *Rect item)
 - (inform player about dialog cancelation) - leaderboard
 - Levels
 - Add sound
 - Neutral side meteors
 - Different ammo
-- Hero bilnks red on hit
+- Hero bilnks red on hit, + animation for enemy destruction
 
 Refactoring:
+- Sort out Adding images on screen
 - Add "restart label" to GameOver image
 - Probably more functionality regarding e.g. movement can be moved to AnimatedObject
 - LM manages a lot of drawing tasks; is it OK?

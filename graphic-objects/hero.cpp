@@ -2,7 +2,7 @@
 #include <QGraphicsScene>
 #include <QKeyEvent>
 #include <QDebug>
-#include <QSound>
+#include "soundeffect.h"
 #include <QtMultimedia/QSound>
 #include <QRandomGenerator>
 #include "bullet.h"
@@ -15,7 +15,7 @@ const Hero::Movement Hero::movement;
 Hero::Hero(QString imagePath, KeyManager* keyManager) : SpaceShip(nullptr, imagePath)
 {
     shootDelay = 1000;
-    bulletSpeed = 0.2 * period_ms; // 10 pixels per 50 ms
+    bulletSpeed = 0.6 * period_ms; // 10 pixels per 50 ms
     speed = CoordPair(0,0);
     side = Side::hero;
     active = false;
@@ -44,6 +44,11 @@ void Hero::onTimer()
     //function groupCheckTextInfo() called after hero killed
 
     if((bulletCollisionCheck() != Side::nobody) || enemyCollisionCheck()){
+        this->setAnimation(ImagePaths::damagedHero);
+
+        int rand = QRandomGenerator::global()->bounded(3);
+        SoundEffect(AudioPaths::heroDamaged[rand], 0.3);
+
         lives--;
         healthBar->setLives(lives);
         if(lives == 0){
@@ -165,7 +170,7 @@ void Hero::shoot()
 {
     int rand = QRandomGenerator::global()->bounded(5);
     qDebug() << AudioPaths::heroShoot[rand];
-    QSound::play(AudioPaths::heroShoot[rand]);
+    SoundEffect(AudioPaths::heroShoot[rand], 0.05);
     createBullet(1);
 }
 

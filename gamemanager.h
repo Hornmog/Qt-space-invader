@@ -22,11 +22,11 @@ public:
 
 
 private:
+    void connectLevelManager();
     void createWinScreen();
     QString getUserNameEntryBox();
     void createLeaderBoardBox();
     void openMenu();
-    void restartLevel();
 
     KeyManager* keyManager;
     AudioManager* audioManager;
@@ -41,10 +41,10 @@ private:
 private slots:
     void gameOver(int score);
     void win();
-
+    void restartLevel();
 
 public slots:
-    void keyRPressed();
+
 };
 
 #endif // GAMEMANAGER_H
