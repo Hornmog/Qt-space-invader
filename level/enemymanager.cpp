@@ -51,11 +51,6 @@ void EnemyManager::onKillByHero(Enemy *enemy)
     }    
 }
 
-void EnemyManager::onKillByNonHero(Enemy *enemy)
-{
-    onEnemyDestruction(enemy);
-}
-
 
 void EnemyManager::onSpawnTimer()
 {

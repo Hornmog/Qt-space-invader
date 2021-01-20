@@ -5,7 +5,7 @@
 #include <QGraphicsRectItem>
 #include "keymanager.h"
 #include <QJsonObject>
-#include "timer.h"
+#include "utils/timer.h"
 
 class Enemy;
 
@@ -16,7 +16,6 @@ public:
     EnemyManager(QGraphicsScene* scene, KeyManager* keyManager);
     void onEnemyDestruction(Enemy* enemy);
     void onKillByHero(Enemy* enemy);
-    void onKillByNonHero(Enemy* enemy);
     void startSpawningEnemies();
     void setTotalEnemiesToKill(int num) {totalEnemiesToKill = num;}
     QJsonObject returnEnemiesKilled();

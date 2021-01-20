@@ -3,7 +3,7 @@
 
 #include <QGraphicsRectItem>
 #include <QObject>
-#include "enemymanager.h"
+#include "level/enemymanager.h"
 #include "consts.h"
 #include "spaceship.h"
 
@@ -27,7 +27,7 @@ private:
     int count;
     int difficulty;
     void move();
-    void positiveRemoval(int hitType);
+    void positiveRemoval(int hitBy);
 
 signals:
     void enemyOnBase();

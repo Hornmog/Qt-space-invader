@@ -41,6 +41,8 @@ void Enemy::addToScene(QGraphicsScene *scene)
     SpaceShip::addToScene(scene);
     //this->setPos(QRandomGenerator::global()->bounded(width, scene->width() - width), 0);
     this->setPos(qrand() % (sceneWidth - 2 * width) + width, 0);
+    // What if we make the enemy slowly appearing from above?
+    // I.e. it starts with slightly negative coordinates.
 }
 
 void Enemy::onTimer(){
@@ -103,8 +105,5 @@ void Enemy::positiveRemoval(int hitBy)
     if(hitBy == Side::hero){
         manager->onKillByHero(this);
     }
-//    else if(hitBy == Side::enemy){
-//        manager->onKillByNonHero(this);
-//    }
 }
 

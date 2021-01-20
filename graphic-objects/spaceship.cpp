@@ -6,7 +6,7 @@
 #include <QTimer>
 #include "keymanager.h"
 #include "checktext.h"
-#include "clock.h"
+#include "utils/clock.h"
 
 bool SpaceShip::checkTextVisible = false;
 
@@ -74,6 +74,13 @@ void SpaceShip::createBullet(int side)
     Bullet *bullet = new Bullet(bulletSpeed, side, imagePath);
     // TODO: why do we need to add bullet length?
     int basePositionX = x()+(width/2);
+
+    // I think we could move it to Bullet(). We use "side" there anyway.
+    // Maybe even the imagePath logic from above can be there.
+    // It was moved out before, however; do you remember why?
+    // If it's just about bassing the additionaly computed value to the base class,
+    // it shouldn't be a problem; e.g. see
+    // https://stackoverflow.com/questions/10260760/c-calling-a-base-class-constructor-with-a-computed-argument
     if(bulletSpeed > 0){
         bullet->setPos(basePositionX, y()          - bullet->getBulletLength() - 1);
     }
@@ -90,7 +97,7 @@ void SpaceShip::setUpDelay(int shootDelay)
     if(timerBullet == nullptr) {
         timerBullet = new Timer();
         connect(timerBullet,SIGNAL(timeout()),this,SLOT(shootIsAvl()));
-        timerBullet->start(shootDelay);       
+        timerBullet->start(shootDelay);
     } else {
         timerBullet->setInterval(shootDelay);
     }
@@ -109,6 +116,8 @@ void SpaceShip::setUpCheckText()
 
 void SpaceShip::setCheckText(QString string)
 {
+    // is there much sense for this function to be separate from groupCheckTextInfo()
+    // since all the setting up happens in setUpCheckText()?
     checkText->setPlainText(string);
 }
 

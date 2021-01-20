@@ -49,10 +49,13 @@ namespace AudioPaths {
     static const QString pathPrefix          =  ":/music/audio/";
     static const QString background          =  pathPrefix + "background4.wav";
     static const QString gameOver            =  pathPrefix + "gameOver.wav";
-    static const QVector<QString> heroShoot  = {pathPrefix + "heroShoot/1.wav", pathPrefix + "heroShoot/2.wav",
-                                                pathPrefix + "heroShoot/3.wav", pathPrefix + "heroShoot/4.wav",
+    static const QVector<QString> heroShoot  = {pathPrefix + "heroShoot/1.wav",
+                                                pathPrefix + "heroShoot/2.wav",
+                                                pathPrefix + "heroShoot/3.wav",
+                                                pathPrefix + "heroShoot/4.wav",
                                                 pathPrefix + "heroShoot/5.wav"};
-    static const QVector<QString> heroDamaged= {pathPrefix + "heroDamaged/1.wav", pathPrefix + "heroDamaged/2.wav",
+    static const QVector<QString> heroDamaged= {pathPrefix + "heroDamaged/1.wav",
+                                                pathPrefix + "heroDamaged/2.wav",
                                                 pathPrefix + "heroDamaged/3.wav"};
 }
 

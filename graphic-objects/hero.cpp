@@ -2,7 +2,7 @@
 #include <QGraphicsScene>
 #include <QKeyEvent>
 #include <QDebug>
-#include "soundeffect.h"
+#include "level/soundeffect.h"
 #include <QtMultimedia/QSound>
 //#include <QRandomGenerator>
 #include "bullet.h"
@@ -35,6 +35,7 @@ void Hero::addToScene(QGraphicsScene *scene)
     SpaceShip::addToScene(scene);
     this->setPos(scene->width()/2 - this->boundingRect().width()/2, scene->height() - this->boundingRect().height() * 2);
     healthBar = new HealthBar(nullptr, scene);
+    // Why initialise it upon adding to the scene and not upon creation?
     healthBar->setLives(lives);
 }
 
@@ -49,6 +50,8 @@ void Hero::onTimer()
         //int rand = QRandomGenerator::global()->bounded(3);
         int rand = qrand() % 3;
         SoundEffect(AudioPaths::heroDamaged[rand], 0.3);
+        // I see magic constants here.
+        // What about making heroShoot a vector and using the size() method?
 
         lives--;
         healthBar->setLives(lives);
@@ -172,6 +175,8 @@ void Hero::shoot()
     //int rand = QRandomGenerator::global()->bounded(5);
     int rand = qrand() % 5;
     qDebug() << AudioPaths::heroShoot[rand];
+    // Magic constants.
+
     SoundEffect(AudioPaths::heroShoot[rand], 0.05);
     createBullet(1);
 }

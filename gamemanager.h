@@ -1,15 +1,15 @@
 #ifndef GAMEMANAGER_H
 #define GAMEMANAGER_H
 
-#include "scorebar.h"
+#include "level/scorebar.h"
 #include "graphic-objects/hero.h"
-#include "enemymanager.h"
+#include "level/enemymanager.h"
 #include "graphicsview.h"
 #include "consts.h"
-#include "clock.h"
+#include "utils/clock.h"
 #include "leaderboard.h"
-#include "audiomanager.h"
-#include "levelmanager.h"
+#include "level/audiomanager.h"
+#include "level/levelmanager.h"
 
 #include <QObject>
 #include <QTimer>

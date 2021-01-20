@@ -1,5 +1,5 @@
 #include "animatedobject.h"
-#include "timer.h"
+#include "utils/timer.h"
 #include "consts.h"
 #include <QDebug>
 
