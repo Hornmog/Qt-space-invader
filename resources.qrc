@@ -2,17 +2,13 @@
     <qresource prefix="/images">
         <file>pictures/background.png</file>
         <file>pictures/bullet.gif</file>
-        <file>pictures/bullet.png</file>
         <file>pictures/bulletFast.gif</file>
         <file>pictures/bulletFastWhite.gif</file>
-        <file>pictures/enemy.png</file>
         <file>pictures/enemyBullet.gif</file>
-        <file>pictures/enemyBullet.png</file>
         <file>pictures/enemyBulletBright.gif</file>
         <file>pictures/enemyOctopus.png</file>
         <file>pictures/gameOver.png</file>
         <file>pictures/hero.gif</file>
-        <file>pictures/hero.png</file>
         <file>pictures/pause.png</file>
         <file>pictures/win.png</file>
         <file>pictures/heart.png</file>
