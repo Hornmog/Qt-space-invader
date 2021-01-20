@@ -5,7 +5,7 @@
 #include <QGraphicsScene>
 #include <cmath>
 #include "consts.h"
-#include <QRandomGenerator>
+//#include <QRandomGenerator>
 
 Enemy::Enemy(EnemyManager *manager, QString imagePath, int count) : SpaceShip(manager, imagePath)
 {
@@ -15,8 +15,10 @@ Enemy::Enemy(EnemyManager *manager, QString imagePath, int count) : SpaceShip(ma
 
     CoordPair diff(0.2 * period_ms, 0.02 * period_ms);
 
-    speed.x = QRandomGenerator::global()->bounded(diff.x * 2 + 1) - diff.x;
-    speed.y = QRandomGenerator::global()->bounded(diff.y * 2 + 1) + diff.y;
+    //speed.x = QRandomGenerator::global()->bounded(diff.x * 2 + 1) - diff.x;
+    //speed.y = QRandomGenerator::global()->bounded(diff.y * 2 + 1) + diff.y;
+    speed.x = qrand() % int(diff.x * 2 + 1) - diff.x;
+    speed.y = qrand() % int(diff.y * 2 + 1) + diff.y;
 
 
     this->manager = manager;
@@ -37,7 +39,8 @@ Enemy::~Enemy(){
 void Enemy::addToScene(QGraphicsScene *scene)
 {
     SpaceShip::addToScene(scene);
-    this->setPos(QRandomGenerator::global()->bounded(width, scene->width() - width), 0);
+    //this->setPos(QRandomGenerator::global()->bounded(width, scene->width() - width), 0);
+    this->setPos(qrand() % (sceneWidth - 2 * width) + width, 0);
 }
 
 void Enemy::onTimer(){

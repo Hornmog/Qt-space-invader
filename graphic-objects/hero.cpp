@@ -4,7 +4,7 @@
 #include <QDebug>
 #include "soundeffect.h"
 #include <QtMultimedia/QSound>
-#include <QRandomGenerator>
+//#include <QRandomGenerator>
 #include "bullet.h"
 #include "enemy.h"
 #include <QTimer>
@@ -46,7 +46,8 @@ void Hero::onTimer()
     if((bulletCollisionCheck() != Side::nobody) || enemyCollisionCheck()){
         this->setAnimation(ImagePaths::damagedHero);
 
-        int rand = QRandomGenerator::global()->bounded(3);
+        //int rand = QRandomGenerator::global()->bounded(3);
+        int rand = qrand() % 3;
         SoundEffect(AudioPaths::heroDamaged[rand], 0.3);
 
         lives--;
@@ -168,7 +169,8 @@ bool Hero::checkScreenBorders(int distance)
 
 void Hero::shoot()
 {
-    int rand = QRandomGenerator::global()->bounded(5);
+    //int rand = QRandomGenerator::global()->bounded(5);
+    int rand = qrand() % 5;
     qDebug() << AudioPaths::heroShoot[rand];
     SoundEffect(AudioPaths::heroShoot[rand], 0.05);
     createBullet(1);

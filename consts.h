@@ -1,10 +1,11 @@
-#ifndef CONS_H
-#define CONS_H
+#ifndef CONTS_H
+#define CONTS_H
 
 #include <QFont>
 #include <QGraphicsItem>
 #include <QKeyEvent>
-#include <QRandomGenerator>
+#include <QDebug>
+//#include <QRandomGenerator>
 
 namespace TypeIndex {
     static const int bullet = 66666;         //anything >= UserType (65536).
@@ -91,5 +92,5 @@ public:
     }
 };
 
-#endif // CONS_H
+#endif // CONTS_H
 
