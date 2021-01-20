@@ -2,8 +2,7 @@
 #include <QDebug>
 #include <stdexcept>
 
-Timer::Timer() : QTimer()
-{
+Timer::Timer() {
     QTimer* us = this;
     connect(us, &QTimer::timeout, this, &Timer::timeoutCheckInterval);
     connect(Clock::getClock(), &Clock::pauseSignal, this, &Timer::pause);

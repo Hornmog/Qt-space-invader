@@ -1,7 +1,7 @@
 #ifndef LEVELMANAGER_H
 #define LEVELMANAGER_H
 
-#include "audiomanager.h"
+#include "level/audiomanager.h"
 #include "enemymanager.h"
 #include "graphicsview.h"
 #include "keymanager.h"
@@ -17,7 +17,9 @@ public:
     explicit LevelManager(QObject *parent = nullptr, KeyManager* keyManager = nullptr);
     ~LevelManager();
     void setTotalEnemiesToKill(int num);
-    QGraphicsScene* getScene();
+    QGraphicsScene* getScene() { return this->scene; }
+    // simple getters can be left in the header like this imho
+    // though it's a matter of taste
     void start();
 
 public slots:

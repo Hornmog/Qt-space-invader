@@ -6,7 +6,7 @@
 #include "spaceship.h"
 #include "consts.h"
 #include "keymanager.h"
-#include "healthbar.h"
+#include "level/healthbar.h"
 
 
 class Hero: public SpaceShip{

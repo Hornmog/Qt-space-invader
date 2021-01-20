@@ -14,7 +14,7 @@
 #include "graphic-objects/enemy.h"
 #include "startdialog.h"
 #include "leaderboardwindow.h"
-#include "clock.h"
+#include "utils/clock.h"
 
 GameManager::GameManager(QObject *parent) : QObject(parent)
 {
@@ -45,7 +45,6 @@ void GameManager::connectLevelManager()
 }
 
 
-
 void GameManager::gameOver(int score)
 {
     if(gameWon){
@@ -54,6 +53,8 @@ void GameManager::gameOver(int score)
     }
     gameInProcess = false;
     leaderBoardFile->update(getUserNameEntryBox(), score);
+    // Would be nice to show an informative message, something like
+    // "Your high score has been saved."
 }
 
 void GameManager::restartLevel()
@@ -85,7 +86,7 @@ void GameManager::openMenu()
     }
     else if (mode == menu->Mode::quit){
         view->window()->close();
-        QMetaObject::invokeMethod(qApp, "quit", Qt::QueuedConnection);     //quit program
+        QMetaObject::invokeMethod(qApp, "quit", Qt::QueuedConnection); //quit program
     }
     keyManager->grabKeyboard();
 }
@@ -107,8 +108,9 @@ QString GameManager::getUserNameEntryBox()
     QString text = QInputDialog::getText(nullptr, tr("QInputDialog::getText()"),
                                          tr("User name:"), QLineEdit::Normal,
                                          "", &ok);
-    if (ok && !text.isEmpty())
+    if (ok && !text.isEmpty()) {
         userName = text;
+    }
     keyManager->grabKeyboard();
     return userName;
 }

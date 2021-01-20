@@ -21,6 +21,7 @@ private:
     QString imagePath;
     QMovie* gif;
     bool nonDefaultGif = 0;
+    // If that is is used for replacing the current QMovie with another one, the name is confusing.
 
 protected:
     int width = 100, height = 100;

@@ -6,8 +6,8 @@
 #include <QGraphicsScene>
 #include "keymanager.h"
 #include "consts.h"
-#include "timer.h"
-#include "coordpair.h"
+#include "utils/timer.h"
+#include "utils/coordpair.h"
 #include "checktext.h"
 #include "animatedobject.h"
 

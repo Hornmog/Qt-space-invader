@@ -5,7 +5,7 @@
 
 #include "consts.h"
 
-GraphicsView::GraphicsView() : QGraphicsView() {
+GraphicsView::GraphicsView() {
 }
 
 void GraphicsView::setScene(QGraphicsScene *scene)

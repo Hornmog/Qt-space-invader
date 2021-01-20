@@ -100,8 +100,5 @@ void Enemy::positiveRemoval(int hitBy)
     if(hitBy == Side::hero){
         manager->onKillByHero(this);
     }
-//    else if(hitBy == Side::enemy){
-//        manager->onKillByNonHero(this);
-//    }
 }
 
