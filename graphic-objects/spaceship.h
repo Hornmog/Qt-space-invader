@@ -34,7 +34,6 @@ protected:
 
     void setUpDelay(int delay);
     void setUpCheckText();
-    void setCheckText(QString string);
 
     virtual void groupCheckTextInfo() = 0;
 

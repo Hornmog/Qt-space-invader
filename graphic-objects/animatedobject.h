@@ -20,7 +20,7 @@ private slots:
 private:
     QString imagePath;
     QMovie* gif;
-    bool nonDefaultGif = 0;
+    bool isDefaultGif = true;
     // If that is is used for replacing the current QMovie with another one, the name is confusing.
 
 protected:

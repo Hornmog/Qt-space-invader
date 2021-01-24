@@ -53,8 +53,7 @@ void GameManager::gameOver(int score)
     }
     gameInProcess = false;
     leaderBoardFile->update(getUserNameEntryBox(), score);
-    // Would be nice to show an informative message, something like
-    // "Your high score has been saved."
+
 }
 
 void GameManager::restartLevel()

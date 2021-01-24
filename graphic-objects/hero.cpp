@@ -24,6 +24,7 @@ Hero::Hero(QString imagePath, KeyManager* keyManager) : SpaceShip(nullptr, image
     setUpDelay(shootDelay);
 
     this->keyManager = keyManager;
+    soundEffect = new SoundEffect();
 
     connect(keyManager, &KeyManager::heroKeyPressed, this, &Hero::heroKeyPressed);
     connect(keyManager, &KeyManager::heroKeyReleased, this, &Hero::heroKeyReleased);
@@ -35,7 +36,6 @@ void Hero::addToScene(QGraphicsScene *scene)
     SpaceShip::addToScene(scene);
     this->setPos(scene->width()/2 - this->boundingRect().width()/2, scene->height() - this->boundingRect().height() * 2);
     healthBar = new HealthBar(nullptr, scene);
-    // Why initialise it upon adding to the scene and not upon creation?
     healthBar->setLives(lives);
 }
 
@@ -46,11 +46,8 @@ void Hero::onTimer()
 
     if((bulletCollisionCheck() != Side::nobody) || enemyCollisionCheck()){
         this->setAnimation(ImagePaths::damagedHero);
-
-        int rand = QRandomGenerator::global()->bounded(3);
-        SoundEffect(AudioPaths::heroDamaged[rand], 0.3);
-        // I see magic constants here.
-        // What about making heroShoot a vector and using the size() method?
+        int rand = QRandomGenerator::global()->bounded(AudioPaths::heroDamaged.size());
+        soundEffect->play(AudioPaths::heroDamaged[rand], Volume::heroDamaged);
 
         lives--;
         healthBar->setLives(lives);
@@ -69,7 +66,7 @@ void Hero::groupCheckTextInfo()
     QString output = "";
     output += "Acceleration: " + QString::number(engineAccel.x) + "\n";
     output += "SpeedX: " + QString::number(speed.x) + " speedY: " + QString::number(speed.y) + "\n";
-    setCheckText(output);
+    checkText->setPlainText(output);
 }
 
 void Hero::heroKeyPressed(int key)
@@ -171,11 +168,18 @@ bool Hero::checkScreenBorders(int distance)
 
 void Hero::shoot()
 {
+<<<<<<< HEAD
     int rand = QRandomGenerator::global()->bounded(5);
+||||||| parent of ea4895a... Minor changes based on review
+    //int rand = QRandomGenerator::global()->bounded(5);
+    int rand = qrand() % 5;
+=======
+    //int rand = QRandomGenerator::global()->bounded(5);
+    int rand = qrand() % AudioPaths::heroShoot.size();
+>>>>>>> ea4895a... Minor changes based on review
     qDebug() << AudioPaths::heroShoot[rand];
-    // Magic constants.
 
-    SoundEffect(AudioPaths::heroShoot[rand], 0.05);
+    soundEffect->play(AudioPaths::heroShoot[rand], Volume::heroShoot);
     createBullet(1);
 }
 

@@ -24,12 +24,12 @@ public:
 
 public slots:
     void togglePause();
-    void keyRPressed();
+    void checkRestart();
 
  private slots:
     void startLevelCountdown(int phase = 3);
     void changeScore(int score);
-    void gameOver();
+    void lose();
     void win();
 
 private:
