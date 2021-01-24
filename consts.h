@@ -66,6 +66,10 @@ namespace ScenePriority {
     static const int text = 30;
     static const int pause = 25;
 }
+namespace Volume {
+    static const float heroShoot = 0.2;
+    static const float heroDamaged = 0.3;
+}
 
 enum Side {
    nobody, hero, enemy, neutral

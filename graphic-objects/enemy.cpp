@@ -41,8 +41,6 @@ void Enemy::addToScene(QGraphicsScene *scene)
     SpaceShip::addToScene(scene);
     //this->setPos(QRandomGenerator::global()->bounded(width, scene->width() - width), 0);
     this->setPos(qrand() % (sceneWidth - 2 * width) + width, 0);
-    // What if we make the enemy slowly appearing from above?
-    // I.e. it starts with slightly negative coordinates.
 }
 
 void Enemy::onTimer(){
@@ -68,7 +66,7 @@ void Enemy::groupCheckTextInfo()
     output += "Diff  : " + QString::number(difficulty) + "\n";
     output += "Bull speed : " + QString::number(bulletSpeed) + "\n";
     output += "SpeedX: " + QString::number(speed.x) + " speedY: " + QString::number(speed.y) + "\n";
-    setCheckText(output);
+    checkText->setPlainText(output);
 }
 
 void Enemy::setDifficulty(int difficulty)
@@ -93,6 +91,7 @@ void Enemy::move()
     }
     if(y() >= scene()->height() - this->boundingRect().height()){
         emit enemyOnBase();
+        delete this;
     }
 
     setPos(x() + speed.x, y() + speed.y);

@@ -1,7 +1,12 @@
 Bugfixes:
 - Process kamikaze act for level continuation
+- On enemy difficulty increase, all enemies shoot, timer synchronizes
 
 New features:
+- User confirmation on restart
+- Help point in the starting menu with the list of controls
+- Notify player about his score
+- Make enemies appear from the top
 - Add intro animation (story) maybe Star Wars text, skip option
 - Adding "charge" bar for hero bullets to limit max bullets per minute (variable size rectangle *Rect item)
 - (inform player about dialog cancelation) - leaderboard

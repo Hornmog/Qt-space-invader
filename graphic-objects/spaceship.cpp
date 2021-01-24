@@ -114,13 +114,6 @@ void SpaceShip::setUpCheckText()
     checkText->setVisible(checkTextVisible);
 }
 
-void SpaceShip::setCheckText(QString string)
-{
-    // is there much sense for this function to be separate from groupCheckTextInfo()
-    // since all the setting up happens in setUpCheckText()?
-    checkText->setPlainText(string);
-}
-
 
 void SpaceShip::toggleCheckText()
 {

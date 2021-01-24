@@ -19,14 +19,11 @@ LevelManager::LevelManager(QObject *parent, KeyManager* keyManager) : QObject(pa
 
     hero = new Hero(ImagePaths::hero, keyManager);
     hero->addToScene(scene);
-    // So. Hero only gets deleted if the game is lost,
-    // but get created each time we start the level, no matter the outcome.
-    // Something doesn't add up.
 
     createPauseScreen();
 
     connect(keyManager, &KeyManager::keyPPressed, this, &LevelManager::togglePause);
-    connect(keyManager, &KeyManager::keyRPressed, this, &LevelManager::keyRPressed);
+    connect(keyManager, &KeyManager::keyRPressed, this, &LevelManager::checkRestart);
     connectSpaceshipSignals();
     createCountdownTextItem();
     keyManager->grabKeyboard();
@@ -35,6 +32,10 @@ LevelManager::LevelManager(QObject *parent, KeyManager* keyManager) : QObject(pa
 LevelManager::~LevelManager()
 {
     audioManager->stopBackground();
+    if(gameWon){
+        delete hero;
+    }
+    delete enemyManager;
 }
 
 void LevelManager::setTotalEnemiesToKill(int num)
@@ -42,14 +43,11 @@ void LevelManager::setTotalEnemiesToKill(int num)
     enemyManager->setTotalEnemiesToKill(num);
 }
 
-void LevelManager::keyRPressed()
-// possibly, something like maybeRestart() or checkRestart()?
-// It's not up to the level-manager which key exactly is tied to the command
+void LevelManager::checkRestart()
 {
     if(!gameInProcess){
         emit restartLevel();
     }
-    // Would be nice to add an "Are you sure?" dialogue.
 }
 
 void LevelManager::start()
@@ -69,8 +67,8 @@ void LevelManager::connectSpaceshipSignals()
 {
     connect(enemyManager, &EnemyManager::onEnemyCountChange, this, &LevelManager::changeScore);
     connect(enemyManager, &EnemyManager::allEnemiesDefeated, this, &LevelManager::win);
-    connect(hero, &Hero::heroKilled, this, &LevelManager::gameOver);
-    connect(enemyManager, &EnemyManager::enemyOnBase, this, &LevelManager::gameOver);
+    connect(hero, &Hero::heroKilled, this, &LevelManager::lose);
+    connect(enemyManager, &EnemyManager::enemyOnBase, this, &LevelManager::lose);
 }
 
 void LevelManager::startEnemySpawn()
@@ -92,9 +90,11 @@ void LevelManager::togglePause()
         hero->setActive(true);
         pause->hide();
     }
-    // Else what?
-    // If such situation should never happen, consider throwing an exception
-    // that can be caught in debug
+    else{
+        qDebug() << "gameInProcess: " + QString(gameInProcess) + " clockPaused: " + QString(clock->getClock()->isPaused());
+        throw std::domain_error("");
+    }
+
 }
 
 void LevelManager::createPauseScreen()
@@ -183,20 +183,15 @@ void LevelManager::createPressRImage()
 }
 
 
-void LevelManager::gameOver()
-// Just for symmtry, maybe we can call this one "lose()" :)
-// "Game over" is ambiguous. Technically, if the game is won, it's still over.
+void LevelManager::lose()
 {
     qDebug() << "lose!";
-    if (gameWon){
+    if (!gameInProcess){
         // we can't lose a game that has been already won
         return;
     }
     gameInProcess = false;
     delete hero;
-    delete enemyManager;
-    // Shouldn't the deletion be in the destructor instead?
-    // It get deleted upon restart anyway.
 
     createScreenImage(ImagePaths::gameOver);
     createPressRImage();
@@ -211,12 +206,6 @@ void LevelManager::win()
     gameWon = true;
     gameInProcess = false;
     createScreenImage(ImagePaths::win);
-    // Something's up with image loading for me
-    // > win!
-    // > QPixmap::scaled: Pixmap is a null pixmap
-    // Does it work for you?
-
-    delete enemyManager; // to the destructor?
     emit signalWin();
 
 }

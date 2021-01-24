@@ -29,7 +29,6 @@ void KeyManager::keyPressEvent(QKeyEvent *event)
     else if (key == Qt::Key_P){
         emit keyPPressed();
     }
-    // A thought: adding some Help point in the starting menu with the list of controls would be nice.
 }
 
 void KeyManager::keyReleaseEvent(QKeyEvent *event)
