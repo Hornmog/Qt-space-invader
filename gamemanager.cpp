@@ -24,7 +24,6 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
     view = new GraphicsView();
     view->setScene(menuScene);
     keyManager = new KeyManager();
-    audioManager = new AudioManager();
 
     level1 = new LevelManager(this, keyManager);
 

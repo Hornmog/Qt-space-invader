@@ -29,7 +29,6 @@ private:
     void openMenu();
 
     KeyManager* keyManager;
-    AudioManager* audioManager;
     LeaderBoard* leaderBoardFile = new LeaderBoard();
     bool gameWon = false;
     bool gameInProcess = false;

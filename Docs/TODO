@@ -17,14 +17,15 @@ New features:
 - Hero bilnks red on hit, + animation for enemy destruction
 
 Refactoring:
+- OpenMenu separate
 - Sort out Adding images on screen
-- Add "restart label" to GameOver image
 - Probably more functionality regarding e.g. movement can be moved to AnimatedObject
 - LM manages a lot of drawing tasks; is it OK?
 - Initialize x,y coords of SpaceShip within relevant adding to scene function?
 - Create 1 more class for scene management (ie gameOver image)
 
 Done:
+- Add "restart label" to GameOver image
 - All spaceships report to their manager.
 - Problem of colliding items
 - Hero gets too far from the visible game screen
