@@ -74,4 +74,4 @@ RESOURCES += \
 
 DISTFILES += \
     Docs/TODO \
-    Docs/gameLogic.png
+    Docs/model.qmodel
