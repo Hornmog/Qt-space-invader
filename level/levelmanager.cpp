@@ -1,36 +1,41 @@
 #include "levelmanager.h"
 #include "consts.h"
 #include "soundeffect.h"
+
 LevelManager::LevelManager(QObject *parent, KeyManager* keyManager) : QObject(parent)
 {
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,sceneWidth,sceneHeight);
-    keyManager->grabKeyboard();
+    createBackground();
 
     scoreBar = new ScoreBar();
     scoreBar->setScore(0);
+    scene->addItem(scoreBar);
+    scoreBar->setPos(scene->width() - scoreBar->boundingRect().width()*3,
+                     scene->height() - scoreBar->boundingRect().height());
+
+    enemyManager = new EnemyManager(scene, keyManager);
     audioManager = new AudioManager();
-    createBackground();
 
     hero = new Hero(ImagePaths::hero, keyManager);
     hero->addToScene(scene);
-    enemyManager = new EnemyManager(scene, keyManager);
-
-    scene->addItem(scoreBar);
-    scoreBar->setPos(scene->width() - scoreBar->boundingRect().width()*3, scene->height() - scoreBar->boundingRect().height());
 
     createPauseScreen();
 
     connect(keyManager, &KeyManager::keyPPressed, this, &LevelManager::togglePause);
-    connect(keyManager, &KeyManager::keyRPressed, this, &LevelManager::keyRPressed);
+    connect(keyManager, &KeyManager::keyRPressed, this, &LevelManager::checkRestart);
     connectSpaceshipSignals();
     createCountdownTextItem();
-    //start();
+    keyManager->grabKeyboard();
 }
 
 LevelManager::~LevelManager()
 {
     audioManager->stopBackground();
+    if(gameWon){
+        delete hero;
+    }
+    delete enemyManager;
 }
 
 void LevelManager::setTotalEnemiesToKill(int num)
@@ -38,30 +43,23 @@ void LevelManager::setTotalEnemiesToKill(int num)
     enemyManager->setTotalEnemiesToKill(num);
 }
 
-QGraphicsScene* LevelManager::getScene()
-{
-    return this->scene;
-}
-
-void LevelManager::keyRPressed()
+void LevelManager::checkRestart()
 {
     if(!gameInProcess){
-        restartLevel();
+        emit restartLevel();
     }
 }
 
 void LevelManager::start()
 {
-    //keyManager->grabKeyboard();
-
-    audioManager->playBackground();
-    startLevelCountdown();
-
-    clock->start();
-
     gameInProcess = true;
+    clock->start();
+    audioManager->playBackground();
+
     hero->setActive(true);
     hero->show();
+
+    startLevelCountdown();
 }
 
 
@@ -69,19 +67,9 @@ void LevelManager::connectSpaceshipSignals()
 {
     connect(enemyManager, &EnemyManager::onEnemyCountChange, this, &LevelManager::changeScore);
     connect(enemyManager, &EnemyManager::allEnemiesDefeated, this, &LevelManager::win);
-    connect(hero, &Hero::heroKilled, this, &LevelManager::gameOver);
-    connect(enemyManager, &EnemyManager::enemyOnBase, this, &LevelManager::gameOver);
+    connect(hero, &Hero::heroKilled, this, &LevelManager::lose);
+    connect(enemyManager, &EnemyManager::enemyOnBase, this, &LevelManager::lose);
 }
-
-/*void LevelManager::deleteSceneGraphicItems()
-{
-    auto items = scene->items();
-    for (QGraphicsItem* item: qAsConst(items)) {
-        if(!itemTypesToKeep.contains(item->type())){
-            delete item;
-        }
-    }
-}*/
 
 void LevelManager::startEnemySpawn()
 {
@@ -90,18 +78,23 @@ void LevelManager::startEnemySpawn()
 
 void LevelManager::togglePause()
 {
-    if(gameInProcess && !clock->isPaused()){
+    if(gameInProcess && !clock->getClock()->isPaused()){
         gameInProcess = false;
         clock->pause();
         hero->setActive(false);
         pause->show();
     }
-    else if(!gameInProcess && clock->isPaused()){
+    else if(!gameInProcess && clock->getClock()->isPaused()){
         gameInProcess = true;
         clock->resume();
         hero->setActive(true);
         pause->hide();
     }
+    else{
+        qDebug() << "gameInProcess: " + QString(gameInProcess) + " clockPaused: " + QString(clock->getClock()->isPaused());
+        throw std::domain_error("");
+    }
+
 }
 
 void LevelManager::createPauseScreen()
@@ -110,8 +103,8 @@ void LevelManager::createPauseScreen()
     QPixmap pauseImage(ImagePaths::pause);
     pause->setPixmap(pauseImage.scaled(pauseWidth, pauseHeight));
     pause->setZValue(ScenePriority::pause);
-    pause->hide();
     pause->setPos(scene->width()/2 - pauseWidth/2, scene->height()/2 - pauseHeight/2);
+    pause->hide();
     scene->addItem(pause);
 }
 
@@ -147,7 +140,6 @@ void LevelManager::startLevelCountdown(int phase)
         delete number;
         return;
     }
-    //recreate Number or pass as argument?
     number->setPlainText(countdownPhrases[phase]);
     number->setPos(scene->width() / 2 - number->boundingRect().width() / 2,
                    scene->height() / 2 - number->boundingRect().height() / 2);
@@ -160,6 +152,7 @@ void LevelManager::startLevelCountdown(int phase)
     countdown->setSingleShot(true);
     countdown->start(1000);
 }
+
 void LevelManager::changeScore(int score)
 {
     scoreBar->setScore(score);
@@ -167,11 +160,10 @@ void LevelManager::changeScore(int score)
 
 void LevelManager::createScreenImage(QString imagePath)
 {
-    QGraphicsPixmapItem* fullScreenImage;
-
     QPixmap pixmap(imagePath);
-    fullScreenImage = new QGraphicsPixmapItem(pixmap.scaled(sceneWidth, sceneHeight, Qt::KeepAspectRatio));
 
+    QGraphicsPixmapItem* fullScreenImage = new QGraphicsPixmapItem(
+                pixmap.scaled(sceneWidth, sceneHeight, Qt::KeepAspectRatio));
     fullScreenImage->setPos(0, sceneHeight / 2 - fullScreenImage->boundingRect().height() / 2);
     fullScreenImage->setZValue(ScenePriority::fullScreenText);
     scene->addItem(fullScreenImage);
@@ -179,8 +171,11 @@ void LevelManager::createScreenImage(QString imagePath)
 
 void LevelManager::createPressRImage()
 {
+    // This function is basically identical with the one above.
+    // Consider fusing them, maybe by introducing additional parameters
     QPixmap pressRPixmap(ImagePaths::pressR);
-    QGraphicsPixmapItem* pressRImage = new QGraphicsPixmapItem(pressRPixmap.scaled(sceneWidth/2, sceneHeight, Qt::KeepAspectRatio));
+    QGraphicsPixmapItem* pressRImage = new QGraphicsPixmapItem(
+                pressRPixmap.scaled(sceneWidth/2, sceneHeight, Qt::KeepAspectRatio));
 
     pressRImage->setPos(sceneWidth/4, sceneHeight - pressRImage->boundingRect().height() * 3);
     pressRImage->setZValue(ScenePriority::fullScreenText);
@@ -188,17 +183,18 @@ void LevelManager::createPressRImage()
 }
 
 
-void LevelManager::gameOver()
+void LevelManager::lose()
 {
-    if (gameWon){
+    qDebug() << "lose!";
+    if (!gameInProcess){
+        // we can't lose a game that has been already won
         return;
     }
     gameInProcess = false;
     delete hero;
-    delete enemyManager;
+
     createScreenImage(ImagePaths::gameOver);
     createPressRImage();
-    //SoundEffect(AudioPaths::gameOver, 0.3);
 
     audioManager->stopBackground();
     emit signalGameOver(scoreBar->score);
@@ -206,9 +202,10 @@ void LevelManager::gameOver()
 }
 void LevelManager::win()
 {
+    qDebug() << "win!";
     gameWon = true;
-    createScreenImage(ImagePaths::win);
     gameInProcess = false;
-    delete enemyManager;
+    createScreenImage(ImagePaths::win);
     emit signalWin();
+
 }

@@ -2,9 +2,9 @@
 #include <QGraphicsScene>
 #include <QKeyEvent>
 #include <QDebug>
-#include "soundeffect.h"
+#include "level/soundeffect.h"
 #include <QtMultimedia/QSound>
-#include <QRandomGenerator>
+//#include <QRandomGenerator>
 #include "bullet.h"
 #include "enemy.h"
 #include <QTimer>
@@ -24,6 +24,7 @@ Hero::Hero(QString imagePath, KeyManager* keyManager) : SpaceShip(nullptr, image
     setUpDelay(shootDelay);
 
     this->keyManager = keyManager;
+    soundEffect = new SoundEffect();
 
     connect(keyManager, &KeyManager::heroKeyPressed, this, &Hero::heroKeyPressed);
     connect(keyManager, &KeyManager::heroKeyReleased, this, &Hero::heroKeyReleased);
@@ -46,8 +47,9 @@ void Hero::onTimer()
     if((bulletCollisionCheck() != Side::nobody) || enemyCollisionCheck()){
         this->setAnimation(ImagePaths::damagedHero);
 
-        int rand = QRandomGenerator::global()->bounded(3);
-        SoundEffect(AudioPaths::heroDamaged[rand], 0.3);
+        //int rand = QRandomGenerator::global()->bounded(3);
+        int rand = qrand() % AudioPaths::heroDamaged.size();
+        soundEffect->play(AudioPaths::heroDamaged[rand], Volume::heroDamaged);
 
         lives--;
         healthBar->setLives(lives);
@@ -66,7 +68,7 @@ void Hero::groupCheckTextInfo()
     QString output = "";
     output += "Acceleration: " + QString::number(engineAccel.x) + "\n";
     output += "SpeedX: " + QString::number(speed.x) + " speedY: " + QString::number(speed.y) + "\n";
-    setCheckText(output);
+    checkText->setPlainText(output);
 }
 
 void Hero::heroKeyPressed(int key)
@@ -168,9 +170,11 @@ bool Hero::checkScreenBorders(int distance)
 
 void Hero::shoot()
 {
-    int rand = QRandomGenerator::global()->bounded(5);
+    //int rand = QRandomGenerator::global()->bounded(5);
+    int rand = qrand() % AudioPaths::heroShoot.size();
     qDebug() << AudioPaths::heroShoot[rand];
-    SoundEffect(AudioPaths::heroShoot[rand], 0.05);
+
+    soundEffect->play(AudioPaths::heroShoot[rand], Volume::heroShoot);
     createBullet(1);
 }
 

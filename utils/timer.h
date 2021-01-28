@@ -1,7 +1,7 @@
 #ifndef TIMER_H
 #define TIMER_H
 #include <QTimer>
-#include "clock.h"
+#include "utils/clock.h"
 
 class Timer : public QTimer
 {

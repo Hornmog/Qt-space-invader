@@ -1,10 +1,11 @@
-#ifndef CONS_H
-#define CONS_H
+#ifndef CONTS_H
+#define CONTS_H
 
 #include <QFont>
 #include <QGraphicsItem>
 #include <QKeyEvent>
-#include <QRandomGenerator>
+#include <QDebug>
+//#include <QRandomGenerator>
 
 namespace TypeIndex {
     static const int bullet = 66666;         //anything >= UserType (65536).
@@ -48,10 +49,13 @@ namespace AudioPaths {
     static const QString pathPrefix          =  ":/music/audio/";
     static const QString background          =  pathPrefix + "background4.wav";
     static const QString gameOver            =  pathPrefix + "gameOver.wav";
-    static const QVector<QString> heroShoot  = {pathPrefix + "heroShoot/1.wav", pathPrefix + "heroShoot/2.wav",
-                                                pathPrefix + "heroShoot/3.wav", pathPrefix + "heroShoot/4.wav",
+    static const QVector<QString> heroShoot  = {pathPrefix + "heroShoot/1.wav",
+                                                pathPrefix + "heroShoot/2.wav",
+                                                pathPrefix + "heroShoot/3.wav",
+                                                pathPrefix + "heroShoot/4.wav",
                                                 pathPrefix + "heroShoot/5.wav"};
-    static const QVector<QString> heroDamaged= {pathPrefix + "heroDamaged/1.wav", pathPrefix + "heroDamaged/2.wav",
+    static const QVector<QString> heroDamaged= {pathPrefix + "heroDamaged/1.wav",
+                                                pathPrefix + "heroDamaged/2.wav",
                                                 pathPrefix + "heroDamaged/3.wav"};
 }
 
@@ -61,6 +65,10 @@ namespace ScenePriority {
     static const int bullet = 15;
     static const int text = 30;
     static const int pause = 25;
+}
+namespace Volume {
+    static const float heroShoot = 0.2;
+    static const float heroDamaged = 0.3;
 }
 
 enum Side {
@@ -91,5 +99,5 @@ public:
     }
 };
 
-#endif // CONS_H
+#endif // CONTS_H
 

@@ -1,5 +1,5 @@
 #include "animatedobject.h"
-#include "timer.h"
+#include "utils/timer.h"
 #include "consts.h"
 #include <QDebug>
 
@@ -26,15 +26,15 @@ void AnimatedObject::setAnimation(QString path)
 {
     gif = new QMovie(path);
     gif->start();
-    nonDefaultGif = true;
+    isDefaultGif = false;
 }
 
 void AnimatedObject::nextFrame()
 {
-    if(nonDefaultGif && gif->currentFrameNumber() + 1 >= gif->frameCount()){
+    if(!isDefaultGif && gif->currentFrameNumber() + 1 >= gif->frameCount()){
         gif = new QMovie(imagePath);
         gif->start();
-        nonDefaultGif = false;
+        isDefaultGif = true;
     }
 
     this->setPixmap(gif->currentPixmap().scaled(width, height));

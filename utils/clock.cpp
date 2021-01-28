@@ -4,8 +4,7 @@
 Clock* Clock::clockPointer = nullptr;
 bool Clock::paused = false;
 
-Clock::Clock() : QObject(), QElapsedTimer()
-{
+Clock::Clock() {
 
 }
 

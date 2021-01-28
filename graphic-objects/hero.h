@@ -6,7 +6,8 @@
 #include "spaceship.h"
 #include "consts.h"
 #include "keymanager.h"
-#include "healthbar.h"
+#include "level/healthbar.h"
+#include "level/soundeffect.h"
 
 
 class Hero: public SpaceShip{
@@ -37,6 +38,7 @@ private:
 
     KeyManager* keyManager;
     HealthBar* healthBar;
+    SoundEffect* soundEffect;
 
     CoordPair engineAccel = CoordPair(0,0);
     QMap<int, bool> keyPressed = {{Qt::Key_Left, false}, {Qt::Key_Right, false}, {Qt::Key_Up, false}, {Qt::Key_Down, false}};
