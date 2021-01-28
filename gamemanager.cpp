@@ -72,10 +72,10 @@ void GameManager::openMenu()
     keyManager->releaseKeyboard();
     StartDialog *menu = new StartDialog();
     int mode = menu->exec();
-    if (mode == menu->Mode::story){
-        level1->setTotalEnemiesToKill(2);
-    }
-    else if (mode == menu->Mode::endless){
+//    if (mode == menu->Mode::story){
+//        level1->setTotalEnemiesToKill(2);
+//    }
+    if (mode == menu->Mode::endless){
         level1->setTotalEnemiesToKill(INT_MAX);
     }
     else if (mode == menu->Mode::leaderBoard){

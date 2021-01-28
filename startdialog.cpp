@@ -6,7 +6,7 @@
 
 StartDialog::StartDialog() {
     endlessMode = this->addButton("Endless", QMessageBox::ActionRole);
-    storyMode = this->addButton("Story", QMessageBox::ActionRole);
+    //storyMode = this->addButton("Story", QMessageBox::ActionRole);
     // Why did you disable the story mode?
     leaderBoardMode = this->addButton("LeaderBoard", QMessageBox::ActionRole);
     quitbutton = this->addButton("Quit", QMessageBox::ActionRole);
@@ -21,9 +21,9 @@ int StartDialog::exec() {
     if (this->clickedButton() == endlessMode){
       return Mode::endless;
     }
-    else if (this->clickedButton() == storyMode){
-      return Mode::story;
-    }
+//    else if (this->clickedButton() == storyMode){
+//      return Mode::story;
+//    }
     else if (this->clickedButton() == leaderBoardMode){
       return Mode::leaderBoard;
     }
