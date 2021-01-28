@@ -3,6 +3,7 @@ Bugfixes:
 - On enemy difficulty increase, all enemies shoot, timer synchronizes
 
 New features:
+- Enemy having 2 lifes, half destroyed, mechanical insides seen
 - User confirmation on restart
 - Help point in the starting menu with the list of controls
 - Notify player about his score

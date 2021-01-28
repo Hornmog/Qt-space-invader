@@ -28,4 +28,5 @@
         <file>audio/heroDamaged/3.wav</file>
         <file>audio/gameOver.wav</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>

@@ -131,7 +131,7 @@ LeveManager and LeaderboardWindow
                          </base-DElement>
                          <object>{efcfc812-9ea4-47d8-9aed-aa92bcf06bc2}</object>
                          <name>QGraphicsScene</name>
-                         <pos>x:95;y:445</pos>
+                         <pos>x:175;y:340</pos>
                          <rect>x:-50;y:-30;w:100;h:60</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -151,7 +151,7 @@ LeveManager and LeaderboardWindow
                          </base-DElement>
                          <object>{17c640f6-d298-4b43-bd7b-638b15611753}</object>
                          <name>AudioManager</name>
-                         <pos>x:130;y:290</pos>
+                         <pos>x:185;y:230</pos>
                          <rect>x:-120;y:-50;w:240;h:100</rect>
                          <auto-sized>false</auto-sized>
                          <visual-role>0</visual-role>
@@ -171,7 +171,7 @@ LeveManager and LeaderboardWindow
                        <text>- Background music for each Level
 - (SOUND EFFECTS)
 - (SIGNETONE)</text>
-                       <pos>x:45;y:275</pos>
+                       <pos>x:100;y:215</pos>
                        <rect>x:0;y:0;w:179;h:55</rect>
                       </DAnnotation>
                      </instance>
@@ -252,11 +252,6 @@ LeveManager and LeaderboardWindow
                           </DElement>
                          </base-DElement>
                          <object>{3525ffff-e3ad-4043-afe2-03e165546ba6}</object>
-                         <stereotypes>
-                          <qlist>
-                           <item>interface</item>
-                          </qlist>
-                         </stereotypes>
                          <name>Spaceship</name>
                          <pos>x:165;y:920</pos>
                          <rect>x:-80;y:-70;w:160;h:140</rect>
@@ -277,7 +272,7 @@ LeveManager and LeaderboardWindow
                        </base-DElement>
                        <text>- Creates bullets
 - Setting default Image</text>
-                       <pos>x:110;y:895</pos>
+                       <pos>x:105;y:920</pos>
                        <rect>x:0;y:0;w:127;h:42</rect>
                       </DAnnotation>
                      </instance>
@@ -984,9 +979,376 @@ StartDialog</text>
                       </DAnnotation>
                      </instance>
                     </item>
+                    <item>
+                     <instance type="DClass">
+                      <DClass>
+                       <base-DObject>
+                        <DObject>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{fdd39db0-7902-4ed2-9791-5da2f7dc3c6f}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{8add3984-f403-4b43-b000-026e09652f71}</object>
+                         <name>CheckText</name>
+                         <pos>x:420;y:1055</pos>
+                         <rect>x:-85;y:-45;w:170;h:90</rect>
+                         <auto-sized>false</auto-sized>
+                         <visual-role>0</visual-role>
+                        </DObject>
+                       </base-DObject>
+                      </DClass>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAnnotation">
+                      <DAnnotation>
+                       <base-DElement>
+                        <DElement>
+                         <uid>{c6658997-4fe0-4f0e-af94-2c6a850e4710}</uid>
+                        </DElement>
+                       </base-DElement>
+                       <text>Display collected data 
+from hero and enemy</text>
+                       <pos>x:355;y:1055</pos>
+                       <rect>x:0;y:0;w:123;h:42</rect>
+                      </DAnnotation>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAssociation">
+                      <DAssociation>
+                       <base-DRelation>
+                        <DRelation>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{1ffc7bf6-64a7-414e-b891-b082633dcd27}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{abad16fd-5cf2-4348-b65d-665ad764490c}</object>
+                         <a>{26c66694-7392-4ff5-a7b5-d9148efee337}</a>
+                         <b>{fdd39db0-7902-4ed2-9791-5da2f7dc3c6f}</b>
+                        </DRelation>
+                       </base-DRelation>
+                       <a>
+                        <DAssociationEnd>
+                         <cradinality>1</cradinality>
+                         <navigable>true</navigable>
+                         <kind>2</kind>
+                        </DAssociationEnd>
+                       </a>
+                      </DAssociation>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DClass">
+                      <DClass>
+                       <base-DObject>
+                        <DObject>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{0f7dd99a-d7dc-43e2-9e33-9e1468b93ac6}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{ec3aa6f6-c614-41bb-a755-0a83b5d4fe31}</object>
+                         <name>HealthBar</name>
+                         <pos>x:-45;y:555</pos>
+                         <rect>x:-80;y:-55;w:160;h:110</rect>
+                         <auto-sized>false</auto-sized>
+                         <visual-role>0</visual-role>
+                        </DObject>
+                       </base-DObject>
+                      </DClass>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAnnotation">
+                      <DAnnotation>
+                       <base-DElement>
+                        <DElement>
+                         <uid>{20b4270e-d08c-4262-ab3c-6a1c3a05ed77}</uid>
+                        </DElement>
+                       </base-DElement>
+                       <text>Responsible for visual part
+of hero's lifes</text>
+                       <pos>x:-110;y:550</pos>
+                       <rect>x:0;y:0;w:143;h:42</rect>
+                      </DAnnotation>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAssociation">
+                      <DAssociation>
+                       <base-DRelation>
+                        <DRelation>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{bc558faa-f1f0-43ff-b4dd-4b047e33d45b}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{8b1867cb-82c3-4cb1-80be-e551ad390ec9}</object>
+                         <a>{d026c60c-f0e3-46b4-acf6-ddffdbf1e3b4}</a>
+                         <b>{0f7dd99a-d7dc-43e2-9e33-9e1468b93ac6}</b>
+                        </DRelation>
+                       </base-DRelation>
+                       <a>
+                        <DAssociationEnd>
+                         <cradinality>1</cradinality>
+                         <navigable>true</navigable>
+                         <kind>2</kind>
+                        </DAssociationEnd>
+                       </a>
+                      </DAssociation>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DClass">
+                      <DClass>
+                       <base-DObject>
+                        <DObject>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{50cc57f3-cfb8-4075-ab0e-3a35c99cc22f}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{f06d367e-9fd6-4f3a-b321-eb1257b5ca5f}</object>
+                         <name>ScoreBar</name>
+                         <pos>x:165;y:465</pos>
+                         <rect>x:-80;y:-45;w:160;h:90</rect>
+                         <auto-sized>false</auto-sized>
+                         <visual-role>0</visual-role>
+                        </DObject>
+                       </base-DObject>
+                      </DClass>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAnnotation">
+                      <DAnnotation>
+                       <base-DElement>
+                        <DElement>
+                         <uid>{dd77639a-4338-4ecf-bc6a-74b9149b2d1b}</uid>
+                        </DElement>
+                       </base-DElement>
+                       <text>Visual part to display current 
+score</text>
+                       <pos>x:90;y:460</pos>
+                       <rect>x:0;y:0;w:156;h:42</rect>
+                      </DAnnotation>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAssociation">
+                      <DAssociation>
+                       <base-DRelation>
+                        <DRelation>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{1c8c5822-0228-4a52-9a2b-b67727fbaafe}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{3b797eec-93e0-4cb3-b63f-560a96216a9a}</object>
+                         <a>{ce1a7d3e-2ced-4370-8ecb-e1ff1cd33541}</a>
+                         <b>{50cc57f3-cfb8-4075-ab0e-3a35c99cc22f}</b>
+                        </DRelation>
+                       </base-DRelation>
+                       <a>
+                        <DAssociationEnd>
+                         <cradinality>1</cradinality>
+                         <navigable>true</navigable>
+                         <kind>2</kind>
+                        </DAssociationEnd>
+                       </a>
+                      </DAssociation>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DClass">
+                      <DClass>
+                       <base-DObject>
+                        <DObject>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{8c1b0d88-6c51-4f2c-b1f5-7e75e256533d}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{73b9a070-42b1-4507-88cb-646578ae536a}</object>
+                         <name>LeaderBoard</name>
+                         <pos>x:885;y:650</pos>
+                         <rect>x:-80;y:-45;w:160;h:90</rect>
+                         <auto-sized>false</auto-sized>
+                         <visual-role>0</visual-role>
+                        </DObject>
+                       </base-DObject>
+                      </DClass>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAnnotation">
+                      <DAnnotation>
+                       <base-DElement>
+                        <DElement>
+                         <uid>{72a5eaaf-bb0e-4cc8-b8c7-1c7b6650493e}</uid>
+                        </DElement>
+                       </base-DElement>
+                       <text>Manager json file to keep 
+track of best scores</text>
+                       <pos>x:820;y:650</pos>
+                       <rect>x:0;y:0;w:140;h:42</rect>
+                      </DAnnotation>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAssociation">
+                      <DAssociation>
+                       <base-DRelation>
+                        <DRelation>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{69ab0a16-bd6a-4eda-a6d1-ac6b2a0ff232}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{1c4a26fa-64d2-4f0a-b1ba-f8b9ebd415b2}</object>
+                         <a>{e3c6b19a-7fe2-4856-833e-4816906c9cc8}</a>
+                         <b>{8c1b0d88-6c51-4f2c-b1f5-7e75e256533d}</b>
+                        </DRelation>
+                       </base-DRelation>
+                       <a>
+                        <DAssociationEnd>
+                         <cradinality>1</cradinality>
+                         <navigable>true</navigable>
+                         <kind>2</kind>
+                        </DAssociationEnd>
+                       </a>
+                      </DAssociation>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DClass">
+                      <DClass>
+                       <base-DObject>
+                        <DObject>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{b655754c-31a4-4a10-9e6c-3b98637d935d}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{a0c0e5c0-60f7-40e3-becc-5c2d7d7702b8}</object>
+                         <name>LeaderBoardWindow</name>
+                         <pos>x:1005;y:760</pos>
+                         <rect>x:-75;y:-55;w:150;h:110</rect>
+                         <auto-sized>false</auto-sized>
+                         <visual-role>0</visual-role>
+                        </DObject>
+                       </base-DObject>
+                      </DClass>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAnnotation">
+                      <DAnnotation>
+                       <base-DElement>
+                        <DElement>
+                         <uid>{13214b31-23cb-4c6c-9d27-c55c4f5d7c4e}</uid>
+                        </DElement>
+                       </base-DElement>
+                       <text>Creates text to be 
+displayed about json file
+(LEADERBOARD)</text>
+                       <pos>x:945;y:750</pos>
+                       <rect>x:0;y:0;w:132;h:55</rect>
+                      </DAnnotation>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAssociation">
+                      <DAssociation>
+                       <base-DRelation>
+                        <DRelation>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{634e6508-74c8-4eff-8090-07c7e3666fa2}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{6a6b5de8-cb59-4f0c-b802-fd663fa2ccb7}</object>
+                         <a>{e3c6b19a-7fe2-4856-833e-4816906c9cc8}</a>
+                         <b>{b655754c-31a4-4a10-9e6c-3b98637d935d}</b>
+                        </DRelation>
+                       </base-DRelation>
+                       <a>
+                        <DAssociationEnd>
+                         <cradinality>1</cradinality>
+                         <navigable>true</navigable>
+                         <kind>2</kind>
+                        </DAssociationEnd>
+                       </a>
+                      </DAssociation>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DClass">
+                      <DClass>
+                       <base-DObject>
+                        <DObject>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{8f1e2073-a8c8-4873-aaf6-3551afe45d7d}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{756d1a28-0550-4440-834d-e7135afb384a}</object>
+                         <name>StartDialog</name>
+                         <pos>x:590;y:165</pos>
+                         <rect>x:-70;y:-50;w:140;h:100</rect>
+                         <auto-sized>false</auto-sized>
+                         <visual-role>0</visual-role>
+                        </DObject>
+                       </base-DObject>
+                      </DClass>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAnnotation">
+                      <DAnnotation>
+                       <base-DElement>
+                        <DElement>
+                         <uid>{28ce5420-f6bb-4125-82a1-53d5d50501a8}</uid>
+                        </DElement>
+                       </base-DElement>
+                       <text>Creates menu for the 
+player to choose mode</text>
+                       <pos>x:530;y:165</pos>
+                       <rect>x:0;y:0;w:125;h:42</rect>
+                      </DAnnotation>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAssociation">
+                      <DAssociation>
+                       <base-DRelation>
+                        <DRelation>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{8c7ff0bf-b5f3-4a0b-88c7-5b63c5bf14f2}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{881168b8-7aa1-4126-895a-36f62e6c2749}</object>
+                         <a>{e3c6b19a-7fe2-4856-833e-4816906c9cc8}</a>
+                         <b>{8f1e2073-a8c8-4873-aaf6-3551afe45d7d}</b>
+                        </DRelation>
+                       </base-DRelation>
+                       <a>
+                        <DAssociationEnd>
+                         <cradinality>1</cradinality>
+                         <navigable>true</navigable>
+                         <kind>2</kind>
+                        </DAssociationEnd>
+                       </a>
+                      </DAssociation>
+                     </instance>
+                    </item>
                    </qlist>
                   </elements>
-                  <last-modified>1611580993538</last-modified>
+                  <last-modified>1611784129040</last-modified>
                   <toolbarid>General</toolbarid>
                  </MDiagram>
                 </base-MDiagram>
@@ -1097,6 +1459,93 @@ StartDialog</text>
                              <cardinality>*</cardinality>
                              <navigable>true</navigable>
                              <kind>1</kind>
+                            </MAssociationEnd>
+                           </a>
+                          </MAssociation>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
+                      <item>
+                       <handle>
+                        <uid>{1c4a26fa-64d2-4f0a-b1ba-f8b9ebd415b2}</uid>
+                        <target>
+                         <instance type="MAssociation">
+                          <MAssociation>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{1c4a26fa-64d2-4f0a-b1ba-f8b9ebd415b2}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{9f9bdf9e-0acc-4589-bbbe-75931ade30c9}</a>
+                             <b>{73b9a070-42b1-4507-88cb-646578ae536a}</b>
+                            </MRelation>
+                           </base-MRelation>
+                           <a>
+                            <MAssociationEnd>
+                             <cardinality>1</cardinality>
+                             <navigable>true</navigable>
+                             <kind>2</kind>
+                            </MAssociationEnd>
+                           </a>
+                          </MAssociation>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
+                      <item>
+                       <handle>
+                        <uid>{6a6b5de8-cb59-4f0c-b802-fd663fa2ccb7}</uid>
+                        <target>
+                         <instance type="MAssociation">
+                          <MAssociation>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{6a6b5de8-cb59-4f0c-b802-fd663fa2ccb7}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{9f9bdf9e-0acc-4589-bbbe-75931ade30c9}</a>
+                             <b>{a0c0e5c0-60f7-40e3-becc-5c2d7d7702b8}</b>
+                            </MRelation>
+                           </base-MRelation>
+                           <a>
+                            <MAssociationEnd>
+                             <cardinality>1</cardinality>
+                             <navigable>true</navigable>
+                             <kind>2</kind>
+                            </MAssociationEnd>
+                           </a>
+                          </MAssociation>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
+                      <item>
+                       <handle>
+                        <uid>{881168b8-7aa1-4126-895a-36f62e6c2749}</uid>
+                        <target>
+                         <instance type="MAssociation">
+                          <MAssociation>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{881168b8-7aa1-4126-895a-36f62e6c2749}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{9f9bdf9e-0acc-4589-bbbe-75931ade30c9}</a>
+                             <b>{756d1a28-0550-4440-834d-e7135afb384a}</b>
+                            </MRelation>
+                           </base-MRelation>
+                           <a>
+                            <MAssociationEnd>
+                             <cardinality>1</cardinality>
+                             <navigable>true</navigable>
+                             <kind>2</kind>
                             </MAssociationEnd>
                            </a>
                           </MAssociation>
@@ -1505,6 +1954,35 @@ StartDialog</text>
                         </target>
                        </handle>
                       </item>
+                      <item>
+                       <handle>
+                        <uid>{3b797eec-93e0-4cb3-b63f-560a96216a9a}</uid>
+                        <target>
+                         <instance type="MAssociation">
+                          <MAssociation>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{3b797eec-93e0-4cb3-b63f-560a96216a9a}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{cc3b1ad9-2f1b-4466-914c-f43f75781ce8}</a>
+                             <b>{f06d367e-9fd6-4f3a-b321-eb1257b5ca5f}</b>
+                            </MRelation>
+                           </base-MRelation>
+                           <a>
+                            <MAssociationEnd>
+                             <cardinality>1</cardinality>
+                             <navigable>true</navigable>
+                             <kind>2</kind>
+                            </MAssociationEnd>
+                           </a>
+                          </MAssociation>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
                      </qlist>
                     </handles>
                    </handles>
@@ -1748,6 +2226,35 @@ StartDialog</text>
                         </target>
                        </handle>
                       </item>
+                      <item>
+                       <handle>
+                        <uid>{8b1867cb-82c3-4cb1-80be-e551ad390ec9}</uid>
+                        <target>
+                         <instance type="MAssociation">
+                          <MAssociation>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{8b1867cb-82c3-4cb1-80be-e551ad390ec9}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{5186e0f7-2b83-4782-91c6-ea88ccb213fc}</a>
+                             <b>{ec3aa6f6-c614-41bb-a755-0a83b5d4fe31}</b>
+                            </MRelation>
+                           </base-MRelation>
+                           <a>
+                            <MAssociationEnd>
+                             <cardinality>1</cardinality>
+                             <navigable>true</navigable>
+                             <kind>2</kind>
+                            </MAssociationEnd>
+                           </a>
+                          </MAssociation>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
                      </qlist>
                     </handles>
                    </handles>
@@ -1770,11 +2277,6 @@ StartDialog</text>
                   <base-MElement>
                    <MElement>
                     <uid>{3525ffff-e3ad-4043-afe2-03e165546ba6}</uid>
-                    <stereotypes>
-                     <qlist>
-                      <item>interface</item>
-                     </qlist>
-                    </stereotypes>
                    </MElement>
                   </base-MElement>
                   <name>Spaceship</name>
@@ -1822,6 +2324,79 @@ StartDialog</text>
                             </MRelation>
                            </base-MRelation>
                           </MInheritance>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
+                      <item>
+                       <handle>
+                        <uid>{63069f4d-2191-4222-813d-3347c3c8fc41}</uid>
+                        <target>
+                         <instance type="MInheritance">
+                          <MInheritance>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{63069f4d-2191-4222-813d-3347c3c8fc41}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{3525ffff-e3ad-4043-afe2-03e165546ba6}</a>
+                             <b>{8add3984-f403-4b43-b000-026e09652f71}</b>
+                            </MRelation>
+                           </base-MRelation>
+                          </MInheritance>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
+                      <item>
+                       <handle>
+                        <uid>{3ff61a03-723b-498c-ad08-ccc716766d9b}</uid>
+                        <target>
+                         <instance type="MDependency">
+                          <MDependency>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{3ff61a03-723b-498c-ad08-ccc716766d9b}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{3525ffff-e3ad-4043-afe2-03e165546ba6}</a>
+                             <b>{8add3984-f403-4b43-b000-026e09652f71}</b>
+                            </MRelation>
+                           </base-MRelation>
+                          </MDependency>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
+                      <item>
+                       <handle>
+                        <uid>{abad16fd-5cf2-4348-b65d-665ad764490c}</uid>
+                        <target>
+                         <instance type="MAssociation">
+                          <MAssociation>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{abad16fd-5cf2-4348-b65d-665ad764490c}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{3525ffff-e3ad-4043-afe2-03e165546ba6}</a>
+                             <b>{8add3984-f403-4b43-b000-026e09652f71}</b>
+                            </MRelation>
+                           </base-MRelation>
+                           <a>
+                            <MAssociationEnd>
+                             <cardinality>1</cardinality>
+                             <navigable>true</navigable>
+                             <kind>2</kind>
+                            </MAssociationEnd>
+                           </a>
+                          </MAssociation>
                          </instance>
                         </target>
                        </handle>
@@ -2429,6 +3004,132 @@ StartDialog</text>
                     </handles>
                    </handles>
                   </relations>
+                 </MObject>
+                </base-MObject>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{8add3984-f403-4b43-b000-026e09652f71}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{8add3984-f403-4b43-b000-026e09652f71}</uid>
+                   </MElement>
+                  </base-MElement>
+                  <name>CheckText</name>
+                 </MObject>
+                </base-MObject>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{ec3aa6f6-c614-41bb-a755-0a83b5d4fe31}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{ec3aa6f6-c614-41bb-a755-0a83b5d4fe31}</uid>
+                   </MElement>
+                  </base-MElement>
+                  <name>HealthBar</name>
+                 </MObject>
+                </base-MObject>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{f06d367e-9fd6-4f3a-b321-eb1257b5ca5f}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{f06d367e-9fd6-4f3a-b321-eb1257b5ca5f}</uid>
+                   </MElement>
+                  </base-MElement>
+                  <name>ScoreBar</name>
+                 </MObject>
+                </base-MObject>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{73b9a070-42b1-4507-88cb-646578ae536a}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{73b9a070-42b1-4507-88cb-646578ae536a}</uid>
+                   </MElement>
+                  </base-MElement>
+                  <name>LeaderBoard</name>
+                 </MObject>
+                </base-MObject>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{a0c0e5c0-60f7-40e3-becc-5c2d7d7702b8}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{a0c0e5c0-60f7-40e3-becc-5c2d7d7702b8}</uid>
+                   </MElement>
+                  </base-MElement>
+                  <name>LeaderBoardWindow</name>
+                 </MObject>
+                </base-MObject>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{756d1a28-0550-4440-834d-e7135afb384a}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{756d1a28-0550-4440-834d-e7135afb384a}</uid>
+                   </MElement>
+                  </base-MElement>
+                  <name>StartDialog</name>
                  </MObject>
                 </base-MObject>
                </MClass>
