@@ -10,7 +10,7 @@ class ScoreBar :public QGraphicsTextItem
     Q_OBJECT
 public:
     ScoreBar();
-    void setScore(int new_score); 
+    void setScore(int newScore);
     int type() const override {return TypeIndex::scoreBar;}
 
     int score = 0;

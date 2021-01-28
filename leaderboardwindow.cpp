@@ -5,8 +5,7 @@
 #include "consts.h"
 #include <QDebug>
 
-LeaderBoardWindow::LeaderBoardWindow() : QMessageBox()
-{
+LeaderBoardWindow::LeaderBoardWindow() {
 
 }
 

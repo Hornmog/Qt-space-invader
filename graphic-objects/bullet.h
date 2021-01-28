@@ -23,7 +23,6 @@ public:
 public slots:
     void move();
 private:
-    static GameManager* gameManager;
     static const int bulletLength = 50;
     static const int bulletWidth = 10;
     int speed;

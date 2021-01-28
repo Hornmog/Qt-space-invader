@@ -4,6 +4,8 @@ QT       += multimedia
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
+RC_FILE = spaceinvader.rc
+
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -17,50 +19,50 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    audiomanager.cpp \
-    clock.cpp \
-    enemymanager.cpp \
     gamemanager.cpp \
     graphic-objects/animatedobject.cpp \
     graphic-objects/bullet.cpp \
     graphic-objects/enemy.cpp \
     graphicsview.cpp \
     graphic-objects/hero.cpp \
-    healthbar.cpp \
     keymanager.cpp \
     leaderboard.cpp \
     leaderboardwindow.cpp \
-    levelmanager.cpp \
+    level/audiomanager.cpp \
+    level/enemymanager.cpp \
+    level/healthbar.cpp \
+    level/levelmanager.cpp \
+    level/scorebar.cpp \
+    level/soundeffect.cpp \
     main.cpp \
-    scorebar.cpp \
     graphic-objects/spaceship.cpp \
-    soundeffect.cpp \
     startdialog.cpp \
-    timer.cpp
+    utils/clock.cpp \
+    utils/timer.cpp
 
 HEADERS += \
-    audiomanager.h \
-    clock.h \
     consts.h \
-    coordpair.h \
     graphic-objects/animatedobject.h \
     graphic-objects/bullet.h \
     graphic-objects/checktext.h \
     graphic-objects/enemy.h \
-    enemymanager.h \
     gamemanager.h \
     graphicsview.h \
     graphic-objects/hero.h \
-    healthbar.h \
     keymanager.h \
     leaderboard.h \
     leaderboardwindow.h \
-    levelmanager.h \
-    scorebar.h \
+    level/audiomanager.h \
+    level/enemymanager.h \
+    level/healthbar.h \
+    level/levelmanager.h \
     graphic-objects/spaceship.h \
-    soundeffect.h \
+    level/scorebar.h \
+    level/soundeffect.h \
     startdialog.h \
-    timer.h
+    utils/clock.h \
+    utils/coordpair.h \
+    utils/timer.h
 
 FORMS +=
 
@@ -74,4 +76,5 @@ RESOURCES += \
 
 DISTFILES += \
     Docs/TODO \
-    Docs/gameLogic.png
+    Docs/model.qmodel \
+    spaceinvader.rc

@@ -63,7 +63,7 @@ void Enemy::groupCheckTextInfo()
     output += "Diff  : " + QString::number(difficulty) + "\n";
     output += "Bull speed : " + QString::number(bulletSpeed) + "\n";
     output += "SpeedX: " + QString::number(speed.x) + " speedY: " + QString::number(speed.y) + "\n";
-    setCheckText(output);
+    checkText->setPlainText(output);
 }
 
 void Enemy::setDifficulty(int difficulty)
@@ -88,6 +88,7 @@ void Enemy::move()
     }
     if(y() >= scene()->height() - this->boundingRect().height()){
         emit enemyOnBase();
+        delete this;
     }
 
     setPos(x() + speed.x, y() + speed.y);
@@ -100,8 +101,5 @@ void Enemy::positiveRemoval(int hitBy)
     if(hitBy == Side::hero){
         manager->onKillByHero(this);
     }
-//    else if(hitBy == Side::enemy){
-//        manager->onKillByNonHero(this);
-//    }
 }
 

@@ -14,7 +14,7 @@
 #include "graphic-objects/enemy.h"
 #include "startdialog.h"
 #include "leaderboardwindow.h"
-#include "clock.h"
+#include "utils/clock.h"
 
 GameManager::GameManager(QObject *parent) : QObject(parent)
 {
@@ -24,7 +24,6 @@ GameManager::GameManager(QObject *parent) : QObject(parent)
     view = new GraphicsView();
     view->setScene(menuScene);
     keyManager = new KeyManager();
-    audioManager = new AudioManager();
 
     level1 = new LevelManager(this, keyManager);
 
@@ -45,7 +44,6 @@ void GameManager::connectLevelManager()
 }
 
 
-
 void GameManager::gameOver(int score)
 {
     if(gameWon){
@@ -54,6 +52,7 @@ void GameManager::gameOver(int score)
     }
     gameInProcess = false;
     leaderBoardFile->update(getUserNameEntryBox(), score);
+
 }
 
 void GameManager::restartLevel()
@@ -73,10 +72,10 @@ void GameManager::openMenu()
     keyManager->releaseKeyboard();
     StartDialog *menu = new StartDialog();
     int mode = menu->exec();
-    if (mode == menu->Mode::story){
-        level1->setTotalEnemiesToKill(2);
-    }
-    else if (mode == menu->Mode::endless){
+//    if (mode == menu->Mode::story){
+//        level1->setTotalEnemiesToKill(2);
+//    }
+    if (mode == menu->Mode::endless){
         level1->setTotalEnemiesToKill(INT_MAX);
     }
     else if (mode == menu->Mode::leaderBoard){
@@ -85,7 +84,7 @@ void GameManager::openMenu()
     }
     else if (mode == menu->Mode::quit){
         view->window()->close();
-        QMetaObject::invokeMethod(qApp, "quit", Qt::QueuedConnection);     //quit program
+        QMetaObject::invokeMethod(qApp, "quit", Qt::QueuedConnection); //quit program
     }
     keyManager->grabKeyboard();
 }
@@ -107,8 +106,9 @@ QString GameManager::getUserNameEntryBox()
     QString text = QInputDialog::getText(nullptr, tr("QInputDialog::getText()"),
                                          tr("User name:"), QLineEdit::Normal,
                                          "", &ok);
-    if (ok && !text.isEmpty())
+    if (ok && !text.isEmpty()) {
         userName = text;
+    }
     keyManager->grabKeyboard();
     return userName;
 }
