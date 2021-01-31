@@ -1,21 +1,19 @@
 Bugfixes:
 - Process kamikaze act for level continuation
-- On enemy difficulty increase, all enemies shoot, timer synchronizes
+- Infinite hero red blinking
 
 New features:
-- Enemy having 2 lifes, half destroyed, mechanical insides seen
-- User confirmation on restart
-- Help point in the starting menu with the list of controls
 - Notify player about his score
-- Make enemies appear from the top
-- Add intro animation (story) maybe Star Wars text, skip option
-- Adding "charge" bar for hero bullets to limit max bullets per minute (variable size rectangle *Rect item)
 - (inform player about dialog cancelation) - leaderboard
-- Levels
-- Add sound
-- Neutral side meteors
+- Help point in the starting menu with the list of controls
+- User confirmation on restart
+- Animation for enemy destruction
+- Enemy having 2 lifes, half destroyed, mechanical insides seen
+- Adding "charge" bar for hero bullets to limit max bullets per minute (variable size rectangle *Rect item)
 - Different ammo
-- Hero bilnks red on hit, + animation for enemy destruction
+- Neutral side meteors
+- Add intro animation (story) maybe Star Wars text, skip option
+- Levels
 
 Refactoring:
 - OpenMenu separate
@@ -26,6 +24,10 @@ Refactoring:
 - Create 1 more class for scene management (ie gameOver image)
 
 Done:
+- On enemy difficulty increase, all enemies shoot, timer synchronizes
+- Make enemies appear from the top
+- Add sound
+- Hero bilnks red on hit
 - Add "restart label" to GameOver image
 - All spaceships report to their manager.
 - Problem of colliding items

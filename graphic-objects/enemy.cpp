@@ -22,9 +22,6 @@ Enemy::Enemy(EnemyManager *manager, QString imagePath, int count) : SpaceShip(ma
     this->manager = manager;
     this->count = count;
 
-    setUpDelay(shootDelay);
-
-    connect(manager, &EnemyManager::changeDifficulty, this, &Enemy::setDifficulty);
     connect(this, &Enemy::enemyOnBase,manager, &EnemyManager::enemyOnBase);
     connect(manager, &EnemyManager::logKeyPressed, this, &SpaceShip::toggleCheckText);
 }
@@ -37,7 +34,7 @@ Enemy::~Enemy(){
 void Enemy::addToScene(QGraphicsScene *scene)
 {
     SpaceShip::addToScene(scene);
-    this->setPos(QRandomGenerator::global()->bounded(width, scene->width() - width), 0);
+    this->setPos(QRandomGenerator::global()->bounded(width, scene->width() - width), -height);
 }
 
 void Enemy::onTimer(){
@@ -70,9 +67,9 @@ void Enemy::setDifficulty(int difficulty)
 {
     this->difficulty = difficulty;
 
-    shootDelay = baseShootDelay * pow(0.8, difficulty-1);
+    shootDelay = baseShootDelay * pow(0.9, difficulty - 1);
     setUpDelay(shootDelay);
-    bulletSpeed = baseBulletSpeed * difficulty;
+    bulletSpeed = baseBulletSpeed / pow(0.9, difficulty - 1);
 }
 
 void Enemy::onHeroCollision()

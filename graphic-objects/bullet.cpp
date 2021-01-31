@@ -5,7 +5,7 @@
 #include "consts.h"
 #include "utils/timer.h"
 
-Bullet::Bullet(int speed, int side, QString imagePath) : AnimatedObject(nullptr, imagePath, 21, 40)
+Bullet::Bullet(float speed, int side, QString imagePath) : AnimatedObject(nullptr, imagePath, 21, 40)
 {
     setSize(20,50);
     this->side = side;

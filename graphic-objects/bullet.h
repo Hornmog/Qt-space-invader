@@ -9,7 +9,7 @@
 class Bullet: public AnimatedObject{
     Q_OBJECT
 public:
-    Bullet(int speed = 10, int side = 1, QString imagePath = "");  //add enum regarding side
+    Bullet(float speed = 10, int side = 1, QString imagePath = "");  //add enum regarding side
     ~Bullet() override;
 
     void onHit();

@@ -37,7 +37,6 @@ void EnemyManager::onEnemyDestruction(Enemy* enemy)
     if(upForNextDiff <= 0){
         difficulty++;
         upForNextDiff = levelDifficultyStep;
-        emit changeDifficulty(difficulty);
     }
 }
 
@@ -62,10 +61,8 @@ void EnemyManager::onSpawnTimer()
 void EnemyManager::createEnemy()
 {
     Enemy* enemy = new Enemy(this, ImagePaths::enemy, totalEnemiesSpawned);
+    enemy->setDifficulty(difficulty);
     enemy->addToScene(scene);
-    qDebug() << "Enemy pos on spawn: " << enemy->pos();
-
     enemyCount++;
     totalEnemiesSpawned++;
-    emit changeDifficulty(difficulty);
 }

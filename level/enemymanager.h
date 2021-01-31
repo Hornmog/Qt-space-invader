@@ -24,7 +24,6 @@ public:
 
 signals:
     void onEnemyCountChange(int enemyDeaths);
-    void changeDifficulty(int difficulty);
     void allEnemiesDefeated();
     void enemyOnBase();
     void logKeyPressed();

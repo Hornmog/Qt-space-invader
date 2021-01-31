@@ -39,10 +39,10 @@ protected:
 
     CoordPair speed = CoordPair(0,0);
     CoordPair prevSpeed = CoordPair(0,0);
-    int bulletSpeed;
+    float bulletSpeed;
     int shootDelay;
-    const int baseShootDelay = 5000;
-    bool shootAvl = true;
+    const int baseShootDelay = 2500;
+    bool shootAvl = false;
     CheckText *checkText;
     Timer* mainTimer;
 
