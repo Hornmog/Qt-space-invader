@@ -35,6 +35,7 @@ private:
     int calculateMovement(char coord);
     bool checkScreenBorders(int distance);
     void shoot();
+    void onDamage();
 
     KeyManager* keyManager;
     HealthBar* healthBar;

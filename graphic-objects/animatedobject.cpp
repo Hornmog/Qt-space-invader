@@ -12,8 +12,7 @@ AnimatedObject::AnimatedObject(QObject *parent, QString imagePath, int width, in
     gif->start();
     nextFrame();
 
-
-    connect(gif, &QMovie::updated, this, &AnimatedObject::nextFrame);
+    connect(gif, &QMovie::frameChanged, this, &AnimatedObject::nextFrame);
 }
 
 void AnimatedObject::setSize(int width, int height)
@@ -22,7 +21,7 @@ void AnimatedObject::setSize(int width, int height)
     this->height = height;
 }
 
-void AnimatedObject::setAnimation(QString path)
+void AnimatedObject::setTemporaryAnimation(QString path)
 {
     gif = new QMovie(path);
     gif->start();
