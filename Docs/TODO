@@ -1,14 +1,14 @@
 Bugfixes:
 - Process kamikaze act for level continuation
-- Infinite hero red blinking
+(- Infinite hero red blinking)?
 
 New features:
 - Notify player about his score
 - (inform player about dialog cancelation) - leaderboard
 - Help point in the starting menu with the list of controls
 - User confirmation on restart
-- Animation for enemy destruction
-- Enemy having 2 lifes, half destroyed, mechanical insides seen
+! - Animation for enemy destruction
+! - Enemy having 2 lifes, half destroyed, mechanical insides seen
 - Adding "charge" bar for hero bullets to limit max bullets per minute (variable size rectangle *Rect item)
 - Different ammo
 - Neutral side meteors

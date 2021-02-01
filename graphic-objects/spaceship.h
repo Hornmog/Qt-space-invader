@@ -32,7 +32,6 @@ protected:
     void createBullet(int side = 1);
     int bulletCollisionCheck();
 
-    void setUpDelay(int delay);
     void setUpCheckText();
 
     virtual void groupCheckTextInfo() = 0;
@@ -47,7 +46,6 @@ protected:
     Timer* mainTimer;
 
 private:
-    Timer* timerBullet = nullptr;
     bool checkTextOnScene = false;
 
 private slots:

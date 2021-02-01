@@ -100,3 +100,14 @@ void Enemy::positiveRemoval(int hitBy)
     }
 }
 
+void Enemy::setUpDelay(int shootDelay)
+{
+    if(timerBullet == nullptr) {
+        timerBullet = new Timer();
+        connect(timerBullet,SIGNAL(timeout()),this,SLOT(shootIsAvl()));
+        timerBullet->start(shootDelay);
+    } else {
+        timerBullet->setInterval(shootDelay);
+    }
+}
+

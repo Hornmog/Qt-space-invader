@@ -22,12 +22,14 @@ public slots:
     void onHeroCollision();
 
 private:
-    const float baseBulletSpeed = -0.2 * period_ms;
-    EnemyManager* manager;
-    int count;
-    int difficulty;
     void move();
     void positiveRemoval(int hitBy);
+    void setUpDelay(int delay);
+    const float baseBulletSpeed = -0.2 * period_ms;
+    EnemyManager* manager;
+    Timer* timerBullet = nullptr;
+    int count;
+    int difficulty;   
 
 signals:
     void enemyOnBase();
