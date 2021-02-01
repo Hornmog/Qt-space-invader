@@ -16,7 +16,7 @@ public:
     int getHeight() const;
 
 private slots:
-    void nextFrame();
+    void nextFrame(int frameNumber);
 private:
     QString imagePath;
     QMovie* gif;

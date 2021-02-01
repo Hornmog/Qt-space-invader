@@ -10,7 +10,7 @@ AnimatedObject::AnimatedObject(QObject *parent, QString imagePath, int width, in
     this->height = height;
     gif = new QMovie(imagePath);
     gif->start();
-    nextFrame();
+    nextFrame(0);
 
     connect(gif, &QMovie::frameChanged, this, &AnimatedObject::nextFrame);
 }
@@ -26,14 +26,19 @@ void AnimatedObject::setTemporaryAnimation(QString path)
     gif = new QMovie(path);
     gif->start();
     isDefaultGif = false;
+    qDebug() << "Current nonDefault gif frame: " << gif->currentFrameNumber();
+    qDebug() << "Current nonDefault gif frameCount: " << gif->frameCount();
 }
 
-void AnimatedObject::nextFrame()
+void AnimatedObject::nextFrame(int frameNumber)
 {
-    if(!isDefaultGif && gif->currentFrameNumber() + 1 >= gif->frameCount()){
+
+    if(!isDefaultGif && frameNumber + 1 >= gif->frameCount()){
         gif = new QMovie(imagePath);
         gif->start();
         isDefaultGif = true;
+        qDebug() << "Changing back to default: curr gif frame: " << gif->currentFrameNumber()
+                 << "gifCount: " << gif->frameCount();
     }
 
     this->setPixmap(gif->currentPixmap().scaled(width, height));
