@@ -1,14 +1,19 @@
+0- self-work
+! - needs additional preparation (e.g. images)
+1/2 - needs confirmation before moving to "done"
+
 Bugfixes:
 - Process kamikaze act for level continuation
-(- Infinite hero red blinking)?
+1/2- Infinite hero red blinking
 
 New features:
-- Notify player about his score
-- (inform player about dialog cancelation) - leaderboard
-- Help point in the starting menu with the list of controls
-- User confirmation on restart
+0- Notify player about his score
+0- (inform player about dialog cancelation) - leaderboard
+0- Help point in the starting menu with the list of controls
+0- User confirmation on restart
 ! - Animation for enemy destruction
 ! - Enemy having 2 lifes, half destroyed, mechanical insides seen
+- Adding additional panel to display hero's stats(health + charge)
 - Adding "charge" bar for hero bullets to limit max bullets per minute (variable size rectangle *Rect item)
 - Different ammo
 - Neutral side meteors
@@ -16,6 +21,8 @@ New features:
 - Levels
 
 Refactoring:
+0-moving CheckText creation to its constructor
+0-sort out the mess with Hero/Spaceship/Enemy shooting timers
 - OpenMenu separate
 - Sort out Adding images on screen
 - Probably more functionality regarding e.g. movement can be moved to AnimatedObject
