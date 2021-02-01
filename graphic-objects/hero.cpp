@@ -45,20 +45,25 @@ void Hero::onTimer()
     //function groupCheckTextInfo() called after hero killed
 
     if((bulletCollisionCheck() != Side::nobody) || enemyCollisionCheck()){
-        this->setAnimation(ImagePaths::damagedHero);
-        int rand = QRandomGenerator::global()->bounded(AudioPaths::heroDamaged.size());
-        soundEffect->play(AudioPaths::heroDamaged[rand], Volume::heroDamaged);
-
-        lives--;
-        healthBar->setLives(lives);
-        if(lives == 0){
-            emit heroKilled();
-        }
+        onDamage();
     }
     else{       
         setPos(x() + calculateMovement('x'), y() + calculateMovement('y'));
         checkText->setPos(x(),y());
     }   
+}
+
+void Hero::onDamage()
+{
+    this->setTemporaryAnimation(ImagePaths::damagedHero);
+    int rand = QRandomGenerator::global()->bounded(AudioPaths::heroDamaged.size());
+    soundEffect->play(AudioPaths::heroDamaged[rand], Volume::heroDamaged);
+
+    lives--;
+    healthBar->setLives(lives);
+    if(lives == 0){
+        emit heroKilled();
+    }
 }
 
 void Hero::groupCheckTextInfo()

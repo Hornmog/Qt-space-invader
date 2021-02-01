@@ -11,12 +11,12 @@ class AnimatedObject : public QObject, public QGraphicsPixmapItem
 public:
     AnimatedObject(QObject *parent = nullptr, QString imagePath = nullptr, int width = 100, int height = 100);
     void setSize(int width, int height);
-    void setAnimation(QString path);
+    void setTemporaryAnimation(QString path);
     int getWidth() const;
     int getHeight() const;
 
 private slots:
-    void nextFrame();
+    void nextFrame(int frameNumber);
 private:
     QString imagePath;
     QMovie* gif;
