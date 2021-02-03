@@ -36,6 +36,8 @@ void Hero::addToScene(QGraphicsScene *scene)
     this->setPos(scene->width()/2 - this->boundingRect().width()/2, scene->height() - this->boundingRect().height() * 2);
     healthBar = new HealthBar(nullptr, scene);
     healthBar->setLives(lives);
+    chargeBar = new ChargeBar(nullptr, scene);
+    chargeBar->setCharge(charge);
 }
 
 void Hero::onTimer()
@@ -45,6 +47,7 @@ void Hero::onTimer()
 
     if(charge <= maxCharge - rechargeRate){
         charge += rechargeRate;
+        chargeBar->setCharge(charge);
     }
     if((bulletCollisionCheck() != Side::nobody) || enemyCollisionCheck()){
         onDamage();
@@ -184,5 +187,6 @@ void Hero::shoot()
     soundEffect->play(AudioPaths::heroShoot[rand], Volume::heroShoot);
     createBullet(1);
     charge -= bulletCost;
+    chargeBar->setCharge(charge);
 }
 

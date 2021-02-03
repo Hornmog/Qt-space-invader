@@ -8,6 +8,7 @@
 #include "keymanager.h"
 #include "level/healthbar.h"
 #include "level/soundeffect.h"
+#include "chargebar.h"
 
 
 class Hero: public SpaceShip{
@@ -39,6 +40,7 @@ private:
 
     KeyManager* keyManager;
     HealthBar* healthBar;
+    ChargeBar* chargeBar;
     SoundEffect* soundEffect;
 
     CoordPair engineAccel = CoordPair(0,0);
