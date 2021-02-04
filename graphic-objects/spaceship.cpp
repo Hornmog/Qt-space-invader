@@ -94,8 +94,9 @@ void SpaceShip::createBullet(int side)
 
 void SpaceShip::setUpCheckText()
 {
-    QFont font = QFont("Times", 10);
-    QColor color = QColor("white");
+
+    QFont font = QFont("Impact", 16, QFont::Bold);
+    QColor color = QColor(255, 100, 108);
     checkText->setFont(font);
     checkText->setDefaultTextColor(color);
     checkText->setPlainText(QString::number(0));

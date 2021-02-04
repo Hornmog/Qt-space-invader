@@ -23,6 +23,8 @@ New features:
 - Levels
 
 Refactoring:
+0-moving CheckText creation to its constructor
+0-sort out the mess with Hero/Spaceship/Enemy shooting timers
 - OpenMenu separate
 - Sort out Adding images on screen
 - Probably more functionality regarding e.g. movement can be moved to AnimatedObject

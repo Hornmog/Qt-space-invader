@@ -26,9 +26,10 @@ private:
     void setUpDelay(int delay);
     const float baseBulletSpeed = -0.2 * period_ms;
     EnemyManager* manager;
+    Timer* timerBullet = nullptr;
     int count;
     int difficulty;
-    Timer* timerBullet = nullptr;
+    int shootDelay;
 
 signals:
     void enemyOnBase();

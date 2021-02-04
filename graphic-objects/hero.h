@@ -8,6 +8,7 @@
 #include "keymanager.h"
 #include "level/healthbar.h"
 #include "level/soundeffect.h"
+#include "chargebar.h"
 
 
 class Hero: public SpaceShip{
@@ -39,6 +40,7 @@ private:
 
     KeyManager* keyManager;
     HealthBar* healthBar;
+    ChargeBar* chargeBar;
     SoundEffect* soundEffect;
 
     CoordPair engineAccel = CoordPair(0,0);
@@ -48,6 +50,10 @@ private:
 
     bool active = false;
     int lives = 3;
+    const float maxCharge = 100;
+    const float bulletCost = 30;
+    float charge = maxCharge;
+    float rechargeRate;
 
     struct Movement {
         const CoordPair maxVelocity = CoordPair(200, 150);         //pixels per second

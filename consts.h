@@ -64,6 +64,7 @@ namespace ScenePriority {
     static const int bullet = 15;
     static const int text = 30;
     static const int pause = 25;
+    static const int heroAttributes = 19;
 }
 namespace Volume {
     static const float heroShoot = 0.2;

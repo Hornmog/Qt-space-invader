@@ -19,6 +19,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    chargebar.cpp \
     gamemanager.cpp \
     graphic-objects/animatedobject.cpp \
     graphic-objects/bullet.cpp \
@@ -41,6 +42,7 @@ SOURCES += \
     utils/timer.cpp
 
 HEADERS += \
+    chargebar.h \
     consts.h \
     graphic-objects/animatedobject.h \
     graphic-objects/bullet.h \

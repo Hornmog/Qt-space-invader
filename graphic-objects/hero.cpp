@@ -15,6 +15,7 @@ const Hero::Movement Hero::movement;
 Hero::Hero(QString imagePath, KeyManager* keyManager) : SpaceShip(nullptr, imagePath)
 {
     shootDelay = 1000;
+    rechargeRate = bulletCost * period_ms / shootDelay;
     bulletSpeed = 0.6 * period_ms; // 10 pixels per 50 ms
     speed = CoordPair(0,0);
     side = Side::hero;
@@ -35,6 +36,8 @@ void Hero::addToScene(QGraphicsScene *scene)
     this->setPos(scene->width()/2 - this->boundingRect().width()/2, scene->height() - this->boundingRect().height() * 2);
     healthBar = new HealthBar(nullptr, scene);
     healthBar->setLives(lives);
+    chargeBar = new ChargeBar(nullptr, scene);
+    chargeBar->setCharge(charge);
 }
 
 void Hero::onTimer()
@@ -42,6 +45,10 @@ void Hero::onTimer()
     groupCheckTextInfo();
     //function groupCheckTextInfo() called after hero killed
 
+    if(charge <= maxCharge - rechargeRate){
+        charge += rechargeRate;
+        chargeBar->setCharge(charge);
+    }
     if((bulletCollisionCheck() != Side::nobody) || enemyCollisionCheck()){
         onDamage();
     }
@@ -69,6 +76,7 @@ void Hero::groupCheckTextInfo()
     QString output = "";
     output += "Acceleration: " + QString::number(engineAccel.x) + "\n";
     output += "SpeedX: " + QString::number(speed.x) + " speedY: " + QString::number(speed.y) + "\n";
+    output += "Charge: " + QString::number(charge) + "\n";
     checkText->setPlainText(output);
 }
 
@@ -92,7 +100,7 @@ void Hero::heroKeyPressed(int key)
         keyPressed[key] = true;
         keyPressed[oppositeKey[key]] = false;
     }
-    else if (key == Qt::Key_Space && shootAvl){
+    else if (key == Qt::Key_Space){
         shoot();
     }
 
@@ -171,9 +179,14 @@ bool Hero::checkScreenBorders(int distance)
 
 void Hero::shoot()
 {
+    if(charge < bulletCost){
+        return;
+    }
     int rand = QRandomGenerator::global()->bounded( AudioPaths::heroShoot.size());
     qDebug() << AudioPaths::heroShoot[rand];
     soundEffect->play(AudioPaths::heroShoot[rand], Volume::heroShoot);
     createBullet(1);
+    charge -= bulletCost;
+    chargeBar->setCharge(charge);
 }
 
