@@ -14,8 +14,7 @@ class EnemyManager : public QObject, public QGraphicsRectItem
     Q_OBJECT
 public:
     EnemyManager(QGraphicsScene* scene, KeyManager* keyManager);
-    void onEnemyDestruction(Enemy* enemy);
-    void onKillByHero(Enemy* enemy);
+    void onKillByHero();
     void startSpawningEnemies();
     void setTotalEnemiesToKill(int num) {totalEnemiesToKill = num;}
     QJsonObject returnEnemiesKilled();

@@ -21,8 +21,6 @@ Hero::Hero(QString imagePath, KeyManager* keyManager) : SpaceShip(nullptr, image
     active = false;
     this->hide();
 
-    setUpDelay(shootDelay);
-
     this->keyManager = keyManager;
     soundEffect = new SoundEffect();
 

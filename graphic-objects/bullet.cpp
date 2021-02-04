@@ -33,6 +33,6 @@ void Bullet::move()
     }
 }
 
-void Bullet::onHit() {
+void Bullet::deleteSelf() {
     delete this;
 }

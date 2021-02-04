@@ -27,9 +27,10 @@ QJsonObject EnemyManager::returnEnemiesKilled()
     return info;
 }
 
-void EnemyManager::onEnemyDestruction(Enemy* enemy)
+void EnemyManager::onKillByHero()
 {
-    delete enemy;
+    score++;
+    emit onEnemyCountChange(score);
 
     enemyCount--;
     upForNextDiff--;
@@ -38,13 +39,7 @@ void EnemyManager::onEnemyDestruction(Enemy* enemy)
         difficulty++;
         upForNextDiff = levelDifficultyStep;
     }
-}
 
-void EnemyManager::onKillByHero(Enemy *enemy)
-{
-    score++;
-    emit onEnemyCountChange(score);
-    onEnemyDestruction(enemy);
     if (score == totalEnemiesToKill){
         emit allEnemiesDefeated();
     }    

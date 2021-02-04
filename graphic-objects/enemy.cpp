@@ -48,8 +48,9 @@ void Enemy::onTimer(){
     }
 
     int hitBy = this->bulletCollisionCheck();
-    if(hitBy != Side::nobody){
-        positiveRemoval(hitBy);
+    if(hitBy == Side::hero){
+        manager->onKillByHero();
+        delete this;
     }
 }
 
@@ -74,7 +75,8 @@ void Enemy::setDifficulty(int difficulty)
 
 void Enemy::onHeroCollision()
 {
-    positiveRemoval(Side::hero);
+    manager->onKillByHero();
+    delete this;
 }
 
 
@@ -93,10 +95,13 @@ void Enemy::move()
     groupCheckTextInfo();
 }
 
-void Enemy::positiveRemoval(int hitBy)
-{   
-    if(hitBy == Side::hero){
-        manager->onKillByHero(this);
+void Enemy::setUpDelay(int shootDelay)
+{
+    if(timerBullet == nullptr) {
+        timerBullet = new Timer();
+        connect(timerBullet,SIGNAL(timeout()),this,SLOT(shootIsAvl()));
+        timerBullet->start(shootDelay);
+    } else {
+        timerBullet->setInterval(shootDelay);
     }
 }
-

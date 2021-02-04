@@ -1346,9 +1346,43 @@ player to choose mode</text>
                       </DAssociation>
                      </instance>
                     </item>
+                    <item>
+                     <instance type="DClass">
+                      <DClass>
+                       <base-DObject>
+                        <DObject>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{11c8c805-ce3d-4c47-95bd-b339f3c70c75}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{200fc282-6b7e-4d85-9bec-1bbf3e153d6e}</object>
+                         <pos>x:765;y:960</pos>
+                         <rect>x:-70;y:-55;w:140;h:110</rect>
+                         <auto-sized>false</auto-sized>
+                         <visual-role>0</visual-role>
+                        </DObject>
+                       </base-DObject>
+                      </DClass>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAnnotation">
+                      <DAnnotation>
+                       <base-DElement>
+                        <DElement>
+                         <uid>{9a6c2ebc-0e4c-4e76-9c91-c1997609a4ff}</uid>
+                        </DElement>
+                       </base-DElement>
+                       <text>Commander</text>
+                       <pos>x:730;y:905</pos>
+                       <rect>x:0;y:0;w:73;h:29</rect>
+                      </DAnnotation>
+                     </instance>
+                    </item>
                    </qlist>
                   </elements>
-                  <last-modified>1611784129040</last-modified>
+                  <last-modified>1612428829984</last-modified>
                   <toolbarid>General</toolbarid>
                  </MDiagram>
                 </base-MDiagram>
@@ -3130,6 +3164,26 @@ player to choose mode</text>
                    </MElement>
                   </base-MElement>
                   <name>StartDialog</name>
+                 </MObject>
+                </base-MObject>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{200fc282-6b7e-4d85-9bec-1bbf3e153d6e}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{200fc282-6b7e-4d85-9bec-1bbf3e153d6e}</uid>
+                   </MElement>
+                  </base-MElement>
                  </MObject>
                 </base-MObject>
                </MClass>

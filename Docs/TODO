@@ -1,17 +1,24 @@
+0- self-work
+! - needs additional preparation (e.g. images)
+L - problem reproduces on Linux machine only
+1/2 - needs confirmation before moving to "done"
+
 Bugfixes:
 - Process kamikaze act for level continuation
-- Infinite hero red blinking
+1/2- Infinite hero red blinking
+L - Fonts are displaying inconsistently
 
 New features:
-- Notify player about his score
-- (inform player about dialog cancelation) - leaderboard
-- Help point in the starting menu with the list of controls
-- User confirmation on restart
-- Animation for enemy destruction
-- Enemy having 2 lifes, half destroyed, mechanical insides seen
-- Adding "charge" bar for hero bullets to limit max bullets per minute (variable size rectangle *Rect item)
+0- Notify player about his score
+0- (inform player about dialog cancelation) - leaderboard
+0- Help point in the starting menu with the list of controls
+0- User confirmation on restart
+!- Animation for enemy destruction
+!- Enemy having 2 lifes, half destroyed, mechanical insides seen
+-- Aternatively, boss fights
+!- Add alien font
 - Different ammo
-- Neutral side meteors
+!- Neutral side meteors
 - Add intro animation (story) maybe Star Wars text, skip option
 - Levels
 
@@ -24,6 +31,7 @@ Refactoring:
 - Create 1 more class for scene management (ie gameOver image)
 
 Done:
+- Adding "charge" bar for hero bullets to limit max bullets per minute (variable size rectangle *Rect item)
 - On enemy difficulty increase, all enemies shoot, timer synchronizes
 - Make enemies appear from the top
 - Add sound

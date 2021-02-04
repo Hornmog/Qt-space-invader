@@ -56,7 +56,7 @@ int SpaceShip::bulletCollisionCheck()
      if(item != nullptr) {
         Bullet* bullet = static_cast<Bullet*>(item);
         int bulletSide = bullet->side;
-        bullet->onHit();
+        bullet->deleteSelf();
         return bulletSide;
     }
     return Side::nobody;
@@ -90,17 +90,6 @@ void SpaceShip::createBullet(int side)
 
     scene()->addItem(bullet);
     shootAvl = false;
-}
-
-void SpaceShip::setUpDelay(int shootDelay)
-{
-    if(timerBullet == nullptr) {
-        timerBullet = new Timer();
-        connect(timerBullet,SIGNAL(timeout()),this,SLOT(shootIsAvl()));
-        timerBullet->start(shootDelay);
-    } else {
-        timerBullet->setInterval(shootDelay);
-    }
 }
 
 void SpaceShip::setUpCheckText()

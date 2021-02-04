@@ -12,7 +12,7 @@ public:
     Bullet(float speed = 10, int side = 1, QString imagePath = "");  //add enum regarding side
     ~Bullet() override;
 
-    void onHit();
+    void deleteSelf();
 
     int getBulletLength() const {return bulletLength;}
     int getSpeed() const {return speed;}
