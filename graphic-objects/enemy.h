@@ -29,7 +29,6 @@ private:
     Timer* timerBullet = nullptr;
     int count;
     int difficulty;
-    int shootDelay;
 
 signals:
     void enemyOnBase();

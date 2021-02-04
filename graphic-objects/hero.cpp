@@ -185,7 +185,7 @@ void Hero::shoot()
     int rand = QRandomGenerator::global()->bounded( AudioPaths::heroShoot.size());
     qDebug() << AudioPaths::heroShoot[rand];
     soundEffect->play(AudioPaths::heroShoot[rand], Volume::heroShoot);
-    createBullet(1);
+    createBullet();
     charge -= bulletCost;
     chargeBar->setCharge(charge);
 }

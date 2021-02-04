@@ -18,7 +18,7 @@ public:
     explicit SpaceShip(QObject *parent = nullptr, QString imagePath = nullptr);
     ~SpaceShip() override;
     virtual void addToScene(QGraphicsScene* scene);
-    int side;
+    Side side;
     static bool checkTextVisible;
 
 public slots:
@@ -29,7 +29,7 @@ signals:
 
 protected:
     QGraphicsItem* collisionCheck(int typeIndex);
-    void createBullet(int side = 1);
+    void createBullet();
     int bulletCollisionCheck();
 
     void setUpCheckText();

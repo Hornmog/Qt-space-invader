@@ -9,7 +9,7 @@
 class Bullet: public AnimatedObject{
     Q_OBJECT
 public:
-    Bullet(float speed = 10, int side = 1, QString imagePath = "");  //add enum regarding side
+    Bullet(float speed = 10, Side side = Side::hero);  //add enum regarding side
     ~Bullet() override;
 
     void deleteSelf();
@@ -26,6 +26,7 @@ private:
     static const int bulletLength = 50;
     static const int bulletWidth = 10;
     int speed;
+    static QString getPath(Side side);
 };
 
 #endif // BULLET_H

@@ -5,7 +5,7 @@
 #include "consts.h"
 #include "utils/timer.h"
 
-Bullet::Bullet(float speed, int side, QString imagePath) : AnimatedObject(nullptr, imagePath, 21, 40)
+Bullet::Bullet(float speed, Side side) : AnimatedObject(nullptr, Bullet::getPath(side), 21, 40)
 {
     setSize(20,50);
     this->side = side;
@@ -18,6 +18,17 @@ Bullet::Bullet(float speed, int side, QString imagePath) : AnimatedObject(nullpt
     connect(timer, &Timer::timeout, this, &Bullet::move);
 
     timer->start(period_ms);
+}
+
+QString Bullet::getPath(Side side)
+{
+    if (side == Side::enemy){
+        return ImagePaths::enemyBullet;
+    } else if(side == Side::hero){
+        return ImagePaths::bullet;
+    } else {
+        throw "No bullet image defined for the side " + QString::number(side);
+    }
 }
 
 Bullet::~Bullet() {

@@ -44,7 +44,7 @@ void Enemy::onTimer(){
     checkText->setPos(x(),y());
 
     if(shootAvl){
-        createBullet(side);
+        createBullet();
     }
 
     int hitBy = this->bulletCollisionCheck();
