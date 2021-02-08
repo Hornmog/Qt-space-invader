@@ -4,6 +4,10 @@
 struct CoordPair {
     double x = 0;
     double y = 0;
+
+    CoordPair() {
+    }
+
     CoordPair(double x, double y) {
         this->x = x;
         this->y = y;

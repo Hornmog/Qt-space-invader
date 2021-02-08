@@ -12,7 +12,8 @@ New features:
 0- Notify player about his score
 0- (inform player about dialog cancelation) - leaderboard
 0- Help point in the starting menu with the list of controls
-!- Animation for enemy destruction
+0!- Animation for enemy destruction
+!- Blinking red to indicate position of next meteor
 !- Enemy having 2 lifes, half destroyed, mechanical insides seen
 -- Aternatively, boss fights
 !- Add alien font

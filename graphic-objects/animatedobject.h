@@ -4,8 +4,9 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QMovie>
+#include "movingobject.h"
 
-class AnimatedObject : public QObject, public QGraphicsPixmapItem
+class AnimatedObject : virtual public QObject, virtual public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:

@@ -8,7 +8,7 @@
 #include "keymanager.h"
 #include "level/healthbar.h"
 #include "level/soundeffect.h"
-#include "chargebar.h"
+#include "graphic-objects/chargebar.h"
 
 
 class Hero: public SpaceShip{

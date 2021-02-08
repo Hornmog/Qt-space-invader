@@ -18,6 +18,7 @@ Enemy::Enemy(EnemyManager *manager, QString imagePath, int count) : SpaceShip(ma
     speed.x = QRandomGenerator::global()->bounded(diff.x * 2 + 1) - diff.x;
     speed.y = QRandomGenerator::global()->bounded(diff.y * 2 + 1) + diff.y;
 
+    this->setPos(QRandomGenerator::global()->bounded(width, sceneWidth - width), - height);
 
     this->manager = manager;
     this->count = count;
@@ -34,7 +35,6 @@ Enemy::~Enemy(){
 void Enemy::addToScene(QGraphicsScene *scene)
 {
     SpaceShip::addToScene(scene);
-    this->setPos(QRandomGenerator::global()->bounded(width, scene->width() - width), -height);
 }
 
 void Enemy::onTimer(){

@@ -60,6 +60,7 @@ namespace AudioPaths {
 
 namespace ScenePriority {
     static const int spaceship = 10;         //default Zvalue is 0
+    static const int meteor = 9;
     static const int fullScreenText = 20;
     static const int bullet = 15;
     static const int text = 30;
