@@ -33,15 +33,18 @@ public slots:
     void win();
 
 private:
+    enum Position {middle, mid_up, mid_down};
+
     void startEnemySpawn();
     void connectSpaceshipSignals();
     void createBackground();
-    void createScreenImage(QString imagePath);
-    void createPressRImage();
+    void createScreenImage(QString imagePath, CoordPair scale = CoordPair(sceneWidth, sceneHeight),
+                           Position position = Position::middle);
     void createCountdownTextItem();
     void createPauseScreen();
     bool requestRestartConfirmation();
     //    void deleteSceneGraphicItems();
+
 
     bool gameInProcess = false;
     bool gameWon = false;
@@ -62,6 +65,7 @@ signals:
     void signalWin();
     void signalGameOver(int score);
     void restartLevel();
+
 };
 
 #endif // LEVELMANAGER_H

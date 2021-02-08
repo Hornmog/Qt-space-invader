@@ -178,30 +178,28 @@ void LevelManager::changeScore(int score)
     scoreBar->setScore(score);
 }
 
-void LevelManager::createScreenImage(QString imagePath)
+void LevelManager::createScreenImage(QString imagePath, CoordPair scale, Position position)
 {
     QPixmap pixmap(imagePath);
 
     QGraphicsPixmapItem* fullScreenImage = new QGraphicsPixmapItem(
-                pixmap.scaled(sceneWidth, sceneHeight, Qt::KeepAspectRatio));
-    fullScreenImage->setPos(0, sceneHeight / 2 - fullScreenImage->boundingRect().height() / 2);
+                pixmap.scaled(scale.x, scale.y, Qt::KeepAspectRatio));
+
+    switch(position){
+    case middle:
+        fullScreenImage->setPos(0, sceneHeight / 2 - fullScreenImage->boundingRect().height() / 2);
+        break;
+    case mid_up:
+        fullScreenImage->setPos(0, sceneHeight / 4 - fullScreenImage->boundingRect().height() / 2);
+        break;
+    case mid_down:
+        fullScreenImage->setPos(sceneWidth/4, sceneHeight - fullScreenImage->boundingRect().height() * 3);
+        break;
+    }
+
     fullScreenImage->setZValue(ScenePriority::fullScreenText);
     scene->addItem(fullScreenImage);
 }
-
-void LevelManager::createPressRImage()
-{
-    // This function is basically identical with the one above.
-    // Consider fusing them, maybe by introducing additional parameters
-    QPixmap pressRPixmap(ImagePaths::pressR);
-    QGraphicsPixmapItem* pressRImage = new QGraphicsPixmapItem(
-                pressRPixmap.scaled(sceneWidth/2, sceneHeight, Qt::KeepAspectRatio));
-
-    pressRImage->setPos(sceneWidth/4, sceneHeight - pressRImage->boundingRect().height() * 3);
-    pressRImage->setZValue(ScenePriority::fullScreenText);
-    scene->addItem(pressRImage);
-}
-
 
 void LevelManager::lose()
 {
@@ -214,7 +212,7 @@ void LevelManager::lose()
     delete hero;
 
     createScreenImage(ImagePaths::gameOver);
-    createPressRImage();
+    createScreenImage(ImagePaths::pressR, CoordPair(sceneWidth/2, sceneHeight), mid_down);
 
     audioManager->stopBackground();
     emit signalGameOver(scoreBar->score);
