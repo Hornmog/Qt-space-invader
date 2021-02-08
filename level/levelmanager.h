@@ -40,6 +40,7 @@ private:
     void createPressRImage();
     void createCountdownTextItem();
     void createPauseScreen();
+    bool requestRestartConfirmation();
     //    void deleteSceneGraphicItems();
 
     bool gameInProcess = false;

@@ -12,7 +12,6 @@ New features:
 0- Notify player about his score
 0- (inform player about dialog cancelation) - leaderboard
 0- Help point in the starting menu with the list of controls
-0- User confirmation on restart
 !- Animation for enemy destruction
 !- Enemy having 2 lifes, half destroyed, mechanical insides seen
 -- Aternatively, boss fights
@@ -33,6 +32,7 @@ Refactoring:
 - Create 1 more class for scene management (ie gameOver image)
 
 Done:
+- User confirmation on restart
 - Adding "charge" bar for hero bullets to limit max bullets per minute (variable size rectangle *Rect item)
 - On enemy difficulty increase, all enemies shoot, timer synchronizes
 - Make enemies appear from the top

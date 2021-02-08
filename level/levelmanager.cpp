@@ -1,7 +1,7 @@
 #include "levelmanager.h"
 #include "consts.h"
 #include "soundeffect.h"
-
+#include <QMessageBox>
 LevelManager::LevelManager(QObject *parent, KeyManager* keyManager) : QObject(parent)
 {
     scene = new QGraphicsScene();
@@ -46,7 +46,12 @@ void LevelManager::setTotalEnemiesToKill(int num)
 void LevelManager::checkRestart()
 {
     if(!gameInProcess){
-        emit restartLevel();
+        if(requestRestartConfirmation()){
+            emit restartLevel();
+        }
+        else{
+            qDebug() << "restart cancelled";
+        }
     }
 }
 
@@ -107,6 +112,21 @@ void LevelManager::createPauseScreen()
     pause->hide();
     scene->addItem(pause);
 }
+
+bool LevelManager::requestRestartConfirmation()
+{
+      QMessageBox::StandardButton reply;
+      reply = QMessageBox::question(nullptr, "Confirmation", "Are you sure you want to restart?",
+                                    QMessageBox::Yes|QMessageBox::No);
+      if (reply == QMessageBox::Yes) {
+        qDebug() << "Yes was clicked";
+        return true;
+      } else {
+        qDebug() << "Yes was *not* clicked";
+        return false;
+      }
+}
+
 
 void LevelManager::createBackground()
 {
