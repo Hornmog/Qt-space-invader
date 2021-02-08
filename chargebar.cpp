@@ -11,13 +11,12 @@ ChargeBar::ChargeBar(QObject *parent, QGraphicsScene* scene)
     scene->addItem(this);
 
     QLinearGradient linearGrad(this->boundingRect().topLeft(), this->boundingRect().bottomRight());
-    linearGrad.setColorAt(0, Qt::red);
-    linearGrad.setColorAt(1, Qt::blue);
+    linearGrad.setColorAt(0, QColor(90, 3, 252));
+    linearGrad.setColorAt(1, QColor(3, 194, 252));
 
     QBrush brush(linearGrad);
 
     this->setBrush(brush);
-    this->setPen(QPen(Qt::red));
 
 }
 
