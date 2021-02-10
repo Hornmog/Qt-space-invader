@@ -9,6 +9,7 @@
 
 Enemy::Enemy(EnemyManager *manager, QString imagePath, int count) : SpaceShip(manager, imagePath)
 {
+    active = true;
     bulletSpeed = baseBulletSpeed;
     shootDelay = baseShootDelay;
     side = Side::enemy;
@@ -43,6 +44,9 @@ void Enemy::onTimer(){
     this->move();
     checkText->setPos(x(),y());
 
+    if(!active){
+        return;
+    }
     if(shootAvl){
         createBullet();
     }
@@ -50,7 +54,8 @@ void Enemy::onTimer(){
     int hitBy = this->bulletCollisionCheck();
     if(hitBy == Side::hero){
         manager->onKillByHero();
-        delete this;
+        delState();
+        //delete this;
     }
 }
 
@@ -76,7 +81,8 @@ void Enemy::setDifficulty(int difficulty)
 void Enemy::onHeroCollision()
 {
     manager->onKillByHero();
-    delete this;
+    delState();
+    //delete this;
 }
 
 
@@ -105,3 +111,12 @@ void Enemy::setUpDelay(int shootDelay)
         timerBullet->setInterval(shootDelay);
     }
 }
+
+void Enemy::delState()
+{
+    active = false;
+    setTemporaryAnimation(ImagePaths::enemyDes);
+    qDebug() << ImagePaths::enemyDes;
+    Timer::singleShot(ImagePaths::enemyDesDur, this, &Enemy::deleteLater);
+}
+

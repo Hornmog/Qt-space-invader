@@ -24,11 +24,14 @@ public slots:
 private:
     void move();
     void setUpDelay(int delay);
+    void delState();
     const float baseBulletSpeed = -0.2 * period_ms;
     EnemyManager* manager;
     Timer* timerBullet = nullptr;
     int count;
     int difficulty;
+
+private slots:
 
 signals:
     void enemyOnBase();

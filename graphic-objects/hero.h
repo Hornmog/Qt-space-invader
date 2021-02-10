@@ -27,9 +27,6 @@ public slots:
     void groupCheckTextInfo() override;
     void heroKeyPressed(int key);
     void heroKeyReleased(int key);
-    void setActive(bool active) {
-        this->active = active;
-    }
 
 private:
     bool enemyCollisionCheck();
@@ -47,8 +44,6 @@ private:
     QMap<int, bool> keyPressed = {{Qt::Key_Left, false}, {Qt::Key_Right, false}, {Qt::Key_Up, false}, {Qt::Key_Down, false}};
     QMap<int, int> oppositeKey = {{Qt::Key_Left, Qt::Key_Right}, {Qt::Key_Right, Qt::Key_Left},
                                   {Qt::Key_Up, Qt::Key_Down}, {Qt::Key_Down, Qt::Key_Up}};
-
-    bool active = false;
     int lives = 3;
     const float maxCharge = 100;
     const float bulletCost = 30;

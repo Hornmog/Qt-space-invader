@@ -2,6 +2,7 @@
 #include "utils/timer.h"
 #include "consts.h"
 #include <QDebug>
+#include "enemy.h"
 
 AnimatedObject::AnimatedObject(QObject *parent, QString imagePath, int width, int height) : QObject(parent)
 {
@@ -32,6 +33,9 @@ void AnimatedObject::setTemporaryAnimation(QString path)
 
 void AnimatedObject::nextFrame(int frameNumber)
 {
+    if(this->type() == TypeIndex::enemy){
+        int n = 1;
+    }
 
     if(!isDefaultGif && frameNumber + 1 >= gif->frameCount()){
         gif = new QMovie(imagePath);

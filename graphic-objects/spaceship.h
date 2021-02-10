@@ -24,6 +24,9 @@ public:
 public slots:
     virtual void onTimer() = 0;
     void toggleCheckText();
+    void setActive(bool active) {
+        this->active = active;
+    }
 
 signals:
 
@@ -44,6 +47,7 @@ protected:
     CheckText *checkText;
     Timer* mainTimer;
     int shootDelay;
+    bool active = false;
 
 private:
     bool checkTextOnScene = false;
