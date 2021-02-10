@@ -16,7 +16,7 @@ EnemyManager::EnemyManager(QGraphicsScene* scene, KeyManager* keyManager)
 void EnemyManager::startSpawningEnemies()
 {
     createEnemy();
-    connect(timer, &QTimer::timeout, this, &EnemyManager::onSpawnTimer);
+    connect(timer, &Timer::timeout, this, &EnemyManager::onSpawnTimer);
     timer->start(spawnRate);
 }
 

@@ -7,14 +7,14 @@
 #include "checktext.h"
 #include "utils/timer.h"
 
-class MovingObject : virtual public QObject, virtual public QGraphicsPixmapItem
+class MovingObject : virtual public QGraphicsPixmapItem
 {
-    Q_OBJECT
 public:
     explicit MovingObject(QObject *parent = nullptr);
     ~MovingObject() override;
     static bool checkTextVisible;
     virtual void addToScene(QGraphicsScene* scene);
+    virtual void onTimer() = 0;
 
 private:
     bool checkTextOnScene = false;
@@ -29,11 +29,9 @@ protected:
     Timer* mainTimer;
     Side side;
 
-public slots:
-    virtual void onTimer() = 0;
-    void toggleCheckText();
-
-signals:
+//public slots:
+    //virtual void onTimer() = 0;
+    //void toggleCheckText();
 
 };
 

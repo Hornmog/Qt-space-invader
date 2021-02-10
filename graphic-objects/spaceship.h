@@ -15,11 +15,13 @@
 
 class SpaceShip : public AnimatedObject, public MovingObject
 {
+    Q_OBJECT
 
 public:
     explicit SpaceShip(QObject *parent = nullptr, QString imagePath = nullptr);
 
 public slots:
+    void toggleCheckText();
 signals:
 
 protected:

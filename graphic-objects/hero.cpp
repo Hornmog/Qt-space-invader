@@ -127,7 +127,7 @@ bool Hero::enemyCollisionCheck()
 {
     auto item = collisionCheck(TypeIndex::enemy);
     if(item != nullptr){
-        Enemy* enemy = static_cast<Enemy*>(item);
+        Enemy* enemy = dynamic_cast<Enemy*>(item);
         enemy->onHeroCollision();
         return true;
     }

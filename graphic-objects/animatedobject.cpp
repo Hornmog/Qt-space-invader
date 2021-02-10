@@ -3,7 +3,7 @@
 #include "consts.h"
 #include <QDebug>
 
-AnimatedObject::AnimatedObject(QObject *parent, QString imagePath, int width, int height) : QObject(parent)
+AnimatedObject::AnimatedObject(QObject *parent, QString imagePath, int width, int height)
 {
     this->imagePath = imagePath;
     this->width = width;

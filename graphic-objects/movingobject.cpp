@@ -1,13 +1,16 @@
 #include "movingobject.h"
 #include "bullet.h"
 
-MovingObject::MovingObject(QObject *parent) : QObject(parent)
+bool MovingObject::checkTextVisible = false;
+
+MovingObject::MovingObject(QObject *parent)
 {
     checkText = new CheckText();
     setUpCheckText();
 
     mainTimer = new Timer();
-    connect(mainTimer, &QTimer::timeout, this, &MovingObject::onTimer);
+    mainTimer->connectExternalMethod([this](){this->onTimer();});
+    //connect(mainTimer, &Timer::timeout, this, &MovingObject::onTimer);
     mainTimer->start(period_ms);
 
 }
@@ -60,10 +63,10 @@ void MovingObject::setUpCheckText()
 }
 
 
-void MovingObject::toggleCheckText()
-{
-    qDebug() << "Check Text visible 1: " << checkTextVisible;
-    checkText->setVisible(checkTextVisible);
-    qDebug() << "Check Text visible 2: " << checkText->isVisible();
+//void MovingObject::toggleCheckText()
+//{
+//    qDebug() << "Check Text visible 1: " << checkTextVisible;
+//    checkText->setVisible(checkTextVisible);
+//    qDebug() << "Check Text visible 2: " << checkText->isVisible();
 
-}
+//}

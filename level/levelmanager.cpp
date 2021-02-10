@@ -145,7 +145,7 @@ void LevelManager::createCountdownTextItem()
     scene->addItem(number);
     countdown = new Timer();
     auto countDownX = [=]() {startLevelCountdown(3);};
-    connect(countdown, &QTimer::timeout, this, countDownX);
+    connect(countdown, &Timer::timeout, this, countDownX);
 }
 void LevelManager::startLevelCountdown(int phase)
 {
@@ -167,7 +167,7 @@ void LevelManager::startLevelCountdown(int phase)
 
     auto countDownX = [=]() {startLevelCountdown(phase);};
     disconnect(countdown, nullptr, nullptr, nullptr);
-    connect(countdown, &QTimer::timeout, this, countDownX);
+    connect(countdown, &Timer::timeout, this, countDownX);
 
     countdown->setSingleShot(true);
     countdown->start(1000);

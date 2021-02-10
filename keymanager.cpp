@@ -19,8 +19,8 @@ void KeyManager::keyPressEvent(QKeyEvent *event)
     }
 
     else if (key == Qt::Key_L){
-        checkTextVisible = !checkTextVisible;
-        qDebug() << "KeyManager set checkText to " << checkTextVisible;
+        //checkTextVisible = !checkTextVisible;
+        //qDebug() << "KeyManager set checkText to " << checkTextVisible;
         emit logKeyPressed();
     }
     else if (key == Qt::Key_R){

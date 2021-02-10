@@ -6,7 +6,7 @@
 #include "gamemanager.h"
 #include "animatedobject.h"
 
-class Bullet: public AnimatedObject{
+class Bullet: public AnimatedObject {
     Q_OBJECT
 public:
     Bullet(float speed = 10, Side side = Side::hero);  //add enum regarding side

@@ -3,8 +3,7 @@
 #include <stdexcept>
 
 Timer::Timer() {
-    QTimer* us = this;
-    connect(us, &QTimer::timeout, this, &Timer::timeoutCheckInterval);
+    connect(this, &Timer::timeout, this, &Timer::timeoutCheckInterval);
     connect(Clock::getClock(), &Clock::pauseSignal, this, &Timer::pause);
     connect(Clock::getClock(), &Clock::resumeSignal, this, &Timer::resume);
 }
@@ -14,6 +13,20 @@ void Timer::start(int msec)
     QTimer::start(msec);
     paused = false;
     intervalSet = true;
+}
+
+void Timer::callExternalMethod()
+{
+    if (method) {
+        method();
+    }
+}
+
+void Timer::connectExternalMethod(Timer::extfunc_t method)
+{
+    this->method = method;
+    disconnect(this); // remove pervious connections if present
+    connect(this, &Timer::timeout, this, &Timer::callExternalMethod);
 }
 
 void Timer::pause()

@@ -17,7 +17,6 @@ public:
     void keyPressEvent(QKeyEvent* event) override;
     void keyReleaseEvent(QKeyEvent *event) override;
 
-
 signals:
     void heroKeyPressed(int key);
     void logKeyPressed();
