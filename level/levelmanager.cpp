@@ -17,7 +17,7 @@ LevelManager::LevelManager(QObject *parent, KeyManager* keyManager) : QObject(pa
     enemyManager = new EnemyManager(scene, keyManager);
     audioManager = new AudioManager();
 
-    hero = new Hero(ImagePaths::hero, keyManager);
+    hero = new Hero(keyManager);
     hero->addToScene(scene);
 
     createPauseScreen();

@@ -7,8 +7,9 @@
 #include "consts.h"
 #include <QRandomGenerator>
 
-Enemy::Enemy(EnemyManager *manager, QString imagePath, int count) : SpaceShip(manager, imagePath)
+Enemy::Enemy(EnemyManager *manager, int count) : SpaceShip(manager)
 {
+    animator = new Animator(this, this, ImagePaths::enemy, this->width, this->height);
     bulletSpeed = baseBulletSpeed;
     shootDelay = baseShootDelay;
     side = Side::enemy;

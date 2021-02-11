@@ -13,11 +13,12 @@
 #include "animatedobject.h"
 #include "movingobject.h"
 
-class SpaceShip : public AnimatedObject, public MovingObject
+class SpaceShip : public MovingObject
 {
 
+    Q_OBJECT
 public:
-    explicit SpaceShip(QObject *parent = nullptr, QString imagePath = nullptr);
+    explicit SpaceShip(QObject *parent = nullptr);
 
 public slots:
 signals:
@@ -33,6 +34,10 @@ protected:
 
 private:
 
+protected:
+    Animator *animator;
+    int width = 100, height = 100;
+    // w and h are to determined in derived objects
 
 private slots:
     void shootIsAvl();

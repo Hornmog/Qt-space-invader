@@ -12,8 +12,9 @@
 
 const Hero::Movement Hero::movement;
 
-Hero::Hero(QString imagePath, KeyManager* keyManager) : SpaceShip(nullptr, imagePath)
+Hero::Hero(KeyManager* keyManager) : SpaceShip(nullptr)
 {
+    animator = new Animator(this, this, ImagePaths::hero, this->width, this->height);
     shootDelay = 1000;
     rechargeRate = bulletCost * period_ms / shootDelay;
     bulletSpeed = 0.6 * period_ms; // 10 pixels per 50 ms
@@ -60,7 +61,7 @@ void Hero::onTimer()
 
 void Hero::onDamage()
 {
-    this->setTemporaryAnimation(ImagePaths::damagedHero);
+    animator->setTemporaryAnimation(ImagePaths::damagedHero);
     int rand = QRandomGenerator::global()->bounded(AudioPaths::heroDamaged.size());
     soundEffect->play(AudioPaths::heroDamaged[rand], Volume::heroDamaged);
 

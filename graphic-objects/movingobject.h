@@ -7,7 +7,7 @@
 #include "checktext.h"
 #include "utils/timer.h"
 
-class MovingObject : virtual public QObject, virtual public QGraphicsPixmapItem
+class MovingObject : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:

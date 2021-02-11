@@ -8,7 +8,7 @@
 #include "checktext.h"
 #include "utils/clock.h"
 
-SpaceShip::SpaceShip(QObject *parent, QString imagePath) : AnimatedObject(), MovingObject()
+SpaceShip::SpaceShip(QObject *parent) : MovingObject()
     //: AnimatedObject(parent, imagePath)
 {
     setZValue(1);

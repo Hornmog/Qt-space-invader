@@ -1,6 +1,8 @@
 #include "movingobject.h"
 #include "bullet.h"
 
+bool MovingObject::checkTextVisible = false;
+
 MovingObject::MovingObject(QObject *parent) : QObject(parent)
 {
     checkText = new CheckText();
@@ -39,10 +41,10 @@ int MovingObject::bulletCollisionCheck()
 {
      auto item = collisionCheck(TypeIndex::bullet);
      if(item != nullptr) {
-//        Bullet* bullet = static_cast<Bullet*>(item);
-//        int bulletSide = bullet->side;
-//        bullet->deleteSelf();
-//        return bulletSide;
+        Bullet* bullet = static_cast<Bullet*>(item);
+        int bulletSide = bullet->side;
+        bullet->deleteSelf();
+        return bulletSide;
     }
     return Side::nobody;
 }

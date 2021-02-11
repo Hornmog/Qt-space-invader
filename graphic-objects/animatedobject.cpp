@@ -3,25 +3,21 @@
 #include "consts.h"
 #include <QDebug>
 
-AnimatedObject::AnimatedObject(QObject *parent, QString imagePath, int width, int height) : QObject(parent)
+Animator::Animator(QObject *parent, QGraphicsPixmapItem *item, QString imagePath,
+                   int width, int height) : QObject(parent)
 {
-    this->imagePath = imagePath;
     this->width = width;
     this->height = height;
+    this->imagePath = imagePath;
+    this->item = item;
     gif = new QMovie(imagePath);
     gif->start();
     nextFrame(0);
 
-    connect(gif, &QMovie::frameChanged, this, &AnimatedObject::nextFrame);
+    connect(gif, &QMovie::frameChanged, this, &Animator::nextFrame);
 }
 
-void AnimatedObject::setSize(int width, int height)
-{
-    this->width = width;
-    this->height = height;
-}
-
-void AnimatedObject::setTemporaryAnimation(QString path)
+void Animator::setTemporaryAnimation(QString path)
 {
     gif = new QMovie(path);
     gif->start();
@@ -30,26 +26,14 @@ void AnimatedObject::setTemporaryAnimation(QString path)
     qDebug() << "Current nonDefault gif frameCount: " << gif->frameCount();
 }
 
-void AnimatedObject::nextFrame(int frameNumber)
-{
-
+void Animator::nextFrame(int frameNumber)
+{    
     if(!isDefaultGif && frameNumber + 1 >= gif->frameCount()){
         gif = new QMovie(imagePath);
         gif->start();
-        isDefaultGif = true;
+        isDefaultGif = true; 
         qDebug() << "Changing back to default: curr gif frame: " << gif->currentFrameNumber()
                  << "gifCount: " << gif->frameCount();
     }
-
-    this->setPixmap(gif->currentPixmap().scaled(width, height));
-}
-
-int AnimatedObject::getHeight() const
-{
-    return height;
-}
-
-int AnimatedObject::getWidth() const
-{
-    return width;
+    item->setPixmap(gif->currentPixmap().scaled(width, height));
 }
