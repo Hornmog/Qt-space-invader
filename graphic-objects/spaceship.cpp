@@ -8,30 +8,11 @@
 #include "checktext.h"
 #include "utils/clock.h"
 
-bool SpaceShip::checkTextVisible = false;
-
-SpaceShip::SpaceShip(QObject *parent, QString imagePath) : AnimatedObject(parent, imagePath)
+SpaceShip::SpaceShip(QObject *parent) : MovingObject()
+    //: AnimatedObject(parent, imagePath)
 {
-    checkText = new CheckText();
-    setUpCheckText();
-    this->setZValue(ScenePriority::spaceship);
-
-    mainTimer = new Timer();
-    connect(mainTimer, &QTimer::timeout, this, &SpaceShip::onTimer);
-    mainTimer->start(period_ms);
-
-}
-
-SpaceShip::~SpaceShip()
-{
-    delete checkText;
-}
-
-void SpaceShip::addToScene(QGraphicsScene *scene)
-{
-    scene->addItem(this);
-    scene->addItem(checkText);
-
+    setZValue(1);
+    setZValue(ScenePriority::spaceship);
 }
 
 void SpaceShip::shootIsAvl()
@@ -39,32 +20,9 @@ void SpaceShip::shootIsAvl()
     shootAvl = true;
 }
 
-QGraphicsItem* SpaceShip::collisionCheck(int typeIndex)
-{
-    auto items = this->collidingItems();
-    for (QGraphicsItem* item: qAsConst(items)) {
-        if(item->type() == typeIndex){
-            return item;
-        }
-    }
-    return nullptr;
-}
-
-int SpaceShip::bulletCollisionCheck()
-{
-     auto item = collisionCheck(TypeIndex::bullet);
-     if(item != nullptr) {
-        Bullet* bullet = static_cast<Bullet*>(item);
-        int bulletSide = bullet->side;
-        bullet->deleteSelf();
-        return bulletSide;
-    }
-    return Side::nobody;
-}
-
 void SpaceShip::createBullet()
 {
-    Bullet *bullet = new Bullet(bulletSpeed, side);
+    Bullet *bullet = new Bullet(bulletSpeed, this->side);
     // TODO: why do we need to add bullet length?
     int basePositionX = x()+(width/2);
 
@@ -85,23 +43,3 @@ void SpaceShip::createBullet()
     shootAvl = false;
 }
 
-void SpaceShip::setUpCheckText()
-{
-
-    QFont font = QFont("Impact", 16, QFont::Bold);
-    QColor color = QColor(255, 100, 108);
-    checkText->setFont(font);
-    checkText->setDefaultTextColor(color);
-    checkText->setPlainText(QString::number(0));
-    checkText->setZValue(ScenePriority::text);
-    checkText->setVisible(checkTextVisible);
-}
-
-
-void SpaceShip::toggleCheckText()
-{
-    qDebug() << "Check Text visible 1: " << checkTextVisible;
-    checkText->setVisible(checkTextVisible);
-    qDebug() << "Check Text visible 2: " << checkText->isVisible();
-
-}

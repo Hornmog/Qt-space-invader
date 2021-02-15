@@ -19,8 +19,8 @@ void KeyManager::keyPressEvent(QKeyEvent *event)
     }
 
     else if (key == Qt::Key_L){
-        SpaceShip::checkTextVisible = !SpaceShip::checkTextVisible;
-        qDebug() << "KeyManager set checkText to " << SpaceShip::checkTextVisible;
+        MovingObject::checkTextVisible = !MovingObject::checkTextVisible;
+        qDebug() << "KeyManager set checkText to " << MovingObject::checkTextVisible;
         emit logKeyPressed();
     }
     else if (key == Qt::Key_R){

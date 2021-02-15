@@ -55,7 +55,7 @@ void EnemyManager::onSpawnTimer()
 
 void EnemyManager::createEnemy()
 {
-    Enemy* enemy = new Enemy(this, ImagePaths::enemy, totalEnemiesSpawned);
+    Enemy* enemy = new Enemy(this, totalEnemiesSpawned);
     enemy->setDifficulty(difficulty);
     enemy->addToScene(scene);
     enemyCount++;

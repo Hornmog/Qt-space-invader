@@ -6,7 +6,7 @@
 #include "gamemanager.h"
 #include "animatedobject.h"
 
-class Bullet: public AnimatedObject{
+class Bullet: public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
 public:
     Bullet(float speed = 10, Side side = Side::hero);  //add enum regarding side
@@ -23,8 +23,9 @@ public:
 public slots:
     void move();
 private:
+    Animator *animator;
     static const int bulletLength = 50;
-    static const int bulletWidth = 10;
+    static const int bulletWidth = 20;
     int speed;
     static QString getPath(Side side);
 };

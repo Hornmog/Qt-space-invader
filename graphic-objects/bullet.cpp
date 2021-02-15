@@ -5,14 +5,15 @@
 #include "consts.h"
 #include "utils/timer.h"
 
-Bullet::Bullet(float speed, Side side) : AnimatedObject(nullptr, Bullet::getPath(side), 21, 40)
+Bullet::Bullet(float speed, Side side)
 {
-    setSize(20,50);
     this->side = side;
 
     this->setZValue(ScenePriority::bullet);
 
     this->speed = speed;
+
+    animator = new Animator(this, this, getPath(side), this->bulletWidth, this->bulletLength);
 
     Timer * timer = new Timer();
     connect(timer, &Timer::timeout, this, &Bullet::move);

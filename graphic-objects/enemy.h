@@ -10,7 +10,7 @@
 class Enemy: public SpaceShip{
     Q_OBJECT
 public:
-    Enemy(EnemyManager* manager, QString imagePath, int count);
+    Enemy(EnemyManager* manager, int count);
     ~Enemy() override;
     int type() const override{return TypeIndex::enemy;}
     virtual void addToScene(QGraphicsScene* scene) override;

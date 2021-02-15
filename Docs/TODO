@@ -7,11 +7,20 @@ Bugfixes:
 - Process kamikaze act for level continuation
 1/2- Infinite hero red blinking
 L - Fonts are displaying inconsistently
+- Broken restart
 
 New features:
 0- Notify player about his score
 0- (inform player about dialog cancelation) - leaderboard
 0- Help point in the starting menu with the list of controls
+<<<<<<< HEAD
+||||||| 9bf97b5
+!- Animation for enemy destruction
+=======
+1/2- Animation for enemy destruction
+0- No restart confirmation needed when the game is lost
+!- Blinking red to indicate position of next meteor
+>>>>>>> MovingObject
 !- Enemy having 2 lifes, half destroyed, mechanical insides seen
 -- Aternatively, boss fights
 !- Add alien font

@@ -8,14 +8,14 @@
 #include "keymanager.h"
 #include "level/healthbar.h"
 #include "level/soundeffect.h"
-#include "chargebar.h"
+#include "graphic-objects/chargebar.h"
 
 
 class Hero: public SpaceShip{
 
     Q_OBJECT
 public:
-    Hero(QString imagePath = nullptr, KeyManager* keyManager = nullptr);
+    Hero(KeyManager* keyManager = nullptr);
     int type() const override {return TypeIndex::hero;}
     virtual void addToScene(QGraphicsScene* scene) override;
 
@@ -34,7 +34,6 @@ private:
     bool checkScreenBorders(int distance);
     void shoot();
     void onDamage();
-
     KeyManager* keyManager;
     HealthBar* healthBar;
     ChargeBar* chargeBar;

@@ -19,11 +19,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    chargebar.cpp \
     gamemanager.cpp \
     graphic-objects/animatedobject.cpp \
     graphic-objects/bullet.cpp \
+    graphic-objects/chargebar.cpp \
     graphic-objects/enemy.cpp \
+    graphic-objects/meteor.cpp \
+    graphic-objects/movingobject.cpp \
     graphicsview.cpp \
     graphic-objects/hero.cpp \
     keymanager.cpp \
@@ -42,13 +44,15 @@ SOURCES += \
     utils/timer.cpp
 
 HEADERS += \
-    chargebar.h \
     consts.h \
     graphic-objects/animatedobject.h \
     graphic-objects/bullet.h \
+    graphic-objects/chargebar.h \
     graphic-objects/checktext.h \
     graphic-objects/enemy.h \
     gamemanager.h \
+    graphic-objects/meteor.h \
+    graphic-objects/movingobject.h \
     graphicsview.h \
     graphic-objects/hero.h \
     keymanager.h \
