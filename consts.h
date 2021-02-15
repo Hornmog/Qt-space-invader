@@ -9,11 +9,11 @@
 namespace TypeIndex {
     static const int bullet = 66666;         //anything >= UserType (65536).
     static const int enemy = 66667;
+    static const int ruiningEnemy = 66671;
     static const int scoreBar = 66668;
     static const int checkText = 66669;
     static const int hero = 66670;
-    static const int background = 3;
-
+    static const int background = 3;  
     static const int fullscreenText = 7;
 
 }

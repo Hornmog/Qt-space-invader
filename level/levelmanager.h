@@ -2,7 +2,7 @@
 #define LEVELMANAGER_H
 
 #include "level/audiomanager.h"
-#include "enemymanager.h"
+#include "enemycommander.h"
 #include "graphicsview.h"
 #include "keymanager.h"
 #include "scorebar.h"
@@ -48,10 +48,11 @@ private:
 
     bool gameInProcess = false;
     bool gameWon = false;
+    bool gameLost = false;
     ScoreBar* scoreBar;
     QGraphicsScene* scene;
     Hero* hero = nullptr;
-    EnemyManager* enemyManager;
+    EnemyCommander* enemyManager;
     AudioManager* audioManager;
     QGraphicsPixmapItem* pause;
     QGraphicsTextItem* number;

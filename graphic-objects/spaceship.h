@@ -19,21 +19,6 @@ class SpaceShip : public MovingObject
     Q_OBJECT
 public:
     explicit SpaceShip(QObject *parent = nullptr);
-
-public slots:
-<<<<<<< HEAD
-    virtual void onTimer() = 0;
-    void toggleCheckText();
-    void setActive(bool active) {
-        this->active = active;
-    }
-
-||||||| 9bf97b5
-    virtual void onTimer() = 0;
-    void toggleCheckText();
-
-=======
->>>>>>> MovingObject
 signals:
 
 protected:

@@ -32,9 +32,10 @@ SOURCES += \
     leaderboard.cpp \
     leaderboardwindow.cpp \
     level/audiomanager.cpp \
-    level/enemymanager.cpp \
+    level/enemycommander.cpp \
     level/healthbar.cpp \
     level/levelmanager.cpp \
+    level/meteorcommander.cpp \
     level/scorebar.cpp \
     level/soundeffect.cpp \
     main.cpp \
@@ -59,10 +60,11 @@ HEADERS += \
     leaderboard.h \
     leaderboardwindow.h \
     level/audiomanager.h \
-    level/enemymanager.h \
+    level/enemycommander.h \
     level/healthbar.h \
     level/levelmanager.h \
     graphic-objects/spaceship.h \
+    level/meteorcommander.h \
     level/scorebar.h \
     level/soundeffect.h \
     startdialog.h \

@@ -7,20 +7,15 @@ Bugfixes:
 - Process kamikaze act for level continuation
 1/2- Infinite hero red blinking
 L - Fonts are displaying inconsistently
-- Broken restart
+1/2- Broken restart
 
 New features:
 0- Notify player about his score
 0- (inform player about dialog cancelation) - leaderboard
 0- Help point in the starting menu with the list of controls
-<<<<<<< HEAD
-||||||| 9bf97b5
-!- Animation for enemy destruction
-=======
-1/2- Animation for enemy destruction
 0- No restart confirmation needed when the game is lost
+!- Sound for enemy distruction
 !- Blinking red to indicate position of next meteor
->>>>>>> MovingObject
 !- Enemy having 2 lifes, half destroyed, mechanical insides seen
 -- Aternatively, boss fights
 !- Add alien font
@@ -40,6 +35,7 @@ Refactoring:
 - Create 1 more class for scene management (ie gameOver image)
 
 Done:
+- Hero dies upon touching enemy even when full in health
 - Animation for enemy destruction
 - User confirmation on restart
 - Adding "charge" bar for hero bullets to limit max bullets per minute (variable size rectangle *Rect item)

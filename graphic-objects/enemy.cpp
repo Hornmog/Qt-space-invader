@@ -6,15 +6,12 @@
 #include <cmath>
 #include "consts.h"
 #include <QRandomGenerator>
+#include <QThread>
 
-Enemy::Enemy(EnemyManager *manager, int count) : SpaceShip(manager)
+Enemy::Enemy(EnemyCommander *manager, int count) : SpaceShip(manager)
 {
-<<<<<<< HEAD
     active = true;
-||||||| 9bf97b5
-=======
     animator = new Animator(this, this, ImagePaths::enemy, this->width, this->height);
->>>>>>> MovingObject
     bulletSpeed = baseBulletSpeed;
     shootDelay = baseShootDelay;
     side = Side::enemy;
@@ -29,13 +26,11 @@ Enemy::Enemy(EnemyManager *manager, int count) : SpaceShip(manager)
     this->manager = manager;
     this->count = count;
 
-    connect(this, &Enemy::enemyOnBase,manager, &EnemyManager::enemyOnBase);
-    connect(manager, &EnemyManager::logKeyPressed, this, &SpaceShip::toggleCheckText);
+    connect(this, &Enemy::enemyOnBase,manager, &EnemyCommander::enemyOnBase);
+    connect(manager, &EnemyCommander::logKeyPressed, this, &SpaceShip::toggleCheckText);
 }
 
 Enemy::~Enemy(){
-    // Do we need to do this, or can the scene deal with it automatically?
-    scene()->removeItem(this);
 }
 
 void Enemy::addToScene(QGraphicsScene *scene)
@@ -120,7 +115,11 @@ void Enemy::setUpDelay(int shootDelay)
 void Enemy::delState()
 {
     active = false;
-    setTemporaryAnimation(ImagePaths::enemyDes);
+    curType = TypeIndex::ruiningEnemy;
+    speed.x = speed.x / 2;
+    speed.y = speed.y / 2;
+    QThread::currentThread()->setPriority(QThread::HighPriority);
+    animator->setTemporaryAnimation(ImagePaths::enemyDes);
     qDebug() << ImagePaths::enemyDes;
     Timer::singleShot(ImagePaths::enemyDesDur, this, &Enemy::deleteLater);
 }

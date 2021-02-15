@@ -21,27 +21,14 @@ Animator::Animator(QObject *parent, QGraphicsPixmapItem *item, QString imagePath
 void Animator::setTemporaryAnimation(QString path)
 {
     gif = new QMovie(path);
+    //gif->setSpeed(50);
     gif->start();
     isDefaultGif = false;
     qDebug() << "Current nonDefault gif frame: " << gif->currentFrameNumber();
     qDebug() << "Current nonDefault gif frameCount: " << gif->frameCount();
 }
-
-<<<<<<< HEAD
-void AnimatedObject::nextFrame(int frameNumber)
-{
-    if(this->type() == TypeIndex::enemy){
-        int n = 1;
-    }
-
-||||||| 9bf97b5
-void AnimatedObject::nextFrame(int frameNumber)
-{
-
-=======
 void Animator::nextFrame(int frameNumber)
 {    
->>>>>>> MovingObject
     if(!isDefaultGif && frameNumber + 1 >= gif->frameCount()){
         gif = new QMovie(imagePath);
         gif->start();

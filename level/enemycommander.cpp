@@ -1,4 +1,4 @@
-#include "enemymanager.h"
+#include "enemycommander.h"
 #include "graphic-objects/enemy.h"
 #include <QTimer>
 #include <QGraphicsScene>
@@ -7,27 +7,27 @@
 #include <cstdlib>
 #include "consts.h"
 
-EnemyManager::EnemyManager(QGraphicsScene* scene, KeyManager* keyManager)
+EnemyCommander::EnemyCommander(QGraphicsScene* scene, KeyManager* keyManager)
 {
     this->scene = scene;
-    connect(keyManager, &KeyManager::logKeyPressed, this, &EnemyManager::logKeyPressed);
+    connect(keyManager, &KeyManager::logKeyPressed, this, &EnemyCommander::logKeyPressed);
 }
 
-void EnemyManager::startSpawningEnemies()
+void EnemyCommander::startSpawningEnemies()
 {
     createEnemy();
-    connect(timer, &QTimer::timeout, this, &EnemyManager::onSpawnTimer);
+    connect(timer, &QTimer::timeout, this, &EnemyCommander::onSpawnTimer);
     timer->start(spawnRate);
 }
 
-QJsonObject EnemyManager::returnEnemiesKilled()
+QJsonObject EnemyCommander::returnEnemiesKilled()
 {
     QJsonObject info = QJsonObject();
     info[JsonNames::enemiesKilled] = QString::number(score);
     return info;
 }
 
-void EnemyManager::onKillByHero()
+void EnemyCommander::onKillByHero()
 {
     score++;
     emit onEnemyCountChange(score);
@@ -46,14 +46,14 @@ void EnemyManager::onKillByHero()
 }
 
 
-void EnemyManager::onSpawnTimer()
+void EnemyCommander::onSpawnTimer()
 {
     if(enemyCount < maxEnemyAlive && score < totalEnemiesToKill - enemyCount){
         createEnemy();
     }
 }
 
-void EnemyManager::createEnemy()
+void EnemyCommander::createEnemy()
 {
     Enemy* enemy = new Enemy(this, totalEnemiesSpawned);
     enemy->setDifficulty(difficulty);

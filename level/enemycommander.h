@@ -9,11 +9,11 @@
 
 class Enemy;
 
-class EnemyManager : public QObject, public QGraphicsRectItem
+class EnemyCommander : public QObject, public QGraphicsRectItem
 {
     Q_OBJECT
 public:
-    EnemyManager(QGraphicsScene* scene, KeyManager* keyManager);
+    EnemyCommander(QGraphicsScene* scene, KeyManager* keyManager);
     void onKillByHero();
     void startSpawningEnemies();
     void setTotalEnemiesToKill(int num) {totalEnemiesToKill = num;}

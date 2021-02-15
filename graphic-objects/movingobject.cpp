@@ -16,6 +16,7 @@ MovingObject::MovingObject(QObject *parent) : QObject(parent)
 
 MovingObject::~MovingObject()
 {
+    mainTimer->stop();
     delete checkText;
 }
 

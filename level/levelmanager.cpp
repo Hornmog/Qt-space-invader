@@ -9,12 +9,12 @@ LevelManager::LevelManager(QObject *parent, KeyManager* keyManager) : QObject(pa
     createBackground();
 
     scoreBar = new ScoreBar();
-    scoreBar->setScore(0);
+    scoreBar->setScore(0); //move to constructor?
     scene->addItem(scoreBar);
     scoreBar->setPos(scene->width() - scoreBar->boundingRect().width()*3,
                      scene->height() - scoreBar->boundingRect().height());
 
-    enemyManager = new EnemyManager(scene, keyManager);
+    enemyManager = new EnemyCommander(scene, keyManager);
     audioManager = new AudioManager();
 
     hero = new Hero(keyManager);
@@ -32,9 +32,7 @@ LevelManager::LevelManager(QObject *parent, KeyManager* keyManager) : QObject(pa
 LevelManager::~LevelManager()
 {
     audioManager->stopBackground();
-    if(gameWon){
-        delete hero;
-    }
+    scene->clear();
     delete enemyManager;
 }
 
@@ -46,7 +44,10 @@ void LevelManager::setTotalEnemiesToKill(int num)
 void LevelManager::checkRestart()
 {
     if(!gameInProcess){
-        if(requestRestartConfirmation()){
+        if(gameWon || gameLost){
+            emit restartLevel();
+        }
+        else if(requestRestartConfirmation()){
             emit restartLevel();
         }
         else{
@@ -70,10 +71,10 @@ void LevelManager::start()
 
 void LevelManager::connectSpaceshipSignals()
 {
-    connect(enemyManager, &EnemyManager::onEnemyCountChange, this, &LevelManager::changeScore);
-    connect(enemyManager, &EnemyManager::allEnemiesDefeated, this, &LevelManager::win);
+    connect(enemyManager, &EnemyCommander::onEnemyCountChange, this, &LevelManager::changeScore);
+    connect(enemyManager, &EnemyCommander::allEnemiesDefeated, this, &LevelManager::win);
     connect(hero, &Hero::heroKilled, this, &LevelManager::lose);
-    connect(enemyManager, &EnemyManager::enemyOnBase, this, &LevelManager::lose);
+    connect(enemyManager, &EnemyCommander::enemyOnBase, this, &LevelManager::lose);
 }
 
 void LevelManager::startEnemySpawn()
@@ -209,6 +210,7 @@ void LevelManager::lose()
         return;
     }
     gameInProcess = false;
+    gameLost = true;
     delete hero;
 
     createScreenImage(ImagePaths::gameOver);
@@ -218,6 +220,7 @@ void LevelManager::lose()
     emit signalGameOver(scoreBar->score);
     //start gameOver music
 }
+
 void LevelManager::win()
 {
     qDebug() << "win!";

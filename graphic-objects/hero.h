@@ -43,7 +43,7 @@ private:
     QMap<int, bool> keyPressed = {{Qt::Key_Left, false}, {Qt::Key_Right, false}, {Qt::Key_Up, false}, {Qt::Key_Down, false}};
     QMap<int, int> oppositeKey = {{Qt::Key_Left, Qt::Key_Right}, {Qt::Key_Right, Qt::Key_Left},
                                   {Qt::Key_Up, Qt::Key_Down}, {Qt::Key_Down, Qt::Key_Up}};
-    int lives = 3;
+    int lives = 1;
     const float maxCharge = 100;
     const float bulletCost = 30;
     float charge = maxCharge;

@@ -3,7 +3,7 @@
 
 #include "level/scorebar.h"
 #include "graphic-objects/hero.h"
-#include "level/enemymanager.h"
+#include "level/enemycommander.h"
 #include "graphicsview.h"
 #include "consts.h"
 #include "utils/clock.h"

@@ -9,18 +9,19 @@
 #include "enemy.h"
 #include <QTimer>
 #include "keymanager.h"
+#include <QThread>
 
 const Hero::Movement Hero::movement;
 
 Hero::Hero(KeyManager* keyManager) : SpaceShip(nullptr)
 {
+    active = true;
     animator = new Animator(this, this, ImagePaths::hero, this->width, this->height);
     shootDelay = 1000;
     rechargeRate = bulletCost * period_ms / shootDelay;
     bulletSpeed = 0.6 * period_ms; // 10 pixels per 50 ms
     speed = CoordPair(0,0);
     side = Side::hero;
-    active = false;
     this->hide();
 
     this->keyManager = keyManager;
@@ -61,6 +62,7 @@ void Hero::onTimer()
 
 void Hero::onDamage()
 {
+    QThread::currentThread()->setPriority(QThread::HighPriority);
     animator->setTemporaryAnimation(ImagePaths::damagedHero);
     int rand = QRandomGenerator::global()->bounded(AudioPaths::heroDamaged.size());
     soundEffect->play(AudioPaths::heroDamaged[rand], Volume::heroDamaged);

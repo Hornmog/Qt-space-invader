@@ -3,16 +3,16 @@
 
 #include <QGraphicsRectItem>
 #include <QObject>
-#include "level/enemymanager.h"
+#include "level/enemycommander.h"
 #include "consts.h"
 #include "spaceship.h"
 
 class Enemy: public SpaceShip{
     Q_OBJECT
 public:
-    Enemy(EnemyManager* manager, int count);
+    Enemy(EnemyCommander* manager, int count);
     ~Enemy() override;
-    int type() const override{return TypeIndex::enemy;}
+    int type() const override{return curType;}
     virtual void addToScene(QGraphicsScene* scene) override;
 
 public slots:
@@ -26,8 +26,9 @@ private:
     void setUpDelay(int delay);
     void delState();
     const float baseBulletSpeed = -0.2 * period_ms;
-    EnemyManager* manager;
+    EnemyCommander* manager;
     Timer* timerBullet = nullptr;
+    int curType = TypeIndex::enemy;
     int count;
     int difficulty;
 
