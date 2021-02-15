@@ -27,7 +27,7 @@ QJsonObject EnemyCommander::returnEnemiesKilled()
     return info;
 }
 
-void EnemyCommander::onKillByHero()
+void EnemyCommander::onKillOfEnemyByHero()
 {
     score++;
     emit onEnemyCountChange(score);

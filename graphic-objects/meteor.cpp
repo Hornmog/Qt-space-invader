@@ -21,8 +21,11 @@ Meteor::Meteor()
 
 }
 
-void Meteor::addToScene(QGraphicsScene *scene)
+void Meteor::move()
 {
-    scene->addItem(this);
-    //scene->addItem(checkText);
+    if((movingFrom == left && x() == sceneWidth) || (movingFrom == right && x() == -boundingRect().x())){
+        delete this;
+    }
+    setPos(x() + speed.x, y() + speed.y);
+    groupCheckTextInfo();
 }

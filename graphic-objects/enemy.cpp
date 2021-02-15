@@ -53,7 +53,7 @@ void Enemy::onTimer(){
 
     int hitBy = this->bulletCollisionCheck();
     if(hitBy == Side::hero){
-        manager->onKillByHero();
+        manager->onKillOfEnemyByHero();
         delState();
         //delete this;
     }
@@ -80,7 +80,7 @@ void Enemy::setDifficulty(int difficulty)
 
 void Enemy::onHeroCollision()
 {
-    manager->onKillByHero();
+    manager->onKillOfEnemyByHero();
     delState();
     //delete this;
 }

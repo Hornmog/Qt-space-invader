@@ -3,24 +3,24 @@
 
 #include <QObject>
 #include <QGraphicsPixmapItem>
+#include "movingobject.h"
 #include "utils/coordpair.h"
 #include "utils/timer.h"
 
-class Meteor : public QGraphicsPixmapItem
+class Meteor : public MovingObject
 {
 public:
     Meteor();
 
 private:
-    void addToScene(QGraphicsScene* scene);
+    enum MovingFrom{left, right};
+    MovingFrom movingFrom;
+    void move();
 
-    CoordPair speed = CoordPair(0,0);
-    CoordPair innitPos = CoordPair(0,0);
+    CoordPair Pos = CoordPair(0,0);
     CoordPair size = CoordPair(0,0);
-    Timer* mainTimer;
 
 public slots:
-    void toggleCheckText();
 
 };
 
