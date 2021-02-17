@@ -8,7 +8,8 @@
 #include "scorebar.h"
 //#include "gamemanager.h"
 #include <QObject>
-#include <graphic-objects/hero.h>
+#include "graphic-objects/hero.h"
+#include "meteorcommander.h"
 
 class LevelManager : public QObject
 {
@@ -52,7 +53,8 @@ private:
     ScoreBar* scoreBar;
     QGraphicsScene* scene;
     Hero* hero = nullptr;
-    EnemyCommander* enemyManager;
+    EnemyCommander* enemyCommander;
+    MeteorCommander* meteorCommander;
     AudioManager* audioManager;
     QGraphicsPixmapItem* pause;
     QGraphicsTextItem* number;

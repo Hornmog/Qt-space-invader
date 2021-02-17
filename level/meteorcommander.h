@@ -9,8 +9,8 @@ class MeteorCommander : public QObject
 {
     Q_OBJECT
 public:
-    explicit MeteorCommander(QObject *parent = nullptr);
-    void startSpawningMeteor();
+    explicit MeteorCommander(QGraphicsScene* scene, QObject *parent = nullptr);
+    void startSpawningMeteors();
 
 signals:
     void logKeyPressed();

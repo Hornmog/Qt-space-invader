@@ -11,13 +11,16 @@ class Meteor : public MovingObject
 {
 public:
     Meteor();
+    void addToScene(QGraphicsScene *scene) override;
 
 private:
-    enum MovingFrom{left, right};
-    MovingFrom movingFrom;
+//    enum MovingFrom{left, right};
+//    MovingFrom movingFrom;
     void move();
-
-    CoordPair Pos = CoordPair(0,0);
+    void groupCheckTextInfo() override;
+    void onTimer() override;
+    void selfDestroy();
+    CoordPair currPos = CoordPair(0,0);
     CoordPair size = CoordPair(0,0);
 
 public slots:

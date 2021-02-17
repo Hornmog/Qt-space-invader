@@ -14,7 +14,8 @@ LevelManager::LevelManager(QObject *parent, KeyManager* keyManager) : QObject(pa
     scoreBar->setPos(scene->width() - scoreBar->boundingRect().width()*3,
                      scene->height() - scoreBar->boundingRect().height());
 
-    enemyManager = new EnemyCommander(scene, keyManager);
+    enemyCommander = new EnemyCommander(scene, keyManager);
+    meteorCommander = new MeteorCommander(scene);
     audioManager = new AudioManager();
 
     hero = new Hero(keyManager);
@@ -33,12 +34,13 @@ LevelManager::~LevelManager()
 {
     audioManager->stopBackground();
     scene->clear();
-    delete enemyManager;
+    delete meteorCommander;
+    delete enemyCommander;
 }
 
 void LevelManager::setTotalEnemiesToKill(int num)
 {
-    enemyManager->setTotalEnemiesToKill(num);
+    enemyCommander->setTotalEnemiesToKill(num);
 }
 
 void LevelManager::checkRestart()
@@ -71,15 +73,16 @@ void LevelManager::start()
 
 void LevelManager::connectSpaceshipSignals()
 {
-    connect(enemyManager, &EnemyCommander::onEnemyCountChange, this, &LevelManager::changeScore);
-    connect(enemyManager, &EnemyCommander::allEnemiesDefeated, this, &LevelManager::win);
+    connect(enemyCommander, &EnemyCommander::onEnemyCountChange, this, &LevelManager::changeScore);
+    connect(enemyCommander, &EnemyCommander::allEnemiesDefeated, this, &LevelManager::win);
     connect(hero, &Hero::heroKilled, this, &LevelManager::lose);
-    connect(enemyManager, &EnemyCommander::enemyOnBase, this, &LevelManager::lose);
+    connect(enemyCommander, &EnemyCommander::enemyOnBase, this, &LevelManager::lose);
 }
 
 void LevelManager::startEnemySpawn()
 {
-    enemyManager->startSpawningEnemies();
+    enemyCommander->startSpawningEnemies();
+    meteorCommander->startSpawningMeteors();
 }
 
 void LevelManager::togglePause()

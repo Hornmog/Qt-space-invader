@@ -4,7 +4,6 @@ L - problem reproduces on Linux machine only
 1/2 - needs confirmation before moving to "done"
 
 Bugfixes:
-- Process kamikaze act for level continuation
 1/2- Infinite hero red blinking
 L - Fonts are displaying inconsistently
 1/2- Broken restart
@@ -23,6 +22,7 @@ New features:
 !- Neutral side meteors
 - Add intro animation (story) maybe Star Wars text, skip option
 - Levels
+-- How to process kamikaze act for level continuation?
 
 Refactoring:
 0-moving CheckText creation to its constructor

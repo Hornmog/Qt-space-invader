@@ -185,7 +185,7 @@ void Hero::shoot()
     if(charge < bulletCost){
         return;
     }
-    int rand = QRandomGenerator::global()->bounded( AudioPaths::heroShoot.size());
+    int rand = QRandomGenerator::global()->bounded(AudioPaths::heroShoot.size());
     qDebug() << AudioPaths::heroShoot[rand];
     soundEffect->play(AudioPaths::heroShoot[rand], Volume::heroShoot);
     createBullet();

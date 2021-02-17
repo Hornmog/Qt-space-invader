@@ -17,6 +17,9 @@
         <file>pictures/enemyDestruction.gif</file>
         <file>pictures/testingEnemy.gif</file>
         <file>pictures/enemyDestruction2.gif</file>
+        <file>pictures/meteor/1.png</file>
+        <file>pictures/meteor/2.png</file>
+        <file>pictures/meteor/3.png</file>
     </qresource>
     <qresource prefix="/audio"/>
     <qresource prefix="/music">

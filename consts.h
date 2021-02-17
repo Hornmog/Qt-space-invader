@@ -30,21 +30,24 @@ namespace JsonNames {
 }
 
 namespace ImagePaths {
-    static const QString pathPrefix = ":/images/pictures/";
-    //static const QString enemy      =  pathPrefix + "enemyOctopus.png";
-    static const QString enemy      =  pathPrefix + "testingEnemy.gif";
-    static const QString enemyDes   =  pathPrefix + "enemyDestruction2.gif";
-    static const int     enemyDesDur=  800;
-    static const QString hero       =  pathPrefix + "hero.gif";
-    static const QString damagedHero=  pathPrefix + "damagedHero.gif";
-    static const QString bullet     =  pathPrefix + "bulletFast.gif";
-    static const QString enemyBullet=  pathPrefix + "bulletFastWhite.gif";
-    static const QString gameOver   =  pathPrefix + "gameOver.png";
-    static const QString pressR     =  pathPrefix + "pressR.png";
-    static const QString win        =  pathPrefix + "win.png";
-    static const QString background =  pathPrefix + "background.png";
-    static const QString pause      =  pathPrefix + "pause.png";
-    static const QString heart      =  pathPrefix + "heart.png";
+    static const QString pathPrefix          = ":/images/pictures/";
+    //static const QString enemy             =  pathPrefix + "enemyOctopus.png";
+    static const QString enemy               =  pathPrefix + "testingEnemy.gif";
+    static const QString enemyDes            =  pathPrefix + "enemyDestruction2.gif";
+    static const int     enemyDesDur         =  800;
+    static const QString hero                =  pathPrefix + "hero.gif";
+    static const QString damagedHero         =  pathPrefix + "damagedHero.gif";
+    static const QString bullet              =  pathPrefix + "bulletFast.gif";
+    static const QString enemyBullet         =  pathPrefix + "bulletFastWhite.gif";
+    static const QString gameOver            =  pathPrefix + "gameOver.png";
+    static const QString pressR              =  pathPrefix + "pressR.png";
+    static const QString win                 =  pathPrefix + "win.png";
+    static const QString background          =  pathPrefix + "background.png";
+    static const QString pause               =  pathPrefix + "pause.png";
+    static const QString heart               =  pathPrefix + "heart.png";
+    static const QVector<QString> meteor     = {pathPrefix + "meteor/1.png",
+                                                pathPrefix + "meteor/2.png",
+                                                pathPrefix + "meteor/3.png"};
 }
 
 namespace AudioPaths {
