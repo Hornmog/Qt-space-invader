@@ -29,19 +29,23 @@ Meteor::Meteor()
 
 void Meteor::move()
 {
-    if((speed.x < 0 && x() > sceneWidth) || (speed.x > 0 && x() < -boundingRect().x())){
+    if((speed.x < 0 && currPos.x > sceneWidth) || (speed.x > 0 && currPos.x < -size.x)){
         delete this;
+    }else {
+        currPos.x += speed.x;
+        currPos.y += speed.y;
+        setPos(currPos.x,currPos.y);
     }
-    currPos.x += speed.x;
-    currPos.y += speed.y;
-    setPos(currPos.x,currPos.y);
-    groupCheckTextInfo();
 }
 
 void Meteor::groupCheckTextInfo()
 {
     QString output = "";
     output += "SpeedX: " + QString::number(speed.x) + " speedY: " + QString::number(speed.y) + "\n";
+    output += "CurrPos X: " + QString::number(currPos.x) + " CurrPos Y: " + QString::number(currPos.y) + "\n";
+    output += "Size  X: " + QString::number(size.x) + " Size Y: " + QString::number(size.y) + "\n";
+    //qDebug() << output;
+    //qDebug() << "system x: " << x() << "system y: " << y() << "rect: " << boundingRect();
     checkText->setPlainText(output);
 }
 
@@ -50,15 +54,15 @@ void Meteor::onTimer()
     groupCheckTextInfo();
 
     if((bulletCollisionCheck() != Side::nobody)){
-        selfDestroy();
+        onDamage();
     }
     else{
         move();
-        checkText->setPos(x(),y());
+        checkText->setPos(currPos.x, currPos.y);
     }
 }
 
-void Meteor::selfDestroy()
+void Meteor::onDamage()
 {
     delete this;
 }

@@ -51,7 +51,9 @@ void Hero::onTimer()
         charge += rechargeRate;
         chargeBar->setCharge(charge);
     }
-    if((bulletCollisionCheck() != Side::nobody) || enemyCollisionCheck()){
+    if((bulletCollisionCheck() != Side::nobody) ||
+            objectCollisionCheck(TypeIndex::enemy) ||
+            objectCollisionCheck(TypeIndex::meteor)){
         onDamage();
     }
     else{       
@@ -126,12 +128,12 @@ void Hero::heroKeyReleased(int key)
     }
 }
 
-bool Hero::enemyCollisionCheck()
+bool Hero::objectCollisionCheck(int searchedItem)
 {
-    auto item = collisionCheck(TypeIndex::enemy);
+    auto item = collisionCheck(searchedItem);
     if(item != nullptr){
-        Enemy* enemy = static_cast<Enemy*>(item);
-        enemy->onHeroCollision();
+        MovingObject* object = static_cast<MovingObject*>(item);
+        object->onDamage();
         return true;
     }
     return false;

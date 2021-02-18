@@ -15,6 +15,7 @@ public:
     ~MovingObject() override;
     static bool checkTextVisible;
     virtual void addToScene(QGraphicsScene* scene);
+    virtual void onDamage() = 0;
 
 private:
     bool checkTextOnScene = false;
@@ -24,6 +25,7 @@ protected:
     int bulletCollisionCheck();
     void setUpCheckText();
     virtual void groupCheckTextInfo() = 0;
+
     CoordPair speed = CoordPair(0,0);
     CheckText *checkText;
     Timer* mainTimer;

@@ -29,11 +29,12 @@ public slots:
     void heroKeyReleased(int key);
 
 private:
-    bool enemyCollisionCheck();
+    bool objectCollisionCheck(int searchedItem);
     int calculateMovement(char coord);
     bool checkScreenBorders(int distance);
     void shoot();
-    void onDamage();
+    void onDamage() override;
+
     KeyManager* keyManager;
     HealthBar* healthBar;
     ChargeBar* chargeBar;

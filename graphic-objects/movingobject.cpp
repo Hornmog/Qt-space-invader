@@ -11,7 +11,12 @@ MovingObject::MovingObject(QObject *parent) : QObject(parent)
     mainTimer = new Timer();
     connect(mainTimer, &QTimer::timeout, this, &MovingObject::onTimer);
     mainTimer->start(period_ms);
-
+    // Note:
+    // For move() to work correctly, all value regarding the object's
+    // speed and position must be initialised.
+    // If there are problems caused by this timer,
+    // check whether constructors of the derived objects
+    // finish on time before onTimer() is called.
 }
 
 MovingObject::~MovingObject()

@@ -12,14 +12,15 @@ class Meteor : public MovingObject
 public:
     Meteor();
     void addToScene(QGraphicsScene *scene) override;
+    int type() const override {return TypeIndex::meteor;}
+    void onDamage() override;
 
 private:
 //    enum MovingFrom{left, right};
 //    MovingFrom movingFrom;
     void move();
     void groupCheckTextInfo() override;
-    void onTimer() override;
-    void selfDestroy();
+    void onTimer() override;   
     CoordPair currPos = CoordPair(0,0);
     CoordPair size = CoordPair(0,0);
 

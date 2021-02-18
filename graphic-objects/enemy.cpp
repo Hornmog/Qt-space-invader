@@ -78,7 +78,7 @@ void Enemy::setDifficulty(int difficulty)
     bulletSpeed = baseBulletSpeed / pow(0.9, difficulty - 1);
 }
 
-void Enemy::onHeroCollision()
+void Enemy::onDamage()
 {
     manager->onKillOfEnemyByHero();
     delState();

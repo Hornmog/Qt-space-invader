@@ -19,7 +19,7 @@ public slots:
     void onTimer() override;
     void groupCheckTextInfo() override;
     void setDifficulty(int difficulty);
-    void onHeroCollision();
+    void onDamage() override;
 
 private:
     void move();
