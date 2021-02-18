@@ -24,6 +24,7 @@ Meteor::Meteor()
     int rand = QRandomGenerator::global()->bounded(ImagePaths::meteor.size());
     QPixmap image(ImagePaths::meteor[rand]);
     this->setPixmap(image.scaled(size.x, size.y, Qt::KeepAspectRatio));
+    mainTimer->stop();
 }
 
 
@@ -62,6 +63,11 @@ void Meteor::onTimer()
     }
 }
 
+CoordPair Meteor::getCurrPos() const
+{
+    return currPos;
+}
+
 void Meteor::onDamage()
 {
     delete this;
@@ -71,5 +77,6 @@ void Meteor::addToScene(QGraphicsScene *scene)
 {
     scene->addItem(this);
     this->setPos(currPos.x, currPos.y);
+    mainTimer->start(period_ms);
 }
 

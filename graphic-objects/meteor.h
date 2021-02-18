@@ -14,13 +14,14 @@ public:
     void addToScene(QGraphicsScene *scene) override;
     int type() const override {return TypeIndex::meteor;}
     void onDamage() override;
+    CoordPair getCurrPos() const;
 
 private:
-//    enum MovingFrom{left, right};
+    //    enum MovingFrom{left, right};
 //    MovingFrom movingFrom;
     void move();
     void groupCheckTextInfo() override;
-    void onTimer() override;   
+    void onTimer() override;
     CoordPair currPos = CoordPair(0,0);
     CoordPair size = CoordPair(0,0);
 

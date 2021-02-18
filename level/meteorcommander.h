@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "utils/timer.h"
+#include "utils/coordpair.h"
 #include "QGraphicsScene"
 
 class MeteorCommander : public QObject
@@ -20,12 +21,15 @@ public slots:
 
 private:
     void createMeteor();
-
+    void createWarningSign(CoordPair coord);
     Timer* timer = new Timer();
     int spawnRate = 5000;
     int meteorCount = 0;
+    int warningDelay = 1500;
+    int warningLoopCount = 3;
 
     QGraphicsScene *scene;
+
 };
 
 

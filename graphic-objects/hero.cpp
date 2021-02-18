@@ -45,7 +45,6 @@ void Hero::addToScene(QGraphicsScene *scene)
 void Hero::onTimer()
 {
     groupCheckTextInfo();
-    //function groupCheckTextInfo() called after hero killed
 
     if(charge <= maxCharge - rechargeRate){
         charge += rechargeRate;
